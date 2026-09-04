@@ -1,0 +1,14 @@
+title: Foundry
+description: Build components for Foundry with ordinary HTML, CSS, JavaScript, and PHP.
+url: https://doobox.github.io
+baseurl: /foundry-developer-api
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+permalink: pretty
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - ARCHITECTURE.md
