@@ -14,7 +14,7 @@ permalink: "/divider-control.html"
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
+Each item in `customItems` defines one Inspector item. A Divider has no editable value and is used only to separate nearby controls visually.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -26,13 +26,13 @@ Identifies this item as Divider. Always use `divider`.
 <string>divider</string>
 ```
 
-> **Important:** Only id, group and type are needed. It has no author-editable state.
+> **Important:** Divider supports only `type`, `id`, `group`, and optional `enable`. It has no author-editable state or template value.
 
 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
+The unique name of this Inspector item. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
 ```xml
 <key>id</key>
@@ -47,16 +47,6 @@ The Inspector section that contains this control. Omit the key to place it in Se
 ```xml
 <key>group</key>
 <string>Appearance</string>
-```
-
-<h3 class="property-heading"><code>subtitle</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
-
-Supporting text shown beneath the control.
-
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
 ```
 
 <h3 class="property-heading"><code>enable</code></h3>
@@ -74,9 +64,13 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
+Divider does not support `label`, `subtitle`, `toolTip`, `default`, `responsive`, or `count`.
+
+Foundry displays 10 points of space above and below the divider.
+
 ## Return value
 
-`{{ control.separator }}` resolves as **No template value**. Stored internally, its value is **None**.
+Divider is an Inspector-only layout item. It does not produce a template value.
 
 ```text
 No template value
@@ -90,9 +84,9 @@ No template value
 <key>customItems</key>
 <array>
     <dict>
+        <key>type</key><string>divider</string>
         <key>id</key><string>separator</string>
         <key>group</key><string>Derived values</string>
-        <key>type</key><string>divider</string>
     </dict>
 </array>
 ```

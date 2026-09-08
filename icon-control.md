@@ -68,9 +68,9 @@ Help text that explains what the control changes.
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
+<div class="property-meta"><span class="property-type">String or String array</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
-Supporting text shown beneath the control.
+Supporting text shown beneath the picker. With `count`, use an array containing no more than one subtitle for each picker; entries correspond by zero-based index.
 
 ```xml
 <key>subtitle</key>
@@ -109,26 +109,40 @@ Set to true to allow a different icon at each responsive breakpoint.
 
 Creates two to four icon controls stored as one array. Read each value using a zero-based index.
 
-## Request the icon library
-
-The picker and the published icon both use Foundry’s bundled icon catalogue. Add this once at the top level of the component manifest, beside `customItems` and `templates`.
+When `count` is present, `default` must be an array containing exactly `count` valid icon names.
 
 ```xml
-<key>libraries</key>
+<key>count</key>
+<integer>2</integer>
+<key>subtitle</key>
 <array>
-    <dict>
-        <key>id</key><string>com.foundry.icons</string>
-        <key>majorVersion</key><integer>1</integer>
-    </dict>
+    <string>Previous</string>
+    <string>Next</string>
+</array>
+<key>default</key>
+<array>
+    <string>arrow-left</string>
+    <string>arrow-right</string>
 </array>
 ```
 
+## Built-in icon library
+
+An Icon control automatically includes Foundry’s bundled Bootstrap Icons CSS and font in preview and published output. Do not add a `libraries` declaration for it. Foundry includes the library once even when a component declares several Icon controls or a page uses several components containing them.
+
 ## Return value
 
-`{{ control.symbol }}` resolves as an **HTML-escaped icon name without the `bi-` prefix**. Stored internally, its value is a **String**.
+`{{ control.symbol }}` resolves as an **HTML-escaped icon name without the `bi-` prefix**. A single Icon stores a **String**; a multi Icon stores a **String array**.
 
 ```html
 <i class="bi bi-{{ control.symbol }}" aria-hidden="true"></i>
+```
+
+For a multi Icon, read each name by zero-based index.
+
+```html
+<i class="bi bi-{{ control.directions[0] }}" aria-hidden="true"></i>
+<i class="bi bi-{{ control.directions[1] }}" aria-hidden="true"></i>
 ```
 
 ## Complete example
@@ -136,22 +150,14 @@ The picker and the published icon both use Foundry’s bundled icon catalogue. A
 ### Info.plist
 
 ```xml
-<key>libraries</key>
-<array>
-    <dict>
-        <key>id</key><string>com.foundry.icons</string>
-        <key>majorVersion</key><integer>1</integer>
-    </dict>
-</array>
 <key>customItems</key>
 <array>
     <dict>
+        <key>type</key><string>icon</string>
         <key>id</key><string>symbol</string>
         <key>label</key><string>Icon</string>
         <key>group</key><string>Appearance</string>
-        <key>type</key><string>icon</string>
         <key>default</key><string>stars</string>
-        <key>responsive</key><false/>
     </dict>
 </array>
 ```

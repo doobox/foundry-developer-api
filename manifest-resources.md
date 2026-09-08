@@ -18,7 +18,7 @@ permalink: "/manifest-resources.html"
 <span class="pill">Dictionary array</span><span class="pill">Optional</span><span class="pill">Default: []</span>
 </div>
 <p>Requests a web library supplied by Foundry. Foundry includes a requested library only when the site uses a component that declares it, and deduplicates the same request across components.</p>
-<p>Foundry provides the locally bundled Bootstrap Icons library as <code>com.foundry.icons</code>, major version <code>1</code>. Third-party components request it; they do not bundle or download their own copy.</p>
+<p>Library IDs use the library’s familiar upstream name, such as <code>bootstrapIcons</code>. Foundry provides <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a> locally as <code>bootstrapIcons</code>, major version <code>1</code>. An Icon control requests it automatically. Declare it manually only when a component uses Bootstrap Icons directly in its template without declaring an Icon control; components never bundle or download their own copy.</p>
 
 
 <div markdown="1">
@@ -27,7 +27,7 @@ permalink: "/manifest-resources.html"
 <key>libraries</key>
 <array>
     <dict>
-        <key>id</key><string>com.foundry.icons</string>
+        <key>id</key><string>bootstrapIcons</string>
         <key>majorVersion</key><integer>1</integer>
     </dict>
 </array>
