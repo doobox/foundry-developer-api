@@ -78,9 +78,110 @@ Creates two to four colour pickers stored and returned as one indexed array.
 
 Allows alpha. Transparent selections may be returned using CSS functional colour syntax.
 
+<h3 class="property-heading"><code>outputFormat</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: hex</span></div>
+
+Controls how the colour is supplied to templates. The selected format applies to every value when `count` is present.
+
+- `hex` returns `#FF3366`, or `#FF336680` when `opacity` is true.
+- `hexValue` returns `FF3366`, or `FF336680` when `opacity` is true.
+- `rgb` returns `rgb(255 51 102)`, or `rgb(255 51 102 / 0.502)` when `opacity` is true.
+- `rgba` returns `rgba(255, 51, 102, 0.502)`.
+- `rgbValues` returns `255, 51, 102`.
+- `rgbaValues` returns `255, 51, 102, 0.502`.
+- `hsl` returns `hsl(345 100% 60%)`, or `hsl(345 100% 60% / 0.502)` when `opacity` is true.
+- `hsla` returns `hsla(345, 100%, 60%, 0.502)`.
+- `hslValues` returns `345, 100%, 60%`.
+- `hslaValues` returns `345, 100%, 60%, 0.502`.
+
+The explicitly alpha-bearing `rgba`, `rgbaValues`, `hsla` and `hslaValues` formats return alpha `1` when `opacity` is false. `rgbValues` and `hslValues` intentionally omit alpha so they can be embedded in custom CSS expressions.
+
+```xml
+<key>outputFormat</key>
+<string>rgbValues</string>
+```
+
+```css
+:root {
+    --brand-rgb: {{ control.brandColor }};
+}
+
+.example {
+    background: rgba(var(--brand-rgb), 0.6);
+}
+```
+
+## Individual colour channels
+
+Named channel values are available regardless of `outputFormat`:
+
+- `red`, `green` and `blue` return numbers from 0 through 255.
+- `alpha` returns a number from 0 through 1.
+- `hue` returns degrees from 0 up to 360.
+- `saturation` and `lightness` return percentages as numbers from 0 through 100.
+
+```text
+{{ control.brandColor.red }}
+{{ control.brandColor.green }}
+{{ control.brandColor.blue }}
+{{ control.brandColor.alpha }}
+{{ control.brandColor.hue }}
+{{ control.brandColor.saturation }}
+{{ control.brandColor.lightness }}
+```
+
+With `count`, place the colour index before the named channel:
+
+```text
+{{ control.palette[0].red }}
+{{ control.palette[1].alpha }}
+{{ control.palette[2].hue }}
+```
+
+Channels are numeric, so they can also be used in template expressions.
+
+## Accessibility values
+
+Each colour also provides values that help choose readable foreground colours:
+
+- `relativeLuminance` returns the WCAG relative luminance from 0 through 1.
+- `contrastColor` returns `#000000` or `#FFFFFF`, whichever has the higher contrast ratio.
+- `contrastRatioWithBlack` and `contrastRatioWithWhite` return the corresponding WCAG contrast ratios.
+
+```html
+<div style="background: {{ control.brandColor }}; color: {{ control.brandColor.contrastColor }}">
+    Readable text
+</div>
+```
+
+For an array, put the index before the named value, such as `control.palette[0].contrastColor`.
+
+## Colour filters
+
+Colour filters derive a colour in the template without adding another Inspector control. They preserve the control's `outputFormat` and may be chained from left to right.
+
+- `lighten(percentage)` mixes the colour with white.
+- `darken(percentage)` mixes the colour with black.
+- `withAlpha(value)` replaces its alpha with a value from 0 through 1.
+- `mix("#RRGGBB", percentage)` mixes towards another colour. The target may also use `#RRGGBBAA`.
+
+```css
+.card {
+    background: {{ control.brandColor | lighten(15) }};
+    border-color: {{ control.brandColor | darken(20) }};
+    box-shadow: 0 8px 24px {{ control.brandColor | withAlpha(0.25) }};
+}
+
+.card:hover {
+    background: {{ control.brandColor | mix("#FF3366", 30) }};
+}
+```
+
+Filters are calculated only where they appear in a template. They do not change the value stored by the Inspector.
+
 ## Return value
 
-Returns the selected CSS colour string. With `count`, it returns an indexed array.
+Returns the selected colour string using `outputFormat`. With `count`, it returns an indexed array in the selected format.
 
 ```css
 color: {{ control.textColor }};
