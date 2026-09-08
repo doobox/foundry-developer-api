@@ -229,9 +229,13 @@ Control arrays support the same filter:
 
 Use `addDays(integer)` or `addMonths(integer)` to derive a related date without adding another Inspector control. Positive values move forward and negative values move backward. Filters run from left to right and do not change the stored date.
 
+The integer may be written directly or supplied by a Number control. A `formatDate` pattern may likewise be supplied by a Text control.
+
 ```text
 {{ control.published | addDays(7) }}
+{{ control.published | addDays(control.reviewDelay) }}
 {{ control.published | addMonths(1) | formatDate("d MMMM yyyy") }}
+{{ control.published | formatDate(control.datePattern) }}
 ```
 
 Calendar arithmetic handles differing month lengths. For example, adding one month to the final day of January produces the final valid day of February.

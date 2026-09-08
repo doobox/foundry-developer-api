@@ -165,6 +165,8 @@ Colour filters derive a colour in the template without adding another Inspector 
 - `withAlpha(value)` replaces its alpha with a value from 0 through 1.
 - `mix("#RRGGBB", percentage)` mixes towards another colour. The target may also use `#RRGGBBAA`.
 
+Arguments may be literals or compatible control values. Use a Number control for percentages and alpha, and a Colour control for `mix`'s target colour.
+
 ```css
 .card {
     background: {{ control.brandColor | lighten(15) }};
@@ -173,7 +175,7 @@ Colour filters derive a colour in the template without adding another Inspector 
 }
 
 .card:hover {
-    background: {{ control.brandColor | mix("#FF3366", 30) }};
+    background: {{ control.brandColor | mix(control.hoverColor, control.mixAmount) }};
 }
 ```
 

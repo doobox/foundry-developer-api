@@ -301,6 +301,8 @@ padding: {{ max(control.minimumPadding, control.padding) }}px;
 
 </div>
 
+<p>A filter argument may be a literal or a compatible control value, such as <code>control.reviewDelay</code>. This also applies to each argument of filters that accept more than one.</p>
+
 
 <p>Colour values support <code>lighten(percentage)</code>, <code>darken(percentage)</code>, <code>withAlpha(value)</code> and <code>mix("#RRGGBB", percentage)</code>. Colour filters may be chained from left to right.</p>
 
@@ -309,6 +311,7 @@ padding: {{ max(control.minimumPadding, control.padding) }}px;
 
 ```css
 background: {{ control.brandColor | darken(10) | withAlpha(0.8) }};
+border-color: {{ control.brandColor | mix(control.borderColor, control.mixAmount) }};
 ```
 
 </div>
@@ -321,7 +324,7 @@ background: {{ control.brandColor | darken(10) | withAlpha(0.8) }};
 
 ```html
 <time datetime="{{ control.published }}">{{ control.published | formatDate("d MMMM yyyy") }}</time>
-<time datetime="{{ control.published | addDays(7) }}">Review date</time>
+<time datetime="{{ control.published | addDays(control.reviewDelay) }}">Review date</time>
 ```
 
 </div>
