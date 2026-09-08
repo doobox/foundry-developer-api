@@ -18,7 +18,6 @@ permalink: "/components.html"
 
 <h2>Info.plist</h2>
 <div class="page-links">
-    <a class="card" href="info-plist.html"><strong>Manifest overview</strong><p>The minimal component and collection declarations, plus a map of every section.</p></a>
     <a class="card" href="manifest-identity.html"><strong>Identity and metadata</strong><p>Compatibility requirement, component ID, title, release version, author, group, and tags.</p></a>
     <a class="card" href="templates.html"><strong>Template files</strong><p>Primary HTML, CSS, JavaScript, PHP, additional HTML, scope, and editor CSS.</p></a>
     <a class="card" href="manifest-resources.html"><strong>Libraries and assets</strong><p>Foundry-managed dependencies, packaged resources, and PHP requirements.</p></a>

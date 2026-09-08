@@ -1,76 +1,173 @@
 ---
 layout: default
-title: Text alignment · Foundry Developer
+title: Text alignment control · Foundry Developer
 permalink: "/text-alignment.html"
 ---
 {% raw %}
 <div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><a href="custom-controls.html">Custom controls</a>
+<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Specialised custom control</p>
+<p class="eyebrow">Info.plist · customItems</p>
 <h1>Text alignment</h1>
-<p class="lede"><code>textAlignment</code> provides a preconfigured segmented control with familiar alignment symbols and resolves to a logical CSS <code>text-align</code> value.</p>
+<p class="lede">A preconfigured segmented control that produces logical CSS text-alignment values.</p>
 
-<div class="api-meta">
-<span class="pill">Control type: textAlignment</span><span class="pill">Output: CSS keyword</span><span class="pill">Default: start</span>
+
+## Basic properties
+
+Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour.
+
+<h3 class="property-heading"><code>type</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
+
+Identifies this item as a Text alignment control. Always use `textAlignment`.
+
+```xml
+<key>type</key>
+<string>textAlignment</string>
+```
+
+<h3 class="property-heading"><code>id</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
+
+The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores or hyphens.
+
+```xml
+<key>id</key>
+<string>alignment</string>
+```
+
+<h3 class="property-heading"><code>labels</code></h3>
+<div class="property-meta"><span class="property-type">String or String array</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
+
+Text shown beside the control in the Inspector. A control array needs one non-empty label for each member.
+
+```xml
+<key>labels</key>
+<string>Alignment</string>
+```
+
+<h3 class="property-heading"><code>group</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
+
+The Inspector section that contains this control. Omit the key to place it in Settings.
+
+```xml
+<key>group</key>
+<string>Typography</string>
+```
+
+<h3 class="property-heading"><code>toolTip</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
+
+Help text that explains what the control changes.
+
+```xml
+<key>toolTip</key>
+<string>Choose text alignment.</string>
+```
+
+<h3 class="property-heading"><code>subtitles</code></h3>
+<div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: []</span></div>
+
+Supporting text for members of a control array. Use this key only when `count` is present.
+
+```xml
+<key>subtitles</key>
+<array>
+    <string>First value</string>
+    <string>Second value</string>
+</array>
+```
+
+<h3 class="property-heading"><code>enable</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
+
+Shows this control only when another control meets the stated condition. See [Conditional visibility](enable-control.html).
+
+```xml
+<key>enable</key>
+<dict>
+    <key>id</key><string>showControl</string>
+    <key>value</key><true/>
+</dict>
+```
+
+<h3 class="property-heading"><code>default</code></h3>
+<div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
+
+The initially selected logical alignment. Use `start`, `center`, `end`, or `justify`.
+
+```xml
+<key>default</key>
+<string>start</string>
+```
+
+<h3 class="property-heading"><code>responsive</code></h3>
+<div class="property-meta"><span class="property-type">Boolean</span><span class="required">Required</span></div>
+
+Set to true to allow a different value at each responsive breakpoint.
+
+```xml
+<key>responsive</key>
+<false/>
+```
+
+## Text alignment options
+
+These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown.
+
+<h3 class="property-heading"><code>count</code></h3>
+<div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
+
+Creates two to four text-alignment controls stored as one array.
+
+```xml
+<key>count</key>
+<integer>2</integer>
+```
+
+<div class="guidance" markdown="1">
+<h3>Logical alignment values</h3>
+
+- `start` follows the writing direction’s starting edge.
+- `center` centres each line.
+- `end` follows the writing direction’s ending edge.
+- `justify` expands spacing so lines meet both edges.
+
+Use logical values rather than hard-coded left or right alignment so published content follows left-to-right and right-to-left writing modes.
 </div>
 
-<h2>Info.plist declaration</h2>
 
-<div markdown="1">
+## Return value
+
+`{{ control.alignment }}` resolves as **CSS keyword: start, center, end, or justify**. Stored internally, its value is **String**.
+
+```css
+text-align: {{ control.alignment }};
+```
+
+## Complete example
+
+### Info.plist
 
 ```xml
 <key>customItems</key>
 <array>
     <dict>
+        <key>type</key><string>textAlignment</string>
         <key>id</key><string>alignment</string>
         <key>labels</key><string>Alignment</string>
         <key>group</key><string>Typography</string>
-    <key>type</key><string>textAlignment</string>
         <key>default</key><string>start</string>
         <key>responsive</key><true/>
     </dict>
 </array>
 ```
 
-</div>
-
-
-
-<h2>Template value</h2>
-
-<div markdown="1">
+### Use it in a template
 
 ```css
-#{{ id }} {
-    text-align: {{ control.alignment }};
-}
+text-align: {{ control.alignment }};
 ```
 
-</div>
-
-<p>The macro returns one of the documented keywords below. Foundry does not generate the declaration or decide which element receives it.</p>
-
-<h2>Values</h2>
-<section class="reference-entry"><h3>start</h3>
-<div class="api-meta"><span class="pill">Default</span></div>
-<p>Aligns text to the logical start edge. This is left in left-to-right writing modes and right in right-to-left writing modes.</p></section><section class="reference-entry"><h3>center</h3>
-<p>Centres each line within its content box.</p></section><section class="reference-entry"><h3>end</h3>
-<p>Aligns text to the logical end edge. This is right in left-to-right writing modes and left in right-to-left writing modes.</p></section><section class="reference-entry"><h3>justify</h3>
-<p>Adjusts spacing so text fills the available inline width.</p></section>
-
-<h2>Inspector behaviour</h2>
-<p>Foundry presents the four choices as a single segmented control using start, centre, end and justified text-alignment symbols. Each segment has an accessibility label and tooltip; the stored value is the CSS keyword, never the symbol name.</p>
-<dl>
-<dt>Responsive</dt>
-<dd>When the custom item sets <code>responsive</code> to <code>true</code>, the author may override alignment at each breakpoint with normal inheritance and reset behaviour.</dd>
-<dt>Writing direction</dt>
-<dd>
-<code>start</code> and <code>end</code> are logical values, so components remain correct for both left-to-right and right-to-left content.</dd>
-<dt>Theme dependency</dt>
-<dd>None. This specialised custom control does not use <code>themeValues</code>.</dd>
-</dl>
-
-<div class="note">
-<strong>No options array required.</strong> The choices, symbols, validation and output contract are built into the <code>textAlignment</code> custom control.</div>
 {% endraw %}

@@ -119,6 +119,114 @@ permalink: "/template-values.html"
 
 <p>The index must refer to an item declared by the control’s <code>count</code>. See <a href="control-arrays.html">Control arrays</a>.</p>
 </section>
+<h2 id="repeating-content">Repeating content</h2>
+<p>Use a <code>repeat</code> block to generate the same template content a fixed or user-controlled number of times. The block may contain markup, template values, conditions, editable text, editable HTML, images, and nested repeat blocks.</p>
+
+
+<div markdown="1">
+
+```html
+<div class="gallery" {{ component.attributes }}>
+    {{ repeat 8 }}
+        <figure>
+            {{ image }}
+            <figcaption>{{ text="Image caption" }}</figcaption>
+        </figure>
+    {{ endrepeat }}
+</div>
+```
+
+</div>
+
+
+<p>A literal count must be a whole number from <code>0</code> through <code>100</code>. Each <code>repeat</code> requires a matching <code>endrepeat</code>.</p>
+
+<h3>Use a control for the count</h3>
+<p>Reference a number or slider control when the component user should choose how many items appear. The control must declare an explicit finite <code>maximum</code> from <code>0</code> through <code>100</code>. Foundry rounds the current value down to a whole number and constrains it to the control’s supported range.</p>
+
+
+<div markdown="1">
+
+```html
+<ul class="items" {{ component.attributes }}>
+    {{ repeat control.itemCount }}
+        <li>{{ text="Item" }}</li>
+    {{ endrepeat }}
+</ul>
+```
+
+</div>
+
+
+<div markdown="1">
+
+```xml
+<dict>
+    <key>id</key><string>itemCount</string>
+    <key>labels</key><string>Items</string>
+    <key>type</key><string>number</string>
+    <key>minimum</key><integer>0</integer>
+    <key>maximum</key><integer>12</integer>
+    <key>default</key><integer>4</integer>
+    <key>responsive</key><false/>
+</dict>
+```
+
+</div>
+
+
+<h3>Repeat values</h3>
+<dl class="syntax-list">
+<dt><code>{{ repeat.index }}</code></dt>
+<dd>The current item’s zero-based index.</dd>
+<dt><code>{{ repeat.position }}</code></dt>
+<dd>The current item’s one-based position.</dd>
+<dt><code>{{ repeat.count }}</code></dt>
+<dd>The number of items currently emitted by this repeat block.</dd>
+<dt><code>{{ repeat.first }}</code></dt>
+<dd><code>true</code> for the first emitted item and <code>false</code> otherwise.</dd>
+<dt><code>{{ repeat.last }}</code></dt>
+<dd><code>true</code> for the last emitted item and <code>false</code> otherwise.</dd>
+</dl>
+
+
+<div markdown="1">
+
+```html
+{{ repeat control.itemCount }}
+    <article class="item item-{{ repeat.position }}">
+        {{ if repeat.first }}<strong>First item</strong>{{ endif }}
+        <span>{{ repeat.position }} of {{ repeat.count }}</span>
+    </article>
+{{ endrepeat }}
+```
+
+</div>
+
+
+<h3>Nested repeats</h3>
+<p>Repeat blocks may be nested. Inside a nested block, prefix any outer-block value with <code>repeat.parent.</code>: <code>repeat.parent.index</code>, <code>repeat.parent.position</code>, <code>repeat.parent.count</code>, <code>repeat.parent.first</code>, or <code>repeat.parent.last</code>.</p>
+
+
+<div markdown="1">
+
+```html
+{{ repeat 3 }}
+    <div class="row-{{ repeat.position }}">
+        {{ repeat 4 }}
+            <span>{{ repeat.parent.position }}.{{ repeat.position }}</span>
+        {{ endrepeat }}
+    </div>
+{{ endrepeat }}
+```
+
+</div>
+
+
+<div class="note">
+<strong>Editable values remain stable.</strong> Foundry assigns a distinct persistent value to every repeated <code>{{ text }}</code>, <code>{{ html }}</code>, and <code>{{ image }}</code> position up to the declared maximum. Reducing and later increasing the count therefore restores the content previously entered for those positions.</div>
+<div class="callout warning">
+<strong>Keep nested output reasonable.</strong> To prevent accidental runaway templates, one rendered template may expand no more than 10,000 total repeat iterations.</div>
 <h2>Conditions</h2>
 <p>Use an expression after <code>if</code> or <code>elseif</code>. Expressions can combine control values, numbers, quoted Strings, Booleans and the mutually exclusive <code>canvas</code>, <code>preview</code>, and <code>published</code> environment values.</p>
 

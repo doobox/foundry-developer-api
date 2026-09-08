@@ -75,10 +75,11 @@ Callout.foundrydevpack/
         </dict>
         <dict>
             <key>id</key><string>accentColor</string>
-            <key>labels</key><string>Accent</string>
+            <key>label</key><string>Accent</string>
             <key>group</key><string>Colour</string>
-            <key>type</key><string>color</string>
-            <key>themeValues</key><string>accent</string>
+            <key>type</key><string>themeColor</string>
+            <key>allowsCustom</key><true/>
+            <key>customColor</key><string>#5B5BD6</string>
             <key>colorMath</key><true/>
             <key>default</key><string>custom</string>
             <key>responsive</key><false/>

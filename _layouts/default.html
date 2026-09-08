@@ -5,14 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 {% if page.description %}<meta name="description" content="{{ page.description | escape }}">{% endif %}
 <title>{{ page.title | escape }}</title>
-<link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
-<script src="{{ '/app.js' | relative_url }}" defer></script>
-{% if page.control_reference %}<script src="{{ '/control-reference.js' | relative_url }}" defer></script>{% endif %}
+<link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v=20260908-direct-reference">
+<script src="{{ '/app.js' | relative_url }}?v=20260908-remove-manifest-overview" defer></script>
 </head>
-<body{% if page.control %} data-control="{{ page.control }}"{% endif %} data-base="{{ '/' | relative_url }}">
+<body data-base="{{ '/' | relative_url }}">
 <div class="shell">
 <nav data-doc-nav aria-label="Documentation"></nav>
-<main{% if page.control_page %} data-control-page{% endif %}>
+<main>
 {{ content }}
 </main>
 </div>

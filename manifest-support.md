@@ -5,7 +5,7 @@ permalink: "/manifest-support.html"
 ---
 {% raw %}
 <div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><a href="info-plist.html">Info.plist</a>
+<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
 </div>
 <p class="eyebrow">Info.plist</p>
 <h1>Support and recovery</h1>
@@ -63,11 +63,12 @@ permalink: "/manifest-support.html"
 
 <h2 id="validation-failures">Validation failures</h2>
 <p>Foundry refuses to load a component whose manifest or declared files violate the API contract. The Developer panel reports every diagnostic Foundry produced for that pack, including the relevant key or file when available.</p>
+<p>Manifest keys are strict. Unknown or misspelled keys are validation errors rather than ignored extensions, so correct the declaration named by the diagnostic before reloading the pack.</p>
 <div class="note">
 <strong>Do not rely on undocumented fallbacks.</strong> Foundry validates the current manifest shape and does not translate legacy aliases. Correct the reported declaration in the pack and reload it.</div>
 
 <div class="page-links">
-    <a class="card" href="info-plist.html"><strong>Manifest overview</strong><p>Return to the complete map of manifest capabilities.</p></a>
+    <a class="card" href="manifest-identity.html"><strong>Identity and metadata</strong><p>Review the required component identity and presentation keys.</p></a>
     <a class="card" href="bundle-structure.html"><strong>Development packs</strong><p>Use <code>.foundrydevpack</code> while editing and reloading a component.</p></a>
 </div>
 {% endraw %}

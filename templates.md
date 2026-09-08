@@ -5,11 +5,12 @@ permalink: "/templates.html"
 ---
 {% raw %}
 <div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><a href="info-plist.html">Info.plist</a>
+<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
 </div>
 <p class="eyebrow">Info.plist template files</p>
 <h1>Declare exactly the files your component uses</h1>
 <p class="lede">The <code>templates</code> dictionary tells Foundry which files are source templates, how often to process them, and where their output belongs. This page separates the rules by file type so every declaration has one clear shape.</p>
+<p>Foundry does not scan the pack and guess which files are templates. Every HTML, CSS, JavaScript or PHP template the component uses must be declared explicitly in this dictionary.</p>
 
 <div class="note">
 <strong>Paths are relative to Contents/Resources.</strong> Every declared file must exist inside the component pack. Foundry determines an additional template’s type from its filename extension.</div>
@@ -353,6 +354,6 @@ button.addEventListener("click", () => {
 
 <div class="page-links">
     <a class="card" href="template-values.html"><strong>Template values</strong><p>See the macros available inside templates, including identity, controls, assets, conditions, editable content, and slots.</p></a>
-    <a class="card" href="info-plist.html"><strong>Info.plist overview</strong><p>Return to the map of component identity, libraries, assets, controls, slots, and support keys.</p></a>
+    <a class="card" href="manifest-identity.html"><strong>Identity and metadata</strong><p>Review the manifest keys that identify and present the component.</p></a>
 </div>
 {% endraw %}

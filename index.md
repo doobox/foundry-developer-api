@@ -12,7 +12,7 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
 <p class="lede">Build portable website components from ordinary HTML, CSS, JavaScript, and PHP. <code>Info.plist</code> declares the component; templates remain yours.</p>
 <div class="hero-actions">
     <a class="button" href="quick-start.html">Build your first component</a>
-    <a class="button secondary" href="info-plist.html">Explore Info.plist</a>
+    <a class="button secondary" href="manifest-identity.html">Explore Info.plist</a>
 </div>
 </section>
 
@@ -26,7 +26,7 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
     <section class="step">
         <h3>Describe it in Info.plist</h3>
         <p>Give the component a stable identity, name its source templates and assets, request any libraries, and declare the controls authors will see.</p>
-        <p><a href="info-plist.html">Open the manifest guide →</a></p>
+        <p><a href="manifest-identity.html">Start with component identity →</a></p>
     </section>
     <section class="step">
         <h3>Use values in your templates</h3>
@@ -42,7 +42,7 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
 
 <h2>The three things to remember</h2>
 <div class="card-grid">
-    <a class="card" href="info-plist.html"><strong>The manifest declares</strong><p><code>Info.plist</code> is the source of truth for identity, files, dependencies, controls, and slots.</p></a>
+    <a class="card" href="manifest-identity.html"><strong>The manifest declares</strong><p><code>Info.plist</code> is the source of truth for identity, files, dependencies, controls, and slots.</p></a>
     <a class="card" href="templates.html"><strong>Scope controls frequency</strong><p>Instance, page, and site scope describe how often a declared file is processed.</p></a>
     <a class="card" href="template-values.html"><strong>Templates consume values</strong><p>Macros insert resolved values without taking ownership of your markup or CSS selectors.</p></a>
 </div>

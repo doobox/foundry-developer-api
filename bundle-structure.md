@@ -58,9 +58,9 @@ Example.foundrypack/
 <strong>Nested packs</strong>
 <p>Build functional packs and collections recursively.</p>
 </a>
-<a class="card" href="info-plist.html">
-<strong>Info.plist</strong>
-<p>See every plist key.</p>
+<a class="card" href="manifest-identity.html">
+<strong>Identity and metadata</strong>
+<p>Start with the required component keys.</p>
 </a>
 </div>
 {% endraw %}

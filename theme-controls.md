@@ -58,8 +58,21 @@ line-height: {{ control.textSize.lineHeight }};
 </div>
 
 
+<h2>Font families</h2>
+<p>A <code>fontFamilies</code> select lists the semantic font roles and additional fonts configured in the Theme Editor. Its choices show only their names. It does not support <code>allowsCustom</code>; project authors should add reusable fonts to the theme instead.</p>
+
+<div markdown="1">
+
+```xml
+<key>type</key><string>select</string>
+<key>themeValues</key><string>fontFamilies</string>
+<key>default</key><string>body</string>
+```
+
+</div>
+
 <h2>Offering a custom branch</h2>
-<p>Set <code>allowsCustom</code> to <code>true</code> to place <code>Custom</code> at the bottom of the list after a divider. It stores and returns the literal value <code>custom</code>, so it can enable an ordinary companion control.</p>
+<p>For supported theme-backed selects, <code>allowsCustom</code> places <code>Custom</code> at the bottom of the list after a divider. A spacing-backed select stores and returns the literal value <code>custom</code>, so it can enable an ordinary companion control.</p>
 
 <div markdown="1">
 
@@ -74,20 +87,19 @@ line-height: {{ control.textSize.lineHeight }};
 </div>
 
 
-<h2>Theme-aware normal colour control</h2>
-<p>A normal <code>color</code> control needs only a role string in <code>themeValues</code> to add theme choices. That role is initially selected, so the underlying normal picker stays hidden until the author chooses Custom.</p>
+<h2>Theme colour control</h2>
+<p>Use <code>themeColor</code> when the author should choose from the active theme’s colour roles. Its <code>default</code> is the initially selected role.</p>
 
 <div markdown="1">
 
 ```xml
-<key>type</key><string>color</string>
-<key>default</key><string>custom</string>
-<key>themeValues</key><string>surface</string>
+<key>type</key><string>themeColor</string>
+<key>default</key><string>surface</string>
 ```
 
 </div>
 
-<p>Omit <code>themeValues</code> to retain the ordinary colour picker with no additional UI. Optional <code>opacity</code> only enables alpha inside that picker; it never creates another inspector row or changes theme colours.</p>
+<p>Add <code>allowsCustom</code> when the author may choose a literal colour as well. Use the separate <code>color</code> control when only a literal colour picker is needed.</p>
 <div class="note">
 <strong>One ID means one stored value.</strong> Foundry stores every part of a smart control together under the declared property ID. A colour keeps its source, custom colour, adjustment and opacity together; a font-size-backed select keeps its source, custom size and custom line height together; spacing keeps all four sources and custom values together. Foundry never manufactures hidden sibling IDs, so every identifier remains under the component developer’s control.</div>
 
@@ -135,7 +147,7 @@ line-height: {{ control.textSize.lineHeight }};
 </dl>
 <h2>Theme-aware custom controls</h2>
 <div class="card-grid">
-<a class="card" href="colour.html"><strong>Colour</strong><p>Custom and theme colours, optional colour math and opacity.</p></a><a class="card" href="font-family.html"><strong>Font family</strong><p>Semantic roles and fonts configured in the Theme Editor.</p></a><a class="card" href="select-control.html#themevalues"><strong>Font size</strong><p>A select using the project type scale with custom Size and Line Height overrides.</p></a><a class="card" href="padding-control.html"><strong>Padding</strong><p>Theme or custom space inside each edge.</p></a><a class="card" href="margin-control.html"><strong>Margin</strong><p>Theme, custom, or automatic space outside each edge.</p></a><a class="card" href="text-alignment.html"><strong>Text alignment</strong><p>A related specialised custom control with logical CSS output.</p></a>
+<a class="card" href="theme-colour-control.html"><strong>Theme colour</strong><p>Theme colours with optional custom choice, colour math and opacity.</p></a><a class="card" href="select-control.html#themevalues"><strong>Font family</strong><p>A select using the project’s semantic and custom font families.</p></a><a class="card" href="select-control.html#themevalues"><strong>Font size</strong><p>A select using the project type scale with custom Size and Line Height overrides.</p></a><a class="card" href="padding-control.html"><strong>Padding</strong><p>Theme or custom space inside each edge.</p></a><a class="card" href="margin-control.html"><strong>Margin</strong><p>Theme, custom, or automatic space outside each edge.</p></a><a class="card" href="shadow-control.html"><strong>Shadow</strong><p>Theme shadows with optional editable custom layers.</p></a><a class="card" href="text-alignment.html"><strong>Text alignment</strong><p>A related specialised custom control with logical CSS output.</p></a>
 </div>
 <h2>Good candidates</h2>
 <dl>

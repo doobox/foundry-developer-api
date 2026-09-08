@@ -5,7 +5,7 @@ permalink: "/slots.html"
 ---
 {% raw %}
 <div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><a href="info-plist.html">Info.plist</a>
+<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
 </div>
 <p class="eyebrow">Info.plist · slots</p>
 <h1>Accept child components</h1>

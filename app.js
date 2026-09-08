@@ -7,13 +7,11 @@ favicon.href = `${base}assets/foundry-icon.png`;
 document.head.append(favicon);
 
 const controlLinks = [
-    ["Overview", "custom-controls.html"],
     ["Button", "button-control.html"],
     ["Colour", "colour.html"],
     ["Date", "date-control.html"],
     ["Details", "details-control.html"],
     ["Divider", "divider-control.html"],
-    ["Font family", "font-family.html"],
     ["Icon", "icon-control.html"],
     ["Info", "info-control.html"],
     ["Link", "link-control.html"],
@@ -22,10 +20,12 @@ const controlLinks = [
     ["Number", "number-control.html"],
     ["Padding", "padding-control.html"],
     ["Select", "select-control.html"],
+    ["Shadow", "shadow-control.html"],
     ["Slider", "slider-control.html"],
     ["Text", "text-control.html"],
     ["Text alignment", "text-alignment.html"],
     ["Text area", "text-area-control.html"],
+    ["Theme colour", "theme-colour-control.html"],
     ["Toggle", "toggle-control.html"],
     ["Control arrays", "control-arrays.html"],
     ["Conditional visibility", "enable-control.html"]
@@ -41,14 +41,13 @@ const templateLinks = [
 ];
 
 const sections = [
-    { title: "Start here", links: [["Overview", "index.html"], ["Build your first component", "quick-start.html"]] },
-    { title: "Package", links: [["Bundle structure", "bundle-structure.html"], ["Collections & nested packs", "nested-packs.html"]] },
+    { title: "Getting started", links: [["Overview", "index.html"], ["Build your first component", "quick-start.html"]] },
+    { title: "Package structure", links: [["Bundle structure", "bundle-structure.html"], ["Collections & nested packs", "nested-packs.html"]] },
     { title: "Info.plist", links: [
-        ["Manifest overview", "info-plist.html"],
         ["Identity & metadata", "manifest-identity.html"],
-        ["Template files", "templates.html", templateLinks],
-        ["Libraries & assets", "manifest-resources.html"],
         ["Custom controls", "custom-controls.html", controlLinks],
+        ["Template declarations", "templates.html", templateLinks],
+        ["Libraries & assets", "manifest-resources.html"],
         ["Child slots", "slots.html"],
         ["Support & recovery", "manifest-support.html"]
     ] },
@@ -74,14 +73,56 @@ if (nav) {
             ...section,
             links: section.links.filter(([label, , children]) => !normalized || `${section.title} ${label} ${(children || []).map(([child]) => child).join(" ")}`.toLowerCase().includes(normalized))
         })).filter(section => section.links.length);
-        container.innerHTML = visible.length ? visible.map(section => `
-            <section class="nav-section">
-                <h2 class="nav-heading">${section.title}</h2>
-                <ul>${section.links.map(([label, href, children]) => {
+        container.innerHTML = visible.length ? visible.map((section, index) => {
+            const sectionActive = section.links.some(([, href, children]) =>
+                pageName(href) === current || (children || []).some(([, childHref]) => pageName(childHref) === current)
+            );
+            const expanded = Boolean(normalized || sectionActive);
+            return `
+            <section class="nav-section${expanded ? " is-open" : ""}">
+                <h2 class="nav-heading">
+                    <button class="nav-disclosure" type="button" aria-expanded="${expanded}" aria-controls="nav-section-${index}">
+                        <span class="nav-chevron" aria-hidden="true"></span>
+                        ${section.title}
+                    </button>
+                </h2>
+                <ul class="nav-list" id="nav-section-${index}"${expanded ? "" : " hidden"}>${section.links.map(([label, href, children], linkIndex) => {
                     const branchActive = pageName(href) === current || (children || []).some(([, childHref]) => pageName(childHref) === current);
-                    return `<li class="${children ? "nav-branch" : ""}"><a ${href === currentLocation || (href === current && !window.location.hash) ? 'aria-current="page"' : ""} href="${base}${href}">${label}</a>${children && (branchActive || normalized) ? `<ul class="nav-children">${children.filter(([child]) => !normalized || child.toLowerCase().includes(normalized)).map(([child, childHref]) => `<li><a ${childHref === currentLocation ? 'aria-current="location"' : ""} href="${base}${childHref}">${child}</a></li>`).join("")}</ul>` : ""}</li>`;
+                    if (!children) {
+                        return `<li><a ${href === currentLocation || (href === current && !window.location.hash) ? 'aria-current="page"' : ""} href="${base}${href}">${label}</a></li>`;
+                    }
+                    const branchExpanded = Boolean(normalized || branchActive);
+                    const branchID = `nav-branch-${index}-${linkIndex}`;
+                    const branchLinks = children
+                        .filter(([child]) => !normalized || child.toLowerCase().includes(normalized) || label.toLowerCase().includes(normalized));
+                    return `<li class="nav-branch">
+                        <button class="nav-disclosure nav-branch-toggle" type="button" aria-expanded="${branchExpanded}" aria-controls="${branchID}">
+                            <span class="nav-chevron" aria-hidden="true"></span>
+                            ${label}
+                        </button>
+                        <ul class="nav-children" id="${branchID}"${branchExpanded ? "" : " hidden"}>${branchLinks.map(([child, childHref]) => `<li><a ${childHref === currentLocation || (childHref === current && !window.location.hash) ? 'aria-current="page"' : ""} href="${base}${childHref}">${child}</a></li>`).join("")}</ul>
+                    </li>`;
                 }).join("")}</ul>
-            </section>`).join("") : '<p class="nav-empty">No matching topics.</p>';
+            </section>`;
+        }).join("") : '<p class="nav-empty">No matching topics.</p>';
+
+        container.querySelectorAll(".nav-disclosure").forEach(button => {
+            button.addEventListener("click", () => {
+                const list = document.getElementById(button.getAttribute("aria-controls"));
+                const expanded = button.getAttribute("aria-expanded") === "true";
+
+                if (!expanded && button.closest(".nav-heading")) {
+                    container.querySelectorAll(".nav-heading .nav-disclosure[aria-expanded=\"true\"]").forEach(openButton => {
+                        if (openButton === button) return;
+                        openButton.setAttribute("aria-expanded", "false");
+                        document.getElementById(openButton.getAttribute("aria-controls")).hidden = true;
+                    });
+                }
+
+                button.setAttribute("aria-expanded", String(!expanded));
+                list.hidden = expanded;
+            });
+        });
     };
     render();
     nav.querySelector(".search").addEventListener("input", event => render(event.target.value));
@@ -89,15 +130,14 @@ if (nav) {
 
 const currentPage = window.location.pathname.split("/").pop() || "index.html";
 const breadcrumbParents = {
-    "bundle-structure.html": ["Package", "bundle-structure.html"],
-    "nested-packs.html": ["Package", "bundle-structure.html"],
-    "info-plist.html": ["Info.plist", "info-plist.html"],
-    "manifest-identity.html": ["Info.plist", "info-plist.html"],
-    "templates.html": ["Info.plist", "info-plist.html"],
-    "manifest-resources.html": ["Info.plist", "info-plist.html"],
-    "custom-controls.html": ["Info.plist", "info-plist.html"],
-    "slots.html": ["Info.plist", "info-plist.html"],
-    "manifest-support.html": ["Info.plist", "info-plist.html"],
+    "bundle-structure.html": ["Package structure", "bundle-structure.html"],
+    "nested-packs.html": ["Package structure", "bundle-structure.html"],
+    "manifest-identity.html": ["Info.plist", null],
+    "templates.html": ["Info.plist", null],
+    "manifest-resources.html": ["Info.plist", null],
+    "custom-controls.html": ["Info.plist", null],
+    "slots.html": ["Info.plist", null],
+    "manifest-support.html": ["Info.plist", null],
     "template-values.html": ["Template language", "template-values.html"],
     "editable-text.html": ["Template language", "template-values.html"],
     "theme-controls.html": ["Themes", "theme-controls.html"],
@@ -108,26 +148,12 @@ const breadcrumbParents = {
 const breadcrumbs = document.querySelector(".breadcrumbs");
 if (breadcrumbs) {
     if (controlLinks.some(([, href]) => href === currentPage)) {
-        breadcrumbs.innerHTML = `<a href="${base}index.html">Foundry Developer</a><span>›</span><a href="${base}info-plist.html">Info.plist</a><span>›</span><a href="${base}custom-controls.html">Custom controls</a>`;
+        breadcrumbs.innerHTML = `<a href="${base}index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="${base}custom-controls.html">Custom controls</a>`;
     } else if (breadcrumbParents[currentPage]) {
         const [label, href] = breadcrumbParents[currentPage];
-        breadcrumbs.innerHTML = `<a href="${base}index.html">Foundry Developer</a><span>›</span><a href="${base}${href}">${label}</a>`;
+        const parent = href ? `<a href="${base}${href}">${label}</a>` : `<span>${label}</span>`;
+        breadcrumbs.innerHTML = `<a href="${base}index.html">Foundry Developer</a><span>›</span>${parent}`;
     }
-}
-
-const referenceTypeByPage = {
-    "colour.html": "color",
-    "icon-control.html": "icon",
-    "link-control.html": "link",
-    "text-alignment.html": "textAlignment",
-    "font-family.html": "fontFamily"
-};
-const referenceType = referenceTypeByPage[window.location.pathname.split("/").pop()];
-if (referenceType) {
-    document.body.dataset.control = referenceType;
-    const referenceScript = document.createElement("script");
-    referenceScript.src = `${base}control-reference.js`;
-    document.head.append(referenceScript);
 }
 
 const main = document.querySelector("main");

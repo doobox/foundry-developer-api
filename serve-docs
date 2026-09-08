@@ -1,0 +1,40 @@
+#!/bin/sh
+set -eu
+
+repository_root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+homebrew_ruby=/opt/homebrew/opt/ruby@3.3/bin
+
+if [ -x "$homebrew_ruby/ruby" ]; then
+    PATH="$homebrew_ruby:$PATH"
+fi
+export PATH
+
+if ! command -v ruby >/dev/null 2>&1 || ! ruby -e 'exit RUBY_VERSION.start_with?("3.3.") ? 0 : 1'; then
+    echo "Ruby 3.3 is required. Install it with: brew install ruby@3.3" >&2
+    exit 1
+fi
+
+bundle_cache="${TMPDIR:-/tmp}/foundry-api-bundle"
+preview_root=$(mktemp -d "${TMPDIR:-/tmp}/foundry-api-site.XXXXXX")
+export BUNDLE_PATH="$bundle_cache"
+export BUNDLE_FROZEN=true
+
+cleanup() {
+    rm -rf "$preview_root"
+}
+trap cleanup EXIT HUP INT TERM
+
+cd "$repository_root"
+if ! bundle check >/dev/null 2>&1; then
+    echo "Installing pinned documentation dependencies…"
+    bundle install
+fi
+
+echo "Foundry API docs: http://127.0.0.1:4000/"
+echo "Jekyll will rebuild automatically; LiveReload refreshes the browser after edits."
+bundle exec jekyll serve \
+    --host 127.0.0.1 \
+    --port 4000 \
+    --baseurl "" \
+    --destination "$preview_root/site" \
+    --livereload
