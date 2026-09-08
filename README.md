@@ -12,6 +12,8 @@ Run the repository's supported preview command:
 
 Open <http://127.0.0.1:4000/>. Jekyll watches the source files and LiveReload refreshes the browser after documentation changes.
 
+Run `./serve-docs` again after editing documentation. If the repository's preview server is already running, the command refreshes the exact generated directory currently being served and exits without starting a second server.
+
 The script uses Homebrew Ruby 3.3, installs the pinned bundle into a temporary cache when needed, and renders the current working tree into a temporary directory without changing tracked site output. Install the required Ruby once with `brew install ruby@3.3`.
 
 GitHub Pages continues to build the published site with Jekyll. The `github-pages` gem keeps that production dependency set aligned with GitHub Pages.

@@ -53,6 +53,7 @@ This is the canonical, separate repository for Foundry's developer documentation
 ## Local preview and verification
 
 - Serve this repository's current working tree with `./serve-docs` and use `http://127.0.0.1:4000/`.
+- Run `./serve-docs` after every documentation edit. When the correct preview server is already running, the script rebuilds the exact directory it is serving instead of starting a competing process.
 - Do not use `python3 -m http.server`; Jekyll must render the same Markdown used by GitHub Pages.
 - The supported server uses Jekyll with LiveReload and requires Homebrew Ruby 3.3.
 - After edits, check `git diff --check`, validate JavaScript with `node --check app.js` when changed, and inspect the rendered page—not merely the source.

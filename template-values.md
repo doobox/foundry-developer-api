@@ -289,6 +289,42 @@ padding: {{ max(control.minimumPadding, control.padding) }}px;
 
 <p>Available numeric functions are <code>abs(value)</code>, <code>round(value)</code>, <code>floor(value)</code>, <code>ceil(value)</code>, <code>min(a, b)</code>, <code>max(a, b)</code> and <code>clamp(value, minimum, maximum)</code>.</p>
 </section>
+<h2>Output filters</h2>
+<p>Place a pipe after a control reference to transform only its emitted template value. Filters do not change the value stored by the Inspector.</p>
+
+
+<div markdown="1">
+
+```text
+{{ control.value | filter(argument) }}
+```
+
+</div>
+
+
+<p>Colour values support <code>lighten(percentage)</code>, <code>darken(percentage)</code>, <code>withAlpha(value)</code> and <code>mix("#RRGGBB", percentage)</code>. Colour filters may be chained from left to right.</p>
+
+
+<div markdown="1">
+
+```css
+background: {{ control.brandColor | darken(10) | withAlpha(0.8) }};
+```
+
+</div>
+
+
+<p>Date values support <code>formatDate("pattern")</code>, using Unicode date-field symbols, plus chainable <code>addDays(integer)</code> and <code>addMonths(integer)</code> calendar arithmetic.</p>
+
+
+<div markdown="1">
+
+```html
+<time datetime="{{ control.published }}">{{ control.published | formatDate("d MMMM yyyy") }}</time>
+<time datetime="{{ control.published | addDays(7) }}">Review date</time>
+```
+
+</div>
 <h2>Component hooks</h2>
 <dl class="syntax-list">
 <dt>

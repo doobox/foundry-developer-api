@@ -30,6 +30,43 @@ if ! bundle check >/dev/null 2>&1; then
     bundle install
 fi
 
+existing_pid=$(lsof -tiTCP:4000 -sTCP:LISTEN 2>/dev/null | head -n 1 || true)
+if [ -n "$existing_pid" ]; then
+    existing_cwd=$(lsof -a -p "$existing_pid" -d cwd -Fn 2>/dev/null | sed -n 's/^n//p')
+    existing_command=$(ps -ax -o pid=,command= 2>/dev/null | awk -v pid="$existing_pid" '
+        $1 == pid {
+            sub(/^[[:space:]]*[0-9]+[[:space:]]+/, "")
+            print
+            exit
+        }
+    ' || true)
+    existing_destination=$(printf '%s\n' "$existing_command" | sed -n 's/.*--destination \([^ ]]*\).*/\1/p')
+
+    if [ "$existing_cwd" = "$repository_root" ] && [ -n "$existing_destination" ]; then
+        echo "Refreshing the Foundry API docs already running at http://127.0.0.1:4000/"
+        bundle exec jekyll build --baseurl "" --destination "$existing_destination"
+        echo "Refresh complete. Reload the browser if LiveReload did not update it automatically."
+        exit 0
+    fi
+
+    if [ "$existing_cwd" = "$repository_root" ]; then
+        refreshed=false
+        for existing_destination in "${TMPDIR:-/tmp}"/foundry-api-site.*/site; do
+            [ -d "$existing_destination" ] || continue
+            echo "Refreshing the Foundry API docs already running at http://127.0.0.1:4000/"
+            bundle exec jekyll build --baseurl "" --destination "$existing_destination"
+            refreshed=true
+        done
+        if [ "$refreshed" = true ]; then
+            echo "Refresh complete. Reload the browser if LiveReload did not update it automatically."
+            exit 0
+        fi
+    fi
+
+    echo "Port 4000 is already used by another process. Stop PID $existing_pid and run ./serve-docs again." >&2
+    exit 1
+fi
+
 echo "Foundry API docs: http://127.0.0.1:4000/"
 echo "Jekyll will rebuild automatically; LiveReload refreshes the browser after edits."
 bundle exec jekyll serve \
@@ -37,4 +74,5 @@ bundle exec jekyll serve \
     --port 4000 \
     --baseurl "" \
     --destination "$preview_root/site" \
-    --livereload
+    --livereload \
+    --force_polling
