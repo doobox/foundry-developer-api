@@ -14,7 +14,7 @@ permalink: "/link-control.html"
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour.
+Each item in `customItems` defines one Inspector item. These keys set its name, placement and initial value.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -39,7 +39,7 @@ The unique name used to store this control and read it in templates. It must sta
 <h3 class="property-heading"><code>label</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
-Text shown to the left of the control in the Inspector, including when `count` is present.
+Text shown to the left of the control in the Inspector.
 
 ```xml
 <key>label</key>
@@ -67,25 +67,13 @@ Help text that explains what the control changes.
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
-<div class="property-meta"><span class="property-type">String or String array</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
-Supporting text shown beneath the control. Use a String for one control or a String array with `count`.
-
-Single control
+Supporting text shown beneath the control.
 
 ```xml
 <key>subtitle</key>
 <string>Additional guidance</string>
-```
-
-Control array
-
-```xml
-<key>subtitle</key>
-<array>
-    <string>First value</string>
-    <string>Second value</string>
-</array>
 ```
 
 <h3 class="property-heading"><code>enable</code></h3>
@@ -102,7 +90,7 @@ Shows this control only when another control meets the stated condition. See [Co
 ```
 
 <h3 class="property-heading"><code>default</code></h3>
-<div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
+<div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
 The initial destination. An empty string means no destination; a non-empty string initializes a URL destination.
 
@@ -111,29 +99,9 @@ The initial destination. An empty string means no destination; a non-empty strin
 <string></string>
 ```
 
-<h3 class="property-heading"><code>responsive</code></h3>
-<div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
-
-Set to true to allow a different value at each responsive breakpoint.
-
-```xml
-<key>responsive</key>
-<false/>
-```
-
 ## Link options
 
 These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown.
-
-<h3 class="property-heading"><code>count</code></h3>
-<div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
-
-Creates two to four link controls stored as one array.
-
-```xml
-<key>count</key>
-<integer>2</integer>
-```
 
 <h3 class="property-heading"><code>absoluteURL</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
@@ -178,7 +146,6 @@ Invalid HTML attribute names are omitted. Opening a new window emits `_blank` an
         <key>group</key><string>Content</string>
         <key>absoluteURL</key><true/>
         <key>default</key><string></string>
-        <key>responsive</key><false/>
     </dict>
 </array>
 ```
