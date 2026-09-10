@@ -32,18 +32,21 @@ permalink: "/templates.html"
 </div>
 
 
-<p>Foundry processes this file once for every component placed on a page. Its root element must contain <code>{{ component.attributes }}</code>, which supplies the stable identity and canvas hooks Foundry needs.</p>
+<p>Foundry processes this file once for every component placed on a page. Its root element must contain <code>{{ component.attributes }}</code>, which supplies the internal <code>data-foundry-id</code> identity, author-supplied root attributes, and canvas hooks Foundry needs. Its root <code>class</code> attribute must also contain <code>{{ component.class }}</code>, which merges Foundry’s generated classes with classes added in the Advanced Inspector.</p>
 
 
 <div markdown="1">
 
 ```xml
-<section {{ component.attributes }}>
+<section class="callout{{ component.class }}" {{ component.attributes }}>
     <h2>{{ text }}</h2>
 </section>
 ```
 
 </div>
+
+<div class="callout warning">
+<strong>The root ID is reserved.</strong> Do not declare <code>id</code> on the component root. Foundry supplies the site author’s optional anchor there. Descendant elements may use developer-owned IDs.</div>
 
 
 
@@ -128,7 +131,7 @@ permalink: "/templates.html"
 <div markdown="1">
 
 ```css
-#{{ id }} {
+[data-foundry-id="{{ instance.uuid }}"] {
     color: {{ control.textColor }};
 }
 ```
@@ -287,7 +290,7 @@ button.addEventListener("click", () => {
 <div markdown="1">
 
 ```css
-#{{ id }} .content:empty {
+[data-foundry-id="{{ instance.uuid }}"] .content:empty {
     min-height: 72px;
     outline: 1px dashed currentColor;
 }

@@ -15,16 +15,16 @@ permalink: "/template-values.html"
 <h2>Identity and package values</h2>
 <section class="reference-entry">
 <h3>{{ id }} and {{ instance.id }}</h3>
-<p>Equivalent spellings that resolve to a stable, CSS-safe ID unique to the instance, such as <code>foundry-a12b…</code>. Whitespace inside braces is optional, so <code>{{id}}</code> is equivalent; the spaced form is recommended for readability.</p>
+<p>Equivalent spellings that resolve to a stable, CSS-safe developer value unique to the instance, such as <code>foundry-a12b…</code>. Foundry does not automatically place this value in the root element’s HTML <code>id</code>. Use it when your own markup, styles, or scripts need a stable generated value. Whitespace inside braces is optional, so <code>{{id}}</code> is equivalent; the spaced form is recommended for readability.</p>
 
 
 <div markdown="1">
 
 ```xml
-<article {{ component.attributes }}>…</article>
+<article class="card{{ component.class }}" data-owner="{{ id }}" {{ component.attributes }}>…</article>
 
-#{{ id }} { border-radius: 12px; }
-#{{ id }} .title { font-weight: 700; }
+[data-foundry-id="{{ instance.uuid }}"] { border-radius: 12px; }
+[data-foundry-id="{{ instance.uuid }}"] .title { font-weight: 700; }
 ```
 
 </div>
@@ -85,12 +85,12 @@ permalink: "/template-values.html"
 <div markdown="1">
 
 ```css
-#{{ id }} {
+[data-foundry-id="{{ instance.uuid }}"] {
     max-width: {{ control.maxWidth }}px;
     text-align: {{ control.alignment }};
 }
 
-#{{ id }} .media {
+[data-foundry-id="{{ instance.uuid }}"] .media {
     opacity: {{ control.imageOpacity }};
 }
 ```
@@ -107,7 +107,7 @@ permalink: "/template-values.html"
 <div markdown="1">
 
 ```css
-#{{ id }} {
+[data-foundry-id="{{ instance.uuid }}"] {
     --primary: {{ control.palette[0] }};
     --secondary: {{ control.palette[1] }};
     padding: {{ control.insets[0] }}px {{ control.insets[1] }}px;
@@ -126,7 +126,7 @@ permalink: "/template-values.html"
 <div markdown="1">
 
 ```html
-<div class="gallery" {{ component.attributes }}>
+<div class="gallery{{ component.class }}" {{ component.attributes }}>
     {{ repeat 8 }}
         <figure>
             {{ image }}
@@ -148,7 +148,7 @@ permalink: "/template-values.html"
 <div markdown="1">
 
 ```html
-<ul class="items" {{ component.attributes }}>
+<ul class="items{{ component.class }}" {{ component.attributes }}>
     {{ repeat control.itemCount }}
         <li>{{ text="Item" }}</li>
     {{ endrepeat }}
@@ -379,16 +379,28 @@ border-color: {{ control.brandColor | mix(control.borderColor, control.mixAmount
 <dt>
 <code>{{ component.attributes }}</code>
 </dt>
-<dd>Required root-element attributes. Place it on the element that represents the component. It emits the stable HTML <code>id</code> used by instance JavaScript; Foundry adds private editing metadata only while rendering the canvas.</dd>
+<dd>Required root-element attributes. Place it on the element that represents the component. It always emits <code>data-foundry-id="…"</code>, which Foundry uses for internal instance identity. It also emits the valid anchor and custom attributes entered by the site author in the final Advanced Inspector group. Canvas rendering adds private editing metadata.</dd>
 <dt>
 <code>{{ component.class }}</code>
 </dt>
-<dd>Foundry’s generated class fragment, including a leading space when non-empty, for appending inside an existing <code>class</code> attribute.</dd>
+<dd>Required inside the root element’s <code>class</code> attribute. It emits Foundry’s generated classes and valid additional classes entered by the site author, including a leading space when non-empty.</dd>
 <dt>
 <code>:host</code>
 </dt>
 <dd>In component CSS, replaced with a package boundary selector matching either <code>data-foundry-package</code> or the generated package class.</dd>
 </dl>
+<h2>Advanced root attributes</h2>
+<p>Every placed component ends with an Advanced Inspector group. Its values apply to the developer-owned root element through the two required component hooks.</p>
+<dl class="syntax-list">
+<dt><code>Anchor</code></dt>
+<dd>An optional native HTML <code>id</code>. It must begin with a letter and contain only letters, numbers, hyphens, or underscores. Invalid and duplicate values are reported in the Inspector; invalid values are omitted from preview and published HTML.</dd>
+<dt><code>Classes</code></dt>
+<dd>Optional space-separated classes merged through <code>{{ component.class }}</code>.</dd>
+<dt><code>Attributes</code></dt>
+<dd>Optional name/value attributes merged through <code>{{ component.attributes }}</code>. Foundry rejects duplicate or malformed names and reserves <code>id</code>, <code>class</code>, <code>style</code>, <code>data-foundry-*</code>, and event-handler names beginning with <code>on</code>.</dd>
+</dl>
+<div class="callout warning">
+<strong>Do not declare an ID on the root.</strong> Foundry reserves the root element’s <code>id</code> for the site author’s Anchor value. Developers may declare IDs on descendant elements and may continue using <code>{{ id }}</code> as a stable generated value.</div>
 <div class="note">
 <strong>No hidden selector rules.</strong> Foundry does not assume that a control belongs on the top-level element. Use the same control more than once or target any descendant your component requires.</div>
 <div class="page-links">

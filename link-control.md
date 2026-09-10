@@ -118,6 +118,8 @@ Prefixes internal page and resource paths with the project Site URL when it is a
 
 The base expression returns the resolved `href`. Foundry also exposes `.target` and `.attributes`, allowing the author’s new-window choice and validated custom attributes to reach the element. Page and resource destinations are stored by stable ID and resolve to their current exported path.
 
+For a Page destination, the Anchor menu lists valid anchors entered on component roots through the Advanced Inspector. Descendant IDs belonging to a component’s implementation are not shown.
+
 Invalid HTML attribute names are omitted. Opening a new window emits `_blank` and adds `rel="noopener noreferrer"` unless the author supplies `rel`.
 </div>
 

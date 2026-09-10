@@ -35,7 +35,7 @@ permalink: "/slots.html"
 <div markdown="1">
 
 ```xml
-<section {{ component.attributes }}>
+<section class="layout{{ component.class }}" {{ component.attributes }}>
     <header>{{ text="Section title" }}</header>
     <div class="items">
         {{ slot id="content" }}
