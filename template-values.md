@@ -119,27 +119,27 @@ permalink: "/template-values.html"
 
 <p>The index must refer to an item declared by the control’s <code>count</code>. See <a href="control-arrays.html">Control arrays</a>.</p>
 </section>
-<h2 id="repeating-content">Repeating content</h2>
-<p>Use a <code>repeat</code> block to generate the same template content a fixed or user-controlled number of times. The block may contain markup, template values, conditions, editable text, editable HTML, images, and nested repeat blocks.</p>
+<h2 id="repeating-content">Looping content</h2>
+<p>Use a <code>loop</code> block to generate the same template content a fixed or user-controlled number of times. The block may contain markup, template values, conditions, editable text, editable HTML, images, and nested loop blocks.</p>
 
 
 <div markdown="1">
 
 ```html
 <div class="gallery{{ component.class }}" {{ component.attributes }}>
-    {{ repeat 8 }}
+    {{ loop 8 }}
         <figure>
             {{ image }}
             <figcaption>{{ text="Image caption" }}</figcaption>
         </figure>
-    {{ endrepeat }}
+    {{ endloop }}
 </div>
 ```
 
 </div>
 
 
-<p>A literal count must be a whole number from <code>0</code> through <code>100</code>. Each <code>repeat</code> requires a matching <code>endrepeat</code>.</p>
+<p>A literal count must be a whole number from <code>0</code> through <code>100</code>. Each <code>loop</code> requires a matching <code>endloop</code>.</p>
 
 <h3>Use a control for the count</h3>
 <p>Reference a number or slider control when the component user should choose how many items appear. The control must declare an explicit finite <code>maximum</code> from <code>0</code> through <code>100</code>. Foundry rounds the current value down to a whole number and constrains it to the control’s supported range.</p>
@@ -149,9 +149,9 @@ permalink: "/template-values.html"
 
 ```html
 <ul class="items{{ component.class }}" {{ component.attributes }}>
-    {{ repeat control.itemCount }}
+    {{ loop control.itemCount }}
         <li>{{ text="Item" }}</li>
-    {{ endrepeat }}
+    {{ endloop }}
 </ul>
 ```
 
@@ -163,7 +163,7 @@ permalink: "/template-values.html"
 ```xml
 <dict>
     <key>id</key><string>itemCount</string>
-    <key>labels</key><string>Items</string>
+    <key>label</key><string>Items</string>
     <key>type</key><string>number</string>
     <key>minimum</key><integer>0</integer>
     <key>maximum</key><integer>12</integer>
@@ -175,17 +175,17 @@ permalink: "/template-values.html"
 </div>
 
 
-<h3>Repeat values</h3>
+<h3>Loop values</h3>
 <dl class="syntax-list">
-<dt><code>{{ repeat.index }}</code></dt>
+<dt><code>{{ loop.index }}</code></dt>
 <dd>The current item’s zero-based index.</dd>
-<dt><code>{{ repeat.position }}</code></dt>
+<dt><code>{{ loop.position }}</code></dt>
 <dd>The current item’s one-based position.</dd>
-<dt><code>{{ repeat.count }}</code></dt>
-<dd>The number of items currently emitted by this repeat block.</dd>
-<dt><code>{{ repeat.first }}</code></dt>
+<dt><code>{{ loop.count }}</code></dt>
+<dd>The number of items currently emitted by this loop block.</dd>
+<dt><code>{{ loop.first }}</code></dt>
 <dd><code>true</code> for the first emitted item and <code>false</code> otherwise.</dd>
-<dt><code>{{ repeat.last }}</code></dt>
+<dt><code>{{ loop.last }}</code></dt>
 <dd><code>true</code> for the last emitted item and <code>false</code> otherwise.</dd>
 </dl>
 
@@ -193,31 +193,31 @@ permalink: "/template-values.html"
 <div markdown="1">
 
 ```html
-{{ repeat control.itemCount }}
-    <article class="item item-{{ repeat.position }}">
-        {{ if repeat.first }}<strong>First item</strong>{{ endif }}
-        <span>{{ repeat.position }} of {{ repeat.count }}</span>
+{{ loop control.itemCount }}
+    <article class="item item-{{ loop.position }}">
+        {{ if loop.first }}<strong>First item</strong>{{ endif }}
+        <span>{{ loop.position }} of {{ loop.count }}</span>
     </article>
-{{ endrepeat }}
+{{ endloop }}
 ```
 
 </div>
 
 
-<h3>Nested repeats</h3>
-<p>Repeat blocks may be nested. Inside a nested block, prefix any outer-block value with <code>repeat.parent.</code>: <code>repeat.parent.index</code>, <code>repeat.parent.position</code>, <code>repeat.parent.count</code>, <code>repeat.parent.first</code>, or <code>repeat.parent.last</code>.</p>
+<h3>Nested loops</h3>
+<p>Loop blocks may be nested. Inside a nested block, prefix any outer-block value with <code>loop.parent.</code>: <code>loop.parent.index</code>, <code>loop.parent.position</code>, <code>loop.parent.count</code>, <code>loop.parent.first</code>, or <code>loop.parent.last</code>.</p>
 
 
 <div markdown="1">
 
 ```html
-{{ repeat 3 }}
-    <div class="row-{{ repeat.position }}">
-        {{ repeat 4 }}
-            <span>{{ repeat.parent.position }}.{{ repeat.position }}</span>
-        {{ endrepeat }}
+{{ loop 3 }}
+    <div class="row-{{ loop.position }}">
+        {{ loop 4 }}
+            <span>{{ loop.parent.position }}.{{ loop.position }}</span>
+        {{ endloop }}
     </div>
-{{ endrepeat }}
+{{ endloop }}
 ```
 
 </div>
@@ -226,7 +226,57 @@ permalink: "/template-values.html"
 <div class="note">
 <strong>Editable values remain stable.</strong> Foundry assigns a distinct persistent value to every repeated <code>{{ text }}</code>, <code>{{ html }}</code>, and <code>{{ image }}</code> position up to the declared maximum. Reducing and later increasing the count therefore restores the content previously entered for those positions.</div>
 <div class="callout warning">
-<strong>Keep nested output reasonable.</strong> To prevent accidental runaway templates, one rendered template may expand no more than 10,000 total repeat iterations.</div>
+<strong>Keep nested output reasonable.</strong> To prevent accidental runaway templates, one rendered template may expand no more than 10,000 total loop iterations.</div>
+
+<h3>Loop over a collection</h3>
+<p>Use <code>as</code> to give each collection item a local name. Collection loops work with navigation, page and published-asset collections. A collection is limited to 100 emitted items.</p>
+
+<div markdown="1">
+
+```html
+{{ loop navigation.items as item }}
+    <a href="{{ item.href }}">{{ item.title }}</a>
+{{ endloop }}
+```
+
+</div>
+
+<p>Add a <code>where</code> expression to filter items before Foundry calculates <code>loop.index</code>, <code>loop.position</code>, <code>loop.count</code>, <code>loop.first</code> and <code>loop.last</code>.</p>
+
+<div markdown="1">
+
+```html
+{{ loop assets.published as asset where asset.isImage }}
+    <img src="{{ asset.href }}" alt="">
+{{ endloop }}
+```
+
+</div>
+
+<h3>Navigation collections</h3>
+<dl class="syntax-list">
+<dt><code>navigation.items</code></dt><dd>Top-level pages included in navigation, in page-tree order.</dd>
+<dt><code>navigation.current.children</code></dt><dd>Visible children of the current page.</dd>
+<dt><code>navigation.current.siblings</code></dt><dd>Visible pages with the same parent as the current page.</dd>
+<dt><code>navigation.ancestors</code></dt><dd>The current page’s ancestors, from the root downward.</dd>
+<dt><code>navigation.breadcrumbs</code></dt><dd>The ancestors followed by the current page.</dd>
+<dt><code>navigation.previous</code></dt><dd>The previous visible page, when present.</dd>
+<dt><code>navigation.next</code></dt><dd>The next visible page, when present.</dd>
+</dl>
+
+<p>A navigation item provides <code>id</code>, <code>title</code>, <code>href</code>, <code>slug</code>, <code>depth</code>, <code>current</code>, <code>ancestor</code>, <code>home</code>, <code>hasChildren</code> and <code>children</code>. Users control membership with the page Inspector’s <strong>Include in Navigation</strong> setting. If a page is excluded, its visible descendants are promoted one level.</p>
+
+<h3>Page and asset collections</h3>
+<dl class="syntax-list">
+<dt><code>pages.all</code></dt><dd>All site pages.</dd>
+<dt><code>pages.current</code></dt><dd>The page currently being rendered.</dd>
+<dt><code>pages.home</code></dt><dd>The site’s home page.</dd>
+<dt><code>assets.published</code></dt><dd>All assets placed in the published page tree.</dd>
+<dt><code>assets.images</code></dt><dd>Published assets with an image media type.</dd>
+<dt><code>assets.documents</code></dt><dd>Published non-image assets.</dd>
+</dl>
+
+<p>An asset item provides <code>id</code>, <code>filename</code>, <code>href</code>, <code>mediaType</code>, <code>width</code>, <code>height</code> and <code>isImage</code>.</p>
 <h2>Conditions</h2>
 <p>Use an expression after <code>if</code> or <code>elseif</code>. Expressions can combine control values, numbers, quoted Strings, Booleans and the mutually exclusive <code>canvas</code>, <code>preview</code>, and <code>published</code> environment values.</p>
 
