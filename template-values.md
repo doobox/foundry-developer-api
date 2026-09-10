@@ -253,6 +253,21 @@ permalink: "/template-values.html"
 
 </div>
 
+<h3>Reverse a loop</h3>
+<p>Add <code>reversed</code> at the end of any loop directive to emit its final sequence in reverse order. It works with literal counts, numeric controls and every collection source. Foundry applies <code>where</code> first and then reverses the filtered result.</p>
+
+<div markdown="1">
+
+```html
+{{ loop assets.images as image where image.width >= 1200 reversed }}
+    <img src="{{ image.href }}" alt="">
+{{ endloop }}
+```
+
+</div>
+
+<p>For a reversed loop, <code>loop.index</code> and <code>loop.position</code> identify the item’s position before reversal, while <code>loop.first</code> and <code>loop.last</code> identify the first and last items actually emitted. This means <code>{{ loop 4 reversed }}{{ loop.position }}{{ endloop }}</code> produces <code>4321</code>.</p>
+
 <h3>Navigation collections</h3>
 <dl class="syntax-list">
 <dt><code>navigation.items</code></dt><dd>Top-level pages included in navigation, in page-tree order.</dd>
