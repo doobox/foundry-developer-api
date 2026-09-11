@@ -11,14 +11,15 @@ permalink: "/control-arrays.html"
 <h1>Control arrays</h1>
 <p class="lede">Display two, three or four controls together while retaining normal bindings, persistence, responsive overrides and undo behaviour.</p>
 <h2>Declaration</h2>
-<p>Add <code>count</code> directly to the custom-item dictionary. The <code>labels</code> and <code>default</code> arrays must contain exactly the same number of entries. Optional <code>subtitles</code> provide secondary captions.</p>
+<p>Add <code>count</code> directly to the custom-item dictionary. <code>label</code> remains one Inspector-row label. The <code>default</code> array must contain exactly <code>count</code> entries, while the optional <code>subtitle</code> array provides one caption for each member.</p>
 
 <div markdown="1">
 
 ```xml
 <dict>
     <key>id</key><string>palette</string>
-    <key>labels</key>
+    <key>label</key><string>Palette</string>
+    <key>subtitle</key>
     <array>
         <string>Primary</string><string>Secondary</string>
         <string>Accent</string><string>Surface</string>
@@ -55,5 +56,5 @@ background: {{ control.palette[3] }};
 <p>An <code>enable</code> condition can reference the complete stored array or one member by zero-based index. For example, <code>palette[2]</code> reads the third member. Use <code>containsValue</code> with the unindexed property ID to test exact membership across the complete array.</p>
 <p><a href="enable-control.html">See every enable operation and validation rule →</a></p>
 <div class="note">
-<strong>Counts are validated.</strong> <code>count</code> must be from 2 through 4, labels must match that count, and subtitles cannot outnumber the controls.</div>
+<strong>Counts are validated.</strong> <code>count</code> must be from 2 through 4, the <code>default</code> array must match that count, and <code>subtitle</code> cannot contain more entries than the controls.</div>
 {% endraw %}

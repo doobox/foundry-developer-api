@@ -152,7 +152,7 @@ Control array
 <integer>2</integer>
 ```
 
-> **Important:** Use text for short named values. Use textArea for prose, or {{ text }} for canvas-editable text at a specific markup position.
+> **Important:** Use text for short Inspector values. Use textArea for prose, or `{{ text("content") }}` for text edited directly at a specific canvas position.
 
 ## Return value
 

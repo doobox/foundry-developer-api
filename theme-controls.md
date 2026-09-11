@@ -18,7 +18,7 @@ permalink: "/theme-controls.html"
 ```xml
 <dict>
     <key>id</key><string>gap</string>
-    <key>labels</key><string>Gap</string>
+    <key>label</key><string>Gap</string>
     <key>group</key><string>Layout</string>
     <key>type</key><string>select</string>
     <key>themeValues</key><string>spacing</string>
@@ -109,7 +109,7 @@ line-height: {{ control.textSize.lineHeight }};
 ```xml
 <dict>
     <key>id</key><string>alignment</string>
-    <key>labels</key><string>Alignment</string>
+    <key>label</key><string>Alignment</string>
     <key>group</key><string>Typography</string>
     <key>type</key><string>textAlignment</string>
     <key>default</key><string>start</string>

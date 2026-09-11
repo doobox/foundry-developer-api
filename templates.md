@@ -39,7 +39,7 @@ permalink: "/templates.html"
 
 ```xml
 <section class="callout{{ component.class }}" {{ component.attributes }}>
-    <h2>{{ text }}</h2>
+    <h2>{{ text("heading") }}</h2>
 </section>
 ```
 
@@ -191,7 +191,7 @@ permalink: "/templates.html"
 </div>
 
 
-<p><code>closure</code> is optional and defaults to <code>true</code>. Foundry wraps each instance script in a private function receiving <code>component</code>, the component’s root element. A page-scoped closure receives <code>page</code>, which is the browser document.</p>
+<p><code>closure</code> is optional and defaults to <code>true</code>. Foundry wraps each instance script in a private function receiving <code>component</code>, the component’s root element, and provides a <code>foundry</code> relationship helper in the same private scope. A page-scoped closure receives <code>page</code>, which is the browser document.</p>
 
 
 <div markdown="1">
@@ -201,6 +201,25 @@ const button = component.querySelector("button");
 button.addEventListener("click", () => {
     component.classList.toggle("is-active");
 });
+```
+
+</div>
+
+<h3>Component relationships</h3>
+<p>The instance-scoped <code>foundry</code> helper finds nested component roots without confusing them with ordinary HTML inside the component. Every method may optionally receive a package identifier to filter its result.</p>
+<dl class="syntax-list">
+<dt><code>foundry.children(packageIdentifier?)</code></dt><dd>Direct child components, even when slot markup places wrappers between their roots.</dd>
+<dt><code>foundry.descendants(packageIdentifier?)</code></dt><dd>All nested components in document order.</dd>
+<dt><code>foundry.parent()</code></dt><dd>The direct parent component, or <code>null</code> for a page-level component.</dd>
+<dt><code>foundry.ancestors(packageIdentifier?)</code></dt><dd>All ancestor components, nearest first.</dd>
+<dt><code>foundry.closest(packageIdentifier)</code></dt><dd>The nearest ancestor from the requested package, or <code>null</code>.</dd>
+</dl>
+
+<div markdown="1">
+
+```javascript
+const cards = foundry.descendants("com.example.card");
+const parentSection = foundry.closest("com.example.section");
 ```
 
 </div>
@@ -356,7 +375,7 @@ button.addEventListener("click", () => {
 <strong>Use browser-ready source.</strong> Foundry accepts <code>.html</code>, <code>.css</code>, <code>.js</code>, and <code>.php</code> template files. Compile Sass, SCSS, TypeScript, or other source formats before packaging and declare their generated browser-ready files.</div>
 
 <div class="page-links">
-    <a class="card" href="template-values.html"><strong>Template values</strong><p>See the macros available inside templates, including identity, controls, assets, conditions, editable content, and slots.</p></a>
+    <a class="card" href="template-identity.html"><strong>Template language</strong><p>Browse identity, controls, assets, conditions, persistent areas, drop zones and component hooks.</p></a>
     <a class="card" href="manifest-identity.html"><strong>Identity and metadata</strong><p>Review the manifest keys that identify and present the component.</p></a>
 </div>
 {% endraw %}

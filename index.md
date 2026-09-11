@@ -30,8 +30,8 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
     </section>
     <section class="step">
         <h3>Use values in your templates</h3>
-        <p>Place control values, identity, editable content, conditions, assets, and child slots exactly where your markup and styles require them.</p>
-        <p><a href="template-values.html">Learn the template language →</a></p>
+        <p>Place control values, identity, editable content, conditions, assets, and managed children exactly where your markup and styles require them.</p>
+        <p><a href="template-identity.html">Learn the template language →</a></p>
     </section>
     <section class="step">
         <h3>Validate in Foundry</h3>
@@ -44,7 +44,7 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
 <div class="card-grid">
     <a class="card" href="manifest-identity.html"><strong>The manifest declares</strong><p><code>Info.plist</code> is the source of truth for identity, files, dependencies, controls, and slots.</p></a>
     <a class="card" href="templates.html"><strong>Scope controls frequency</strong><p>Instance, page, and site scope describe how often a declared file is processed.</p></a>
-    <a class="card" href="template-values.html"><strong>Templates consume values</strong><p>Macros insert resolved values without taking ownership of your markup or CSS selectors.</p></a>
+    <a class="card" href="template-identity.html"><strong>Templates consume values</strong><p>Macros insert resolved values without taking ownership of your markup or CSS selectors.</p></a>
 </div>
 
 <div class="note">
@@ -53,7 +53,6 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
 <h2>Common destinations</h2>
 <div class="page-links">
     <a class="card" href="custom-controls.html"><strong>Custom controls</strong><p>Build the component Inspector with text, colour, links, icons, typography, and more.</p></a>
-    <a class="card" href="slots.html"><strong>Child slots</strong><p>Compose components by declaring named regions for children.</p></a>
     <a class="card" href="theme-controls.html"><strong>Theme-aware values</strong><p>Let compatible controls follow the active project theme.</p></a>
     <a class="card" href="components.html"><strong>API map</strong><p>Jump directly to every implemented developer-facing topic.</p></a>
 </div>

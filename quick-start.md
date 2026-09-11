@@ -63,7 +63,7 @@ Callout.foundrydevpack/
     <array>
         <dict>
             <key>id</key><string>padding</string>
-            <key>labels</key><string>Padding</string>
+            <key>label</key><string>Padding</string>
             <key>group</key><string>Layout</string>
             <key>type</key><string>number</string>
             <key>minimum</key><integer>0</integer>
@@ -85,15 +85,6 @@ Callout.foundrydevpack/
             <key>responsive</key><false/>
         </dict>
     </array>
-    <key>slots</key>
-    <array>
-        <dict>
-            <key>id</key><string>content</string>
-            <key>title</key><string>Content</string>
-            <key>accepts</key><array><string>Components</string></array>
-            <key>minimum</key><integer>0</integer>
-        </dict>
-    </array>
 </dict>
 </plist>
 ```
@@ -108,10 +99,10 @@ Callout.foundrydevpack/
 
 <div markdown="1">
 
-```xml
+```html
 <aside class="callout{{ component.class }}" {{ component.attributes }}>
-    <h2>{{ text="A useful callout" }}</h2>
-    {{ slot id="content" }}
+    <h2>{{ text("heading", default: "A useful callout") }}</h2>
+    {{ dropZone("content") }}
 </aside>
 ```
 
@@ -119,7 +110,7 @@ Callout.foundrydevpack/
 
 
 <p>
-<code>{{ component.attributes }}</code> supplies the component’s stable <code>data-foundry-id</code> identity, the site author’s permitted root attributes, and canvas-only editor hooks. <code>{{ component.class }}</code> merges generated and author-added classes into the developer-owned root class. Do not declare a root <code>id</code>; Foundry reserves it for the author’s anchor. Use <code>[data-foundry-id="{{ instance.uuid }}"]</code> when instance CSS needs to target the root.</p>
+<code>{{ component.attributes }}</code> supplies the component’s stable <code>data-foundry-id</code> identity, the site author’s permitted root attributes, and canvas-only editor hooks. <code>{{ component.class }}</code> merges generated and author-added classes into the developer-owned root class. <code>{{ dropZone("content") }}</code> creates a named ordinary child-content area without an Info.plist declaration. Do not declare a root <code>id</code>; Foundry reserves it for the author’s anchor. Use <code>[data-foundry-id="{{ instance.uuid }}"]</code> when instance CSS needs to target the root.</p>
 </section>
 <section class="step">
 <h2>Own the CSS</h2>

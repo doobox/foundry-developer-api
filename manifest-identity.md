@@ -103,6 +103,28 @@ Up to five brief terms that help authors recognise and find the component. Found
 </array>
 ```
 
+<h3 class="property-heading"><code>showsInComponentLibrary</code></h3>
+<div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: true</span></div>
+
+Whether the component appears in the Components or Dev Components panel. Set this to `false` for a supporting component that users should add only through a parent component's Child picker. The component remains installed and available to matching `pickerItems` declarations.
+
+```xml
+<key>showsInComponentLibrary</key>
+<false/>
+```
+
+<h3 class="property-heading"><code>allowedParents</code></h3>
+<div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: any location</span></div>
+
+Restricts this component to children of the listed component package identifiers. Foundry applies the restriction to Inspector additions, drops, pastes, moves and initial children. Omit it when the component may also appear at page level or beneath other components.
+
+```xml
+<key>allowedParents</key>
+<array>
+    <string>com.example.card-grid</string>
+</array>
+```
+
 <div class="guidance" markdown="1">
 <h3>How Foundry presents the component</h3>
 
@@ -121,6 +143,7 @@ Components loaded from a development pack receive a small red dot beside their t
 <key>description</key><string>Highlights a short piece of important content.</string>
 <key>author</key><string>Example Components</string>
 <key>group</key><string>Content</string>
+<key>showsInComponentLibrary</key><false/>
 <key>tags</key>
 <array>
     <string>notice</string>

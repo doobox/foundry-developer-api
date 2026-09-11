@@ -8,6 +8,7 @@ document.head.append(favicon);
 
 const controlLinks = [
     ["Button", "button-control.html"],
+    ["Child picker", "child-picker-control.html"],
     ["Colour", "colour.html"],
     ["Date", "date-control.html"],
     ["Divider", "divider-control.html"],
@@ -39,6 +40,20 @@ const templateLinks = [
     ["Editor CSS", "templates.html#editor-css"]
 ];
 
+const templateLanguageLinks = [
+    ["Identity & package", "template-identity.html"],
+    ["Site, page & paths", "template-paths.html"],
+    ["Control values", "template-controls.html"],
+    ["Loops", "template-loops.html"],
+    ["Conditions & expressions", "template-conditions.html"],
+    ["Output filters", "template-filters.html"],
+    ["Output encoding", "template-encoding.html"],
+    ["Editable content & drop zones", "template-areas.html"],
+    ["Editing details", "editable-text.html"],
+    ["Component hooks", "template-hooks.html"],
+    ["Advanced root attributes", "template-root-attributes.html"]
+];
+
 const sections = [
     { title: "Getting started", links: [["Overview", "index.html"], ["Build your first component", "quick-start.html"]] },
     { title: "Package structure", links: [["Bundle structure", "bundle-structure.html"], ["Collections & nested packs", "nested-packs.html"]] },
@@ -47,10 +62,9 @@ const sections = [
         ["Custom controls", "custom-controls.html", controlLinks],
         ["Template declarations", "templates.html", templateLinks],
         ["Libraries & assets", "manifest-resources.html"],
-        ["Child slots", "slots.html"],
         ["Support & recovery", "manifest-support.html"]
     ] },
-    { title: "Template language", links: [["Values & macros", "template-values.html"], ["Editable content", "editable-text.html"]] },
+    { title: "Template language", links: templateLanguageLinks },
     { title: "Themes", links: [["Theme values", "theme-controls.html"], ["Theme bundles", "theme-bundles.html"]] },
     { title: "Reference", links: [["API map", "components.html"]] },
 ];
@@ -135,10 +149,18 @@ const breadcrumbParents = {
     "templates.html": ["Info.plist", null],
     "manifest-resources.html": ["Info.plist", null],
     "custom-controls.html": ["Info.plist", null],
-    "slots.html": ["Info.plist", null],
     "manifest-support.html": ["Info.plist", null],
-    "template-values.html": ["Template language", "template-values.html"],
-    "editable-text.html": ["Template language", "template-values.html"],
+    "editable-text.html": ["Template language", null],
+    "template-identity.html": ["Template language", null],
+    "template-paths.html": ["Template language", null],
+    "template-controls.html": ["Template language", null],
+    "template-loops.html": ["Template language", null],
+    "template-conditions.html": ["Template language", null],
+    "template-filters.html": ["Template language", null],
+    "template-encoding.html": ["Template language", null],
+    "template-areas.html": ["Template language", null],
+    "template-hooks.html": ["Template language", null],
+    "template-root-attributes.html": ["Template language", null],
     "theme-controls.html": ["Themes", "theme-controls.html"],
     "theme-bundles.html": ["Themes", "theme-controls.html"],
     "components.html": ["Reference", "components.html"],

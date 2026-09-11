@@ -143,6 +143,6 @@ permalink: "/manifest-resources.html"
 
 <div class="page-links">
     <a class="card" href="templates.html"><strong>Template files</strong><p>See the supported source file types and scopes.</p></a>
-    <a class="card" href="template-values.html"><strong>Asset template values</strong><p>Use declared assets safely from component markup and styles.</p></a>
+    <a class="card" href="template-identity.html"><strong>Asset template values</strong><p>Use declared assets safely from component markup and styles.</p></a>
 </div>
 {% endraw %}

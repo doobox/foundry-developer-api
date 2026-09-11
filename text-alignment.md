@@ -36,13 +36,13 @@ The unique name used to store this control and read it in templates. It must sta
 <string>alignment</string>
 ```
 
-<h3 class="property-heading"><code>labels</code></h3>
-<div class="property-meta"><span class="property-type">String or String array</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
+<h3 class="property-heading"><code>label</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
-Text shown beside the control in the Inspector. A control array needs one non-empty label for each member.
+Text shown beside the control in the Inspector.
 
 ```xml
-<key>labels</key>
+<key>label</key>
 <string>Alignment</string>
 ```
 
@@ -66,13 +66,13 @@ Help text that explains what the control changes.
 <string>Choose text alignment.</string>
 ```
 
-<h3 class="property-heading"><code>subtitles</code></h3>
+<h3 class="property-heading"><code>subtitle</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: []</span></div>
 
 Supporting text for members of a control array. Use this key only when `count` is present.
 
 ```xml
-<key>subtitles</key>
+<key>subtitle</key>
 <array>
     <string>First value</string>
     <string>Second value</string>
@@ -156,7 +156,7 @@ text-align: {{ control.alignment }};
     <dict>
         <key>type</key><string>textAlignment</string>
         <key>id</key><string>alignment</string>
-        <key>labels</key><string>Alignment</string>
+        <key>label</key><string>Alignment</string>
         <key>group</key><string>Typography</string>
         <key>default</key><string>start</string>
         <key>responsive</key><true/>
