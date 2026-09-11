@@ -38,7 +38,7 @@ permalink: "/templates.html"
 <div markdown="1">
 
 ```xml
-<section class="callout{{ component.class }}" {{ component.attributes }}>
+<section class="callout {{ component.class }}" {{ component.attributes }}>
     <h2>{{ text("heading") }}</h2>
 </section>
 ```
@@ -98,7 +98,7 @@ permalink: "/templates.html"
 <p><code>scope</code> controls how often Foundry processes an entry in <code>files</code>. It does not select a CSS selector or an HTML location.</p>
 <dl class="syntax-list">
 <dt><code>instance</code></dt>
-<dd>Once for every placed component. This is the default when <code>scope</code> is omitted. Instance-specific values such as <code>{{ id }}</code> and <code>{{ control.name }}</code> are available.</dd>
+<dd>Once for every placed component. This is the default when <code>scope</code> is omitted. Instance-specific values such as <code>{{ instance.uuid }}</code> and <code>{{ control.name }}</code> are available.</dd>
 <dt><code>page</code></dt>
 <dd>Once per component pack on each page that uses it, regardless of how many instances appear. Values belonging to one particular instance are unavailable.</dd>
 <dt><code>site</code></dt>
@@ -131,7 +131,7 @@ permalink: "/templates.html"
 <div markdown="1">
 
 ```css
-[data-foundry-id="{{ instance.uuid }}"] {
+:instance {
     color: {{ control.textColor }};
 }
 ```
@@ -309,7 +309,7 @@ const parentSection = foundry.closest("com.example.section");
 <div markdown="1">
 
 ```css
-[data-foundry-id="{{ instance.uuid }}"] .content:empty {
+:instance .content:empty {
     min-height: 72px;
     outline: 1px dashed currentColor;
 }

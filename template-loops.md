@@ -14,7 +14,7 @@ permalink: /template-loops.html
 <div markdown="1">
 
 ```html
-<div class="gallery{{ component.class }}" {{ component.attributes }}>
+<div class="gallery {{ component.class }}" {{ component.attributes }}>
     {{ loop 8 }}
         <figure>
             {{ image("photo") }}
@@ -36,7 +36,7 @@ permalink: /template-loops.html
 <div markdown="1">
 
 ```html
-<ul class="items{{ component.class }}" {{ component.attributes }}>
+<ul class="items {{ component.class }}" {{ component.attributes }}>
     {{ loop control.itemCount }}
         <li>{{ text("label", default: "Item") }}</li>
     {{ endloop }}

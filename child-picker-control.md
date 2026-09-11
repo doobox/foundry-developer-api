@@ -203,7 +203,7 @@ The Child picker `id` is a persistent content-location identifier. Reordering th
 ### Use it in a template
 
 ```html
-<section class="card-grid{{ component.class }}" {{ component.attributes }}>
+<section class="card-grid {{ component.class }}" {{ component.attributes }}>
     {{ control.cards }}
 </section>
 ```

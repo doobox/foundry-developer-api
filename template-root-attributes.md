@@ -18,7 +18,7 @@ permalink: /template-root-attributes.html
 <dd>Optional name/value attributes merged through <code>{{ component.attributes }}</code>. Foundry rejects duplicate or malformed names and reserves <code>id</code>, <code>class</code>, <code>style</code>, <code>data-foundry-*</code>, and event-handler names beginning with <code>on</code>.</dd>
 </dl>
 <div class="callout warning">
-<strong>Do not declare an ID on the root.</strong> Foundry reserves the root element’s <code>id</code> for the site author’s Anchor value. Developers may declare IDs on descendant elements and may continue using <code>{{ id }}</code> as a stable generated value.</div>
+<strong>Do not declare an ID on the root.</strong> Foundry reserves the root element’s <code>id</code> for the site author’s Anchor value. Developers may declare IDs on descendant elements. Use <code>:host</code> or a developer-owned class for shared package-wide root styling, and <code>:instance</code> when instance CSS must target one exact placed component.</div>
 <div class="note">
 <strong>No hidden selector rules.</strong> Foundry does not assume that a control belongs on the top-level element. Use the same control more than once or target any descendant your component requires.</div>
 {% endraw %}

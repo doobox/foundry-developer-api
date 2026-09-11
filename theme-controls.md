@@ -125,7 +125,7 @@ line-height: {{ control.textSize.lineHeight }};
 <div markdown="1">
 
 ```css
-[data-foundry-id="{{ instance.uuid }}"] {
+:instance {
     text-align: {{ control.alignment }};
 }
 ```

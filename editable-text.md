@@ -43,7 +43,7 @@ permalink: "/editable-text.html"
 <div markdown="1">
 
 ```html
-<figure class="media{{ component.class }}" {{ component.attributes }}>
+<figure class="media {{ component.class }}" {{ component.attributes }}>
     {{ image("hero") }}
 </figure>
 ```
@@ -57,7 +57,7 @@ permalink: "/editable-text.html"
 <div markdown="1">
 
 ```html
-<article class="article{{ component.class }}" {{ component.attributes }}>
+<article class="article {{ component.class }}" {{ component.attributes }}>
     <h2>{{ text("title", default: "Title") }}</h2>
     <div>{{ html("body") }}</div>
     <small>{{ text("footnote", default: "Footnote") }}</small>

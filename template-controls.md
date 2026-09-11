@@ -9,36 +9,36 @@ permalink: /template-controls.html
 <h1>Control values</h1>
 <p class="lede">Read values declared by customItems and named theme controls.</p>
 <section class="reference-entry">
-<h3>{{ control.&lt;id&gt; }}</h3>
+<h3><code>{{ control.&lt;id&gt; }}</code></h3>
 <p>Resolves a value declared by <code>customItems</code> or a named theme control. Responsive values resolve at the breakpoint currently being rendered.</p>
 
 
 <div markdown="1">
 
 ```css
-[data-foundry-id="{{ instance.uuid }}"] {
+:instance {
     max-width: {{ control.maxWidth }}px;
     text-align: {{ control.alignment }};
 }
 
-[data-foundry-id="{{ instance.uuid }}"] .media {
+:instance .media {
     opacity: {{ control.imageOpacity }};
 }
 ```
 
 </div>
 
-
+<p>Instance CSS is rendered separately for every placed component. Use <code>:instance</code> when a rule contains control values so that one instance’s values cannot style another instance of the same package. Use <code>:host</code> only for shared package-wide CSS that does not vary by instance.</p>
 </section>
 <section class="reference-entry">
-<h3>{{ control.&lt;id&gt;[&lt;index&gt;] }}</h3>
+<h3><code>{{ control.&lt;id&gt;[&lt;index&gt;] }}</code></h3>
 <p>Resolves one member of a control array using a zero-based index.</p>
 
 
 <div markdown="1">
 
 ```css
-[data-foundry-id="{{ instance.uuid }}"] {
+:instance {
     --primary: {{ control.palette[0] }};
     --secondary: {{ control.palette[1] }};
     padding: {{ control.insets[0] }}px {{ control.insets[1] }}px;

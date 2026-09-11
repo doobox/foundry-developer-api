@@ -16,11 +16,15 @@ permalink: /template-hooks.html
 <dt>
 <code>{{ component.class }}</code>
 </dt>
-<dd>Required inside the root element’s <code>class</code> attribute. It emits Foundry’s generated classes and valid additional classes entered by the site author, including a leading space when non-empty.</dd>
+<dd>Required inside the root element’s <code>class</code> attribute. It emits Foundry’s generated classes and valid additional classes entered by the site author. It does not emit surrounding whitespace; separate it from adjacent class names with literal whitespace.</dd>
 <dt>
 <code>:host</code>
 </dt>
-<dd>In component CSS, replaced with a package boundary selector matching either <code>data-foundry-package</code> or the generated package class.</dd>
+<dd>In instance CSS and editor CSS, targets every placed instance belonging to the component package. Use it for shared package-wide rules whose values are identical across instances.</dd>
+<dt>
+<code>:instance</code>
+</dt>
+<dd>In instance CSS and editor CSS, targets only the exact placed component currently being rendered. Use it for rules containing control values or any style that may differ between instances. Each placement of a global component receives its own instance target.</dd>
 </dl>
 
 <p>Use the generated attributes to target component relationships with standard CSS. They identify component roots rather than ordinary internal elements.</p>

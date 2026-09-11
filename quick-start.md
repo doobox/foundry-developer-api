@@ -100,7 +100,7 @@ Callout.foundrydevpack/
 <div markdown="1">
 
 ```html
-<aside class="callout{{ component.class }}" {{ component.attributes }}>
+<aside class="callout {{ component.class }}" {{ component.attributes }}>
     <h2>{{ text("heading", default: "A useful callout") }}</h2>
     {{ dropZone("content") }}
 </aside>
@@ -110,7 +110,7 @@ Callout.foundrydevpack/
 
 
 <p>
-<code>{{ component.attributes }}</code> supplies the component’s stable <code>data-foundry-id</code> identity, the site author’s permitted root attributes, and canvas-only editor hooks. <code>{{ component.class }}</code> merges generated and author-added classes into the developer-owned root class. <code>{{ dropZone("content") }}</code> creates a named ordinary child-content area without an Info.plist declaration. Do not declare a root <code>id</code>; Foundry reserves it for the author’s anchor. Use <code>[data-foundry-id="{{ instance.uuid }}"]</code> when instance CSS needs to target the root.</p>
+<code>{{ component.attributes }}</code> supplies the component’s stable <code>data-foundry-id</code> identity, the site author’s permitted root attributes, and canvas-only editor hooks. <code>{{ component.class }}</code> merges generated and author-added classes into the developer-owned root class. <code>{{ dropZone("content") }}</code> creates a named ordinary child-content area without an Info.plist declaration. Do not declare a root <code>id</code>; Foundry reserves it for the author’s anchor. Use <code>:instance</code> when instance CSS needs to target this one placed component.</p>
 </section>
 <section class="step">
 <h2>Own the CSS</h2>
@@ -119,7 +119,7 @@ Callout.foundrydevpack/
 <div markdown="1">
 
 ```css
-[data-foundry-id="{{ instance.uuid }}"] {
+:instance {
     padding: {{ control.padding }}px;
     border-left: 4px solid {{ control.accentColor }};
     background: {{ control.accentColor | lighten(42) }};

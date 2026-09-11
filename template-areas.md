@@ -34,7 +34,7 @@ permalink: /template-areas.html
 <div markdown="1">
 
 ```html
-<main class="layout{{ component.class }}" {{ component.attributes }}>
+<main class="layout {{ component.class }}" {{ component.attributes }}>
     {{ dropZone("content") }}
     <aside>{{ dropZone("sidebar") }}</aside>
 </main>
