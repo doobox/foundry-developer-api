@@ -42,7 +42,7 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
 
 <h2>The three things to remember</h2>
 <div class="card-grid">
-    <a class="card" href="manifest-identity.html"><strong>The manifest declares</strong><p><code>Info.plist</code> is the source of truth for identity, files, dependencies, controls, and slots.</p></a>
+    <a class="card" href="manifest-identity.html"><strong>The manifest declares</strong><p><code>Info.plist</code> is the source of truth for identity, files, dependencies, controls, and managed child areas.</p></a>
     <a class="card" href="templates.html"><strong>Scope controls frequency</strong><p>Instance, page, and site scope describe how often a declared file is processed.</p></a>
     <a class="card" href="template-identity.html"><strong>Templates consume values</strong><p>Macros insert resolved values without taking ownership of your markup or CSS selectors.</p></a>
 </div>

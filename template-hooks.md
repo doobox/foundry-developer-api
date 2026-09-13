@@ -12,7 +12,7 @@ permalink: /template-hooks.html
 <dt>
 <code>{{ component.attributes }}</code>
 </dt>
-<dd>Required root-element attributes. Place it on the element that represents the component. Foundry automatically emits <code>data-foundry-id="…"</code>, <code>data-foundry-component</code>, <code>data-foundry-package="…"</code>, and, for a nested component, <code>data-foundry-parent="…"</code>. It also emits the valid anchor and custom attributes entered by the site author in the final Advanced Inspector group. Canvas rendering adds private editing metadata. If the hook is omitted, Foundry places these attributes on its generated wrapper instead.</dd>
+<dd>Required root-element attributes. Place it on the element that represents the component. Foundry automatically emits <code>data-foundry-id="…"</code>, <code>data-foundry-component</code>, <code>data-foundry-package="…"</code>, and, for a nested component, <code>data-foundry-parent="…"</code>. It also emits the valid anchor and custom attributes entered by the site author in the final Advanced Inspector group. Canvas rendering adds private editing metadata.</dd>
 <dt>
 <code>{{ component.class }}</code>
 </dt>

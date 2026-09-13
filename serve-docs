@@ -40,7 +40,7 @@ if [ -n "$existing_pid" ]; then
             exit
         }
     ' || true)
-    existing_destination=$(printf '%s\n' "$existing_command" | sed -n 's/.*--destination \([^ ]]*\).*/\1/p')
+    existing_destination=$(printf '%s\n' "$existing_command" | sed -n 's/.*--destination \([^[:space:]]*\).*/\1/p')
 
     if [ "$existing_cwd" = "$repository_root" ] && [ -n "$existing_destination" ]; then
         echo "Refreshing the Foundry API docs already running at http://127.0.0.1:4000/"

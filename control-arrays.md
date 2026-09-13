@@ -53,8 +53,8 @@ background: {{ control.palette[3] }};
 </div>
 
 <h2>Conditional visibility</h2>
-<p>An <code>enable</code> condition can reference the complete stored array or one member by zero-based index. For example, <code>palette[2]</code> reads the third member. Use <code>containsValue</code> with the unindexed property ID to test exact membership across the complete array.</p>
-<p><a href="enable-control.html">See every enable operation and validation rule →</a></p>
+<p>A <code>visibleWhen</code> condition can reference the complete stored array or one member by zero-based index. For example, <code>palette[2]</code> reads the third member. Use <code>containsValue</code> with the unindexed control ID to test exact membership across the complete array.</p>
+<p><a href="visible-when.html">See every visibility operation and validation rule →</a></p>
 <div class="note">
 <strong>Counts are validated.</strong> <code>count</code> must be from 2 through 4, the <code>default</code> array must match that count, and <code>subtitle</code> cannot contain more entries than the controls.</div>
 {% endraw %}

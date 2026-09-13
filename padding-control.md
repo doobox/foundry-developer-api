@@ -7,14 +7,14 @@ permalink: "/padding-control.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Padding</h1>
 <p class="lede">A four-sided spacing editor that offers the active theme’s spacing scale and a local custom value for every edge.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
+Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -57,13 +57,13 @@ The Inspector section that contains this control. Omit the key to place it in Se
 <string>Appearance</string>
 ```
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text that explains what the control changes.
 
 ```xml
-<key>toolTip</key>
+<key>tooltip</key>
 <string>Choose a value.</string>
 ```
 
@@ -77,13 +77,13 @@ Supporting text shown beneath the control.
 <string>Additional guidance</string>
 ```
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this control only when another control meets the stated condition.
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key>
     <string>showControl</string>
@@ -181,7 +181,7 @@ padding: {{ control.padding }};
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
         <key>id</key><string>padding</string>

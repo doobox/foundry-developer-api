@@ -7,8 +7,8 @@ permalink: /template-areas.html
 <div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
 <p class="eyebrow">Template API</p>
 <h1>Persistent template areas</h1>
-<p class="lede">Declare named editable text, HTML, images and child-content drop zones.</p>
-<p>Editable content and child-content areas use the same named function-call syntax. The first quoted argument is the permanent developer-defined name. It must begin with a letter and may then contain letters, numbers, underscores and hyphens. Names must be unique across all four macro types in the component and cannot duplicate a <code>customItems</code> control <code>id</code>.</p>
+<p class="lede">Place named editable content, ordinary drop zones and managed child areas.</p>
+<p>Content areas use named function-call syntax. The first quoted argument is the permanent developer-defined name. It must begin with a letter and may then contain letters, numbers, underscores and hyphens. Editable and drop-zone names must be unique in the component and cannot duplicate a <code>controls</code> control <code>id</code>.</p>
 <dl class="syntax-list">
 <dt>
 <code>{{ text("name", default: "Text") }}</code>
@@ -25,7 +25,11 @@ permalink: /template-areas.html
 <dt>
 <code>{{ dropZone("name") }}</code>
 </dt>
-<dd>Creates an ordinary child-content area at this position in the primary HTML template. Authors can drop any component there. A component may contain any number of named drop zones and does not declare them in <code>Info.plist</code>. <code>{{ dropzone("name") }}</code> is an equivalent spelling; documentation uses <code>dropZone</code>.</dd>
+<dd>Creates an ordinary child-content area at this position in the primary HTML template. Authors can drop any component there. A component may contain any number of named drop zones and does not declare them in <code>Info.plist</code>.</dd>
+<dt>
+<code>{{ childArea("name") }}</code>
+</dt>
+<dd>Places the raw child-component markup managed by the <code>childPicker</code> whose control <code>id</code> is <code>name</code>. Unlike <code>dropZone()</code>, its permitted choices, limits, initial children and containment are declared under <code>controls</code>.</dd>
 </dl>
 <p>Names are persistent API identifiers rather than display labels. Reordering these macros keeps saved content attached to the correct area. Removing one preserves its stored content but stops rendering it; restoring the same name reconnects that content. Changing a name removes the old area and creates a new one. See <a href="editable-text.html">Editable content primitives</a> for editing and output details.</p>
 

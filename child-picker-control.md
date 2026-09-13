@@ -7,14 +7,14 @@ permalink: "/child-picker-control.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Child picker</h1>
 <p class="lede">An Inspector control that adds and manages real child-component instances inside a component.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector control. These keys set the child picker's identity, name and placement.
+Each item in `controls` defines one Inspector control. These keys set the child picker's identity, name and placement.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -56,13 +56,13 @@ The Inspector section associated with this control. Omit the key to use Settings
 <string>Content</string>
 ```
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text that explains which children the author can add.
 
 ```xml
-<key>toolTip</key>
+<key>tooltip</key>
 <string>Add a feature or metric card.</string>
 ```
 
@@ -155,11 +155,11 @@ Controls whether managed children can leave this parent.
 
 ## Return value
 
-`{{ control.cards }}` resolves as the rendered HTML of the children managed by this control, in their current order. It is inserted as markup rather than escaped text.
+Place the managed children with <code>{{ childArea("cards") }}</code>. It emits the rendered child-component HTML in its current order rather than an escaped control value.
 
 ```html
 <div class="card-grid">
-    {{ control.cards }}
+    {{ childArea("cards") }}
 </div>
 ```
 
@@ -167,21 +167,21 @@ Each added child is an independent component instance with its own Inspector val
 
 Set `showsInComponentLibrary` to `false` in a managed child's manifest when it should be available through the parent picker but hidden from the main Components panel.
 
-The Child picker `id` is a persistent content-location identifier. Reordering the control in `customItems` keeps its children attached. Removing or renaming it preserves its children but stops rendering them. Structure marks them as belonging to an unavailable Child picker and offers compatible current child areas to which the author can move them. Restoring the same `id` reconnects the preserved children.
+The Child picker `id` is a persistent content-location identifier. Reordering the control in `controls` keeps its children attached. Removing or renaming it preserves its children but stops rendering them. Structure marks them as belonging to an unavailable Child picker and offers compatible current child areas to which the author can move them. Restoring the same `id` reconnects the preserved children.
 
 ## Complete example
 
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
         <key>type</key><string>childPicker</string>
         <key>id</key><string>cards</string>
         <key>label</key><string>Cards</string>
         <key>group</key><string>Content</string>
-        <key>toolTip</key><string>Add a feature or metric card.</string>
+        <key>tooltip</key><string>Add a feature or metric card.</string>
         <key>pickerItems</key>
         <array>
             <string>com.example.metric-card</string>
@@ -204,7 +204,7 @@ The Child picker `id` is a persistent content-location identifier. Reordering th
 
 ```html
 <section class="card-grid {{ component.class }}" {{ component.attributes }}>
-    {{ control.cards }}
+    {{ childArea("cards") }}
 </section>
 ```
 

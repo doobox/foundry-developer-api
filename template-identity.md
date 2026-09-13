@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Identity and package values · Foundry Developer
+title: Component roots and CSS · Foundry Developer
 permalink: /template-identity.html
 ---
 {% raw %}
 <div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
 <p class="eyebrow">Template API</p>
-<h1>Identity and package values</h1>
-<p class="lede">Target component roots and reference stable instance, package and asset identity.</p>
+<h1>Component roots and CSS</h1>
+<p class="lede">Configure the required root hooks, choose the correct CSS scope, and use identity values only when a selector helper is not enough.</p>
 <section class="api-contract">
 <h2>Required root setup</h2>
 <p>The root element in every primary <code>component.html</code> must include both component hooks:</p>
@@ -86,14 +86,14 @@ permalink: /template-identity.html
 <p>Required on the component root. It emits Foundry’s stable <code>data-foundry-id</code>, package and relationship attributes, the site author’s optional anchor and custom attributes, and canvas-only editing metadata.</p>
 </section>
 <section class="reference-entry">
-<h3><code>{{ instance.uuid }}</code></h3>
-<p>The raw stable UUID of this component instance. Use it when an instance template needs to generate a unique value or instance CSS needs to target this exact root.</p>
+<h3><code>{{ instance.id }}</code></h3>
+<p>The raw stable identifier of this placed component. Treat its format as opaque. Use <code>:instance</code> for ordinary instance CSS; use <code>{{ instance.id }}</code> only when markup, script, or a generated name genuinely needs the identifier value.</p>
 
 <div markdown="1">
 
 ```css
-[data-foundry-id="{{ instance.uuid }}"] { border-radius: 12px; }
-[data-foundry-id="{{ instance.uuid }}"] .title { font-weight: 700; }
+[data-foundry-id="{{ instance.id }}"] { border-radius: 12px; }
+[data-foundry-id="{{ instance.id }}"] .title { font-weight: 700; }
 ```
 
 </div>
@@ -116,14 +116,14 @@ permalink: /template-identity.html
 
 </section>
 <section class="reference-entry">
-<h3><code>{{ asset.&lt;path&gt; }}</code></h3>
+<h3><code>{{ asset("&lt;path&gt;") }}</code></h3>
 <p>An escaped URL for a safe relative path declared by an asset dictionary’s required <code>path</code> value. Foundry resolves it to the current page’s <code>files/</code> directory or the site’s global <code>assets/</code> directory according to the dictionary’s optional <code>scope</code> value. An omitted scope means <code>page</code>.</p>
 
 
 <div markdown="1">
 
 ```xml
-<img src="{{ asset.images/icon.svg }}" alt="">
+<img src="{{ asset("images/icon.svg") }}" alt="">
 ```
 
 </div>

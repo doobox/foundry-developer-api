@@ -65,13 +65,13 @@ permalink: "/manifest-resources.html"
 </div>
 
 
-<p>Reference a declared asset with <code>{{ asset.&lt;path&gt; }}</code>:</p>
+<p>Reference a declared asset with <code>{{ asset("&lt;path&gt;") }}</code>:</p>
 
 
 <div markdown="1">
 
 ```xml
-<img src="{{ asset.images/badge.svg }}" alt="">
+<img src="{{ asset("images/badge.svg") }}" alt="">
 ```
 
 </div>
@@ -104,9 +104,9 @@ permalink: "/manifest-resources.html"
 <strong>Site asset paths are shared.</strong> Identical files targeting the same path are deduplicated. Different contents targeting the same path stop preview and publishing with an error.</div>
 </section>
 
-<h2>requiresPhp</h2>
+<h2>requiresPHP</h2>
 <section class="reference-entry">
-<h3>requiresPhp</h3>
+<h3>requiresPHP</h3>
 <div class="api-meta">
 <span class="pill">Boolean</span><span class="pill">Optional</span><span class="pill">Default: false</span>
 </div>
@@ -116,7 +116,7 @@ permalink: "/manifest-resources.html"
 <div markdown="1">
 
 ```xml
-<key>requiresPhp</key>
+<key>requiresPHP</key>
 <true/>
 ```
 
@@ -124,7 +124,7 @@ permalink: "/manifest-resources.html"
 
 
 <div class="callout warning">
-<strong>Keep the declaration explicit.</strong> A <code>.php</code> file alone does not replace this key. <code>requiresPhp</code> is the component’s statement that the page and its hosting environment require PHP.</div>
+<strong>Keep the declaration explicit.</strong> A <code>.php</code> file alone does not replace this key. <code>requiresPHP</code> is the component’s statement that the page and its hosting environment require PHP.</div>
 </section>
 
 <h2>Template files are not assets</h2>

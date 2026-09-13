@@ -5,16 +5,24 @@ permalink: "/theme-colour-control.html"
 ---
 {% raw %}
 <div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a></div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Theme colour</h1>
-<p class="lede">A theme-aware colour selector that resolves the active project theme for templates.</p>
+<p class="lede">A palette and shade selector that resolves the selected colour for templates.</p>
+
+Authors can choose from the project's custom, theme and standard colour palettes using a searchable menu. The ribbon selects a shade from 1–11; Black and White each have one colour.
+
+Palettes resolve by identity, not display name. Custom palettes never override theme or standard palettes, even when their names match. Duplicating a palette creates an independent custom colour with a unique name. Theme palette names remain fixed; their shades are editable in user-created and imported themes. Built-in themes and standard palettes are read-only.
+
+A component stores one palette identity and separate fixed light and dark shade numbers. Choosing a palette captures its two current defaults. Changing either palette default later does not move existing component selections. The canvas sun/moon buttons select which appearance the Inspector edits, independently of macOS appearance. The Inspector star refers to that appearance's default; clicking it selects the default without creating a live link. Edits to the selected swatch colour still update the component.
+
+Use the separate `color` control when only a literal colour picker is needed.
 
 ## Basic properties
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Identifies this item as Theme colour. Always use `themeColor`.
+Identifies this item as Theme colour. Always use `themeColor`. This control does not support `count`.
 
 ```xml
 <key>type</key>
@@ -36,7 +44,7 @@ Text shown to the left of the control.
 
 The Inspector section containing the control.
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text explaining what the control changes.
@@ -46,46 +54,69 @@ Help text explaining what the control changes.
 
 Supporting text shown beneath the control.
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this control only when another control meets the declared condition.
 
 <h3 class="property-heading"><code>default</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+Groups the initial palette and optional appearance-specific shades. The only accepted keys are `palette`, `lightShade`, and `darkShade`. A string or array is not accepted; shade keys belong inside this dictionary, not alongside `default`.
+
+<h3 class="property-heading"><code>default.palette</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-The initially selected source: `background`, `surface`, `text`, `accent`, or `links`. `custom` is valid only when `allowsCustom` is true, and then `customColor` is required.
+The initially selected theme role: `page`, `background`, `surface`, `text`, `muted-text`, `accent`, or `links`. New components capture that palette's light and dark defaults unless the corresponding shade key is supplied. `page` also supplies the page's outer background; `background` is available for component backgrounds. `custom` is valid only when `allowsCustom` is true, requires the control's `customColor`, and prohibits both shade keys. Arbitrary palette IDs are not accepted here; authors can select other palettes in the Inspector.
+
+<h3 class="property-heading"><code>default.lightShade</code></h3>
+<div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's light default shade</span></div>
+
+The initial light-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's light default when the component is created. The stored shade number does not follow subsequent default changes.
+
+Available only inside a `themeColor` default dictionary with a theme-role `palette`; it cannot be combined with `palette: custom`. This setting controls initial creation, not subsequent palette choices in the Inspector.
+
+```xml
+<key>default</key>
+<dict>
+    <key>palette</key><string>accent</string>
+    <key>lightShade</key><integer>8</integer>
+    <key>darkShade</key><integer>3</integer>
+</dict>
+```
+
+<h3 class="property-heading"><code>default.darkShade</code></h3>
+<div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's dark default shade</span></div>
+
+The initial dark-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's dark default when the component is created. It uses the same palette and ribbon as `lightShade`, but stores an independent fixed shade number. Available only inside a `themeColor` default dictionary with a theme-role `palette`; it cannot be combined with `palette: custom`. It affects initial creation, not subsequent palette choices in the Inspector.
 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Allows a different selection at each responsive breakpoint.
+Allows a different selection at each responsive breakpoint. Each breakpoint value contains one palette choice and its light and dark shade selections.
 
 ## Theme colour options
 
 <h3 class="property-heading"><code>allowsCustom</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Adds a Custom choice and colour picker.
+Adds a Custom Colour choice and literal colour picker. This permits `default.palette` to be `custom`, which also requires `customColor`. It does not control access to the project's custom palettes; those are available alongside theme and standard palettes.
 
 <h3 class="property-heading"><code>customColor</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: #000000</span></div>
 
-The colour retained by the Custom choice. It must be `#RRGGBB` and is required when `default` is `custom`.
-
-<h3 class="property-heading"><code>colorMath</code></h3>
-<div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
-
-Adds a −100…100 lighter-or-darker adjustment. The returned colour includes it.
+The initial literal colour for both appearances. It must be `#RRGGBB`, requires `allowsCustom` to be true, and is required when `default.palette` is `custom`. This key remains at control level, outside the `default` dictionary. Authors can subsequently edit separate light and dark literal colours using the canvas appearance buttons.
 
 <h3 class="property-heading"><code>opacity</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Allows alpha for the Custom choice. Theme colours retain the active theme value.
+Allows alpha for the literal Custom Colour choice. It does not add an opacity adjustment to palette selections.
 
 ## Return value
 
-Returns the selected theme role resolved to its active CSS colour. A Custom selection returns its literal colour.
+Returns a CSS colour, not a palette ID or shade number. The canvas resolves the appearance being edited. Light-only and dark-only sites export the corresponding colour. Sites supporting both export a CSS `light-dark(light, dark)` colour, following the browser's system preference unless explicitly overridden. Custom Colour selections include their appearance-specific opacity when enabled. Use the result directly in CSS rather than treating it as a hexadecimal string.
+
+For sites supporting both appearances, a component can call `window.foundryAppearance.set('light')`, `.set('dark')`, or `.set('system')` in its browser script. The visitor's choice is remembered for that site. This interface is not installed in the editing canvas or on single-appearance sites.
 
 ## Complete example
 
@@ -97,9 +128,11 @@ Returns the selected theme role resolved to its active CSS colour. A Custom sele
     <key>group</key><string>Appearance</string>
     <key>allowsCustom</key><true/>
     <key>customColor</key><string>#3366CC</string>
-    <key>colorMath</key><true/>
     <key>opacity</key><true/>
-    <key>default</key><string>accent</string>
+    <key>default</key>
+    <dict>
+        <key>palette</key><string>accent</string>
+    </dict>
 </dict>
 ```
 

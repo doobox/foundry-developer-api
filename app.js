@@ -26,9 +26,10 @@ const controlLinks = [
     ["Text alignment", "text-alignment.html"],
     ["Text area", "text-area-control.html"],
     ["Theme colour", "theme-colour-control.html"],
+    ["Theme font", "theme-font-control.html"],
     ["Toggle", "toggle-control.html"],
     ["Control arrays", "control-arrays.html"],
-    ["Conditional visibility", "enable-control.html"]
+["Conditional visibility", "visible-when.html"]
 ];
 
 const templateLinks = [
@@ -41,17 +42,14 @@ const templateLinks = [
 ];
 
 const templateLanguageLinks = [
-    ["Identity & package", "template-identity.html"],
-    ["Site, page & paths", "template-paths.html"],
-    ["Control values", "template-controls.html"],
+    ["Syntax at a glance", "template-syntax.html"],
+    ["Component roots & CSS", "template-identity.html"],
+    ["Values & paths", "template-controls.html"],
+    ["Persistent areas", "template-areas.html"],
+    ["Conditions", "template-conditions.html"],
     ["Loops", "template-loops.html"],
-    ["Conditions & expressions", "template-conditions.html"],
-    ["Output filters", "template-filters.html"],
+    ["Filters", "template-filters.html"],
     ["Output encoding", "template-encoding.html"],
-    ["Editable content & drop zones", "template-areas.html"],
-    ["Editing details", "editable-text.html"],
-    ["Component hooks", "template-hooks.html"],
-    ["Advanced root attributes", "template-root-attributes.html"]
 ];
 
 const sections = [
@@ -151,6 +149,7 @@ const breadcrumbParents = {
     "custom-controls.html": ["Info.plist", null],
     "manifest-support.html": ["Info.plist", null],
     "editable-text.html": ["Template language", null],
+    "template-syntax.html": ["Template language", null],
     "template-identity.html": ["Template language", null],
     "template-paths.html": ["Template language", null],
     "template-controls.html": ["Template language", null],

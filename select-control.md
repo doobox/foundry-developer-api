@@ -7,14 +7,14 @@ permalink: "/select-control.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Select</h1>
-<p class="lede">A popup containing developer-declared options, values requested from the active theme, or both.</p>
+<p class="lede">A native popup containing explicitly declared options.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
+Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -59,13 +59,13 @@ The Inspector section that contains this Select. Omit the key to place it in Set
 <string>Typography</string>
 ```
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text that explains what the Select changes.
 
 ```xml
-<key>toolTip</key>
+<key>tooltip</key>
 <string>Choose the text size.</string>
 ```
 
@@ -91,13 +91,13 @@ Multi Select
 </array>
 ```
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this Select only when another control meets the stated condition.
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key>
     <string>showTypography</string>
@@ -109,7 +109,7 @@ Shows this Select only when another control meets the stated condition.
 <h3 class="property-heading"><code>default</code></h3>
 <div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
 
-The initially selected value. Use a declared option value, a standard key supplied by `themeValues`, or `custom` when Custom is available. A Multi Select needs one value per popup.
+The initially selected value. Use a declared option value. A Multi Select needs one value per popup.
 
 Single Select
 
@@ -128,7 +128,7 @@ Multi Select
 </array>
 ```
 
-> Use the `value` of a declared option, a portable key supplied by `themeValues`, or `custom` when that choice is available.
+> Use the `value` of a declared option.
 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
@@ -147,7 +147,7 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 <h3 class="property-heading"><code>count</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
-Creates two to four popups that share the same declared options. Their values are stored as an array and read in templates using a zero-based index. Do not use it with `themeValues`.
+Creates two to four popups that share the same declared options. Their values are stored as an array and read in templates using a zero-based index.
 
 Multi Select
 
@@ -163,7 +163,7 @@ Template access
 {{ control.mySelect[1] }}
 ```
 
-> **Template access uses a zero-based index.** Use `{{ control.mySelect[0] }}` for the first value and `{{ control.mySelect[1] }}` for the second. **Not allowed with theme values.** When `themeValues` is present, the Select must contain one value.
+> **Template access uses a zero-based index.** Use `{{ control.mySelect[0] }}` for the first value and `{{ control.mySelect[1] }}` for the second.
 
 <h3 class="property-heading"><code>options</code></h3>
 <div class="property-meta"><span class="property-type">Array of dictionaries</span><span class="optional">Optional</span><span class="default">Default: \[\]</span></div>
@@ -188,62 +188,30 @@ Lists choices supplied by the component. Each dictionary needs a value to store 
 </array>
 ```
 
-> May be used by itself or together with `themeValues`. When combined, developer-declared options appear after the standard and custom theme values.
-
-<h3 class="property-heading"><code>themeValues</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
-
-Adds choices from one active-theme collection: `fontFamilies`, `fontSizes`, or `spacing`. When this key is present, do not declare `count`.
-
-```xml
-<key>themeValues</key>
-<string>fontSizes</string>
-```
-
-> **Popup order:** standard theme values, custom values added in the Theme Editor, developer-declared `options`, then Custom when supported and enabled. Labels show only each theme value’s name.
-
-| Source | Template output | Custom behaviour | Companion value |
-| --- | --- | --- | --- |
-| `fontFamilies` | CSS font family | Not supported; add fonts in Theme Editor | None |
-| `fontSizes` | CSS size | Size and Line Height fields | `.lineHeight` |
-| `spacing` | CSS spacing value | Custom is a literal choice | None |
-
-<h3 class="property-heading"><code>allowsCustom</code></h3>
-<div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
-
-Adds a final Custom choice for supported themeValues sources. It is not supported by fontFamilies.
-
-```xml
-<key>allowsCustom</key>
-<true/>
-```
-
-> Requires a named `themeValues` source. It is not supported with `fontFamilies`; add fonts in the Theme Editor instead. For `fontSizes`, Custom reveals Size and Line Height fields. For `spacing`, it returns the literal value `custom`, which can enable a separate control.
+Select offers only the options declared here. It does not populate choices from the theme. Use a dedicated theme control for theme-aware editing.
 
 ## Return value
 
-`{{ control.textSize }}` resolves as **Declared value, custom override, or resolved CSS theme value**. Stored internally, its value is **String or a theme-specific structured value**.
-
-```css
-font-size: {{ control.textSize }};
-line-height: {{ control.textSize.lineHeight }};
-```
+`{{ control.layout }}` returns the selected option's String value unchanged. With `count`, it returns an array of those strings, accessed by zero-based index.
 
 ## Complete example
 
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
-        <key>id</key><string>textSize</string>
-        <key>label</key><string>Select</string>
-        <key>group</key><string>Content</string>
         <key>type</key><string>select</string>
-        <key>themeValues</key><string>fontSizes</string>
-        <key>allowsCustom</key><true/>
-        <key>default</key><string>base</string>
+        <key>id</key><string>layout</string>
+        <key>label</key><string>Layout</string>
+        <key>group</key><string>Content</string>
+        <key>options</key>
+        <array>
+            <dict><key>value</key><string>block</string><key>title</key><string>Block</string></dict>
+            <dict><key>value</key><string>flex</string><key>title</key><string>Flex</string></dict>
+        </array>
+        <key>default</key><string>block</string>
         <key>responsive</key><false/>
     </dict>
 </array>
@@ -252,8 +220,7 @@ line-height: {{ control.textSize.lineHeight }};
 ### Use it in a template
 
 ```css
-font-size: {{ control.textSize }};
-line-height: {{ control.textSize.lineHeight }};
+display: {{ control.layout }};
 ```
 
 {% endraw %}

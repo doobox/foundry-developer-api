@@ -1,16 +1,16 @@
 ---
 layout: default
-title: Control values · Foundry Developer
+title: Values and paths · Foundry Developer
 permalink: /template-controls.html
 ---
 {% raw %}
 <div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
 <p class="eyebrow">Template API</p>
-<h1>Control values</h1>
-<p class="lede">Read values declared by customItems and named theme controls.</p>
+<h1>Values and paths</h1>
+<p class="lede">Read Inspector values and Foundry’s current site, page and output paths.</p>
 <section class="reference-entry">
 <h3><code>{{ control.&lt;id&gt; }}</code></h3>
-<p>Resolves a value declared by <code>customItems</code> or a named theme control. Responsive values resolve at the breakpoint currently being rendered.</p>
+<p>Resolves a value declared by <code>controls</code> or a named theme control. Responsive values resolve at the breakpoint currently being rendered.</p>
 
 
 <div markdown="1">
@@ -49,5 +49,21 @@ permalink: /template-controls.html
 
 
 <p>The index must refer to an item declared by the control’s <code>count</code>. See <a href="control-arrays.html">Control arrays</a>.</p>
+</section>
+<section class="reference-entry">
+<h3><code>{{ site.baseURL }}</code></h3>
+<p>The escaped public base URL configured for the site.</p>
+</section>
+<section class="reference-entry">
+<h3><code>{{ page.url }}</code></h3>
+<p>The escaped public URL of the page currently being rendered. It is unavailable to site-scoped files.</p>
+</section>
+<section class="reference-entry">
+<h3><code>{{ path.siteRoot }}</code></h3>
+<p>A relative path from the current generated file to the site output root.</p>
+</section>
+<section class="reference-entry">
+<h3><code>{{ path.siteAssets }}</code></h3>
+<p>A relative path from the current generated file to the site’s shared assets directory.</p>
 </section>
 {% endraw %}

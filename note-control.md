@@ -7,14 +7,14 @@ permalink: "/note-control.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Note</h1>
 <p class="lede">Presentation-only explanatory text in an inspector group.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name and placement.
+Each item in `controls` defines one Inspector item. These keys set its name and placement.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -77,13 +77,13 @@ The name of an SF Symbol shown in secondary colour to the left of the title. Omi
 <string>info.circle</string>
 ```
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this control only when another control meets the stated condition.
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key>
     <string>showControl</string>
@@ -122,7 +122,7 @@ No template value
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
         <key>id</key><string>guidance</string>

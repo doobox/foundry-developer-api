@@ -7,14 +7,14 @@ permalink: "/date-control.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Date</h1>
 <p class="lede">A native calendar-date picker storing a date-only ISO String.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
+Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -57,13 +57,13 @@ The Inspector section that contains this control. Omit the key to place it in Se
 <string>Appearance</string>
 ```
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text that explains what the control changes.
 
 ```xml
-<key>toolTip</key>
+<key>tooltip</key>
 <string>Choose a value.</string>
 ```
 
@@ -89,13 +89,13 @@ Control array
 </array>
 ```
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this control only when another control meets the stated condition.
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key>
     <string>showControl</string>
@@ -143,7 +143,7 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 <h3 class="property-heading"><code>minimum</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: unrestricted</span></div>
 
-The earliest date the developer may select. Use `YYYY-MM-DD`. The default date cannot be earlier than this value.
+The earliest date the site author may select. Use `YYYY-MM-DD`. The default date cannot be earlier than this value.
 
 ```xml
 <key>minimum</key>
@@ -153,7 +153,7 @@ The earliest date the developer may select. Use `YYYY-MM-DD`. The default date c
 <h3 class="property-heading"><code>maximum</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: unrestricted</span></div>
 
-The latest date the developer may select. Use `YYYY-MM-DD`. It must be the same as or later than `minimum`, and the default date cannot be later than this value.
+The latest date the site author may select. Use `YYYY-MM-DD`. It must be the same as or later than `minimum`, and the default date cannot be later than this value.
 
 ```xml
 <key>maximum</key>
@@ -245,7 +245,7 @@ Calendar arithmetic handles differing month lengths. For example, adding one mon
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
         <key>id</key><string>published</string>

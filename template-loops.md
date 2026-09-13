@@ -135,7 +135,7 @@ permalink: /template-loops.html
 
 ```html
 {{ loop assets.published as asset where asset.isImage }}
-    <img src="{{ asset.href }}" alt="">
+    <img src="{{ asset("href") }}" alt="">
 {{ endloop }}
 ```
 
@@ -154,7 +154,7 @@ permalink: /template-loops.html
 
 </div>
 
-<p>For a reversed loop, <code>loop.index</code> and <code>loop.position</code> identify the item’s position before reversal, while <code>loop.first</code> and <code>loop.last</code> identify the first and last items actually emitted. This means <code>{{ loop 4 reversed }}{{ loop.position }}{{ endloop }}</code> produces <code>4321</code>.</p>
+<p>All ordinary loop metadata describes emitted order. Therefore <code>{{ loop 4 reversed }}{{ loop.position }}{{ endloop }}</code> produces <code>1234</code>, and <code>loop.first</code> and <code>loop.last</code> identify the first and last items actually emitted. Use zero-based <code>loop.sourceIndex</code> or one-based <code>loop.sourcePosition</code> when a reversed or filtered loop needs the item’s position in its original source.</p>
 
 <h3>Navigation collections</h3>
 <dl class="syntax-list">

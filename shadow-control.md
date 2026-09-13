@@ -7,14 +7,14 @@ permalink: "/shadow-control.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Shadow</h1>
 <p class="lede">A theme shadow picker with an optional author-editable stack of outer or inset shadow layers.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
+Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -57,13 +57,13 @@ The Inspector section that contains this control. Omit the key to place it in Se
 <string>Appearance</string>
 ```
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text that explains what the control changes.
 
 ```xml
-<key>toolTip</key>
+<key>tooltip</key>
 <string>Choose a value.</string>
 ```
 
@@ -77,13 +77,13 @@ Supporting text shown beneath the control.
 <string>Additional guidance</string>
 ```
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this control only when another control meets the stated condition.
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key>
     <string>showControl</string>
@@ -95,7 +95,7 @@ Shows this control only when another control meets the stated condition.
 <h3 class="property-heading"><code>default</code></h3>
 <div class="property-meta"><span class="property-type">Value</span><span class="required">Required</span></div>
 
-The initially selected portable theme shadow. Use `default`, `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` or `2xl`; use `custom` only when Custom is enabled.
+The initially selected portable theme shadow. Use `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` or `2xl`; use `custom` only when Custom is enabled. `sm` is the standard default-sized shadow.
 
 ```xml
 <key>default</key>
@@ -133,7 +133,7 @@ Adds a Custom choice after the theme shadows. Selecting it reveals the editable 
 <div class="guidance" markdown="1">
 <h3>Theme and custom shadows</h3>
 
-The popup lists custom shadows from the active project theme followed by the predefined scale. Portable predefined IDs are `default`, `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` and `2xl`. Do not declare `themeValues`; this control loads theme shadows automatically.
+The popup lists custom shadows from the active project theme followed by the predefined scale. Portable predefined IDs are `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` and `2xl`. Do not declare `themeValues`; this control loads theme shadows automatically.
 
 When `allowsCustom` is true, Custom reveals a layer editor. Each layer has horizontal and vertical offsets, blur, spread, colour, opacity and an outer or inset position. Multiple layers produce a comma-separated CSS value; no layers produce `none`.
 
@@ -153,7 +153,7 @@ box-shadow: {{ control.cardShadow }};
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
         <key>id</key><string>cardShadow</string>

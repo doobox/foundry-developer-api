@@ -1,25 +1,25 @@
 ---
 layout: default
 title: Conditional visibility · Foundry Developer
-permalink: "/enable-control.html"
+permalink: "/visible-when.html"
 ---
 {% raw %}
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
 <p class="eyebrow">Shared control capability</p>
-<h1>Conditional visibility <code class="title-code">enable</code>
+<h1>Conditional visibility <code class="title-code">visibleWhen</code>
 </h1>
-<p class="lede">Show a custom item only when another control in the same component satisfies a condition. This keeps the Inspector focused on controls relevant to the author’s current choices.</p>
+<p class="lede">Show a control only when another control in the same component satisfies a condition. A false condition removes the complete control and its layout space from the Inspector.</p>
 
 <h2>Equality</h2>
-<p>Add an <code>enable</code> dictionary directly to any custom item. Its <code>id</code> identifies the controlling property and <code>value</code> supplies the expected plist value. When <code>operation</code> is omitted, Foundry uses exact, type-aware equality.</p>
+<p>Add a <code>visibleWhen</code> dictionary directly to any control. Its <code>id</code> identifies the controlling control and <code>value</code> supplies the expected plist value. When <code>operation</code> is omitted, Foundry uses exact, type-aware equality.</p>
 
 
 <div markdown="1">
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key><string>layout</string>
     <key>value</key><string>grid</string>
@@ -31,7 +31,7 @@ permalink: "/enable-control.html"
 
 <p>The item is shown only while <code>layout</code> equals <code>grid</code>. String <code>"1"</code>, Number <code>1</code>, Boolean <code>true</code>, and String <code>"true"</code> are different values. Equality does not coerce types or round numbers.</p>
 
-<h2>Enable dictionary keys</h2>
+<h2>visibleWhen dictionary keys</h2>
 <section class="key-reference"><h3><code>id</code></h3>
 <div class="key-meta">
 <span>String</span><strong>Required</strong>
@@ -101,7 +101,7 @@ permalink: "/enable-control.html"
 <div markdown="1">
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key><string>destination</string>
     <key>operation</key><string>isNotEmpty</string>
@@ -119,7 +119,7 @@ permalink: "/enable-control.html"
 <div markdown="1">
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key><string>titles[2]</string>
     <key>operation</key><string>containsInsensitive</string>
@@ -134,7 +134,7 @@ permalink: "/enable-control.html"
 
 <h2>Runtime behaviour</h2>
 <ul class="rule-list">
-<li>An item without <code>enable</code> is shown. A failed condition hides the complete inspector item rather than disabling it.</li>
+<li>An item without <code>visibleWhen</code> is shown. A failed condition hides the complete inspector item rather than disabling it.</li>
 <li>Hiding an item preserves its stored value, and that value remains available to templates.</li>
 <li>The Inspector updates when the controlling value changes.</li>
 <li>Responsive conditions use the controlling property’s effective value at the selected breakpoint.</li>

@@ -7,14 +7,14 @@ permalink: "/text-alignment.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Text alignment</h1>
 <p class="lede">A preconfigured segmented control that produces logical CSS text-alignment values.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour.
+Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -56,13 +56,13 @@ The Inspector section that contains this control. Omit the key to place it in Se
 <string>Typography</string>
 ```
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text that explains what the control changes.
 
 ```xml
-<key>toolTip</key>
+<key>tooltip</key>
 <string>Choose text alignment.</string>
 ```
 
@@ -79,13 +79,13 @@ Supporting text for members of a control array. Use this key only when `count` i
 </array>
 ```
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
-Shows this control only when another control meets the stated condition. See [Conditional visibility](enable-control.html).
+Shows this control only when another control meets the stated condition. See [Conditional visibility](visible-when.html).
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key><string>showControl</string>
     <key>value</key><true/>
@@ -151,7 +151,7 @@ text-align: {{ control.alignment }};
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
         <key>type</key><string>textAlignment</string>

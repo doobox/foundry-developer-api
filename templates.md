@@ -98,14 +98,14 @@ permalink: "/templates.html"
 <p><code>scope</code> controls how often Foundry processes an entry in <code>files</code>. It does not select a CSS selector or an HTML location.</p>
 <dl class="syntax-list">
 <dt><code>instance</code></dt>
-<dd>Once for every placed component. This is the default when <code>scope</code> is omitted. Instance-specific values such as <code>{{ instance.uuid }}</code> and <code>{{ control.name }}</code> are available.</dd>
+<dd>Once for every placed component. This is the default when <code>scope</code> is omitted. Instance-specific values such as <code>{{ instance.id }}</code> and <code>{{ control.name }}</code> are available.</dd>
 <dt><code>page</code></dt>
 <dd>Once per component pack on each page that uses it, regardless of how many instances appear. Values belonging to one particular instance are unavailable.</dd>
 <dt><code>site</code></dt>
 <dd>Once per component pack for the entire website. This scope is supported only by CSS.</dd>
 </dl>
 <div class="callout warning">
-<strong>Shared template files cannot use instance values.</strong> Page- and site-scoped files cannot use instance, component, control, slot, or editable-content macros because no single component instance owns their output. They may use conditional directives with the environment values <code>canvas</code>, <code>preview</code>, and <code>published</code>.</div>
+<strong>Shared template files cannot use instance values.</strong> Page- and site-scoped files cannot use instance, component, control, child-area, drop-zone, or editable-content macros because no single component instance owns their output. They may use conditional directives with the environment values <code>canvas</code>, <code>preview</code>, and <code>published</code>.</div>
 <p>Page-scoped files may use package values, declared page or site assets, <code>site.baseURL</code>, <code>page.url</code>, <code>path.siteRoot</code>, and <code>path.siteAssets</code>. Site-scoped files may use the same site and path values plus package values, but may reference only site-scoped declared assets and cannot use <code>page.url</code>.</p>
 
 <h2 id="css">CSS template files</h2>
@@ -208,7 +208,7 @@ button.addEventListener("click", () => {
 <h3>Component relationships</h3>
 <p>The instance-scoped <code>foundry</code> helper finds nested component roots without confusing them with ordinary HTML inside the component. Every method may optionally receive a package identifier to filter its result.</p>
 <dl class="syntax-list">
-<dt><code>foundry.children(packageIdentifier?)</code></dt><dd>Direct child components, even when slot markup places wrappers between their roots.</dd>
+<dt><code>foundry.children(packageIdentifier?)</code></dt><dd>Direct child components, even when child-area or drop-zone markup places wrappers between their roots.</dd>
 <dt><code>foundry.descendants(packageIdentifier?)</code></dt><dd>All nested components in document order.</dd>
 <dt><code>foundry.parent()</code></dt><dd>The direct parent component, or <code>null</code> for a page-level component.</dd>
 <dt><code>foundry.ancestors(packageIdentifier?)</code></dt><dd>All ancestor components, nearest first.</dd>
@@ -235,7 +235,7 @@ const parentSection = foundry.closest("com.example.section");
 <div markdown="1">
 
 ```xml
-<key>requiresPhp</key>
+<key>requiresPHP</key>
 <true/>
 
 <key>templates</key>
@@ -254,7 +254,7 @@ const parentSection = foundry.closest("com.example.section");
 </div>
 
 
-<p>The top-level <code>requiresPhp</code> key is optional and defaults to <code>false</code>, but it must be <code>true</code> whenever the pack declares a PHP template or PHP asset. It also forces pages containing the component to use a <code>.php</code> extension. This remains useful when PHP is an independent endpoint called by JavaScript rather than inline page source.</p>
+<p>The top-level <code>requiresPHP</code> key is optional and defaults to <code>false</code>, but it must be <code>true</code> whenever the pack declares a PHP template or PHP asset. It also forces pages containing the component to use a <code>.php</code> extension. This remains useful when PHP is an independent endpoint called by JavaScript rather than inline page source.</p>
 <p>Foundry’s bundled local-preview runtime executes generated PHP pages and endpoints. PHP template files do not use <code>placement</code> or <code>closure</code>.</p>
 
 <h2 id="additional-html">Additional HTML template files</h2>
@@ -325,7 +325,7 @@ const parentSection = foundry.closest("com.example.section");
 <div markdown="1">
 
 ```xml
-<key>requiresPhp</key>
+<key>requiresPHP</key>
 <true/>
 
 <key>assets</key>

@@ -33,7 +33,7 @@ Example.foundrypack/
 <h2>What goes where</h2>
 <dl>
 <dt>Contents/Info.plist</dt>
-<dd>Identity, templates, inspector controls and slots.</dd>
+<dd>Identity, templates, Inspector controls and managed child areas.</dd>
 <dt>Contents/Resources</dt>
 <dd>All templates, assets and nested <code>.foundrypack</code> bundles. Paths declared in <code>Info.plist</code> are relative to this directory.</dd>
 <dt>icon.svg</dt>
@@ -52,7 +52,7 @@ Example.foundrypack/
 <div class="note">
 <strong>Same identifier, development copy wins.</strong> An open development pack may use the same <code>id</code> as an installed pack; Foundry uses the development copy for the current session.</div>
 <h2>Declared resources</h2>
-<p>HTML, CSS, JavaScript and PHP template files are named under <a href="templates.html"><code>templates</code></a>. These are the only accepted template-file extensions. Other package files referenced with <code>{{ asset.… }}</code> must be listed under <a href="manifest-resources.html"><code>assets</code></a>. Sass and SCSS files are not currently compiled or accepted as template files.</p>
+<p>HTML, CSS, JavaScript and PHP template files are named under <a href="templates.html"><code>templates</code></a>. These are the only accepted template-file extensions. Other package files referenced with <code>{{ asset("…") }}</code> must be listed under <a href="manifest-resources.html"><code>assets</code></a>. Sass and SCSS files are not currently compiled or accepted as template files.</p>
 <div class="page-links">
 <a class="card" href="nested-packs.html">
 <strong>Nested packs</strong>

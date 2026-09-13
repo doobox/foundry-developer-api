@@ -7,14 +7,14 @@ permalink: "/divider-control.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
 </div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Divider</h1>
 <p class="lede">A presentation-only visual separator between inspector controls.</p>
 
 
 ## Basic properties
 
-Each item in `customItems` defines one Inspector item. A Divider has no editable value and is used only to separate nearby controls visually.
+Each item in `controls` defines one Inspector item. A Divider has no editable value and is used only to separate nearby controls visually.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -26,7 +26,7 @@ Identifies this item as Divider. Always use `divider`.
 <string>divider</string>
 ```
 
-> **Important:** Divider supports only `type`, `id`, `group`, and optional `enable`. It has no author-editable state or template value.
+> **Important:** Divider supports only `type`, `id`, `group`, and optional `visibleWhen`. It has no author-editable state or template value.
 
 
 <h3 class="property-heading"><code>id</code></h3>
@@ -49,13 +49,13 @@ The Inspector section that contains this control. Omit the key to place it in Se
 <string>Appearance</string>
 ```
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this control only when another control meets the stated condition.
 
 ```xml
-<key>enable</key>
+<key>visibleWhen</key>
 <dict>
     <key>id</key>
     <string>showControl</string>
@@ -64,7 +64,7 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
-Divider does not support `label`, `subtitle`, `toolTip`, `default`, `responsive`, or `count`.
+Divider does not support `label`, `subtitle`, `tooltip`, `default`, `responsive`, or `count`.
 
 Foundry displays 10 points of space above and below the divider.
 
@@ -81,7 +81,7 @@ No template value
 ### Info.plist
 
 ```xml
-<key>customItems</key>
+<key>controls</key>
 <array>
     <dict>
         <key>type</key><string>divider</string>

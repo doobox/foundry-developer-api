@@ -5,7 +5,7 @@ permalink: "/colour.html"
 ---
 {% raw %}
 <div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a></div>
-<p class="eyebrow">Info.plist · customItems</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Colour</h1>
 <p class="lede">A colour picker that supplies a literal hexadecimal colour to templates.</p>
 
@@ -36,7 +36,7 @@ Text shown to the left of the control, including when `count` is present.
 
 The Inspector section containing the control.
 
-<h3 class="property-heading"><code>toolTip</code></h3>
+<h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
 Help text explaining what the control changes.
@@ -46,7 +46,7 @@ Help text explaining what the control changes.
 
 Supporting text beneath the control. Use a String for one control or an indexed String array with `count`.
 
-<h3 class="property-heading"><code>enable</code></h3>
+<h3 class="property-heading"><code>visibleWhen</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Shows this control only when another control meets the declared condition.
