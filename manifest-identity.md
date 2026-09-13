@@ -7,19 +7,19 @@ permalink: "/manifest-identity.html"
 <div class="breadcrumbs">
 <a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
 </div>
-<p class="eyebrow">Info.plist · block manifest</p>
+<p class="eyebrow">Info.plist · part manifest</p>
 <h1>Identity and metadata</h1>
-<p class="lede">These keys declare the API contract and stable identity of a block, then describe how it appears to site authors in Foundry.</p>
+<p class="lede">These keys declare the API contract and stable identity of a part, then describe how it appears to site authors in Foundry.</p>
 
 
 ## Required identity
 
-Every block manifest must declare these four keys.
+Every part manifest must declare these four keys.
 
 <h3 class="property-heading"><code>minimumAPIVersion</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="required">Required</span></div>
 
-The oldest Foundry block API the block requires. Use `1` for the current API. A block continues working when Foundry adds newer APIs; it is rejected only when it requires a version newer than the installed Foundry supports, or when its minimum version is no longer supported.
+The oldest Foundry part API the part requires. Use `1` for the current API. A part continues working when Foundry adds newer APIs; it is rejected only when it requires a version newer than the installed Foundry supports, or when its minimum version is no longer supported.
 
 ```xml
 <key>minimumAPIVersion</key>
@@ -29,7 +29,7 @@ The oldest Foundry block API the block requires. Use `1` for the current API. A 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-A globally unique, stable reverse-domain identifier. Foundry uses it for saved block instances, template deduplication, and package identity. Changing it creates a different block. Templates can read it as `{{ package.id }}`.
+A globally unique, stable reverse-domain identifier. Foundry uses it for saved part instances, template deduplication, and package identity. Changing it creates a different part. Templates can read it as `{{ package.id }}`.
 
 ```xml
 <key>id</key>
@@ -39,7 +39,7 @@ A globally unique, stable reverse-domain identifier. Foundry uses it for saved b
 <h3 class="property-heading"><code>title</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-The short block name shown on its tile in the Blocks panel and in the block Inspector header.
+The short part name shown on its tile in the Parts panel and in the part Inspector header.
 
 ```xml
 <key>title</key>
@@ -49,7 +49,7 @@ The short block name shown on its tile in the Blocks panel and in the block Insp
 <h3 class="property-heading"><code>version</code></h3>
 <div class="property-meta"><span class="property-type">Semantic-version String</span><span class="required">Required</span></div>
 
-The block release in `MAJOR.MINOR.PATCH` form. Pre-release and build suffixes are supported. This is separate from `minimumAPIVersion`.
+The part release in `MAJOR.MINOR.PATCH` form. Pre-release and build suffixes are supported. This is separate from `minimumAPIVersion`.
 
 ```xml
 <key>version</key>
@@ -58,12 +58,12 @@ The block release in `MAJOR.MINOR.PATCH` form. Pre-release and build suffixes ar
 
 ## Presentation metadata
 
-These optional keys help site authors identify, find, and evaluate the block in the Blocks panel.
+These optional keys help site authors identify, find, and evaluate the part in the Parts panel.
 
 <h3 class="property-heading"><code>description</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
-A concise explanation of what the block does. Foundry displays it beside the block icon when an author selects the block.
+A concise explanation of what the part does. Foundry displays it beside the part icon when an author selects the part.
 
 ```xml
 <key>description</key>
@@ -73,17 +73,17 @@ A concise explanation of what the block does. Foundry displays it beside the blo
 <h3 class="property-heading"><code>author</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Unknown Developer</span></div>
 
-The developer, company, or publisher responsible for the block. Foundry displays it in the library Inspector and when inspecting an instance.
+The developer, company, or publisher responsible for the part. Foundry displays it in the library Inspector and when inspecting an instance.
 
 ```xml
 <key>author</key>
-<string>Example Blocks</string>
+<string>Example Parts</string>
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Other</span></div>
 
-The Blocks-panel heading beneath which the block appears. Use `Layout`, `Content`, `Media`, `Navigation`, `Forms`, `Interactive`, or `Other`. Matching is case-insensitive; an omitted or unrecognised value uses Other.
+The Parts-panel heading beneath which the part appears. Use `Layout`, `Content`, `Media`, `Navigation`, `Forms`, `Interactive`, or `Other`. Matching is case-insensitive; an omitted or unrecognised value uses Other.
 
 ```xml
 <key>group</key>
@@ -93,7 +93,7 @@ The Blocks-panel heading beneath which the block appears. Use `Layout`, `Content
 <h3 class="property-heading"><code>tags</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: []</span></div>
 
-Up to five brief terms that help authors recognise and find the block. Foundry displays them in a dedicated Tags section.
+Up to five brief terms that help authors recognise and find the part. Foundry displays them in a dedicated Tags section.
 
 ```xml
 <key>tags</key>
@@ -103,20 +103,20 @@ Up to five brief terms that help authors recognise and find the block. Foundry d
 </array>
 ```
 
-<h3 class="property-heading"><code>showsInBlockLibrary</code></h3>
+<h3 class="property-heading"><code>showsInPartLibrary</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: true</span></div>
 
-Whether the block appears in the Blocks or Dev Blocks panel. Set this to `false` for a supporting block that users should add only through a parent block's Child picker. The block remains installed and available to matching `pickerItems` declarations.
+Whether the part appears in the Parts or Dev Parts panel. Set this to `false` for a supporting part that users should add only through a parent part's Child picker. The part remains installed and available to matching `pickerItems` declarations.
 
 ```xml
-<key>showsInBlockLibrary</key>
+<key>showsInPartLibrary</key>
 <false/>
 ```
 
 <h3 class="property-heading"><code>allowedParents</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: any location</span></div>
 
-Restricts this block to children of the listed block package identifiers. Foundry applies the restriction to Inspector additions, drops, pastes, moves and initial children. Omit it when the block may also appear at page level or beneath other blocks.
+Restricts this part to children of the listed part package identifiers. Foundry applies the restriction to Inspector additions, drops, pastes, moves and initial children. Omit it when the part may also appear at page level or beneath other parts.
 
 ```xml
 <key>allowedParents</key>
@@ -126,11 +126,11 @@ Restricts this block to children of the listed block package identifiers. Foundr
 ```
 
 <div class="guidance" markdown="1">
-<h3>How Foundry presents the block</h3>
+<h3>How Foundry presents the part</h3>
 
-The Blocks panel shows each block as an icon and title beneath its `group` heading. Selecting it reveals the icon, title, description, developer, version, category, identifier, documentation link, and tags in the Inspector.
+The Parts panel shows each part as an icon and title beneath its `group` heading. Selecting it reveals the icon, title, description, developer, version, category, identifier, documentation link, and tags in the Inspector.
 
-Blocks loaded from a development pack receive a small red dot beside their title. Foundry supplies this marker; block authors do not declare it in `Info.plist`.
+Parts loaded from a development pack receive a small red dot beside their title. Foundry supplies this marker; part authors do not declare it in `Info.plist`.
 </div>
 
 ## Complete example
@@ -141,9 +141,9 @@ Blocks loaded from a development pack receive a small red dot beside their title
 <key>title</key><string>Callout</string>
 <key>version</key><string>1.2.0</string>
 <key>description</key><string>Highlights a short piece of important content.</string>
-<key>author</key><string>Example Blocks</string>
+<key>author</key><string>Example Parts</string>
 <key>group</key><string>Content</string>
-<key>showsInBlockLibrary</key><false/>
+<key>showsInPartLibrary</key><false/>
 <key>tags</key>
 <array>
     <string>notice</string>

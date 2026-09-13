@@ -66,6 +66,6 @@ Example.foundrytheme/
 </dl>
 <div class="callout warning">
 <strong>Use Foundry to author the bundle.</strong> <code>theme.json</code> is a Codable interchange payload rather than a separately versioned third-party authoring API. Export a theme from Foundry to obtain canonical metadata, resource records and font storage names before editing or distributing it.</div>
-<h2>Block integration</h2>
-<p>Blocks do not read <code>theme.json</code> directly. Declare <a href="theme-controls.html">theme-aware controls</a>; Foundry resolves their semantic selections against the active project theme before substituting template values.</p>
+<h2>Part integration</h2>
+<p>Parts do not read <code>theme.json</code> directly. Declare <a href="theme-controls.html">theme-aware controls</a>; Foundry resolves their semantic selections against the active project theme before substituting template values.</p>
 {% endraw %}

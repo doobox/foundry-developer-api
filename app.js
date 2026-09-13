@@ -43,7 +43,7 @@ const templateLinks = [
 
 const templateLanguageLinks = [
     ["Syntax at a glance", "template-syntax.html"],
-    ["Block roots & CSS", "template-identity.html"],
+    ["Part roots & CSS", "template-identity.html"],
     ["Values & paths", "template-controls.html"],
     ["Persistent areas", "template-areas.html"],
     ["Conditions", "template-conditions.html"],
@@ -53,7 +53,7 @@ const templateLanguageLinks = [
 ];
 
 const sections = [
-    { title: "Getting started", links: [["Overview", "index.html"], ["Build your first block", "quick-start.html"]] },
+    { title: "Getting started", links: [["Overview", "index.html"], ["Build your first part", "quick-start.html"]] },
     { title: "Package structure", links: [["Bundle structure", "bundle-structure.html"], ["Collections & nested packs", "nested-packs.html"]] },
     { title: "Info.plist", links: [
         ["Identity & metadata", "manifest-identity.html"],
@@ -64,7 +64,7 @@ const sections = [
     ] },
     { title: "Template language", links: templateLanguageLinks },
     { title: "Themes", links: [["Theme values", "theme-controls.html"], ["Theme bundles", "theme-bundles.html"]] },
-    { title: "Reference", links: [["API map", "blocks.html"]] },
+    { title: "Reference", links: [["API map", "parts.html"]] },
 ];
 
 const pageName = value => value.split("#")[0];
@@ -162,7 +162,7 @@ const breadcrumbParents = {
     "template-root-attributes.html": ["Template language", null],
     "theme-controls.html": ["Themes", "theme-controls.html"],
     "theme-bundles.html": ["Themes", "theme-controls.html"],
-    "blocks.html": ["Reference", "blocks.html"],
+    "parts.html": ["Reference", "parts.html"],
 };
 
 const breadcrumbs = document.querySelector(".breadcrumbs");

@@ -58,7 +58,7 @@ Adds a Style row offering normal/italic as supported by the selected family and 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Allows each exposed field to override independently at responsive breakpoints. Changing only weight does not pin the inherited family or style. Each row has its own responsive indicator. Use the fields in the block CSS template for responsive styling. All fields are shared between light and dark appearance.
+Allows each exposed field to override independently at responsive breakpoints. Changing only weight does not pin the inherited family or style. Each row has its own responsive indicator. Use the fields in the part CSS template for responsive styling. All fields are shared between light and dark appearance.
 
 <h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
@@ -87,7 +87,7 @@ Uploaded font files supply their face metadata. Google fonts configured in the T
 
 Existing Google entries without saved metadata offer **Configure included styles…** in the Theme Editor. Until configured, those entries and system fonts offer standard CSS choices with availability marked unverified in help.
 
-Disabling an included face in the Theme Editor does not rewrite blocks. If a selected style or weight disappears entirely, the control offers the remaining family choices so authors can recover.
+Disabling an included face in the Theme Editor does not rewrite parts. If a selected style or weight disappears entirely, the control offers the remaining family choices so authors can recover.
 
 ## Example
 
@@ -109,7 +109,7 @@ Disabling an included face in the Theme Editor does not rewrite blocks. If a sel
 </dict>
 ```
 
-In the block CSS template:
+In the part CSS template:
 
 ```css
 .title {

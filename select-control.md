@@ -37,7 +37,7 @@ The unique name used to store this Select and read it in templates. It must star
 <string>mySelect</string>
 ```
 
-> Replace `mySelect` with your own identifier. The name is not predefined, but it must be unique in the block and follow the identifier rules above.
+> Replace `mySelect` with your own identifier. The name is not predefined, but it must be unique in the part and follow the identifier rules above.
 
 <h3 class="property-heading"><code>label</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
@@ -168,7 +168,7 @@ Template access
 <h3 class="property-heading"><code>options</code></h3>
 <div class="property-meta"><span class="property-type">Array of dictionaries</span><span class="optional">Optional</span><span class="default">Default: \[\]</span></div>
 
-Lists choices supplied by the block. Each dictionary needs a value to store and a title to show in the popup.
+Lists choices supplied by the part. Each dictionary needs a value to store and a title to show in the popup.
 
 ```xml
 <key>options</key>
@@ -208,10 +208,10 @@ Select offers only the options declared here. It does not populate choices from 
         <key>group</key><string>Content</string>
         <key>options</key>
         <array>
-            <dict><key>value</key><string>block</string><key>title</key><string>Block</string></dict>
+            <dict><key>value</key><string>part</string><key>title</key><string>Part</string></dict>
             <dict><key>value</key><string>flex</string><key>title</key><string>Flex</string></dict>
         </array>
-        <key>default</key><string>block</string>
+        <key>default</key><string>part</string>
         <key>responsive</key><false/>
     </dict>
 </array>

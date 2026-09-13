@@ -13,7 +13,7 @@ Authors can choose from the project's custom, theme and standard colour palettes
 
 Palettes resolve by identity, not display name. Custom palettes never override theme or standard palettes, even when their names match. Duplicating a palette creates an independent custom colour with a unique name. Theme palette names remain fixed; their shades are editable in user-created and imported themes. Built-in themes and standard palettes are read-only.
 
-A block stores one palette identity and separate fixed light and dark shade numbers. Choosing a palette captures its two current defaults. Changing either palette default later does not move existing block selections. The canvas sun/moon buttons select which appearance the Inspector edits, independently of macOS appearance. The Inspector star refers to that appearance's default; clicking it selects the default without creating a live link. Edits to the selected swatch colour still update the block.
+A part stores one palette identity and separate fixed light and dark shade numbers. Choosing a palette captures its two current defaults. Changing either palette default later does not move existing part selections. The canvas sun/moon buttons select which appearance the Inspector edits, independently of macOS appearance. The Inspector star refers to that appearance's default; clicking it selects the default without creating a live link. Edits to the selected swatch colour still update the part.
 
 Use the separate `color` control when only a literal colour picker is needed.
 
@@ -67,12 +67,12 @@ Groups the initial palette and optional appearance-specific shades. The only acc
 <h3 class="property-heading"><code>default.palette</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-The initially selected theme role: `page`, `background`, `surface`, `text`, `muted-text`, `accent`, or `links`. New blocks capture that palette's light and dark defaults unless the corresponding shade key is supplied. `page` also supplies the page's outer background; `background` is available for block backgrounds. `custom` is valid only when `allowsCustom` is true, requires the control's `customColor`, and prohibits both shade keys. Arbitrary palette IDs are not accepted here; authors can select other palettes in the Inspector.
+The initially selected theme role: `page`, `background`, `surface`, `text`, `muted-text`, `accent`, or `links`. New parts capture that palette's light and dark defaults unless the corresponding shade key is supplied. `page` also supplies the page's outer background; `background` is available for part backgrounds. `custom` is valid only when `allowsCustom` is true, requires the control's `customColor`, and prohibits both shade keys. Arbitrary palette IDs are not accepted here; authors can select other palettes in the Inspector.
 
 <h3 class="property-heading"><code>default.lightShade</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's light default shade</span></div>
 
-The initial light-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's light default when the block is created. The stored shade number does not follow subsequent default changes.
+The initial light-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's light default when the part is created. The stored shade number does not follow subsequent default changes.
 
 Available only inside a `themeColor` default dictionary with a theme-role `palette`; it cannot be combined with `palette: custom`. This setting controls initial creation, not subsequent palette choices in the Inspector.
 
@@ -88,7 +88,7 @@ Available only inside a `themeColor` default dictionary with a theme-role `palet
 <h3 class="property-heading"><code>default.darkShade</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's dark default shade</span></div>
 
-The initial dark-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's dark default when the block is created. It uses the same palette and ribbon as `lightShade`, but stores an independent fixed shade number. Available only inside a `themeColor` default dictionary with a theme-role `palette`; it cannot be combined with `palette: custom`. It affects initial creation, not subsequent palette choices in the Inspector.
+The initial dark-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's dark default when the part is created. It uses the same palette and ribbon as `lightShade`, but stores an independent fixed shade number. Available only inside a `themeColor` default dictionary with a theme-role `palette`; it cannot be combined with `palette: custom`. It affects initial creation, not subsequent palette choices in the Inspector.
 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
@@ -116,7 +116,7 @@ Allows alpha for the literal Custom Colour choice. It does not add an opacity ad
 
 Returns a CSS colour, not a palette ID or shade number. The canvas resolves the appearance being edited. Light-only and dark-only sites export the corresponding colour. Sites supporting both export a CSS `light-dark(light, dark)` colour, following the browser's system preference unless explicitly overridden. Custom Colour selections include their appearance-specific opacity when enabled. Use the result directly in CSS rather than treating it as a hexadecimal string.
 
-For sites supporting both appearances, a block can call `window.foundryAppearance.set('light')`, `.set('dark')`, or `.set('system')` in its browser script. The visitor's choice is remembered for that site. This interface is not installed in the editing canvas or on single-appearance sites.
+For sites supporting both appearances, a part can call `window.foundryAppearance.set('light')`, `.set('dark')`, or `.set('system')` in its browser script. The visitor's choice is remembered for that site. This interface is not installed in the editing canvas or on single-appearance sites.
 
 ## Complete example
 

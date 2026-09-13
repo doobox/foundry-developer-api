@@ -14,7 +14,7 @@ permalink: /template-loops.html
 <div markdown="1">
 
 ```html
-<div class="gallery {{ block.class }}" {{ block.attributes }}>
+<div class="gallery {{ part.class }}" {{ part.attributes }}>
     {{ loop 8 }}
         <figure>
             {{ image("photo") }}
@@ -30,13 +30,13 @@ permalink: /template-loops.html
 <p>A literal count must be a whole number from <code>0</code> through <code>100</code>. Each <code>loop</code> requires a matching <code>endloop</code>.</p>
 
 <h3>Use a control for the count</h3>
-<p>Reference a number or slider control when the block user should choose how many items appear. The control must declare an explicit finite <code>maximum</code> from <code>0</code> through <code>100</code>. Foundry rounds the current value down to a whole number and constrains it to the control’s supported range.</p>
+<p>Reference a number or slider control when the part user should choose how many items appear. The control must declare an explicit finite <code>maximum</code> from <code>0</code> through <code>100</code>. Foundry rounds the current value down to a whole number and constrains it to the control’s supported range.</p>
 
 
 <div markdown="1">
 
 ```html
-<ul class="items {{ block.class }}" {{ block.attributes }}>
+<ul class="items {{ part.class }}" {{ part.attributes }}>
     {{ loop control.itemCount }}
         <li>{{ text("label", default: "Item") }}</li>
     {{ endloop }}

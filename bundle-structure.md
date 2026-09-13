@@ -9,7 +9,7 @@ permalink: "/bundle-structure.html"
 <span>›</span>Packages</div>
 <p class="eyebrow">Packages</p>
 <h1>Pack structure</h1>
-<p class="lede">A <code>.foundrypack</code> is a standard macOS-style bundle. Foundry keeps it intact and runs its blocks directly from their packaged locations.</p>
+<p class="lede">A <code>.foundrypack</code> is a standard macOS-style bundle. Foundry keeps it intact and runs its parts directly from their packaged locations.</p>
 
 
 <div markdown="1">
@@ -19,10 +19,10 @@ Example.foundrypack/
 └── Contents/
     ├── Info.plist
     └── Resources/
-        ├── block.html
-        ├── block.css
+        ├── part.html
+        ├── part.css
         ├── editor.css
-        ├── block.js
+        ├── part.js
         ├── icon.svg
         └── assets/
 ```
@@ -37,16 +37,16 @@ Example.foundrypack/
 <dt>Contents/Resources</dt>
 <dd>All templates, assets and nested <code>.foundrypack</code> bundles. Paths declared in <code>Info.plist</code> are relative to this directory.</dd>
 <dt>icon.svg</dt>
-<dd>A square block icon placed directly in Resources. Foundry discovers this filename by convention.</dd>
+<dd>A square part icon placed directly in Resources. Foundry discovers this filename by convention.</dd>
 </dl>
-<h2>Blocks and collections</h2>
-<p>A pack is a functional block by default and may also contain child packs. A non-functional outer pack used only to group child packs has an Info.plist containing exactly <code>collection = true</code>; it does not repeat block identity or template keys.</p>
+<h2>Parts and collections</h2>
+<p>A pack is a functional part by default and may also contain child packs. A non-functional outer pack used only to group child packs has an Info.plist containing exactly <code>collection = true</code>; it does not repeat part identity or template keys.</p>
 <div class="note">
-<strong>No extraction step.</strong> Installing an outer pack preserves its complete tree. Nested blocks continue to run from inside it.</div>
+<strong>No extraction step.</strong> Installing an outer pack preserves its complete tree. Nested parts continue to run from inside it.</div>
 <h2>Development packs</h2>
 <p>Rename a pack from <code>.foundrypack</code> to <code>.foundrydevpack</code> while developing it. The internal structure and <code>Info.plist</code> API remain identical, but macOS treats the development form as an ordinary folder instead of a Finder package.</p>
 <p>Open the development pack with Foundry, or place it in <code>~/Library/Application Support/Foundry/Packs</code> alongside installed third-party packs. Foundry automatically loads development packs found there when it launches and watches them in place. A development pack opened from another location is also used directly without copying.</p>
-<p>Changes mark the pack as needing a reload; Foundry performs one coalesced reload when the app next becomes active, then rerenders open canvases. If an edit temporarily makes the pack invalid, Foundry reports diagnostics and keeps the last valid block available.</p>
+<p>Changes mark the pack as needing a reload; Foundry performs one coalesced reload when the app next becomes active, then rerenders open canvases. If an edit temporarily makes the pack invalid, Foundry reports diagnostics and keeps the last valid part available.</p>
 <div class="note">
 <strong>Nested distribution packs are opaque.</strong> A <code>.foundrydevpack</code> watcher ignores child <code>.foundrypack</code> bundles and everything inside them. Nested <code>.foundrydevpack</code> source remains watchable.</div>
 <div class="note">
@@ -60,7 +60,7 @@ Example.foundrypack/
 </a>
 <a class="card" href="manifest-identity.html">
 <strong>Identity and metadata</strong>
-<p>Start with the required block keys.</p>
+<p>Start with the required part keys.</p>
 </a>
 </div>
 {% endraw %}

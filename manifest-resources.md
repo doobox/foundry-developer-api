@@ -9,7 +9,7 @@ permalink: "/manifest-resources.html"
 </div>
 <p class="eyebrow">Info.plist</p>
 <h1>Libraries and assets</h1>
-<p class="lede">Use libraries for Foundry-managed web dependencies and assets for block-owned files that templates reference but do not process as source templates.</p>
+<p class="lede">Use libraries for Foundry-managed web dependencies and assets for part-owned files that templates reference but do not process as source templates.</p>
 
 <h2>libraries</h2>
 <section class="reference-entry">
@@ -17,8 +17,8 @@ permalink: "/manifest-resources.html"
 <div class="api-meta">
 <span class="pill">Dictionary array</span><span class="pill">Optional</span><span class="pill">Default: []</span>
 </div>
-<p>Requests a web library supplied by Foundry. Foundry includes a requested library only when the site uses a block that declares it, and deduplicates the same request across blocks.</p>
-<p>Library IDs use the library’s familiar upstream name, such as <code>bootstrapIcons</code>. Foundry provides <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a> locally as <code>bootstrapIcons</code>, major version <code>1</code>. An Icon control requests it automatically. Declare it manually only when a block uses Bootstrap Icons directly in its template without declaring an Icon control; blocks never bundle or download their own copy.</p>
+<p>Requests a web library supplied by Foundry. Foundry includes a requested library only when the site uses a part that declares it, and deduplicates the same request across parts.</p>
+<p>Library IDs use the library’s familiar upstream name, such as <code>bootstrapIcons</code>. Foundry provides <a href="https://icons.getbootstrap.com/">Bootstrap Icons</a> locally as <code>bootstrapIcons</code>, major version <code>1</code>. An Icon control requests it automatically. Declare it manually only when a part uses Bootstrap Icons directly in its template without declaring an Icon control; parts never bundle or download their own copy.</p>
 
 
 <div markdown="1">
@@ -45,7 +45,7 @@ permalink: "/manifest-resources.html"
 <div class="api-meta">
 <span class="pill">Dictionary array</span><span class="pill">Optional</span><span class="pill">Default: []</span>
 </div>
-<p>Lists block-owned resources that templates use without processing them as templates—for example images, fonts, JSON, video, or a PHP endpoint. Each array entry must be a dictionary representing one file or folder to publish. Bare string entries are not accepted.</p>
+<p>Lists part-owned resources that templates use without processing them as templates—for example images, fonts, JSON, video, or a PHP endpoint. Each array entry must be a dictionary representing one file or folder to publish. Bare string entries are not accepted.</p>
 
 
 <div markdown="1">
@@ -83,7 +83,7 @@ permalink: "/manifest-resources.html"
 <dt><code>scope</code></dt>
 <dd>Optional. Accepts <code>page</code> or <code>site</code> and defaults to <code>page</code> when omitted.</dd>
 </dl>
-<p>Foundry publishes a page asset once in that page’s <code>files/</code> directory, regardless of how many block instances use it. A declared file publishes using only its filename; a declared directory publishes recursively and retains the directory name.</p>
+<p>Foundry publishes a page asset once in that page’s <code>files/</code> directory, regardless of how many part instances use it. A declared file publishes using only its filename; a declared directory publishes recursively and retains the directory name.</p>
 <p>Use <code>site</code> scope to publish an asset once for the entire website:</p>
 
 
@@ -99,7 +99,7 @@ permalink: "/manifest-resources.html"
 </div>
 
 
-<p>Foundry publishes site assets once below the website’s global <code>assets/</code> directory, preserving the declared path. They are not block-namespaced, so any template can use a known path with <code>{{ path.siteAssets }}/shared/icons/star.svg</code>.</p>
+<p>Foundry publishes site assets once below the website’s global <code>assets/</code> directory, preserving the declared path. They are not part-namespaced, so any template can use a known path with <code>{{ path.siteAssets }}/shared/icons/star.svg</code>.</p>
 <div class="callout warning">
 <strong>Site asset paths are shared.</strong> Identical files targeting the same path are deduplicated. Different contents targeting the same path stop preview and publishing with an error.</div>
 </section>
@@ -110,7 +110,7 @@ permalink: "/manifest-resources.html"
 <div class="api-meta">
 <span class="pill">Boolean</span><span class="pill">Optional</span><span class="pill">Default: false</span>
 </div>
-<p>Declares that the block needs PHP-capable hosting. When <code>true</code>, every page containing the block uses a <code>.php</code> extension. Set it when the block declares a PHP template or a PHP asset, including a separate endpoint called by JavaScript.</p>
+<p>Declares that the part needs PHP-capable hosting. When <code>true</code>, every page containing the part uses a <code>.php</code> extension. Set it when the part declares a PHP template or a PHP asset, including a separate endpoint called by JavaScript.</p>
 
 
 <div markdown="1">
@@ -124,7 +124,7 @@ permalink: "/manifest-resources.html"
 
 
 <div class="callout warning">
-<strong>Keep the declaration explicit.</strong> A <code>.php</code> file alone does not replace this key. <code>requiresPHP</code> is the block’s statement that the page and its hosting environment require PHP.</div>
+<strong>Keep the declaration explicit.</strong> A <code>.php</code> file alone does not replace this key. <code>requiresPHP</code> is the part’s statement that the page and its hosting environment require PHP.</div>
 </section>
 
 <h2>Template files are not assets</h2>
@@ -143,6 +143,6 @@ permalink: "/manifest-resources.html"
 
 <div class="page-links">
     <a class="card" href="templates.html"><strong>Template files</strong><p>See the supported source file types and scopes.</p></a>
-    <a class="card" href="template-identity.html"><strong>Asset template values</strong><p>Use declared assets safely from block markup and styles.</p></a>
+    <a class="card" href="template-identity.html"><strong>Asset template values</strong><p>Use declared assets safely from part markup and styles.</p></a>
 </div>
 {% endraw %}

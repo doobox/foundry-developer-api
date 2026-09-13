@@ -10,7 +10,7 @@ permalink: "/visible-when.html"
 <p class="eyebrow">Shared control capability</p>
 <h1>Conditional visibility <code class="title-code">visibleWhen</code>
 </h1>
-<p class="lede">Show a control only when another control in the same block satisfies a condition. A false condition removes the complete control and its layout space from the Inspector.</p>
+<p class="lede">Show a control only when another control in the same part satisfies a condition. A false condition removes the complete control and its layout space from the Inspector.</p>
 
 <h2>Equality</h2>
 <p>Add a <code>visibleWhen</code> dictionary directly to any control. Its <code>id</code> identifies the controlling control and <code>value</code> supplies the expected plist value. When <code>operation</code> is omitted, Foundry uses exact, type-aware equality.</p>
@@ -36,7 +36,7 @@ permalink: "/visible-when.html"
 <div class="key-meta">
 <span>String</span><strong>Required</strong>
 </div>
-<p>ID of another value-producing control in the same block. Append a zero-based index such as <code>titles[2]</code> to read one member of a multi-control.</p></section>
+<p>ID of another value-producing control in the same part. Append a zero-based index such as <code>titles[2]</code> to read one member of a multi-control.</p></section>
 <section class="key-reference"><h3><code>operation</code></h3>
 <div class="key-meta">
 <span>String</span><strong>Optional</strong><span>Default: ==</span>
@@ -145,6 +145,6 @@ permalink: "/visible-when.html"
 <h2>Validation</h2>
 <p>Foundry rejects malformed indexed references, unknown control IDs, self-references, dependency cycles, unsupported operations, missing required values, values supplied to empty checks, and indexes outside a multi-control’s declared count.</p>
 <div class="page-links">
-<a class="card" href="custom-controls.html"><strong>All custom controls</strong><p>Choose the inspector building block to conditionally present.</p></a><a class="card" href="control-arrays.html"><strong>Control arrays</strong><p>Declare and reference two to four related values.</p></a>
+<a class="card" href="custom-controls.html"><strong>All custom controls</strong><p>Choose the inspector building part to conditionally present.</p></a><a class="card" href="control-arrays.html"><strong>Control arrays</strong><p>Declare and reference two to four related values.</p></a>
 </div>
 {% endraw %}

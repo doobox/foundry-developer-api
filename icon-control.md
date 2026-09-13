@@ -128,7 +128,7 @@ When `count` is present, `default` must be an array containing exactly `count` v
 
 ## Built-in icon library
 
-An Icon control automatically includes Foundry’s bundled Bootstrap Icons CSS and font in preview and published output. Do not add a `libraries` declaration for it. Foundry includes the library once even when a block declares several Icon controls or a page uses several blocks containing them.
+An Icon control automatically includes Foundry’s bundled Bootstrap Icons CSS and font in preview and published output. Do not add a `libraries` declaration for it. Foundry includes the library once even when a part declares several Icon controls or a page uses several parts containing them.
 
 ## Return value
 

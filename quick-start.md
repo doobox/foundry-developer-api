@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Build a block · Foundry Developer
+title: Build a part · Foundry Developer
 permalink: "/quick-start.html"
 ---
 {% raw %}
@@ -8,8 +8,8 @@ permalink: "/quick-start.html"
 <a href="index.html">Foundry Developer</a>
 <span>›</span>Get started</div>
 <p class="eyebrow">Quick start</p>
-<h1>Build a block</h1>
-<p class="lede">This block has editable text, a padding control, a theme colour control, responsive CSS and room for child blocks.</p>
+<h1>Build a part</h1>
+<p class="lede">This part has editable text, a padding control, a theme colour control, responsive CSS and room for child parts.</p>
 <div class="steps">
 <section class="step">
 <h2>Create the pack</h2>
@@ -22,8 +22,8 @@ Callout.foundrydevpack/
 └── Contents/
     ├── Info.plist
     └── Resources/
-        ├── block.html
-        ├── block.css
+        ├── part.html
+        ├── part.css
         └── icon.svg
 ```
 
@@ -32,7 +32,7 @@ Callout.foundrydevpack/
 
 </section>
 <section class="step">
-<h2>Declare the block</h2>
+<h2>Declare the part</h2>
 
 
 <div markdown="1">
@@ -50,11 +50,11 @@ Callout.foundrydevpack/
     <key>group</key><string>Content</string>
     <key>templates</key>
     <dict>
-        <key>html</key><string>block.html</string>
+        <key>html</key><string>part.html</string>
         <key>files</key>
         <array>
             <dict>
-                <key>path</key><string>block.css</string>
+                <key>path</key><string>part.css</string>
                 <key>scope</key><string>instance</string>
             </dict>
         </array>
@@ -99,7 +99,7 @@ Callout.foundrydevpack/
 <div markdown="1">
 
 ```html
-<aside class="callout {{ block.class }}" {{ block.attributes }}>
+<aside class="callout {{ part.class }}" {{ part.attributes }}>
     <h2>{{ text("heading", default: "A useful callout") }}</h2>
     {{ dropZone("content") }}
 </aside>
@@ -109,7 +109,7 @@ Callout.foundrydevpack/
 
 
 <p>
-<code>{{ block.attributes }}</code> supplies the block’s stable <code>data-foundry-id</code> identity, the site author’s permitted root attributes, and canvas-only editor hooks. <code>{{ block.class }}</code> merges generated and author-added classes into the developer-owned root class. <code>{{ dropZone("content") }}</code> creates a named ordinary child-content area without an Info.plist declaration. Do not declare a root <code>id</code>; Foundry reserves it for the author’s anchor. Use <code>:instance</code> when instance CSS needs to target this one placed block.</p>
+<code>{{ part.attributes }}</code> supplies the part’s stable <code>data-foundry-id</code> identity, the site author’s permitted root attributes, and canvas-only editor hooks. <code>{{ part.class }}</code> merges generated and author-added classes into the developer-owned root class. <code>{{ dropZone("content") }}</code> creates a named ordinary child-content area without an Info.plist declaration. Do not declare a root <code>id</code>; Foundry reserves it for the author’s anchor. Use <code>:instance</code> when instance CSS needs to target this one placed part.</p>
 </section>
 <section class="step">
 <h2>Own the CSS</h2>
@@ -132,7 +132,7 @@ Callout.foundrydevpack/
 </section>
 <section class="step">
 <h2>Open and validate it</h2>
-<p>Open the <code>.foundrydevpack</code> in Foundry, or place it in <code>~/Library/Application Support/Foundry/Packs</code> and reload blocks. The Callout should appear under Content in the Blocks panel.</p>
+<p>Open the <code>.foundrydevpack</code> in Foundry, or place it in <code>~/Library/Application Support/Foundry/Packs</code> and reload parts. The Callout should appear under Content in the Parts panel.</p>
 <p>If Foundry rejects the pack, enable the Developer panel in Foundry’s Developer preferences. It reports the exact manifest key, template line, or missing path that needs attention.</p>
 </section>
 </div>

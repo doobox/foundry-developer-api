@@ -14,19 +14,19 @@ permalink: /template-syntax.html
 <div class="api-row"><strong>Dotted value</strong><span><code>{{ control.padding }}</code></span><span>Escaped value</span><span>Read controls, package identity, page values and paths.</span></div>
 <div class="api-row"><strong>Asset function</strong><span><code>{{ asset("images/icon.svg") }}</code></span><span>Escaped URL</span><span>Resolve one path declared by the manifest’s <code>assets</code> array.</span></div>
 <div class="api-row"><strong>Editable function</strong><span><code>{{ text("heading") }}</code></span><span>Editable content</span><span>Place persistent text, HTML or image content.</span></div>
-<div class="api-row"><strong>Drop zone</strong><span><code>{{ dropZone("content") }}</code></span><span>Child markup</span><span>Place an ordinary area accepting any block.</span></div>
+<div class="api-row"><strong>Drop zone</strong><span><code>{{ dropZone("content") }}</code></span><span>Child markup</span><span>Place an ordinary area accepting any part.</span></div>
 <div class="api-row"><strong>Managed child area</strong><span><code>{{ childArea("cards") }}</code></span><span>Child markup</span><span>Place children governed by a declared <code>childPicker</code>.</span></div>
 <div class="api-row"><strong>Condition</strong><span><code>{{ if control.featured }}</code></span><span>Selected branch</span><span>Include markup according to a validated expression.</span></div>
-<div class="api-row"><strong>Loop</strong><span><code>{{ loop control.count }}</code></span><span>Repeated block</span><span>Repeat bounded markup until <code>{{ endloop }}</code>.</span></div>
+<div class="api-row"><strong>Loop</strong><span><code>{{ loop control.count }}</code></span><span>Repeated part</span><span>Repeat bounded markup until <code>{{ endloop }}</code>.</span></div>
 <div class="api-row"><strong>Filter</strong><span><code>{{ control.color | lighten(20) }}</code></span><span>Transformed value</span><span>Transform output without changing stored data.</span></div>
 </div>
 
-<h2>Required block root</h2>
+<h2>Required part root</h2>
 
 <div markdown="1">
 
 ```html
-<section class="my-block {{ block.class }}" {{ block.attributes }}>
+<section class="my-part {{ part.class }}" {{ part.attributes }}>
     …
 </section>
 ```
@@ -38,7 +38,7 @@ permalink: /template-syntax.html
 <div markdown="1">
 
 ```css
-.my-block { } /* Developer-owned class */
+.my-part { } /* Developer-owned class */
 :host { }         /* Every instance from this package */
 :instance { }     /* This exact placed instance */
 ```
