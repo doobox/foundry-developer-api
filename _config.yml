@@ -1,5 +1,5 @@
 title: Foundry
-description: Build components for Foundry with ordinary HTML, CSS, JavaScript, and PHP.
+description: Build blocks for Foundry with ordinary HTML, CSS, JavaScript, and PHP.
 url: https://doobox.github.io
 baseurl: /foundry-developer-api
 markdown: kramdown

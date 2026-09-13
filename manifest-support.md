@@ -9,7 +9,7 @@ permalink: "/manifest-support.html"
 </div>
 <p class="eyebrow">Info.plist</p>
 <h1>Support and recovery</h1>
-<p class="lede">Give authors a route to component help and preserve useful information when a project refers to a pack that is no longer available.</p>
+<p class="lede">Give authors a route to block help and preserve useful information when a project refers to a pack that is no longer available.</p>
 
 <h2>helpURL</h2>
 <section class="reference-entry">
@@ -17,14 +17,14 @@ permalink: "/manifest-support.html"
 <div class="api-meta">
 <span class="pill">URL String</span><span class="pill">Optional</span><span class="pill">Default: omitted</span>
 </div>
-<p>An absolute URL for the component’s documentation or support page. Use a stable HTTPS address that explains the component version users currently have installed.</p>
+<p>An absolute URL for the block’s documentation or support page. Use a stable HTTPS address that explains the block version users currently have installed.</p>
 
 
 <div markdown="1">
 
 ```xml
 <key>helpURL</key>
-<string>https://example.com/components/callout/help</string>
+<string>https://example.com/blocks/callout/help</string>
 ```
 
 </div>
@@ -32,22 +32,22 @@ permalink: "/manifest-support.html"
 
 </section>
 
-<h2>missingComponent</h2>
+<h2>missingBlock</h2>
 <section class="reference-entry">
-<h3>missingComponent</h3>
+<h3>missingBlock</h3>
 <div class="api-meta">
 <span class="pill">Dictionary</span><span class="pill">Optional</span><span class="pill">Default: omitted</span>
 </div>
-<p>Fallback information Foundry snapshots into each placed component while its package is available. The dictionary accepts optional <code>message</code> and <code>preview</code> strings. <code>preview</code> contains HTML and is used for production output if the package later becomes unavailable.</p>
+<p>Fallback information Foundry snapshots into each placed block while its package is available. The dictionary accepts optional <code>message</code> and <code>preview</code> strings. <code>preview</code> contains HTML and is used for production output if the package later becomes unavailable.</p>
 
 
 <div markdown="1">
 
 ```xml
-<key>missingComponent</key>
+<key>missingBlock</key>
 <dict>
     <key>message</key>
-    <string>Install Example Components to edit this Callout.</string>
+    <string>Install Example Blocks to edit this Callout.</string>
     <key>preview</key>
     <string>&lt;aside class="callout-placeholder"&gt;Callout&lt;/aside&gt;</string>
 </dict>
@@ -56,19 +56,19 @@ permalink: "/manifest-support.html"
 </div>
 
 
-<p>Keep fallback markup small, self-contained, and safe to publish without the rest of the pack. It is recovery information, not an alternative implementation of the component.</p>
+<p>Keep fallback markup small, self-contained, and safe to publish without the rest of the pack. It is recovery information, not an alternative implementation of the block.</p>
 <div class="note">
-<strong>Current API behavior:</strong> Foundry accepts <code>message</code> as part of the version 1 manifest shape, but does not currently present it in the missing-component interface. Do not rely on it for essential recovery instructions.</div>
+<strong>Current API behavior:</strong> Foundry accepts <code>message</code> as part of the version 1 manifest shape, but does not currently present it in the missing-block interface. Do not rely on it for essential recovery instructions.</div>
 </section>
 
 <h2 id="validation-failures">Validation failures</h2>
-<p>Foundry refuses to load a component whose manifest or declared files violate the API contract. The Developer panel reports every diagnostic Foundry produced for that pack, including the relevant key or file when available.</p>
+<p>Foundry refuses to load a block whose manifest or declared files violate the API contract. The Developer panel reports every diagnostic Foundry produced for that pack, including the relevant key or file when available.</p>
 <p>Manifest keys are strict. Unknown or misspelled keys are validation errors rather than ignored extensions, so correct the declaration named by the diagnostic before reloading the pack.</p>
 <div class="note">
 <strong>Do not rely on undocumented fallbacks.</strong> Foundry validates the current manifest shape and does not translate legacy aliases. Correct the reported declaration in the pack and reload it.</div>
 
 <div class="page-links">
-    <a class="card" href="manifest-identity.html"><strong>Identity and metadata</strong><p>Review the required component identity and presentation keys.</p></a>
-    <a class="card" href="bundle-structure.html"><strong>Development packs</strong><p>Use <code>.foundrydevpack</code> while editing and reloading a component.</p></a>
+    <a class="card" href="manifest-identity.html"><strong>Identity and metadata</strong><p>Review the required block identity and presentation keys.</p></a>
+    <a class="card" href="bundle-structure.html"><strong>Development packs</strong><p>Use <code>.foundrydevpack</code> while editing and reloading a block.</p></a>
 </div>
 {% endraw %}

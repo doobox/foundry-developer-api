@@ -9,7 +9,7 @@ permalink: "/child-picker-control.html"
 </div>
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Child picker</h1>
-<p class="lede">An Inspector control that adds and manages real child-component instances inside a component.</p>
+<p class="lede">An Inspector control that adds and manages real child-block instances inside a block.</p>
 
 
 ## Basic properties
@@ -70,12 +70,12 @@ Help text that explains which children the author can add.
 
 These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown.
 
-Foundry always presents the action as **Add** with its standard plus symbol. Its title and icon are not package-configurable, so the action has the same meaning in every component.
+Foundry always presents the action as **Add** with its standard plus symbol. Its title and icon are not package-configurable, so the action has the same meaning in every block.
 
 <h3 class="property-heading"><code>pickerItems</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="required">Required</span></div>
 
-One or more component package identifiers available from the Inspector picker. The array cannot be empty. These are also the only types accepted as canvas drops unless `accepts` declares a wider set.
+One or more block package identifiers available from the Inspector picker. The array cannot be empty. These are also the only types accepted as canvas drops unless `accepts` declares a wider set.
 
 ```xml
 <key>pickerItems</key>
@@ -88,7 +88,7 @@ One or more component package identifiers available from the Inspector picker. T
 <h3 class="property-heading"><code>accepts</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: pickerItems</span></div>
 
-The component package identifiers accepted as canvas drops into this managed collection. Use `*` as the only entry to accept every installed component while keeping the Inspector picker curated. Entries are either `*` or lowercase reverse-DNS component identifiers; component groups and display names are not accepted.
+The block package identifiers accepted as canvas drops into this managed collection. Use `*` as the only entry to accept every installed block while keeping the Inspector picker curated. Entries are either `*` or lowercase reverse-DNS block identifiers; block groups and display names are not accepted.
 
 ```xml
 <key>accepts</key>
@@ -107,7 +107,7 @@ The component package identifiers accepted as canvas drops into this managed col
 <h3 class="property-heading"><code>initial</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
-An ordered list of component package identifiers that Foundry creates in this collection when it creates a new instance of the parent component. Repeat an identifier to create multiple children. Every identifier must be permitted by `accepts`; the array cannot contain fewer entries than `minimum` or more than `maximum`.
+An ordered list of block package identifiers that Foundry creates in this collection when it creates a new instance of the parent block. Repeat an identifier to create multiple children. Every identifier must be permitted by `accepts`; the array cannot contain fewer entries than `minimum` or more than `maximum`.
 
 ```xml
 <key>initial</key>
@@ -118,7 +118,7 @@ An ordered list of component package identifiers that Foundry creates in this co
 </array>
 ```
 
-Here the collection starts with one feature card followed by two metric cards. An initial identifier does not have to appear in `pickerItems`, allowing a component to start with supporting children that authors cannot add again, but it must be permitted by `accepts`. Each initial child uses the defaults from its own manifest and creates any initial children declared by its own Child pickers. Foundry applies `initial` only to new component instances; it does not repopulate an existing collection after children are removed. If an initial child's package is unavailable, Foundry creates a missing-component instance so the intended composition is preserved and can recover when that package becomes available.
+Here the collection starts with one feature card followed by two metric cards. An initial identifier does not have to appear in `pickerItems`, allowing a block to start with supporting children that authors cannot add again, but it must be permitted by `accepts`. Each initial child uses the defaults from its own manifest and creates any initial children declared by its own Child pickers. Foundry applies `initial` only to new block instances; it does not repopulate an existing collection after children are removed. If an initial child's package is unavailable, Foundry creates a missing-block instance so the intended composition is preserved and can recover when that package becomes available.
 
 <h3 class="property-heading"><code>minimum</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: 0</span></div>
@@ -155,7 +155,7 @@ Controls whether managed children can leave this parent.
 
 ## Return value
 
-Place the managed children with <code>{{ childArea("cards") }}</code>. It emits the rendered child-component HTML in its current order rather than an escaped control value.
+Place the managed children with <code>{{ childArea("cards") }}</code>. It emits the rendered child-block HTML in its current order rather than an escaped control value.
 
 ```html
 <div class="card-grid">
@@ -163,9 +163,9 @@ Place the managed children with <code>{{ childArea("cards") }}</code>. It emits 
 </div>
 ```
 
-Each added child is an independent component instance with its own Inspector values. It appears in Structure and participates in undo, copy, paste, globals, preview and publishing.
+Each added child is an independent block instance with its own Inspector values. It appears in Structure and participates in undo, copy, paste, globals, preview and publishing.
 
-Set `showsInComponentLibrary` to `false` in a managed child's manifest when it should be available through the parent picker but hidden from the main Components panel.
+Set `showsInBlockLibrary` to `false` in a managed child's manifest when it should be available through the parent picker but hidden from the main Blocks panel.
 
 The Child picker `id` is a persistent content-location identifier. Reordering the control in `controls` keeps its children attached. Removing or renaming it preserves its children but stops rendering them. Structure marks them as belonging to an unavailable Child picker and offers compatible current child areas to which the author can move them. Restoring the same `id` reconnects the preserved children.
 
@@ -203,7 +203,7 @@ The Child picker `id` is a persistent content-location identifier. Reordering th
 ### Use it in a template
 
 ```html
-<section class="card-grid {{ component.class }}" {{ component.attributes }}>
+<section class="card-grid {{ block.class }}" {{ block.attributes }}>
     {{ childArea("cards") }}
 </section>
 ```

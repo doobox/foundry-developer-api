@@ -40,7 +40,7 @@ Use [Color](colour.html) for literal colour editing without theme palettes.
 
 ## Template ownership
 
-Foundry resolves theme selections against the active project theme. The component's own templates still decide which element and CSS declaration consume the result. A control does not automatically style a component.
+Foundry resolves theme selections against the active project theme. The block's own templates still decide which element and CSS declaration consume the result. A control does not automatically style a block.
 
 There is currently no Select extension for theme font sizes or spacing. Use explicit options for literal choices; do not declare a theme source on Select.
 

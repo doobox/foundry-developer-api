@@ -10,7 +10,7 @@ permalink: "/visible-when.html"
 <p class="eyebrow">Shared control capability</p>
 <h1>Conditional visibility <code class="title-code">visibleWhen</code>
 </h1>
-<p class="lede">Show a control only when another control in the same component satisfies a condition. A false condition removes the complete control and its layout space from the Inspector.</p>
+<p class="lede">Show a control only when another control in the same block satisfies a condition. A false condition removes the complete control and its layout space from the Inspector.</p>
 
 <h2>Equality</h2>
 <p>Add a <code>visibleWhen</code> dictionary directly to any control. Its <code>id</code> identifies the controlling control and <code>value</code> supplies the expected plist value. When <code>operation</code> is omitted, Foundry uses exact, type-aware equality.</p>
@@ -36,7 +36,7 @@ permalink: "/visible-when.html"
 <div class="key-meta">
 <span>String</span><strong>Required</strong>
 </div>
-<p>ID of another value-producing control in the same component. Append a zero-based index such as <code>titles[2]</code> to read one member of a multi-control.</p></section>
+<p>ID of another value-producing control in the same block. Append a zero-based index such as <code>titles[2]</code> to read one member of a multi-control.</p></section>
 <section class="key-reference"><h3><code>operation</code></h3>
 <div class="key-meta">
 <span>String</span><strong>Optional</strong><span>Default: ==</span>

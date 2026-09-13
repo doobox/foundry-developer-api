@@ -2,16 +2,16 @@
 layout: default
 title: Foundry Developer
 permalink: "/"
-description: Build components for Foundry with ordinary HTML, CSS, JavaScript, and
+description: Build blocks for Foundry with ordinary HTML, CSS, JavaScript, and
   PHP.
 ---
 {% raw %}
 <section class="hero">
-<p class="eyebrow">Foundry component API</p>
+<p class="eyebrow">Foundry block API</p>
 <h1>Your files, made visual.</h1>
-<p class="lede">Build portable website components from ordinary HTML, CSS, JavaScript, and PHP. <code>Info.plist</code> declares the component; templates remain yours.</p>
+<p class="lede">Build portable website blocks from ordinary HTML, CSS, JavaScript, and PHP. <code>Info.plist</code> declares the block; templates remain yours.</p>
 <div class="hero-actions">
-    <a class="button" href="quick-start.html">Build your first component</a>
+    <a class="button" href="quick-start.html">Build your first block</a>
     <a class="button secondary" href="manifest-identity.html">Explore Info.plist</a>
 </div>
 </section>
@@ -19,14 +19,14 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
 <h2>A clear path through the API</h2>
 <div class="steps journey">
     <section class="step">
-        <h3>Package the component</h3>
+        <h3>Package the block</h3>
         <p>Start with the standard <code>.foundrypack</code> bundle structure. During development, use <code>.foundrydevpack</code> so the package remains easy to inspect and reload.</p>
         <p><a href="bundle-structure.html">Understand the bundle structure →</a></p>
     </section>
     <section class="step">
         <h3>Describe it in Info.plist</h3>
-        <p>Give the component a stable identity, name its source templates and assets, request any libraries, and declare the controls authors will see.</p>
-        <p><a href="manifest-identity.html">Start with component identity →</a></p>
+        <p>Give the block a stable identity, name its source templates and assets, request any libraries, and declare the controls authors will see.</p>
+        <p><a href="manifest-identity.html">Start with block identity →</a></p>
     </section>
     <section class="step">
         <h3>Use values in your templates</h3>
@@ -48,12 +48,12 @@ description: Build components for Foundry with ordinary HTML, CSS, JavaScript, a
 </div>
 
 <div class="note">
-<strong>Foundry does not guess.</strong> It processes the files the manifest declares, validates the current API shape, and leaves component structure and browser code under the developer’s control.</div>
+<strong>Foundry does not guess.</strong> It processes the files the manifest declares, validates the current API shape, and leaves block structure and browser code under the developer’s control.</div>
 
 <h2>Common destinations</h2>
 <div class="page-links">
-    <a class="card" href="custom-controls.html"><strong>Custom controls</strong><p>Build the component Inspector with text, colour, links, icons, typography, and more.</p></a>
+    <a class="card" href="custom-controls.html"><strong>Custom controls</strong><p>Build the block Inspector with text, colour, links, icons, typography, and more.</p></a>
     <a class="card" href="theme-controls.html"><strong>Theme-aware values</strong><p>Let compatible controls follow the active project theme.</p></a>
-    <a class="card" href="components.html"><strong>API map</strong><p>Jump directly to every implemented developer-facing topic.</p></a>
+    <a class="card" href="blocks.html"><strong>API map</strong><p>Jump directly to every implemented developer-facing topic.</p></a>
 </div>
 {% endraw %}
