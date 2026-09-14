@@ -67,14 +67,27 @@ Groups the initial palette and optional appearance-specific shades. The only acc
 <h3 class="property-heading"><code>default.palette</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-The initially selected theme role: `page`, `background`, `surface`, `text`, `muted-text`, `accent`, or `links`. New parts capture that palette's light and dark defaults unless the corresponding shade key is supplied. `page` also supplies the page's outer background; `background` is available for part backgrounds. `custom` is valid only when `allowsCustom` is true, requires the control's `customColor`, and prohibits both shade keys. Arbitrary palette IDs are not accepted here; authors can select other palettes in the Inspector.
+The initially selected palette. Theme roles are: `page`, `background`, `surface`, `text`, `muted-text`, `accent`, or `links`. New parts capture that palette's light and dark defaults unless the corresponding shade key is supplied. `page` also supplies the page's outer background; `background` is available for part backgrounds. `custom` is valid only when `allowsCustom` is true, requires the control's `customColor`, and prohibits both shade keys. Standard palettes are also accepted using these stable IDs: `standard.black`, `standard.white`, `standard.red`, `standard.orange`, `standard.amber`, `standard.yellow`, `standard.lime`, `standard.green`, `standard.emerald`, `standard.teal`, `standard.cyan`, `standard.sky`, `standard.blue`, `standard.indigo`, `standard.violet`, `standard.purple`, `standard.fuchsia`, `standard.pink`, `standard.rose`, `standard.slate`, `standard.grey`, `standard.zinc`, `standard.neutral`, and `standard.stone`.
+
+Use the exact ID, not the display name. Project-specific custom palette IDs are not accepted as portable defaults. Standard palettes do not require `allowsCustom`. Black and White have only one colour, so shade numbers do not change their rendered colour.
+
+For example, start with Lime:
+
+```xml
+<key>default</key>
+<dict>
+    <key>palette</key><string>standard.lime</string>
+    <key>lightShade</key><integer>8</integer>
+    <key>darkShade</key><integer>3</integer>
+</dict>
+```
 
 <h3 class="property-heading"><code>default.lightShade</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's light default shade</span></div>
 
 The initial light-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's light default when the part is created. The stored shade number does not follow subsequent default changes.
 
-Available only inside a `themeColor` default dictionary with a theme-role `palette`; it cannot be combined with `palette: custom`. This setting controls initial creation, not subsequent palette choices in the Inspector.
+Available only inside a `themeColor` default dictionary with a theme-role or standard `palette`; it cannot be combined with `palette: custom`. This setting controls initial creation, not subsequent palette choices in the Inspector.
 
 ```xml
 <key>default</key>
@@ -88,7 +101,7 @@ Available only inside a `themeColor` default dictionary with a theme-role `palet
 <h3 class="property-heading"><code>default.darkShade</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's dark default shade</span></div>
 
-The initial dark-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's dark default when the part is created. It uses the same palette and ribbon as `lightShade`, but stores an independent fixed shade number. Available only inside a `themeColor` default dictionary with a theme-role `palette`; it cannot be combined with `palette: custom`. It affects initial creation, not subsequent palette choices in the Inspector.
+The initial dark-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's dark default when the part is created. It uses the same palette and ribbon as `lightShade`, but stores an independent fixed shade number. Available only inside a `themeColor` default dictionary with a theme-role or standard `palette`; it cannot be combined with `palette: custom`. It affects initial creation, not subsequent palette choices in the Inspector.
 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>

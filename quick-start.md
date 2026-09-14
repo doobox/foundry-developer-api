@@ -62,15 +62,12 @@ Callout.foundrydevpack/
     <key>controls</key>
     <array>
         <dict>
-            <key>id</key><string>padding</string>
+            <key>id</key><string>themePadding</string>
             <key>label</key><string>Padding</string>
             <key>group</key><string>Layout</string>
-            <key>type</key><string>padding</string>
-            <key>minimum</key><integer>0</integer>
-            <key>maximum</key><integer>80</integer>
-            <key>step</key><integer>4</integer>
+            <key>type</key><string>themePadding</string>
             <key>default</key>
-            <array><string>lg</string><string>lg</string><string>lg</string><string>lg</string></array>
+            <string>lg</string>
             <key>responsive</key><true/>
         </dict>
         <dict>
@@ -119,7 +116,7 @@ Callout.foundrydevpack/
 
 ```css
 :instance {
-    padding: {{ control.padding }};
+    padding: {{ control.themePadding }};
     border-left: 4px solid {{ control.accentColor }};
     background: {{ control.accentColor | lighten(42) }};
 }

@@ -61,7 +61,7 @@ permalink: /template-conditions.html
 
 ```css
 width: {{ control.columns * control.columnWidth }}px;
-padding: {{ max(control.minimumPadding, control.padding) }}px;
+width: {{ max(control.minimumWidth, control.width) }}px;
 ```
 
 </div>
