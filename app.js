@@ -67,7 +67,7 @@ const sections = [
     ] },
     { title: "Template language", links: templateLanguageLinks },
     { title: "Themes", links: [["Theme values", "theme-controls.html"], ["Theme bundles", "theme-bundles.html"]] },
-    { title: "Reference", links: [["API map", "parts.html"]] },
+    { title: "Reference", links: [["API map", "parts.html"], ["Pack updates", "pack-updates.html", [["Publishing updates", "pack-updates.html"], ["Appcast format", "pack-appcast.html"]]]] },
 ];
 
 const pageName = value => value.split("#")[0];
@@ -166,6 +166,8 @@ const breadcrumbParents = {
     "theme-controls.html": ["Themes", "theme-controls.html"],
     "theme-bundles.html": ["Themes", "theme-controls.html"],
     "parts.html": ["Reference", "parts.html"],
+    "pack-updates.html": ["Reference", "pack-updates.html"],
+    "pack-appcast.html": ["Reference", "pack-updates.html"],
 };
 
 const breadcrumbs = document.querySelector(".breadcrumbs");
