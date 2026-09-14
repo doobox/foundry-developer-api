@@ -35,7 +35,12 @@ The control's label in the Inspector's normal left-hand label column, beside the
 
 The Inspector section containing the control.
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or Dictionary</span><span class="required">Required</span></div>
 
 Declare one value for every corner, or a dictionary containing all four keys: `topLeft`, `topRight`, `bottomRight` and `bottomLeft`. Each corner accepts either:
@@ -47,15 +52,13 @@ Declare one value for every corner, or a dictionary containing all four keys: `t
 A single token or custom length dictionary applies to all four corners. Four-corner dictionaries must include every corner and no other keys. Arrays, raw CSS strings such as `"16px"`, negative lengths and `auto` are not accepted. Only the predefined radius token IDs are supported; the theme sets their pixel values. `full` is a theme token (9,999px in the standard theme), not a percentage. Elliptical radii with separate horizontal/vertical values are not supported.
 
 ```xml
-<key>default</key>
-<string>sm</string>
+<key>defaults</key><dict><key>base</key><string>sm</string></dict>
 ```
 
 For different initial values:
 
 ```xml
-<key>default</key>
-<dict>
+<key>defaults</key><dict><key>base</key><dict>
     <key>topLeft</key><string>lg</string>
     <key>topRight</key><string>sm</string>
     <key>bottomRight</key><string>lg</string>
@@ -64,7 +67,7 @@ For different initial values:
         <key>value</key><real>1.5</real>
         <key>unit</key><string>rem</string>
     </dict>
-</dict>
+</dict></dict>
 ```
 
 Identical corner selections start linked; differing selections start independent. All four rows remain visible. Selecting Custom converts the selected theme amount to px as the starting value; the return-to-theme button restores the previous theme choice.
@@ -126,7 +129,7 @@ Declare this item inside the `controls` array in `Info.plist`:
     <key>id</key><string>themeRadius</string>
     <key>label</key><string>Content radius</string>
     <key>group</key><string>Layout</string>
-    <key>default</key><string>sm</string>
+    <key>defaults</key><dict><key>base</key><string>sm</string></dict>
     <key>responsive</key><true/>
 </dict>
 ```

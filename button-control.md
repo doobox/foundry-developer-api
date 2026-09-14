@@ -104,7 +104,12 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Boolean or Boolean array</span><span class="required">Required</span></div>
 
 The Boolean state initially stored by the Inspector. A control array requires exactly one Boolean for each button.
@@ -112,18 +117,16 @@ The Boolean state initially stored by the Inspector. A control array requires ex
 Single control
 
 ```xml
-<key>default</key>
-<false/>
+<key>defaults</key><dict><key>base</key><false/></dict>
 ```
 
 Control array
 
 ```xml
-<key>default</key>
-<array>
+<key>defaults</key><dict><key>base</key><array>
     <false/>
     <false/>
-</array>
+</array></dict>
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -160,7 +163,7 @@ Controls how Buttons behave when `count` is present.
 - `multiple` displays up to four independent Buttons. Any number may be active.
 - `single` displays one segmented Picker and keeps exactly one segment selected.
 
-With `single`, the `default` array must contain exactly one `true` value.
+With `single`, the `defaults.base` array must contain exactly one `true` value.
 
 ```xml
 <key>selectionMode</key>
@@ -274,7 +277,7 @@ data-state="{{ control.state }}"
         <key>buttonIcon</key><string>bolt.fill</string>
         <key>trueValue</key><string>active</string>
         <key>falseValue</key><string>idle</string>
-        <key>default</key><false/>
+        <key>defaults</key><dict><key>base</key><false/></dict>
         <key>responsive</key><false/>
     </dict>
 </array>

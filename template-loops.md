@@ -55,7 +55,7 @@ permalink: /template-loops.html
     <key>type</key><string>number</string>
     <key>minimum</key><integer>0</integer>
     <key>maximum</key><integer>12</integer>
-    <key>default</key><integer>4</integer>
+    <key>defaults</key><dict><key>base</key><integer>4</integer></dict>
     <key>responsive</key><false/>
 </dict>
 ```

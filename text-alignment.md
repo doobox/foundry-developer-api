@@ -92,14 +92,18 @@ Shows this control only when another control meets the stated condition. See [Co
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
 
 The initially selected logical alignment. Use `start`, `center`, `end`, or `justify`.
 
 ```xml
-<key>default</key>
-<string>start</string>
+<key>defaults</key><dict><key>base</key><string>start</string></dict>
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -158,7 +162,7 @@ text-align: {{ control.alignment }};
         <key>id</key><string>alignment</string>
         <key>label</key><string>Alignment</string>
         <key>group</key><string>Typography</string>
-        <key>default</key><string>start</string>
+        <key>defaults</key><dict><key>base</key><string>start</string></dict>
         <key>responsive</key><true/>
     </dict>
 </array>

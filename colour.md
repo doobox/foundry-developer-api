@@ -51,14 +51,18 @@ Supporting text beneath the control. Use a String for one control or an indexed 
 
 Shows this control only when another control meets the declared condition.
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
 
 The initial colour. Use `#RRGGBB`, or `#RRGGBBAA` when `opacity` is true. With `count`, provide exactly one colour per picker.
 
 ```xml
-<key>default</key>
-<string>#3366CC</string>
+<key>defaults</key><dict><key>base</key><string>#3366CC</string></dict>
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -198,7 +202,7 @@ color: {{ control.textColor }};
     <key>label</key><string>Text colour</string>
     <key>group</key><string>Appearance</string>
     <key>opacity</key><true/>
-    <key>default</key><string>#3366CC</string>
+    <key>defaults</key><dict><key>base</key><string>#3366CC</string></dict>
 </dict>
 ```
 

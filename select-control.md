@@ -106,7 +106,12 @@ Shows this Select only when another control meets the stated condition.
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
 
 The initially selected value. Use a declared option value. A Multi Select needs one value per popup.
@@ -114,18 +119,16 @@ The initially selected value. Use a declared option value. A Multi Select needs 
 Single Select
 
 ```xml
-<key>default</key>
-<string>base</string>
+<key>defaults</key><dict><key>base</key><string>base</string></dict>
 ```
 
 Multi Select
 
 ```xml
-<key>default</key>
-<array>
+<key>defaults</key><dict><key>base</key><array>
     <string>compact</string>
     <string>comfortable</string>
-</array>
+</array></dict>
 ```
 
 > Use the `value` of a declared option.
@@ -211,7 +214,7 @@ Select offers only the options declared here. It does not populate choices from 
             <dict><key>value</key><string>part</string><key>title</key><string>Part</string></dict>
             <dict><key>value</key><string>flex</string><key>title</key><string>Flex</string></dict>
         </array>
-        <key>default</key><string>part</string>
+        <key>defaults</key><dict><key>base</key><string>part</string></dict>
         <key>responsive</key><false/>
     </dict>
 </array>

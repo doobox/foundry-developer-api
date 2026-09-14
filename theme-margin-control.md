@@ -35,7 +35,12 @@ The control's label in the Inspector's normal left-hand label column, beside the
 
 The Inspector section containing the control.
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or Dictionary</span><span class="required">Required</span></div>
 
 Declare one value for every edge, or a dictionary containing all four keys: `top`, `right`, `bottom` and `left`. Each edge accepts either:
@@ -48,15 +53,13 @@ Declare one value for every edge, or a dictionary containing all four keys: `top
 A single token or custom length dictionary applies to all four edges. Four-edge dictionaries must include every edge and no other keys. Negative custom lengths are supported. Arrays and raw CSS strings such as `"16px"` are not accepted. Project-specific custom theme IDs cannot be declared as portable defaults; authors select them from the active theme in the Inspector.
 
 ```xml
-<key>default</key>
-<string>sm</string>
+<key>defaults</key><dict><key>base</key><string>sm</string></dict>
 ```
 
 For different initial values:
 
 ```xml
-<key>default</key>
-<dict>
+<key>defaults</key><dict><key>base</key><dict>
     <key>top</key><string>lg</string>
     <key>right</key><string>sm</string>
     <key>bottom</key><string>lg</string>
@@ -65,7 +68,7 @@ For different initial values:
         <key>value</key><real>1.5</real>
         <key>unit</key><string>rem</string>
     </dict>
-</dict>
+</dict></dict>
 ```
 
 Identical edge selections start linked; differing selections start independent. All four rows remain visible. Selecting Custom converts the selected theme amount to rem as the starting value; the return-to-theme button restores the previous theme choice.
@@ -127,7 +130,7 @@ Declare this item inside the `controls` array in `Info.plist`:
     <key>id</key><string>themeMargin</string>
     <key>label</key><string>Content margin</string>
     <key>group</key><string>Layout</string>
-    <key>default</key><string>sm</string>
+    <key>defaults</key><dict><key>base</key><string>sm</string></dict>
     <key>responsive</key><true/>
 </dict>
 ```

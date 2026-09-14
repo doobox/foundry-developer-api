@@ -11,7 +11,7 @@ permalink: "/control-arrays.html"
 <h1>Control arrays</h1>
 <p class="lede">Display two, three or four controls together while retaining normal bindings, persistence, responsive overrides and undo behaviour.</p>
 <h2>Declaration</h2>
-<p>Add <code>count</code> directly to the custom-item dictionary. <code>label</code> remains one Inspector-row label. The <code>default</code> array must contain exactly <code>count</code> entries, while the optional <code>subtitle</code> array provides one caption for each member.</p>
+<p>Add <code>count</code> directly to the custom-item dictionary. <code>label</code> remains one Inspector-row label. The <code>defaults.base</code> array must contain exactly <code>count</code> entries, while the optional <code>subtitle</code> array provides one caption for each member.</p>
 
 <div markdown="1">
 
@@ -27,11 +27,10 @@ permalink: "/control-arrays.html"
     <key>group</key><string>Appearance</string>
     <key>type</key><string>color</string>
     <key>count</key><integer>4</integer>
-    <key>default</key>
-    <array>
+    <key>defaults</key><dict><key>base</key><array>
         <string>#3366CC</string><string>#8A55D7</string>
         <string>#2DA44E</string><string>#F6F8FA</string>
-    </array>
+    </array></dict>
     <key>responsive</key><true/>
 </dict>
 ```
@@ -56,5 +55,5 @@ background: {{ control.palette[3] }};
 <p>A <code>visibleWhen</code> condition can reference the complete stored array or one member by zero-based index. For example, <code>palette[2]</code> reads the third member. Use <code>containsValue</code> with the unindexed control ID to test exact membership across the complete array.</p>
 <p><a href="visible-when.html">See every visibility operation and validation rule →</a></p>
 <div class="note">
-<strong>Counts are validated.</strong> <code>count</code> must be from 2 through 4, the <code>default</code> array must match that count, and <code>subtitle</code> cannot contain more entries than the controls.</div>
+<strong>Counts are validated.</strong> <code>count</code> must be from 2 through 4, the <code>defaults.base</code> array must match that count, and <code>subtitle</code> cannot contain more entries than the controls.</div>
 {% endraw %}

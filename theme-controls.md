@@ -20,7 +20,7 @@ Use [Theme font](theme-font-control.html) to select a semantic or custom font fa
     <key>type</key><string>themeFont</string>
     <key>id</key><string>font</string>
     <key>label</key><string>Font</string>
-    <key>default</key><string>body</string>
+    <key>defaults</key><dict><key>base</key><string>body</string></dict>
     <key>showsWeight</key><true/>
     <key>showsStyle</key><true/>
 </dict>

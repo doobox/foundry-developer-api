@@ -66,8 +66,7 @@ Callout.foundrydevpack/
             <key>label</key><string>Padding</string>
             <key>group</key><string>Layout</string>
             <key>type</key><string>themePadding</string>
-            <key>default</key>
-            <string>lg</string>
+            <key>defaults</key><dict><key>base</key><string>lg</string></dict>
             <key>responsive</key><true/>
         </dict>
         <dict>
@@ -77,7 +76,7 @@ Callout.foundrydevpack/
             <key>type</key><string>themeColor</string>
             <key>allowsCustom</key><true/>
             <key>customColor</key><string>#5B5BD6</string>
-            <key>default</key><dict><key>palette</key><string>custom</string></dict>
+            <key>defaults</key><dict><key>base</key><dict><key>palette</key><string>custom</string></dict></dict>
             <key>responsive</key><false/>
         </dict>
     </array>

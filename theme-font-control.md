@@ -33,7 +33,12 @@ Text in the family row’s left-hand label column. Enabled companion rows are la
 
 The Inspector section containing the control.
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade. When `showsFamily` is false, the family is fixed: every entry must use the same family as `base`; enabled Weight and Style may still vary.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary or String</span><span class="required">Required</span></div>
 
 A dictionary containing required `family` (`body`, `heading` or `monospaced`), optional `weight` (an integer from 1 to 1000, default 400 when enabled), and optional `style` (`normal` or `italic`, default normal when enabled). Explicit weight/style defaults require their corresponding capability to be enabled. Unknown dictionary keys are rejected.
@@ -99,12 +104,11 @@ Disabling an included face in the Theme Editor does not rewrite parts. If a sele
     <key>group</key><string>Typography</string>
     <key>showsWeight</key><true/>
     <key>showsStyle</key><true/>
-    <key>default</key>
-    <dict>
+    <key>defaults</key><dict><key>base</key><dict>
         <key>family</key><string>heading</string>
         <key>weight</key><integer>700</integer>
         <key>style</key><string>normal</string>
-    </dict>
+    </dict></dict>
     <key>responsive</key><true/>
 </dict>
 ```

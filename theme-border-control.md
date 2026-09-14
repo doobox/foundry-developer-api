@@ -31,19 +31,24 @@ Shown in the normal Inspector label column beside the all-edges link button. Emp
 
 Inspector section containing all rows.
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
 Contains required `width` and optional `style`. No other keys are accepted.
 
-<h3 class="property-heading"><code>default.width</code></h3>
+<h3 class="property-heading"><code>defaults.base.width</code></h3>
 <div class="property-meta"><span class="property-type">String or Dictionary</span><span class="required">Required</span></div>
 
 Accepts `none`, `xs`, `sm`, `md`, `lg`, or `xl`; a custom length dictionary with exactly `value` (finite, nonnegative Number) and `unit` (`px`, `rem`, or `em`); or a dictionary containing all four `top`, `right`, `bottom`, `left` selections. Each edge accepts a token or custom length. Percentages, negative lengths, `auto`, arrays and raw CSS strings are rejected.
 
 Theme tokens use the border-width scale in pixels. None outputs `0`. Identical selections start linked; differing edges start independent. Linking all uses Top; Top–Bottom uses Top; Left–Right uses Left. Linking the second pair promotes to all-linked using Top. Unlinking preserves values. Custom starts with the current theme amount in pixels; returning to theme restores the previous token.
 
-<h3 class="property-heading"><code>default.style</code></h3>
+<h3 class="property-heading"><code>defaults.base.style</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: solid</span></div>
 
 One of `solid`, `dashed`, `dotted`, `double`, `none`, `hidden`, `groove`, `ridge`, `inset`, or `outset`. Applies to all sides, including when the Style row is hidden. Choosing None preserves widths.
@@ -56,7 +61,7 @@ Shows the Style picker below widths. Otherwise the declared style is still retur
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Enables responsive overrides for widths and the visible Style row. Four widths and link state are stored together; Style has its own indicator. A hidden Style row uses its declared default. Use outputs in a CSS template to generate responsive styles.
+Enables responsive overrides for widths and the visible Style row. Four widths and link state are stored together; Style has its own indicator. A hidden Style row follows its declared breakpoint defaults. Use outputs in a CSS template to generate responsive styles.
 
 <h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Border</span></div>
@@ -96,11 +101,10 @@ Theme widths return CSS variables such as `var(--foundry-border-width-sm)`. Nume
     <key>group</key><string>Border</string>
     <key>showsStyle</key><true/>
     <key>responsive</key><true/>
-    <key>default</key>
-    <dict>
+    <key>defaults</key><dict><key>base</key><dict>
         <key>width</key><string>sm</string>
         <key>style</key><string>solid</string>
-    </dict>
+    </dict></dict>
 </dict>
 ```
 

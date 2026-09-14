@@ -11,7 +11,7 @@ permalink: "/custom-controls.html"
 <h1>Custom controls</h1>
 <p class="lede">Each dictionary in <code>controls</code> creates part of the part Inspector. Declare what the author can change, then read the resulting value from HTML, CSS, JavaScript, or PHP.</p>
 <h2>Declare one control</h2>
-<p>Every dictionary in <code>controls</code> is one complete control declaration. Value-producing controls have a stable <code>id</code>, an author-facing <code>label</code> value, a <code>type</code>, a matching <code>default</code>, and explicit responsive behaviour. Use <code>group</code> to choose the Inspector section, or omit it to use <code>Settings</code>.</p>
+<p>Every dictionary in <code>controls</code> is one complete control declaration. Value-producing controls have a stable <code>id</code>, an author-facing <code>label</code> value, a <code>type</code>, a matching <code>defaults.base</code>, and explicit responsive behaviour. Use <code>group</code> to choose the Inspector section, or omit it to use <code>Settings</code>.</p>
 
 <div markdown="1">
 
@@ -23,7 +23,7 @@ permalink: "/custom-controls.html"
     <key>label</key><string>Heading</string>
     <key>group</key><string>Content</string>
     <key>type</key><string>text</string>
-    <key>default</key><string>Welcome</string>
+    <key>defaults</key><dict><key>base</key><string>Welcome</string></dict>
     <key>responsive</key><false/>
 </dict>
 </array>
@@ -32,6 +32,30 @@ permalink: "/custom-controls.html"
 </div>
 
 <p>Read the saved value with <code>{{ control.heading }}</code>. Each control-type page below lists the exact required keys, accepted options, stored value, and a working declaration.</p>
+<h2>Initial values and breakpoints</h2>
+
+Declare initial values in one <code>defaults</code> dictionary, even when only a base value is needed. <code>base</code> is required inside it. Each breakpoint entry is a complete value of the same type as <code>base</code>, including complete arrays and structured values.
+
+```xml
+<key>type</key><string>themeSpacing</string>
+<key>id</key><string>gap</string>
+<key>responsive</key><true/>
+<key>defaults</key>
+<dict>
+    <key>base</key><string>sm</string>
+    <key>medium</key><string>md</string>
+    <key>large</key><string>xl</string>
+</dict>
+```
+
+Accepted breakpoint names are `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Non-base entries require a responsive value control and `responsive: true`. Missing entries inherit from the preceding enabled breakpoint, starting at `base`. Thresholds come from the project's theme, not fixed pixel values in the part.
+
+Disabled theme breakpoints are skipped; their defaults and saved overrides remain available if re-enabled. At each enabled breakpoint, a user override wins over the developer default. A later explicit developer default starts a new value in the cascade, so a user override at Medium does not replace a developer's Large default. Resetting a breakpoint removes its user override and reveals the cascade again.
+
+Use responsive values in CSS templates to generate breakpoint rules. HTML and JavaScript do not automatically change their contents when the browser resizes.
+
+Slider requires an explicit numeric `defaults.base` within its range, just like Number. Image may omit `defaults` to start empty; its asset default is base-only. Note, Divider, Math and ChildPicker do not accept `defaults`; ChildPicker uses `initial` for its children.
+
 <h2>Control types</h2>
 <div class="card-grid">
 <a class="card" href="text-control.html"><strong>text</strong><p>Single-line text.</p></a><a class="card" href="text-area-control.html"><strong>textArea</strong><p>Multi-line text.</p></a><a class="card" href="link-control.html"><strong>link</strong><p>A structured internal or external link.</p></a><a class="card" href="number-control.html"><strong>number</strong><p>Numeric input with bounds and units.</p></a><a class="card" href="theme-border-control.html"><strong>themeBorder</strong><p>Border widths with an optional style picker.</p></a><a class="card" href="theme-spacing-control.html"><strong>themeSpacing</strong><p>A single theme-aware spacing value.</p></a><a class="card" href="theme-radius-control.html"><strong>themeRadius</strong><p>Theme-aware radii for four corners.</p></a><a class="card" href="theme-padding-control.html"><strong>themePadding</strong><p>Theme-aware space inside four edges.</p></a><a class="card" href="theme-margin-control.html"><strong>themeMargin</strong><p>Theme-aware space outside four edges.</p></a><a class="card" href="slider-control.html"><strong>slider</strong><p>Numeric slider with optional ticks.</p></a><a class="card" href="date-control.html"><strong>date</strong><p>An ISO-8601 date.</p></a><a class="card" href="colour.html"><strong>color</strong><p>A literal hexadecimal colour picker.</p></a><a class="card" href="theme-colour-control.html"><strong>themeColor</strong><p>A theme colour with an optional custom choice.</p></a><a class="card" href="icon-control.html"><strong>icon</strong><p>A searchable picker for Foundry’s built-in icon library.</p></a><a class="card" href="select-control.html"><strong>select</strong><p>A single choice from declared or theme values, with optional custom overrides.</p></a><a class="card" href="shadow-control.html"><strong>shadow</strong><p>A theme shadow picker with optional editable custom layers.</p></a><a class="card" href="toggle-control.html"><strong>toggle</strong><p>A Boolean switch.</p></a><a class="card" href="button-control.html"><strong>button</strong><p>A persistent action button.</p></a><a class="card" href="math-control.html"><strong>math</strong><p>A derived numeric value.</p></a><a class="card" href="text-alignment.html"><strong>textAlignment</strong><p>Logical CSS alignment.</p></a><a class="card" href="note-control.html"><strong>note</strong><p>Presentation-only help text.</p></a><a class="card" href="divider-control.html"><strong>divider</strong><p>Presentation-only separator.</p></a><a class="card" href="child-picker-control.html"><strong>childPicker</strong><p>Add and manage accepted child parts.</p></a>

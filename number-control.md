@@ -104,7 +104,12 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Number or Number array</span><span class="required">Required</span></div>
 
 The numeric value initially stored for this control. It cannot be lower than an explicitly declared `minimum` or higher than an explicitly declared `maximum`. A control array needs one value for each member.
@@ -112,18 +117,16 @@ The numeric value initially stored for this control. It cannot be lower than an 
 Single control
 
 ```xml
-<key>default</key>
-<real>24</real>
+<key>defaults</key><dict><key>base</key><real>24</real></dict>
 ```
 
 Control array
 
 ```xml
-<key>default</key>
-<array>
+<key>defaults</key><dict><key>base</key><array>
     <real>24</real>
     <real>24</real>
-</array>
+</array></dict>
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -228,7 +231,7 @@ padding: {{ control.spacing }}px;
         <key>maximum</key><real>100</real>
         <key>step</key><real>1</real>
         <key>units</key><string>px</string>
-        <key>default</key><real>24</real>
+        <key>defaults</key><dict><key>base</key><real>24</real></dict>
         <key>responsive</key><false/>
     </dict>
 </array>

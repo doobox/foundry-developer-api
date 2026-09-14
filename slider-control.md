@@ -104,26 +104,29 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
-<div class="property-meta"><span class="property-type">Number or Number array</span><span class="optional">Optional</span><span class="default">Default: zero clamped to range</span></div>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-The value initially stored for this control. An omitted value becomes zero when zero is in range, otherwise the nearest bound. An explicit value must be numeric and within the declared range. A control array needs one value for each member.
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
+<div class="property-meta"><span class="property-type">Number or Number array</span><span class="required">Required</span></div>
+
+The value initially stored for this control. A value must be supplied explicitly and must be numeric and within the declared range. A control array needs one value for each member.
 
 Single control
 
 ```xml
-<key>default</key>
-<real>50</real>
+<key>defaults</key><dict><key>base</key><real>50</real></dict>
 ```
 
 Control array
 
 ```xml
-<key>default</key>
-<array>
+<key>defaults</key><dict><key>base</key><array>
     <real>50</real>
     <real>50</real>
-</array>
+</array></dict>
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>

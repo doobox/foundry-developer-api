@@ -31,7 +31,12 @@ Developer-supplied label in the normal Inspector row grid. Empty or whitespace-o
 
 Inspector section containing the control.
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or Dictionary</span><span class="required">Required</span></div>
 
 A theme spacing token (`3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`), `none`, or a custom length dictionary containing exactly `value` (finite, nonnegative Number) and `unit` (`px`, `rem`, `em`, `%`). Arrays, edge dictionaries, negative lengths, `auto`, and raw CSS strings such as `16px` are rejected.
@@ -39,11 +44,10 @@ A theme spacing token (`3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`)
 The picker offers the current theme’s spacing choices, including user-created theme spacing values. Portable manifest defaults use the predefined tokens above. Custom inputs are always available. Switching to Custom starts with the resolved theme amount in `rem`; returning to theme restores the previous choice.
 
 ```xml
-<key>default</key>
-<dict>
+<key>defaults</key><dict><key>base</key><dict>
     <key>value</key><real>1.5</real>
     <key>unit</key><string>rem</string>
-</dict>
+</dict></dict>
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -85,7 +89,7 @@ Do not append units to the CSS output. Numeric amounts are not browser-computed 
     <key>id</key><string>gap</string>
     <key>label</key><string>Gap</string>
     <key>group</key><string>Layout</string>
-    <key>default</key><string>sm</string>
+    <key>defaults</key><dict><key>base</key><string>sm</string></dict>
     <key>responsive</key><true/>
 </dict>
 ```

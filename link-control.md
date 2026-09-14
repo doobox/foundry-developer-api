@@ -89,14 +89,18 @@ Shows this control only when another control meets the stated condition. See [Co
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value in the format described below. This control does not accept breakpoint entries.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
 The initial destination. An empty string means no destination; a non-empty string initializes a URL destination.
 
 ```xml
-<key>default</key>
-<string></string>
+<key>defaults</key><dict><key>base</key><string></string></dict>
 ```
 
 ## Link options
@@ -147,7 +151,7 @@ Invalid HTML attribute names are omitted. Opening a new window emits `_blank` an
         <key>label</key><string>Destination</string>
         <key>group</key><string>Content</string>
         <key>absoluteURL</key><true/>
-        <key>default</key><string></string>
+        <key>defaults</key><dict><key>base</key><string></string></dict>
     </dict>
 </array>
 ```

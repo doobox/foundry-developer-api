@@ -92,14 +92,18 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Value</span><span class="required">Required</span></div>
 
 The initially selected portable theme shadow. Use `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` or `2xl`; use `custom` only when Custom is enabled. `sm` is the standard default-sized shadow.
 
 ```xml
-<key>default</key>
-<string>md</string>
+<key>defaults</key><dict><key>base</key><string>md</string></dict>
 ```
 
 > Use a portable predefined shadow ID. Use `custom` only when `allowsCustom` is true. Project-specific custom shadow IDs can be selected by an author but are not portable manifest defaults.
@@ -161,7 +165,7 @@ box-shadow: {{ control.cardShadow }};
         <key>group</key><string>Content</string>
         <key>type</key><string>shadow</string>
         <key>allowsCustom</key><true/>
-        <key>default</key><string>md</string>
+        <key>defaults</key><dict><key>base</key><string>md</string></dict>
         <key>responsive</key><false/>
     </dict>
 </array>

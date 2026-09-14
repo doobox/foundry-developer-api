@@ -104,7 +104,12 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
 
 The value initially stored for this control. A control array needs one value for each member.
@@ -112,18 +117,16 @@ The value initially stored for this control. A control array needs one value for
 Single control
 
 ```xml
-<key>default</key>
-<string>First paragraph</string>
+<key>defaults</key><dict><key>base</key><string>First paragraph</string></dict>
 ```
 
 Control array
 
 ```xml
-<key>default</key>
-<array>
+<key>defaults</key><dict><key>base</key><array>
     <string>First paragraph</string>
     <string>First paragraph</string>
-</array>
+</array></dict>
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -174,7 +177,7 @@ Control array
         <key>label</key><string>Text area</string>
         <key>group</key><string>Content</string>
         <key>type</key><string>textArea</string>
-        <key>default</key><string>First paragraph</string>
+        <key>defaults</key><dict><key>base</key><string>First paragraph</string></dict>
         <key>responsive</key><false/>
     </dict>
 </array>

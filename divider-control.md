@@ -64,7 +64,7 @@ Shows this control only when another control meets the stated condition.
 </dict>
 ```
 
-Divider does not support `label`, `subtitle`, `tooltip`, `default`, `responsive`, or `count`.
+Divider does not support `label`, `subtitle`, `tooltip`, `defaults`, `responsive`, or `count`.
 
 Foundry displays 10 points of space above and below the divider.
 

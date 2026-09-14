@@ -59,12 +59,17 @@ Supporting text shown beneath the control.
 
 Shows this control only when another control meets the declared condition.
 
-<h3 class="property-heading"><code>default</code></h3>
+<h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-Groups the initial palette and optional appearance-specific shades. The only accepted keys are `palette`, `lightShade`, and `darkShade`. A string or array is not accepted; shade keys belong inside this dictionary, not alongside `default`.
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
 
-<h3 class="property-heading"><code>default.palette</code></h3>
+<h3 class="property-heading"><code>defaults.base</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+Groups the initial palette and optional appearance-specific shades. The only accepted keys are `palette`, `lightShade`, and `darkShade`. A string or array is not accepted; shade keys belong inside this dictionary, not alongside `defaults.base`.
+
+<h3 class="property-heading"><code>defaults.base.palette</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
 The initially selected palette. Theme roles are: `page`, `background`, `surface`, `text`, `muted-text`, `accent`, or `links`. New parts capture that palette's light and dark defaults unless the corresponding shade key is supplied. `page` also supplies the page's outer background; `background` is available for part backgrounds. `custom` is valid only when `allowsCustom` is true, requires the control's `customColor`, and prohibits both shade keys. Standard palettes are also accepted using these stable IDs: `standard.black`, `standard.white`, `standard.red`, `standard.orange`, `standard.amber`, `standard.yellow`, `standard.lime`, `standard.green`, `standard.emerald`, `standard.teal`, `standard.cyan`, `standard.sky`, `standard.blue`, `standard.indigo`, `standard.violet`, `standard.purple`, `standard.fuchsia`, `standard.pink`, `standard.rose`, `standard.slate`, `standard.grey`, `standard.zinc`, `standard.neutral`, and `standard.stone`.
@@ -74,15 +79,14 @@ Use the exact ID, not the display name. Project-specific custom palette IDs are 
 For example, start with Lime:
 
 ```xml
-<key>default</key>
-<dict>
+<key>defaults</key><dict><key>base</key><dict>
     <key>palette</key><string>standard.lime</string>
     <key>lightShade</key><integer>8</integer>
     <key>darkShade</key><integer>3</integer>
-</dict>
+</dict></dict>
 ```
 
-<h3 class="property-heading"><code>default.lightShade</code></h3>
+<h3 class="property-heading"><code>defaults.base.lightShade</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's light default shade</span></div>
 
 The initial light-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's light default when the part is created. The stored shade number does not follow subsequent default changes.
@@ -90,15 +94,14 @@ The initial light-appearance shade number, from `1` to `11` inclusive. Omit it t
 Available only inside a `themeColor` default dictionary with a theme-role or standard `palette`; it cannot be combined with `palette: custom`. This setting controls initial creation, not subsequent palette choices in the Inspector.
 
 ```xml
-<key>default</key>
-<dict>
+<key>defaults</key><dict><key>base</key><dict>
     <key>palette</key><string>accent</string>
     <key>lightShade</key><integer>8</integer>
     <key>darkShade</key><integer>3</integer>
-</dict>
+</dict></dict>
 ```
 
-<h3 class="property-heading"><code>default.darkShade</code></h3>
+<h3 class="property-heading"><code>defaults.base.darkShade</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: palette's dark default shade</span></div>
 
 The initial dark-appearance shade number, from `1` to `11` inclusive. Omit it to capture the palette's dark default when the part is created. It uses the same palette and ribbon as `lightShade`, but stores an independent fixed shade number. Available only inside a `themeColor` default dictionary with a theme-role or standard `palette`; it cannot be combined with `palette: custom`. It affects initial creation, not subsequent palette choices in the Inspector.
@@ -113,12 +116,12 @@ Allows a different selection at each responsive breakpoint. Each breakpoint valu
 <h3 class="property-heading"><code>allowsCustom</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Adds a Custom Colour choice and literal colour picker. This permits `default.palette` to be `custom`, which also requires `customColor`. It does not control access to the project's custom palettes; those are available alongside theme and standard palettes.
+Adds a Custom Colour choice and literal colour picker. This permits `defaults.base.palette` to be `custom`, which also requires `customColor`. It does not control access to the project's custom palettes; those are available alongside theme and standard palettes.
 
 <h3 class="property-heading"><code>customColor</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: #000000</span></div>
 
-The initial literal colour for both appearances. It must be `#RRGGBB`, requires `allowsCustom` to be true, and is required when `default.palette` is `custom`. This key remains at control level, outside the `default` dictionary. Authors can subsequently edit separate light and dark literal colours using the canvas appearance buttons.
+The initial literal colour for both appearances. It must be `#RRGGBB`, requires `allowsCustom` to be true, and is required when `defaults.base.palette` is `custom`. This key remains at control level, outside the `defaults.base` dictionary. Authors can subsequently edit separate light and dark literal colours using the canvas appearance buttons.
 
 <h3 class="property-heading"><code>opacity</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
@@ -142,10 +145,9 @@ For sites supporting both appearances, a part can call `window.foundryAppearance
     <key>allowsCustom</key><true/>
     <key>customColor</key><string>#3366CC</string>
     <key>opacity</key><true/>
-    <key>default</key>
-    <dict>
+    <key>defaults</key><dict><key>base</key><dict>
         <key>palette</key><string>accent</string>
-    </dict>
+    </dict></dict>
 </dict>
 ```
 
