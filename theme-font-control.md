@@ -10,6 +10,11 @@ permalink: "/theme-font-control.html"
 <p class="lede">One configurable font control with coordinated family, weight and style rows. Font browsing and previews remain in the Theme Editor.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/theme-font-control.png" width="348" height="101" alt="Theme font set to Heading, with Weight 400 and Style Normal." />
+    <figcaption>The optional weight and style pickers appear beneath the font choice.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

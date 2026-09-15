@@ -10,6 +10,11 @@ permalink: "/text-control.html"
 <p class="lede">A native single-line text field.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/text-control.png" width="348" height="36" alt="Single-line Text control containing Hello Foundry." />
+    <figcaption>A single-line text field beside its developer-provided label.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

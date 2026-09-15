@@ -10,6 +10,11 @@ permalink: "/slider-control.html"
 <p class="lede">A continuous or stepped numeric slider with optional visual tick marks and an exact-value field.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/slider-control.png" width="348" height="41" alt="Slider control set to 50 percent with a numeric value field." />
+    <figcaption>The slider and numeric field edit the same value.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

@@ -10,6 +10,11 @@ permalink: "/text-area-control.html"
 <p class="lede">A multi-line editor that preserves authored line breaks in the stored value.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/text-area-control.png" width="348" height="96" alt="Multiline Text area containing First line and Second line." />
+    <figcaption>A multiline editor for longer text values.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

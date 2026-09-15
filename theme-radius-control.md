@@ -10,6 +10,11 @@ permalink: "/theme-radius-control.html"
 <p class="lede">Four always-visible corner rows with theme radius, custom lengths, and coordinated linking.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/theme-radius-control.png" width="348" height="166" alt="Four linked corner radii set to MD · 8 px." />
+    <figcaption>All four corner rows remain visible when linked.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

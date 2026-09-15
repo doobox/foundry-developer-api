@@ -9,6 +9,11 @@ permalink: "/theme-colour-control.html"
 <h1>Theme colour</h1>
 <p class="lede">A palette and shade selector that resolves the selected colour for templates.</p>
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/theme-colour-control.png" width="348" height="45" alt="Theme colour ribbon with an Accent shade selected, a default-shade button and a palette menu." />
+    <figcaption>The shade ribbon follows the selected palette; the star selects its default shade.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

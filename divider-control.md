@@ -10,6 +10,11 @@ permalink: "/divider-control.html"
 <p class="lede">A presentation-only visual separator between inspector controls.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/divider-control.png" width="348" height="82" alt="An expanded Inspector group containing a thin horizontal divider." />
+    <figcaption>A Divider adds a visual separator, not an editable value.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

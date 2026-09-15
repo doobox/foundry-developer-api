@@ -10,6 +10,11 @@ permalink: "/colour.html"
 <p class="lede">A colour picker that supplies a literal hexadecimal colour to templates.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/colour.png" width="348" height="234" alt="Literal colour wells showing opaque, opacity-enabled and indexed colour examples." />
+    <figcaption>Colour wells support opacity and indexed arrays when declared.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

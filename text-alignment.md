@@ -10,6 +10,11 @@ permalink: "/text-alignment.html"
 <p class="lede">A preconfigured segmented control that produces logical CSS text-alignment values.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/text-alignment.png" width="348" height="34" alt="Text alignment segmented picker with Start selected." />
+    <figcaption>Start, Centre, End and Justify choices.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

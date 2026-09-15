@@ -10,6 +10,11 @@ permalink: "/theme-margin-control.html"
 <p class="lede">Four always-visible edge rows with theme spacing, custom lengths, and coordinated linking.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/theme-margin-control.png" width="348" height="164" alt="Four linked margin rows set to None · 0." />
+    <figcaption>Top, Bottom, Left and Right remain visible in the linked state.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

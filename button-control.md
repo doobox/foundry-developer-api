@@ -10,6 +10,11 @@ permalink: "/button-control.html"
 <p class="lede">A persistent push button backed by Boolean state and optional mapped outputs.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/button-control.png" width="348" height="234" alt="Button examples showing a single toggle, independent buttons and a single-choice segmented picker." />
+    <figcaption>Single toggles, independent button arrays and a single-choice segmented picker.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

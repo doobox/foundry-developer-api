@@ -10,6 +10,11 @@ permalink: "/shadow-control.html"
 <p class="lede">A theme shadow picker with an optional author-editable stack of outer or inset shadow layers.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/shadow-control.png" width="348" height="38" alt="Shadow picker with MD selected." />
+    <figcaption>A compact picker for the selected shadow preset.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

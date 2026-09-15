@@ -10,6 +10,11 @@ permalink: "/icon-control.html"
 <p class="lede">A searchable visual picker containing every icon in Foundry’s built-in icon library.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/icon-control.png" width="348" height="41" alt="Icon picker with Stars selected." />
+    <figcaption>The picker shows the selected icon beside its name.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

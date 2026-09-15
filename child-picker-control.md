@@ -10,6 +10,11 @@ permalink: "/child-picker-control.html"
 <p class="lede">An Inspector control that adds and manages real child-part instances inside a part.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/child-picker-control.png" width="348" height="90" alt="Child picker labelled Cards, with Feature Card selected, an Add button and a count of 3 of 12." />
+    <figcaption>Choose an allowed part, add it to the managed area, and see the current count.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

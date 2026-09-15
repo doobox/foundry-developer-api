@@ -10,6 +10,11 @@ permalink: "/note-control.html"
 <p class="lede">Presentation-only explanatory text in an inspector group.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/note-control.png" width="348" height="63" alt="Informational Note with an icon, title and explanatory text." />
+    <figcaption>Notes display developer-supplied information rather than an editable value.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

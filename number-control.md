@@ -10,6 +10,11 @@ permalink: "/number-control.html"
 <p class="lede">A numeric text field with bounds, increments and an optional displayed unit.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/number-control.png" width="348" height="43" alt="Number control set to 24 with a stepper and px unit." />
+    <figcaption>Numeric entry, stepper buttons and the declared unit.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

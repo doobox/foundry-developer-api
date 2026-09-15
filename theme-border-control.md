@@ -10,6 +10,11 @@ permalink: /theme-border-control.html
 <p class="lede">Four linked width rows and an optional style picker.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/theme-border-control.png" width="348" height="186" alt="Linked border widths set to SM · 1 px, with the optional Style row set to Solid." />
+    <figcaption>Four linked edge widths, with the optional border-style picker enabled.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

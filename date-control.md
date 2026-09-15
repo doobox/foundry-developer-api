@@ -10,6 +10,11 @@ permalink: "/date-control.html"
 <p class="lede">A native calendar-date picker storing a date-only ISO String.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/date-control.png" width="348" height="359" alt="Date controls showing a single published date and indexed date arrays." />
+    <figcaption>A single date and several indexed arrays, with developer-provided subtitles.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

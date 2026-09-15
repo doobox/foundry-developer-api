@@ -9,6 +9,10 @@ permalink: "/theme-padding-control.html"
 <h1>Theme padding</h1>
 <p class="lede">Four always-visible edge rows with theme spacing, custom lengths, and coordinated linking.</p>
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/theme-padding-control.png?v=retina" width="348" height="155" alt="Foundry’s Theme padding control showing Top, Bottom, Left and Right set to XL · 3 rem, with all four edges linked." />
+    <figcaption>All four edges remain visible when linked. Blue link buttons and connecting lines show the linked state.</figcaption>
+</figure>
 
 ## Quick example
 

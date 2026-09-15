@@ -10,6 +10,11 @@ permalink: "/link-control.html"
 <p class="lede">A structured destination supporting URLs, plain text, project pages, project resources, anchors, new-window behaviour, and custom attributes.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/link-control.png" width="348" height="39" alt="Link control labelled Destination with https://example.com selected and a clear button." />
+    <figcaption>A selected destination appears with a button to clear the link.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

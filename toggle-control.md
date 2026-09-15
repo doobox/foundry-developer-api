@@ -10,6 +10,11 @@ permalink: "/toggle-control.html"
 <p class="lede">A Boolean switch.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/toggle-control.png" width="348" height="32" alt="Toggle checkbox in its enabled state." />
+    <figcaption>A checkbox for a Boolean value.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

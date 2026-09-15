@@ -10,6 +10,11 @@ permalink: /theme-spacing-control.html
 <p class="lede">A single theme-aware spacing value with custom lengths. Label and apply it wherever a nonnegative spacing value is needed.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/theme-spacing-control.png" width="348" height="42" alt="Theme spacing picker labelled Gap, with SM · 1 rem selected." />
+    <figcaption>Developers supply the label; this example uses the spacing value as a gap.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:

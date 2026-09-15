@@ -10,6 +10,11 @@ permalink: "/select-control.html"
 <p class="lede">A native popup containing explicitly declared options.</p>
 
 
+<figure class="control-screenshot">
+    <img src="assets/screenshots/select-control.png" width="348" height="39" alt="Select control with One selected." />
+    <figcaption>The selected option is shown in a compact menu picker.</figcaption>
+</figure>
+
 ## Quick example
 
 Add this dictionary to your part's `controls` array:
