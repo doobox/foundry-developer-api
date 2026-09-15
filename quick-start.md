@@ -4,18 +4,21 @@ title: Build a part · Foundry Developer
 permalink: "/quick-start.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a>
-<span>›</span>Get started</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Quick start</p>
-<h1>Build a part</h1>
-<p class="lede">This part has editable text, a padding control, a theme colour control, responsive CSS and room for child parts.</p>
-<div class="steps">
-<section class="step">
-<h2>Create the pack</h2>
+<h1>Build your first part</h1>
+<p class="lede">Start with an editable heading. Once it works, add theme controls and a place for child parts.</p>
 
+<div class="hero-actions">
+<a class="button" href="assets/downloads/Callout-starter.zip" download>Download starter</a>
+<a class="button secondary" href="assets/downloads/Callout-complete.zip" download>Download completed example</a>
+</div>
 
-<div markdown="1">
+Both downloads contain `Callout.foundrydevpack`. Unzip **one** to begin; they are two stages of the same part, not separate parts to install together. The downloads are generated from the snippets on this page.
+
+## 1. Create the pack
+
+Use the starter download, or create these four files yourself. If Finder treats the pack as one file, right-click it and choose **Show Package Contents**.
 
 ```text
 Callout.foundrydevpack/
@@ -27,20 +30,13 @@ Callout.foundrydevpack/
         └── icon.svg
 ```
 
-</div>
+### Declare the files
 
+Save as `Contents/Info.plist`. This first version has no Inspector controls.
 
-</section>
-<section class="step">
-<h2>Declare the part</h2>
-
-
-<div markdown="1">
-
+<!-- starter:Info.plist -->
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
     <key>minimumAPIVersion</key><integer>1</integer>
@@ -53,47 +49,109 @@ Callout.foundrydevpack/
         <key>html</key><string>part.html</string>
         <key>files</key>
         <array>
-            <dict>
-                <key>path</key><string>part.css</string>
-                <key>scope</key><string>instance</string>
-            </dict>
+            <dict><key>path</key><string>part.css</string></dict>
         </array>
     </dict>
-    <key>controls</key>
-    <array>
-        <dict>
-            <key>id</key><string>themePadding</string>
-            <key>label</key><string>Padding</string>
-            <key>group</key><string>Layout</string>
-            <key>type</key><string>themePadding</string>
-            <key>defaults</key><dict><key>base</key><string>lg</string></dict>
-            <key>responsive</key><true/>
-        </dict>
-        <dict>
-            <key>id</key><string>accentColor</string>
-            <key>label</key><string>Accent</string>
-            <key>group</key><string>Colour</string>
-            <key>type</key><string>themeColor</string>
-            <key>allowsCustom</key><true/>
-            <key>customColor</key><string>#5B5BD6</string>
-            <key>defaults</key><dict><key>base</key><dict><key>palette</key><string>custom</string></dict></dict>
-            <key>responsive</key><false/>
-        </dict>
-    </array>
 </dict>
 </plist>
 ```
 
-</div>
+### Add an editable heading
 
+Save as `Contents/Resources/part.html`:
 
-</section>
-<section class="step">
-<h2>Own the markup</h2>
+<!-- starter:part.html -->
+```html
+<aside class="callout {{ part.class }}" {{ part.attributes }}>
+    <h2>{{ text("heading", default: "A useful callout") }}</h2>
+</aside>
+```
 
+Keep `{{ part.class }}` and `{{ part.attributes }}` on the root element: they let Foundry identify and edit this part. `text(...)` supplies the editable heading. Do not add a root `id`; Foundry reserves it for the site author's anchor.
 
-<div markdown="1">
+### Style it
 
+Save as `Contents/Resources/part.css`:
+
+<!-- starter:part.css -->
+```css
+:instance {
+    padding: 1.5rem;
+    border-left: 4px solid #5B5BD6;
+    background: #F3F3FC;
+}
+```
+
+`:instance` targets this placed part. A declared CSS file uses instance scope by default.
+
+### Give it an icon
+
+Save as `Contents/Resources/icon.svg`:
+
+<!-- starter:icon.svg -->
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <rect x="2" y="3" width="20" height="18" rx="3" fill="#5B5BD6"/>
+    <path d="M7 8h10M7 12h10M7 16h6" fill="none" stroke="#fff" stroke-width="2"/>
+</svg>
+```
+
+## 2. Try it in Foundry
+
+Open `Callout.foundrydevpack` in Foundry. Alternatively, place it in `~/Library/Application Support/Foundry/Packs` and reload parts.
+
+Find **Callout** under **Content** in the Parts panel and add it to a page. You should see a pale callout with a purple left border. Edit its heading on the canvas.
+
+**That is a working part.** The next stage adds optional capabilities to these same files.
+
+## 3. Add theme controls
+
+Add the following `controls` entry inside the **outer dictionary** of `Info.plist`, immediately before its closing `</dict>`. Keep the existing identity and template declarations.
+
+<!-- complete:controls -->
+```xml
+<key>controls</key>
+<array>
+    <dict>
+        <key>type</key><string>themePadding</string>
+        <key>id</key><string>themePadding</string>
+        <key>label</key><string>Padding</string>
+        <key>defaults</key>
+        <dict><key>base</key><string>lg</string></dict>
+        <key>responsive</key><true/>
+    </dict>
+    <dict>
+        <key>type</key><string>themeColor</string>
+        <key>id</key><string>accentColor</string>
+        <key>label</key><string>Accent</string>
+        <key>defaults</key>
+        <dict>
+            <key>base</key>
+            <dict><key>palette</key><string>accent</string></dict>
+        </dict>
+    </dict>
+</array>
+```
+
+Replace `part.css` with:
+
+<!-- complete:part.css -->
+```css
+:instance {
+    padding: {{ control.themePadding }};
+    border-left: 4px solid {{ control.accentColor }};
+}
+```
+
+Reload parts. Select the Callout and open its **Settings** group in the Inspector. Padding now uses the theme spacing scale; Accent uses the theme colour ribbon. Change each and check the canvas. Padding can also vary by breakpoint because its declaration enables `responsive`.
+
+Control declarations do not apply CSS automatically. The two `control` expressions above connect the Inspector values to your styles.
+
+## 4. Allow child content
+
+Replace `part.html` with:
+
+<!-- complete:part.html -->
 ```html
 <aside class="callout {{ part.class }}" {{ part.attributes }}>
     <h2>{{ text("heading", default: "A useful callout") }}</h2>
@@ -101,46 +159,13 @@ Callout.foundrydevpack/
 </aside>
 ```
 
-</div>
+Reload parts, then drop another part into the Callout's content area. `dropZone("content")` creates an ordinary child-content area; it needs no additional manifest declaration. The completed download includes stages 3 and 4.
 
+## If something does not work
 
-<p>
-<code>{{ part.attributes }}</code> supplies the part’s stable <code>data-foundry-id</code> identity, the site author’s permitted root attributes, and canvas-only editor hooks. <code>{{ part.class }}</code> merges generated and author-added classes into the developer-owned root class. <code>{{ dropZone("content") }}</code> creates a named ordinary child-content area without an Info.plist declaration. Do not declare a root <code>id</code>; Foundry reserves it for the author’s anchor. Use <code>:instance</code> when instance CSS needs to target this one placed part.</p>
-</section>
-<section class="step">
-<h2>Own the CSS</h2>
+- **The part does not appear:** check that `Info.plist` is inside `Contents`, not at the pack root, and reload parts.
+- **Foundry rejects it:** enable the Developer panel in Foundry's Developer preferences. It reports the invalid manifest key, template line or missing file.
+- **Styles or controls seem unchanged:** save the source files and reload parts. Confirm you are editing the installed development pack rather than another extracted copy.
 
-
-<div markdown="1">
-
-```css
-:instance {
-    padding: {{ control.themePadding }};
-    border-left: 4px solid {{ control.accentColor }};
-    background: {{ control.accentColor | lighten(42) }};
-}
-```
-
-</div>
-
-
-<p>Foundry processes this file for every instance and breakpoint. It knows the values; you decide which element and declaration receive them.</p>
-</section>
-<section class="step">
-<h2>Open and validate it</h2>
-<p>Open the <code>.foundrydevpack</code> in Foundry, or place it in <code>~/Library/Application Support/Foundry/Packs</code> and reload parts. The Callout should appear under Content in the Parts panel.</p>
-<p>If Foundry rejects the pack, enable the Developer panel in Foundry’s Developer preferences. It reports the exact manifest key, template line, or missing path that needs attention.</p>
-</section>
-</div>
-<h2>Next</h2>
-<div class="page-links">
-<a class="card" href="templates.html">
-<strong>Template files</strong>
-<p>HTML, CSS, JavaScript, PHP, scopes and placement.</p>
-</a>
-<a class="card" href="custom-controls.html">
-<strong>Custom controls</strong>
-<p>Every inspector control type.</p>
-</a>
-</div>
+When starting your own part, replace `uk.co.example.callout` with your own stable reverse-DNS identifier.
 {% endraw %}

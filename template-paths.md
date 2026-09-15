@@ -4,7 +4,7 @@ title: Site, page, and path values · Foundry Developer
 permalink: /template-paths.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Site, page, and path values</h1>
 <p class="lede">Resolve public URLs and paths relative to the generated output.</p>

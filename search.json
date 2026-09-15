@@ -1,0 +1,10 @@
+---
+layout: null
+permalink: /search.json
+---
+[
+{% assign documents = site.pages | where: "layout", "default" | sort: "url" %}
+{% for document in documents %}
+{"title": {{ document.title | jsonify }}, "url": {{ document.url | relative_url | jsonify }}, "html": {{ document.content | markdownify | jsonify }}}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]

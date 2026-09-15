@@ -4,7 +4,7 @@ title: Conditions and expressions · Foundry Developer
 permalink: /template-conditions.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Conditions and expressions</h1>
 <p class="lede">Select output with conditions and use validated expressions for calculations.</p>

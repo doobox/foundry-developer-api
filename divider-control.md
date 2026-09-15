@@ -4,12 +4,24 @@ title: Divider control · Foundry Developer
 permalink: "/divider-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Divider</h1>
 <p class="lede">A presentation-only visual separator between inspector controls.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>divider</string>
+    <key>id</key><string>separator</string>
+</dict>
+```
+
+This item only separates Inspector controls; it produces no template value.
 
 
 ## Basic properties

@@ -4,8 +4,7 @@ title: Theme-aware controls · Foundry Developer
 permalink: "/theme-controls.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><a href="custom-controls.html">Custom controls</a><span>›</span>Theme-aware controls</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 
 # Theme-aware controls
 

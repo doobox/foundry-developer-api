@@ -4,7 +4,7 @@ title: Output filters · Foundry Developer
 permalink: /template-filters.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Output filters</h1>
 <p class="lede">Transform emitted control values without changing the values stored by the Inspector.</p>

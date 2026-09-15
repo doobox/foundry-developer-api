@@ -4,9 +4,7 @@ title: Libraries and assets · Foundry Developer
 permalink: "/manifest-resources.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist</p>
 <h1>Libraries and assets</h1>
 <p class="lede">Use libraries for Foundry-managed web dependencies and assets for part-owned files that templates reference but do not process as source templates.</p>
@@ -70,7 +68,7 @@ permalink: "/manifest-resources.html"
 
 <div markdown="1">
 
-```xml
+```html
 <img src="{{ asset("images/badge.svg") }}" alt="">
 ```
 

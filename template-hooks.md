@@ -4,7 +4,7 @@ title: Part hooks · Foundry Developer
 permalink: /template-hooks.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Part hooks</h1>
 <p class="lede">Connect developer-owned roots, styles and advanced attributes to Foundry.</p>

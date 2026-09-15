@@ -1,0 +1,274 @@
+[
+  {
+    "title": "Getting started",
+    "links": [
+      [
+        "Overview",
+        "index.html"
+      ],
+      [
+        "Build your first part",
+        "quick-start.html"
+      ]
+    ]
+  },
+  {
+    "title": "Package structure",
+    "links": [
+      [
+        "Bundle structure",
+        "bundle-structure.html"
+      ],
+      [
+        "Collections & nested packs",
+        "nested-packs.html"
+      ]
+    ]
+  },
+  {
+    "title": "Info.plist",
+    "links": [
+      [
+        "Identity & metadata",
+        "manifest-identity.html"
+      ],
+      [
+        "Custom controls",
+        "custom-controls.html",
+        [
+          [
+            "Button",
+            "button-control.html"
+          ],
+          [
+            "Child picker",
+            "child-picker-control.html"
+          ],
+          [
+            "Colour",
+            "colour.html"
+          ],
+          [
+            "Date",
+            "date-control.html"
+          ],
+          [
+            "Divider",
+            "divider-control.html"
+          ],
+          [
+            "Icon",
+            "icon-control.html"
+          ],
+          [
+            "Link",
+            "link-control.html"
+          ],
+          [
+            "Math",
+            "math-control.html"
+          ],
+          [
+            "Note",
+            "note-control.html"
+          ],
+          [
+            "Number",
+            "number-control.html"
+          ],
+          [
+            "Select",
+            "select-control.html"
+          ],
+          [
+            "Shadow",
+            "shadow-control.html"
+          ],
+          [
+            "Slider",
+            "slider-control.html"
+          ],
+          [
+            "Text",
+            "text-control.html"
+          ],
+          [
+            "Text alignment",
+            "text-alignment.html"
+          ],
+          [
+            "Text area",
+            "text-area-control.html"
+          ],
+          [
+            "Theme border",
+            "theme-border-control.html"
+          ],
+          [
+            "Theme colour",
+            "theme-colour-control.html"
+          ],
+          [
+            "Theme font",
+            "theme-font-control.html"
+          ],
+          [
+            "Theme margin",
+            "theme-margin-control.html"
+          ],
+          [
+            "Theme padding",
+            "theme-padding-control.html"
+          ],
+          [
+            "Theme radius",
+            "theme-radius-control.html"
+          ],
+          [
+            "Theme spacing",
+            "theme-spacing-control.html"
+          ],
+          [
+            "Toggle",
+            "toggle-control.html"
+          ],
+          [
+            "Control arrays",
+            "control-arrays.html"
+          ],
+          [
+            "Conditional visibility",
+            "visible-when.html"
+          ]
+        ]
+      ],
+      [
+        "Template declarations",
+        "templates.html",
+        [
+          [
+            "Primary HTML",
+            "templates.html#primary-html"
+          ],
+          [
+            "CSS",
+            "templates.html#css"
+          ],
+          [
+            "JavaScript",
+            "templates.html#javascript"
+          ],
+          [
+            "PHP",
+            "templates.html#php"
+          ],
+          [
+            "Additional HTML",
+            "templates.html#additional-html"
+          ],
+          [
+            "Editor CSS",
+            "templates.html#editor-css"
+          ]
+        ]
+      ],
+      [
+        "Libraries & assets",
+        "manifest-resources.html"
+      ],
+      [
+        "Support & recovery",
+        "manifest-support.html"
+      ]
+    ]
+  },
+  {
+    "title": "Template language",
+    "links": [
+      [
+        "Syntax at a glance",
+        "template-syntax.html"
+      ],
+      [
+        "Part roots & CSS",
+        "template-identity.html"
+      ],
+      [
+        "Values & paths",
+        "template-controls.html"
+      ],
+      [
+        "Persistent areas",
+        "template-areas.html"
+      ],
+      [
+        "Conditions",
+        "template-conditions.html"
+      ],
+      [
+        "Loops",
+        "template-loops.html"
+      ],
+      [
+        "Filters",
+        "template-filters.html"
+      ],
+      [
+        "Output encoding",
+        "template-encoding.html"
+      ],
+      [
+        "Editable content",
+        "editable-text.html"
+      ],
+      [
+        "Path reference",
+        "template-paths.html"
+      ],
+      [
+        "Root attributes",
+        "template-root-attributes.html"
+      ],
+      [
+        "Editor hooks",
+        "template-hooks.html"
+      ]
+    ]
+  },
+  {
+    "title": "Themes",
+    "links": [
+      [
+        "Theme values",
+        "theme-controls.html"
+      ],
+      [
+        "Theme bundles",
+        "theme-bundles.html"
+      ]
+    ]
+  },
+  {
+    "title": "Reference",
+    "links": [
+      [
+        "API map",
+        "parts.html"
+      ],
+      [
+        "Pack updates",
+        "pack-updates.html",
+        [
+          [
+            "Publishing updates",
+            "pack-updates.html"
+          ],
+          [
+            "Appcast format",
+            "pack-appcast.html"
+          ]
+        ]
+      ]
+    ]
+  }
+]

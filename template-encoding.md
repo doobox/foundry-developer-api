@@ -4,7 +4,7 @@ title: Output encoding · Foundry Developer
 permalink: /template-encoding.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Output encoding</h1>
 <p class="lede">Encode values safely for visible HTML, attributes, URLs and JSON.</p>

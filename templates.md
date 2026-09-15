@@ -4,9 +4,7 @@ title: Template files · Foundry Developer
 permalink: "/templates.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist template files</p>
 <h1>Declare exactly the files your part uses</h1>
 <p class="lede">The <code>templates</code> dictionary tells Foundry which files are source templates, how often to process them, and where their output belongs. This page separates the rules by file type so every declaration has one clear shape.</p>
@@ -37,7 +35,7 @@ permalink: "/templates.html"
 
 <div markdown="1">
 
-```xml
+```html
 <section class="callout {{ part.class }}" {{ part.attributes }}>
     <h2>{{ text("heading") }}</h2>
 </section>

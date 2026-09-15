@@ -4,9 +4,7 @@ title: Collections and nested packs · Foundry Developer
 permalink: "/nested-packs.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a>
-<span>›</span>Packages</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Package</p>
 <h1>Collections and nested packs</h1>
 <p class="lede">Ship one part, a product containing many parts, or functional packs nested to any depth. The same rules apply to built-ins and third-party packs.</p>

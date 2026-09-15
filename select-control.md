@@ -4,12 +4,38 @@ title: Select control · Foundry Developer
 permalink: "/select-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Select</h1>
 <p class="lede">A native popup containing explicitly declared options.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>select</string>
+    <key>id</key><string>layout</string>
+    <key>options</key><array>
+        <dict><key>value</key><string>block</string><key>title</key><string>Block</string></dict>
+        <dict><key>value</key><string>flex</string><key>title</key><string>Flex</string></dict>
+    </array>
+    <key>defaults</key>
+    <dict>
+        <key>base</key><string>block</string>
+    </dict>
+</dict>
+```
+
+Use it in the part's CSS template:
+
+```css
+:instance {
+    display: {{ control.layout }};
+}
+```
 
 
 ## Basic properties
@@ -109,7 +135,7 @@ Shows this Select only when another control meets the stated condition.
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled project breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
 
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>
@@ -211,10 +237,10 @@ Select offers only the options declared here. It does not populate choices from 
         <key>group</key><string>Content</string>
         <key>options</key>
         <array>
-            <dict><key>value</key><string>part</string><key>title</key><string>Part</string></dict>
+            <dict><key>value</key><string>block</string><key>title</key><string>Block</string></dict>
             <dict><key>value</key><string>flex</string><key>title</key><string>Flex</string></dict>
         </array>
-        <key>defaults</key><dict><key>base</key><string>part</string></dict>
+        <key>defaults</key><dict><key>base</key><string>block</string></dict>
         <key>responsive</key><false/>
     </dict>
 </array>

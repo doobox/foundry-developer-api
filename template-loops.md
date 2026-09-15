@@ -4,7 +4,7 @@ title: Looping content · Foundry Developer
 permalink: /template-loops.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Looping content</h1>
 <p class="lede">Repeat markup over fixed counts, controls, navigation, pages and assets.</p>

@@ -4,7 +4,7 @@ title: Pack updates · Foundry Developer
 permalink: "/pack-updates.html"
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span><span>Reference</span></div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Reference · Pack updates</p>
 <h1>Publishing updates</h1>
 <p class="lede">Publish signed releases of a development pack so installed copies can discover and install newer versions.</p>

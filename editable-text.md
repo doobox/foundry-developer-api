@@ -4,8 +4,7 @@ title: Editable content · Foundry Developer
 permalink: "/editable-text.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Canvas editing</p>
 <h1>Editable content primitives</h1>
 <p class="lede">Put editable text, trusted HTML or an image directly into developer-owned markup without declaring a visible <code>controls</code> control.</p>

@@ -4,9 +4,7 @@ title: Support and recovery · Foundry Developer
 permalink: "/manifest-support.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist</p>
 <h1>Support and recovery</h1>
 <p class="lede">Give authors a route to part help and preserve useful information when a project refers to a pack that is no longer available.</p>

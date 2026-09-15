@@ -4,12 +4,26 @@ title: Note control · Foundry Developer
 permalink: "/note-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Note</h1>
 <p class="lede">Presentation-only explanatory text in an inspector group.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>note</string>
+    <key>id</key><string>guidance</string>
+    <key>title</key><string>Layout</string>
+    <key>body</key><string>Choose the spacing for this part.</string>
+</dict>
+```
+
+This item displays guidance in the Inspector; it produces no template value.
 
 
 ## Basic properties

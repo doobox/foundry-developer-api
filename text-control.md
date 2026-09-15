@@ -4,12 +4,32 @@ title: Text control · Foundry Developer
 permalink: "/text-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Text</h1>
 <p class="lede">A native single-line text field.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>text</string>
+    <key>id</key><string>heading</string>
+    <key>defaults</key>
+    <dict>
+        <key>base</key><string>Welcome</string>
+    </dict>
+</dict>
+```
+
+Use it in your HTML template:
+
+```html
+<h2>{{ control.heading }}</h2>
+```
 
 
 ## Basic properties
@@ -107,7 +127,7 @@ Shows this control only when another control meets the stated condition.
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled project breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
 
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or String array</span><span class="required">Required</span></div>

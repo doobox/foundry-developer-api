@@ -4,12 +4,31 @@ title: Child picker control · Foundry Developer
 permalink: "/child-picker-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Child picker</h1>
 <p class="lede">An Inspector control that adds and manages real child-part instances inside a part.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>childPicker</string>
+    <key>id</key><string>cards</string>
+    <key>pickerItems</key><array><string>com.example.metric-card</string></array>
+</dict>
+```
+
+Use it in your HTML template:
+
+```html
+{{ childArea("cards") }}
+```
+
+Install a child part with ID `com.example.metric-card` before using this example.
 
 
 ## Basic properties

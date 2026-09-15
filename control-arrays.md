@@ -4,9 +4,7 @@ title: Control arrays · Foundry Developer
 permalink: "/control-arrays.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Shared capability</p>
 <h1>Control arrays</h1>
 <p class="lede">Display two, three or four controls together while retaining normal bindings, persistence, responsive overrides and undo behaviour.</p>

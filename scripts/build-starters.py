@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""Build deterministic starter downloads from quick-start.md; --check detects drift."""
+import argparse
+import io
+from pathlib import Path
+import plistlib
+import re
+import zipfile
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def starter_files(source):
+    pairs = re.findall(r'<!-- (starter|complete):([^ ]+) -->\s*```\w+\s*\n(.*?)```', source, re.S)
+    snippets = {}
+    for stage, name, content in pairs:
+        key = (stage, name)
+        if key in snippets:
+            raise ValueError(f"Duplicate snippet: {stage}:{name}")
+        snippets[key] = content.encode()
+    expected = {("starter", name) for name in ("Info.plist", "part.html", "part.css", "icon.svg")}
+    expected |= {("complete", name) for name in ("controls", "part.html", "part.css")}
+    if set(snippets) != expected:
+        raise ValueError(f"Unexpected or missing starter markers: {set(snippets) ^ expected}")
+    basic = {name: snippets["starter", name] for name in ("Info.plist", "part.html", "part.css", "icon.svg")}
+    manifest = plistlib.loads(basic["Info.plist"])
+    additions = plistlib.loads(b'<plist version="1.0"><dict>' + snippets["complete", "controls"] + b'</dict></plist>')
+    if set(additions) != {"controls"} or "controls" in manifest:
+        raise ValueError("The controls stage must add exactly one controls entry to the basic manifest")
+    complete = dict(basic)
+    complete["Info.plist"] = plistlib.dumps({**manifest, **additions}, sort_keys=False)
+    for name in ("part.html", "part.css"):
+        complete[name] = snippets["complete", name]
+    return {"starter": basic, "complete": complete}
+
+
+def archive(files):
+    output = io.BytesIO()
+    with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as zipped:
+        for name, content in sorted(files.items()):
+            relative = name if name == "Info.plist" else f"Resources/{name}"
+            info = zipfile.ZipInfo(f"Callout.foundrydevpack/Contents/{relative}", (2026, 1, 1, 0, 0, 0))
+            info.create_system = 3
+            info.external_attr = 0o100644 << 16
+            zipped.writestr(info, content)
+    return output.getvalue()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--check", action="store_true", help="Verify committed ZIPs without writing files")
+    args = parser.parse_args()
+    for stage, files in starter_files((ROOT / "quick-start.md").read_text()).items():
+        destination = ROOT / "assets" / "downloads" / f"Callout-{stage}.zip"
+        expected = archive(files)
+        if args.check:
+            if not destination.exists() or destination.read_bytes() != expected:
+                raise SystemExit(f"{destination.name} is missing or stale. Run python3 scripts/build-starters.py")
+            print(f"Verified {destination.name}: 4 files match the tutorial")
+        else:
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            if not destination.exists() or destination.read_bytes() != expected:
+                destination.write_bytes(expected)
+            print(f"Built {destination.name}")
+
+
+if __name__ == "__main__":
+    main()

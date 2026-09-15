@@ -4,7 +4,7 @@ title: Advanced root attributes · Foundry Developer
 permalink: /template-root-attributes.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Advanced root attributes</h1>
 <p class="lede">Expose author-defined anchors, classes and attributes on the developer-owned part root.</p>

@@ -4,12 +4,34 @@ title: Shadow control · Foundry Developer
 permalink: "/shadow-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Shadow</h1>
 <p class="lede">A theme shadow picker with an optional author-editable stack of outer or inset shadow layers.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>shadow</string>
+    <key>id</key><string>cardShadow</string>
+    <key>defaults</key>
+    <dict>
+        <key>base</key><string>md</string>
+    </dict>
+</dict>
+```
+
+Use it in the part's CSS template:
+
+```css
+:instance {
+    box-shadow: {{ control.cardShadow }};
+}
+```
 
 
 ## Basic properties
@@ -95,7 +117,7 @@ Shows this control only when another control meets the stated condition.
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled project breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
 
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Value</span><span class="required">Required</span></div>

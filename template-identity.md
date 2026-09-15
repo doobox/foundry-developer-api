@@ -4,7 +4,7 @@ title: Part roots and CSS · Foundry Developer
 permalink: /template-identity.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Part roots and CSS</h1>
 <p class="lede">Configure the required root hooks, choose the correct CSS scope, and use identity values only when a selector helper is not enough.</p>
@@ -122,7 +122,7 @@ permalink: /template-identity.html
 
 <div markdown="1">
 
-```xml
+```html
 <img src="{{ asset("images/icon.svg") }}" alt="">
 ```
 

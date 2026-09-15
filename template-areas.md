@@ -4,7 +4,7 @@ title: Persistent template areas · Foundry Developer
 permalink: /template-areas.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Persistent template areas</h1>
 <p class="lede">Place named editable content, ordinary drop zones and managed child areas.</p>

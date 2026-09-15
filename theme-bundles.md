@@ -4,8 +4,7 @@ title: Theme bundles · Foundry Developer
 permalink: "/theme-bundles.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span>Themes</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Theme interchange</p>
 <h1>Theme bundles</h1>
 <p class="lede">Foundry imports and exports reusable theme settings as self-contained <code>.foundrytheme</code> bundles, including their preview and bundled font resources.</p>
@@ -56,7 +55,7 @@ Example.foundrytheme/
 <dt>typography</dt>
 <dd>Body, heading and monospaced fonts; custom fonts; base size; and the font-size scale with line-height choices.</dd>
 <dt>screens</dt>
-<dd>Enabled responsive screens, minimum widths and container width rules.</dd>
+<dd>Present in the stored format, but breakpoints are project settings, not reusable theme settings. Saved themes use the standard screen configuration; applying a theme preserves the project's enabled breakpoints, minimum widths and container width rules.</dd>
 <dt>shadows</dt>
 <dd>The predefined shadow scale and optional custom shadows.</dd>
 <dt>borderWidths</dt>

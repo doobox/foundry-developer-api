@@ -4,12 +4,34 @@ title: Theme font control · Foundry Developer
 permalink: "/theme-font-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Theme font</h1>
 <p class="lede">One configurable font control with coordinated family, weight and style rows. Font browsing and previews remain in the Theme Editor.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>themeFont</string>
+    <key>id</key><string>font</string>
+    <key>defaults</key>
+    <dict>
+        <key>base</key><string>body</string>
+    </dict>
+</dict>
+```
+
+Use it in the part's CSS template:
+
+```css
+:instance {
+    font-family: {{ control.font.family }};
+}
+```
 
 ## Properties
 
@@ -36,7 +58,7 @@ The Inspector section containing the control.
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade. When `showsFamily` is false, the family is fixed: every entry must use the same family as `base`; enabled Weight and Style may still vary.
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled project breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade. When `showsFamily` is false, the family is fixed: every entry must use the same family as `base`; enabled Weight and Style may still vary.
 
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary or String</span><span class="required">Required</span></div>

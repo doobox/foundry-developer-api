@@ -8,7 +8,7 @@ description: Build parts for Foundry with ordinary HTML, CSS, JavaScript, and
 {% raw %}
 <section class="hero">
 <p class="eyebrow">Foundry part API</p>
-<h1>Your files, made visual.</h1>
+<h1>Build parts for Foundry.</h1>
 <p class="lede">Build portable website parts from ordinary HTML, CSS, JavaScript, and PHP. <code>Info.plist</code> declares the part; templates remain yours.</p>
 <div class="hero-actions">
     <a class="button" href="quick-start.html">Build your first part</a>
@@ -39,16 +39,6 @@ description: Build parts for Foundry with ordinary HTML, CSS, JavaScript, and
         <p><a href="manifest-support.html#validation-failures">Understand validation →</a></p>
     </section>
 </div>
-
-<h2>The three things to remember</h2>
-<div class="card-grid">
-    <a class="card" href="manifest-identity.html"><strong>The manifest declares</strong><p><code>Info.plist</code> is the source of truth for identity, files, dependencies, controls, and managed child areas.</p></a>
-    <a class="card" href="templates.html"><strong>Scope controls frequency</strong><p>Instance, page, and site scope describe how often a declared file is processed.</p></a>
-    <a class="card" href="template-identity.html"><strong>Templates consume values</strong><p>Macros insert resolved values without taking ownership of your markup or CSS selectors.</p></a>
-</div>
-
-<div class="note">
-<strong>Foundry does not guess.</strong> It processes the files the manifest declares, validates the current API shape, and leaves part structure and browser code under the developer’s control.</div>
 
 <h2>Common destinations</h2>
 <div class="page-links">

@@ -4,10 +4,39 @@ title: Theme colour control · Foundry Developer
 permalink: "/theme-colour-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a></div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Theme colour</h1>
 <p class="lede">A palette and shade selector that resolves the selected colour for templates.</p>
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>themeColor</string>
+    <key>id</key><string>textColour</string>
+    <key>label</key><string>Colour</string>
+    <key>defaults</key>
+    <dict>
+        <key>base</key>
+        <dict>
+            <key>palette</key><string>text</string>
+        </dict>
+    </dict>
+</dict>
+```
+
+Use its resolved CSS value in your stylesheet:
+
+```css
+:instance {
+    color: {{ control.textColour }};
+}
+```
+
+## Choosing colours
 
 Authors can choose from the project's custom, theme and standard colour palettes using a searchable menu. The ribbon selects a shade from 1–11; Black and White each have one colour.
 
@@ -62,7 +91,7 @@ Shows this control only when another control meets the declared condition.
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled theme breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
+A dictionary containing the required `base` value and optional breakpoint values: `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Breakpoint entries require `responsive: true`. Every entry uses the complete value format described below; omitted breakpoints inherit the preceding enabled value. Disabled project breakpoints are skipped without discarding their declarations. User overrides take precedence at the same breakpoint. Resetting an override restores the default cascade.
 
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>

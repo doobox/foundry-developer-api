@@ -4,9 +4,7 @@ title: Pack structure · Foundry Developer
 permalink: "/bundle-structure.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a>
-<span>›</span>Packages</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Packages</p>
 <h1>Pack structure</h1>
 <p class="lede">A <code>.foundrypack</code> is a standard macOS-style bundle. Foundry keeps it intact and runs its parts directly from their packaged locations.</p>

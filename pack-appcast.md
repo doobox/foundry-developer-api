@@ -4,7 +4,7 @@ title: Pack appcast · Foundry Developer
 permalink: "/pack-appcast.html"
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span><span>Reference</span></div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Reference · Pack updates</p>
 <h1>Appcast format</h1>
 <p class="lede">The HTTPS appcast endpoint returns JSON describing the pack's available signed releases.</p>

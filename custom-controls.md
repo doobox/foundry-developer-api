@@ -4,9 +4,7 @@ title: Custom controls · Foundry Developer
 permalink: "/custom-controls.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Custom controls</h1>
 <p class="lede">Each dictionary in <code>controls</code> creates part of the part Inspector. Declare what the author can change, then read the resulting value from HTML, CSS, JavaScript, or PHP.</p>
@@ -50,7 +48,7 @@ Declare initial values in one <code>defaults</code> dictionary, even when only a
 
 Accepted breakpoint names are `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Non-base entries require a responsive value control and `responsive: true`. Missing entries inherit from the preceding enabled breakpoint, starting at `base`. Thresholds come from the project's theme, not fixed pixel values in the part.
 
-Disabled theme breakpoints are skipped; their defaults and saved overrides remain available if re-enabled. At each enabled breakpoint, a user override wins over the developer default. A later explicit developer default starts a new value in the cascade, so a user override at Medium does not replace a developer's Large default. Resetting a breakpoint removes its user override and reveals the cascade again.
+Disabled project breakpoints are skipped; their defaults and saved overrides remain available if re-enabled. At each enabled breakpoint, a user override wins over the developer default. A later explicit developer default starts a new value in the cascade, so a user override at Medium does not replace a developer's Large default. Resetting a breakpoint removes its user override and reveals the cascade again.
 
 Use responsive values in CSS templates to generate breakpoint rules. HTML and JavaScript do not automatically change their contents when the browser resizes.
 

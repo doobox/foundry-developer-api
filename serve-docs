@@ -25,6 +25,7 @@ cleanup() {
 trap cleanup EXIT HUP INT TERM
 
 cd "$repository_root"
+python3 scripts/build-starters.py --check
 if ! bundle check >/dev/null 2>&1; then
     echo "Installing pinned documentation dependencies…"
     bundle install

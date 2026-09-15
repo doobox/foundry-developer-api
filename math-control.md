@@ -4,12 +4,33 @@ title: Math control · Foundry Developer
 permalink: "/math-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Math</h1>
 <p class="lede">A virtual numeric result calculated from constants or other controls.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>math</string>
+    <key>id</key><string>doubleWidth</string>
+    <key>argument1</key><real>24</real>
+    <key>argument2</key><real>2</real>
+    <key>operation</key><string>*</string>
+</dict>
+```
+
+Use it in the part's CSS template:
+
+```css
+:instance {
+    width: {{ control.doubleWidth }}px;
+}
+```
 
 
 ## Basic properties
@@ -143,7 +164,7 @@ width: {{ control.doubleWidth }}px;
         <key>id</key><string>doubleWidth</string>
         <key>group</key><string>Derived values</string>
         <key>type</key><string>math</string>
-        <key>argument1</key><string>width</string>
+        <key>argument1</key><real>24</real>
         <key>argument2</key><real>2</real>
         <key>operation</key><string>*</string>
         <key>round</key><false/>

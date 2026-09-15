@@ -4,12 +4,36 @@ title: Link control · Foundry Developer
 permalink: "/link-control.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Link</h1>
 <p class="lede">A structured destination supporting URLs, plain text, project pages, project resources, anchors, new-window behaviour, and custom attributes.</p>
+
+
+## Quick example
+
+Add this dictionary to your part's `controls` array:
+
+```xml
+<dict>
+    <key>type</key><string>link</string>
+    <key>id</key><string>destination</string>
+    <key>defaults</key>
+    <dict>
+        <key>base</key><string></string>
+    </dict>
+</dict>
+```
+
+Use it in your HTML template:
+
+```html
+<a href="{{ control.destination }}"
+   target="{{ control.destination.target }}"
+   {{ control.destination.attributes }}>Read more</a>
+```
+
+The initial link is empty. Choose a destination in the Inspector to make the link useful.
 
 
 ## Basic properties

@@ -4,7 +4,7 @@ title: Syntax at a glance · Foundry Developer
 permalink: /template-syntax.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Syntax at a glance</h1>
 <p class="lede">Recognise what each expression returns before placing it in HTML, CSS, JavaScript or PHP.</p>

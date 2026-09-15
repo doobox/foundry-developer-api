@@ -1,0 +1,21 @@
+{% assign current = page.url | split: '/' | last %}
+{% assign parent_section = nil %}
+{% assign parent_link = nil %}
+{% for section in site.data.navigation %}
+  {% for entry in section.links %}
+    {% assign entry_page = entry[1] | split: '#' | first %}
+    {% if entry_page == current %}{% assign parent_section = section.title %}{% endif %}
+    {% for child in entry[2] %}
+      {% assign child_page = child[1] | split: '#' | first %}
+      {% if child_page == current %}
+        {% assign parent_section = section.title %}
+        {% if entry_page != current %}{% assign parent_link = entry %}{% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+<div class="breadcrumbs" aria-label="Breadcrumb">
+<a href="{{ '/index.html' | relative_url }}">Foundry Developer</a>
+{% if parent_section %}<span aria-hidden="true">›</span><span>{{ parent_section | escape }}</span>{% endif %}
+{% if parent_link %}<span aria-hidden="true">›</span><a href="{{ parent_link[1] | relative_url }}">{{ parent_link[0] | escape }}</a>{% endif %}
+</div>

@@ -4,9 +4,7 @@ title: Identity and metadata · Foundry Developer
 permalink: "/manifest-identity.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><span>Info.plist</span>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · part manifest</p>
 <h1>Identity and metadata</h1>
 <p class="lede">These keys declare the API contract and stable identity of a part, then describe how it appears to site authors in Foundry.</p>

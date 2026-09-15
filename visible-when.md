@@ -4,9 +4,7 @@ title: Conditional visibility · Foundry Developer
 permalink: "/visible-when.html"
 ---
 {% raw %}
-<div class="breadcrumbs">
-<a href="index.html">Foundry Developer</a><span>›</span><a href="custom-controls.html">Custom controls</a>
-</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Shared control capability</p>
 <h1>Conditional visibility <code class="title-code">visibleWhen</code>
 </h1>

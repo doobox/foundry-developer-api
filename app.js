@@ -1,74 +1,50 @@
 const base = document.body.dataset.base || "";
 
+// Use the same stable heading identifiers on pages and in search results.
+function anchorHeadings(root) {
+    const used = new Set([...root.querySelectorAll("[id]")].map(node => node.id));
+    return [...root.querySelectorAll("h2, h3")].map(heading => {
+        if (!heading.id) {
+            const stem = heading.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "section";
+            let id = stem;
+            let suffix = 2;
+            while (used.has(id)) id = `${stem}-${suffix++}`;
+            heading.id = id;
+            used.add(id);
+        }
+        return heading;
+    });
+}
+const escapeHTML = text => text.replace(/[&<>"']/g, character => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"}[character]));
+const normalizeSearch = text => text.toLowerCase().replace(/colour/g, "color").replace(/[^a-z0-9]+/g, " ").trim();
+let searchIndex;
+async function loadSearch() {
+    if (!searchIndex) searchIndex = fetch(`${base}search.json`).then(response => {
+        if (!response.ok) throw new Error("Search unavailable");
+        return response.json();
+    }).then(pages => pages.flatMap(page => {
+        const document = new DOMParser().parseFromString(page.html.replace(/\{%\s*(?:(?:end)?raw|include\s+[^%]+)\s*%\}/g, ""), "text/html");
+        anchorHeadings(document.body);
+        document.querySelectorAll(".breadcrumbs, .eyebrow").forEach(node => node.remove());
+        document.querySelectorAll(".property-meta span").forEach(node => node.append(" "));
+        const entries = [{title: page.title.replace(/ · Foundry Developer$/, ""), heading: "Overview", url: page.url, text: (document.querySelector(".lede")?.textContent || document.body.textContent).replace(/\s+/g, " ").trim()}];
+        document.querySelectorAll("h2, h3").forEach(heading => {
+            let text = "";
+            for (let node = heading.nextElementSibling; node && !/^H[23]$/.test(node.tagName); node = node.nextElementSibling) text += ` ${node.textContent}`;
+            entries.push({title: entries[0].title, heading: heading.textContent.trim(), url: `${page.url}#${heading.id}`, text: text.replace(/\s+/g, " ").trim()});
+        });
+        return entries;
+    })).catch(error => { searchIndex = null; throw error; });
+    return searchIndex;
+}
+
 const favicon = document.createElement("link");
 favicon.rel = "icon";
 favicon.type = "image/png";
 favicon.href = `${base}assets/foundry-icon.png`;
 document.head.append(favicon);
 
-const controlLinks = [
-    ["Button", "button-control.html"],
-    ["Child picker", "child-picker-control.html"],
-    ["Colour", "colour.html"],
-    ["Date", "date-control.html"],
-    ["Divider", "divider-control.html"],
-    ["Icon", "icon-control.html"],
-    ["Link", "link-control.html"],
-    ["Math", "math-control.html"],
-    ["Note", "note-control.html"],
-    ["Number", "number-control.html"],
-    ["Select", "select-control.html"],
-    ["Shadow", "shadow-control.html"],
-    ["Slider", "slider-control.html"],
-    ["Text", "text-control.html"],
-    ["Text alignment", "text-alignment.html"],
-    ["Text area", "text-area-control.html"],
-    ["Theme border", "theme-border-control.html"],
-    ["Theme colour", "theme-colour-control.html"],
-    ["Theme font", "theme-font-control.html"],
-    ["Theme margin", "theme-margin-control.html"],
-    ["Theme padding", "theme-padding-control.html"],
-    ["Theme radius", "theme-radius-control.html"],
-    ["Theme spacing", "theme-spacing-control.html"],
-    ["Toggle", "toggle-control.html"],
-    ["Control arrays", "control-arrays.html"],
-["Conditional visibility", "visible-when.html"]
-];
-
-const templateLinks = [
-    ["Primary HTML", "templates.html#primary-html"],
-    ["CSS", "templates.html#css"],
-    ["JavaScript", "templates.html#javascript"],
-    ["PHP", "templates.html#php"],
-    ["Additional HTML", "templates.html#additional-html"],
-    ["Editor CSS", "templates.html#editor-css"]
-];
-
-const templateLanguageLinks = [
-    ["Syntax at a glance", "template-syntax.html"],
-    ["Part roots & CSS", "template-identity.html"],
-    ["Values & paths", "template-controls.html"],
-    ["Persistent areas", "template-areas.html"],
-    ["Conditions", "template-conditions.html"],
-    ["Loops", "template-loops.html"],
-    ["Filters", "template-filters.html"],
-    ["Output encoding", "template-encoding.html"],
-];
-
-const sections = [
-    { title: "Getting started", links: [["Overview", "index.html"], ["Build your first part", "quick-start.html"]] },
-    { title: "Package structure", links: [["Bundle structure", "bundle-structure.html"], ["Collections & nested packs", "nested-packs.html"]] },
-    { title: "Info.plist", links: [
-        ["Identity & metadata", "manifest-identity.html"],
-        ["Custom controls", "custom-controls.html", controlLinks],
-        ["Template declarations", "templates.html", templateLinks],
-        ["Libraries & assets", "manifest-resources.html"],
-        ["Support & recovery", "manifest-support.html"]
-    ] },
-    { title: "Template language", links: templateLanguageLinks },
-    { title: "Themes", links: [["Theme values", "theme-controls.html"], ["Theme bundles", "theme-bundles.html"]] },
-    { title: "Reference", links: [["API map", "parts.html"], ["Pack updates", "pack-updates.html", [["Publishing updates", "pack-updates.html"], ["Appcast format", "pack-appcast.html"]]]] },
-];
+const sections = JSON.parse(document.getElementById("docs-navigation").textContent);
 
 const pageName = value => value.split("#")[0];
 
@@ -78,8 +54,21 @@ if (nav) {
     const currentLocation = `${current}${window.location.hash}`;
     nav.innerHTML = `
         <a class="brand" href="${base}index.html"><img class="brand-mark" src="${base}assets/foundry-icon.png" alt=""><span class="brand-copy"><strong>Foundry</strong><small>Developer API v1</small></span></a>
-        <input class="search" type="search" placeholder="Search topics" aria-label="Filter documentation">
-        <div data-nav-sections></div>`;
+        <button class="mobile-nav-toggle" type="button" aria-controls="docs-browser" aria-expanded="false">Browse documentation</button>
+        <div id="docs-browser">
+        <input class="search" type="search" placeholder="Search docs…" aria-label="Search documentation" aria-controls="search-results">
+        <div id="search-results" hidden></div>
+        <div data-nav-sections></div></div>`;
+    const toggle = nav.querySelector(".mobile-nav-toggle");
+    const browser = nav.querySelector("#docs-browser");
+    const narrow = window.matchMedia("(max-width: 820px)");
+    function setBrowserOpen(open) {
+        toggle.setAttribute("aria-expanded", String(open));
+        browser.hidden = !open;
+    }
+    setBrowserOpen(!narrow.matches);
+    narrow.addEventListener("change", () => setBrowserOpen(!narrow.matches));
+    toggle.addEventListener("click", () => setBrowserOpen(browser.hidden));
     const container = nav.querySelector("[data-nav-sections]");
     const render = (query = "") => {
         const normalized = query.trim().toLowerCase();
@@ -107,7 +96,7 @@ if (nav) {
                     }
                     const branchExpanded = Boolean(normalized || branchActive);
                     const branchID = `nav-branch-${index}-${linkIndex}`;
-                    const branchLinks = children
+                    const branchLinks = (children.some(([, childHref]) => childHref === href) ? children : [["Overview", href], ...children])
                         .filter(([child]) => !normalized || child.toLowerCase().includes(normalized) || label.toLowerCase().includes(normalized));
                     return `<li class="nav-branch">
                         <button class="nav-disclosure nav-branch-toggle" type="button" aria-expanded="${branchExpanded}" aria-controls="${branchID}">
@@ -139,49 +128,57 @@ if (nav) {
         });
     };
     render();
-    nav.querySelector(".search").addEventListener("input", event => render(event.target.value));
+    const input = nav.querySelector(".search");
+    const results = nav.querySelector("#search-results");
+    let request = 0;
+    input.addEventListener("input", async () => {
+        const version = ++request;
+        const query = normalizeSearch(input.value);
+        results.hidden = !query;
+        container.hidden = Boolean(query);
+        if (!query) return;
+        results.innerHTML = '<p role="status">Searching…</p>';
+        try {
+            const entries = await loadSearch();
+            if (version !== request) return;
+            const terms = query.split(" ");
+            const matches = entries.map(entry => {
+                const heading = normalizeSearch(entry.heading);
+                const title = normalizeSearch(entry.title);
+                const haystack = normalizeSearch(`${entry.title} ${entry.heading} ${entry.text}`);
+                const score = terms.every(term => haystack.includes(term)) ? 1 + (heading === query ? 30 : 0) + (heading.includes(query) ? 10 : 0) + (title.includes(query) ? 5 : 0) + (haystack.includes(query) ? 3 : 0) : 0;
+                return {...entry, score};
+            }).filter(entry => entry.score).sort((a, b) => b.score - a.score).slice(0, 20);
+            results.innerHTML = `<p role="status">${matches.length ? `Showing ${matches.length} results` : "No results. Try a control or property name."}</p><ul>${matches.map(entry => `<li><a href="${escapeHTML(entry.url)}"><strong>${escapeHTML(entry.title)}</strong><span>${escapeHTML(entry.heading)}</span><small>${escapeHTML(entry.text.slice(0, 160))}${entry.text.length > 160 ? "…" : ""}</small></a></li>`).join("")}</ul>`;
+        } catch {
+            if (version === request) results.innerHTML = '<p role="status">Search could not load. Clear the search to browse the sidebar, or type again to retry.</p>';
+        }
+    });
+    document.addEventListener("keydown", event => {
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); setBrowserOpen(true); input.focus(); input.select(); }
+        if (event.key === "Escape" && document.activeElement === input) { input.value = ""; input.dispatchEvent(new Event("input")); }
+    });
+    nav.addEventListener("click", event => {
+        if (event.target.closest("a") && !input.value) {
+            try { sessionStorage.setItem("docs-nav-scroll", String(nav.scrollTop)); } catch {}
+        }
+    });
+    try { nav.scrollTop = Number(sessionStorage.getItem("docs-nav-scroll")) || 0; } catch {}
 }
 
 const currentPage = window.location.pathname.split("/").pop() || "index.html";
-const breadcrumbParents = {
-    "bundle-structure.html": ["Package structure", "bundle-structure.html"],
-    "nested-packs.html": ["Package structure", "bundle-structure.html"],
-    "manifest-identity.html": ["Info.plist", null],
-    "templates.html": ["Info.plist", null],
-    "manifest-resources.html": ["Info.plist", null],
-    "custom-controls.html": ["Info.plist", null],
-    "manifest-support.html": ["Info.plist", null],
-    "editable-text.html": ["Template language", null],
-    "template-syntax.html": ["Template language", null],
-    "template-identity.html": ["Template language", null],
-    "template-paths.html": ["Template language", null],
-    "template-controls.html": ["Template language", null],
-    "template-loops.html": ["Template language", null],
-    "template-conditions.html": ["Template language", null],
-    "template-filters.html": ["Template language", null],
-    "template-encoding.html": ["Template language", null],
-    "template-areas.html": ["Template language", null],
-    "template-hooks.html": ["Template language", null],
-    "template-root-attributes.html": ["Template language", null],
-    "theme-controls.html": ["Themes", "theme-controls.html"],
-    "theme-bundles.html": ["Themes", "theme-controls.html"],
-    "parts.html": ["Reference", "parts.html"],
-    "pack-updates.html": ["Reference", "pack-updates.html"],
-    "pack-appcast.html": ["Reference", "pack-updates.html"],
-};
-
-const breadcrumbs = document.querySelector(".breadcrumbs");
-if (breadcrumbs) {
-    if (controlLinks.some(([, href]) => href === currentPage)) {
-        breadcrumbs.innerHTML = `<a href="${base}index.html">Foundry Developer</a><span>›</span><span>Info.plist</span><span>›</span><a href="${base}custom-controls.html">Custom controls</a>`;
-    } else if (breadcrumbParents[currentPage]) {
-        const [label, href] = breadcrumbParents[currentPage];
-        const parent = href ? `<a href="${base}${href}">${label}</a>` : `<span>${label}</span>`;
-        breadcrumbs.innerHTML = `<a href="${base}index.html">Foundry Developer</a><span>›</span>${parent}`;
-    }
-}
-
 const main = document.querySelector("main");
+if (main) {
+    anchorHeadings(main).forEach(heading => {
+        const link = document.createElement("a");
+        link.className = "heading-anchor";
+        link.href = `#${heading.id}`;
+        link.setAttribute("aria-label", `Link to ${heading.textContent.trim()}`);
+        link.textContent = "#";
+        heading.append(link);
+    });
+    if (window.location.hash) document.getElementById(decodeURIComponent(window.location.hash.slice(1)))?.scrollIntoView();
+}
 document.querySelectorAll("pre > code").forEach(code => {
     const pre = code.parentElement;
     const container = pre.closest(".highlight") || pre;
@@ -193,8 +190,10 @@ document.querySelectorAll("pre > code").forEach(code => {
     button.textContent = "Copy";
     button.setAttribute("aria-label", "Copy code snippet");
     button.addEventListener("click", async () => {
-        await navigator.clipboard.writeText(code.textContent);
-        button.textContent = "Copied";
+        try {
+            await navigator.clipboard.writeText(code.textContent);
+            button.textContent = "Copied";
+        } catch { button.textContent = "Select and copy"; }
         window.setTimeout(() => { button.textContent = "Copy"; }, 1400);
     });
     container.append(button);
@@ -224,7 +223,12 @@ if (main && currentPage !== "index.html" && currentPage !== "quick-start.html") 
         const toc = document.createElement("aside");
         toc.className = "page-toc";
         toc.setAttribute("aria-label", "On this page");
-        toc.innerHTML = `<strong>On this page</strong><ol>${headings.map(heading => `<li><a href="#${heading.id}">${heading.textContent}</a></li>`).join("")}</ol>`;
+        toc.innerHTML = `<strong>On this page</strong><ol>${headings.map(heading => {
+            const properties = [];
+            for (let node = heading.nextElementSibling; node && node.tagName !== "H2"; node = node.nextElementSibling) if (node.tagName === "H3") properties.push(node);
+            const title = heading.textContent.replace(/#$/, "");
+            return `<li><a href="#${heading.id}">${escapeHTML(title)}</a>${properties.length ? `<details><summary>Properties</summary><ol>${properties.map(property => `<li><a href="#${property.id}">${escapeHTML(property.textContent.replace(/#$/, ""))}</a></li>`).join("")}</ol></details>` : ""}</li>`;
+        }).join("")}</ol>`;
         main.classList.add("with-page-toc");
         main.append(article, toc);
 

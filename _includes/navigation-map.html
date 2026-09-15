@@ -1,0 +1,12 @@
+{% for section in site.data.navigation %}
+{% if include.compact %}<strong>{{ section.title | escape }}</strong>{% else %}<h2>{{ section.title | escape }}</h2>{% endif %}
+<ul class="map-links">
+{% for entry in section.links %}
+<li><a href="{{ entry[1] | relative_url }}">{{ entry[0] | escape }}</a>
+{% if entry[2] %}<ul>
+{% for child in entry[2] %}<li><a href="{{ child[1] | relative_url }}">{{ child[0] | escape }}</a></li>{% endfor %}
+</ul>{% endif %}
+</li>
+{% endfor %}
+</ul>
+{% endfor %}

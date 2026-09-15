@@ -8,6 +8,7 @@ kramdown:
   input: GFM
 permalink: pretty
 exclude:
+  - scripts
   - Gemfile
   - Gemfile.lock
   - README.md

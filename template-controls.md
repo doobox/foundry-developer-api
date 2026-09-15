@@ -4,7 +4,7 @@ title: Values and paths · Foundry Developer
 permalink: /template-controls.html
 ---
 {% raw %}
-<div class="breadcrumbs"><a href="index.html">Foundry Developer</a><span>›</span>Template language</div>
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Template API</p>
 <h1>Values and paths</h1>
 <p class="lede">Read Inspector values and Foundry’s current site, page and output paths.</p>
