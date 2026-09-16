@@ -11,6 +11,7 @@ description: Highlights from Foundry preview builds distributed before public re
     <h1>Pre-release notes</h1>
     <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
     <nav class="release-jump" aria-label="Jump to a preview build">
+        <a href="#build-6">Build 6</a>
         <a href="#build-5">Build 5</a>
         <a href="#build-4">Build 4</a>
         <a href="#build-3">Build 3</a>
@@ -22,6 +23,72 @@ description: Highlights from Foundry preview builds distributed before public re
 </div>
 
 <div class="release-timeline">
+    <article class="release-build" id="build-6">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 6</span>
+                <h2>Site identity and flexible publishing</h2>
+            </div>
+            <time datetime="2026-09-16">16 September 2026</time>
+        </header>
+        <p class="release-summary">A project-configuration release that brings site identity, generated web icons, search visibility and reusable publishing destinations into one clearer workflow.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Project and site settings</h3>
+                <ul class="release-list">
+                    <li>Moved Site Settings into its own resizable project window and redesigned it with consistent grid rows and dedicated sections for General, Site Identity, Web Icons, SEO &amp; Search, Publishing and Code &amp; Analytics.</li>
+                    <li>Improved General settings with web-address validation, a language picker, managed site-logo artwork and alt text, and the project’s dark-mode option.</li>
+                    <li>Added site-wide title suffix, default description and social-image fallbacks for pages that do not provide their own metadata.</li>
+                    <li>Added site-logo and social-image wells with native file picking and drag-and-drop workflows.</li>
+                    <li>Separated search indexing, canonical URL, sitemap and robots.txt controls from publishing configuration, with guidance when a valid public web address is required.</li>
+                    <li>Exported managed site artwork with the project and migrated earlier visible logo and favicon assets into private managed storage without removing the originals.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Web icons</h3>
+                <ul class="release-list">
+                    <li>Added a managed web-icon generator that accepts a square source image of at least 256 pixels.</li>
+                    <li>Generated and stored favicon and Apple touch-icon variants once, then reused them across previews and published output.</li>
+                    <li>Kept imported source artwork and generated icon files private to the project while emitting depth-correct icon links on every exported page.</li>
+                    <li>Removed generated icon output cleanly when the source is cleared and preserved compatibility with projects that used the earlier favicon field.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Structure and workspace</h3>
+                <ul class="release-list">
+                    <li>Added the current page as the root item in Structure, making the page itself selectable for metadata inspection.</li>
+                    <li>Allowed Parts to be dragged directly onto the page root and made root-level ordering clearer alongside nested drop zones and child pickers.</li>
+                    <li>Kept the page root and selected Part hierarchy expanded when revealing selections.</li>
+                    <li>Refined Pages, Structure and Assets outline backgrounds so they blend correctly with sidebar materials.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Publishing destinations</h3>
+                <ul class="release-list">
+                    <li>Added multiple named Local Folder, SFTP, FTP, FTPS and Amazon S3 destinations with one clearly selected default.</li>
+                    <li>Added reusable destination bookmarks for recalling connection settings in other projects, with credentials retained securely in Keychain.</li>
+                    <li>Improved connection testing with clear success and failure states, including recognition of remote directories that will be created on first publish.</li>
+                    <li>Extended the toolbar Publish control with destination selection, full republishing and direct access to Publishing Setup.</li>
+                    <li>Automatically migrated projects using the earlier single-destination publishing settings.</li>
+                    <li>Scoped local folders, credentials and publishing manifests to their individual destinations while keeping the sole remaining destination as the default.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Developer reliability</h3>
+                <ul class="release-list">
+                    <li>Added validation requiring a Part’s primary HTML output to have one stable top-level root when developer validation is enabled.</li>
+                    <li>Improved live-refresh boundary coverage so malformed templates are reported before they can produce unreliable canvas updates.</li>
+                    <li>Expanded regression coverage for project migration, managed site artwork, generated icons, publishing URLs and package validation.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
     <article class="release-build" id="build-5">
         <header class="release-build-header">
             <div>
