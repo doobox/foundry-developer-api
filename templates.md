@@ -30,18 +30,49 @@ permalink: "/templates.html"
 </div>
 
 
-<p>Foundry processes this file once for every part placed on a page. Its root element must contain <code>{{ part.attributes }}</code>, which supplies the internal <code>data-foundry-id</code> identity, author-supplied root attributes, and canvas hooks Foundry needs. Its root <code>class</code> attribute must also contain <code>{{ part.class }}</code>, which merges Foundry’s generated classes with classes added in the Advanced Inspector.</p>
+<p>Foundry processes this file once for every part placed on a page. The complete rendered output must have exactly one stable top-level root element. That root must contain <code>{{ part.attributes }}</code>, which supplies the internal <code>data-foundry-id</code> identity, author-supplied root attributes, and canvas hooks Foundry needs. Its <code>class</code> attribute must also contain <code>{{ part.class }}</code>, which merges Foundry’s generated classes with classes added in the Advanced Inspector.</p>
+
+<div class="note">
+<strong>The root element is yours to design.</strong> Choose its HTML element, developer classes, ordinary attributes, data attributes and control-driven values as needed. Foundry requires the two root hooks and reserves only the root <code>id</code>.</div>
+
+<div class="callout warning">
+<strong>The root marks the part’s rendered boundary.</strong> Put every descendant element, editable area, condition, loop and child area inside it. Control values may configure the root itself or content inside it. Do not render text, macros or sibling elements before or after the root. Only whitespace and HTML comments may sit outside it. Keep the root unconditional and render it exactly once.</div>
 
 
 <div markdown="1">
 
 ```html
+<!-- Whitespace and comments may sit outside the root. -->
 <section class="callout {{ part.class }}" {{ part.attributes }}>
+    <p>{{ control.introduction }}</p>
     <h2>{{ text("heading") }}</h2>
+    {{ if control.showContent }}
+        {{ dropZone("content") }}
+    {{ endif }}
 </section>
 ```
 
 </div>
+
+<p>The example part may use its controls on the <code>section</code> root and anywhere inside it. The <code>dropZone("content")</code> expression chooses where nested parts appear, but each nested part owns its own root and values. A parent cannot read a child’s controls, and a child cannot read its parent’s controls.</p>
+
+<p>This is invalid because the first control value and the second top-level element sit outside the part root:</p>
+
+<div markdown="1">
+
+```html
+{{ control.introduction }}
+
+<section class="callout {{ part.class }}" {{ part.attributes }}>
+    <h2>{{ text("heading") }}</h2>
+</section>
+
+<footer>Not owned by this part root</footer>
+```
+
+</div>
+
+<p>Output outside the root is not part of the element identified by <code>{{ part.attributes }}</code>, so Foundry cannot treat it as that part during canvas updates, selection or nesting. When developer validation is enabled, Foundry reports this structure as an error.</p>
 
 <div class="callout warning">
 <strong>The root ID is reserved.</strong> Do not declare <code>id</code> on the part root. Foundry supplies the site author’s optional anchor there. Descendant elements may use developer-owned IDs.</div>

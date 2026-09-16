@@ -23,6 +23,11 @@ permalink: /template-identity.html
 </div>
 
 <p>Keep a literal space between your class name and <code>{{ part.class }}</code>. Place <code>{{ part.attributes }}</code> directly on the same root element. Do not give the root an <code>id</code>; Foundry reserves it for the site author’s optional anchor.</p>
+
+<p>The root remains developer-owned markup. Its element name, developer classes, ordinary attributes, data attributes and values may all use controls. Foundry reserves only its <code>id</code> and requires the two root hooks.</p>
+
+<div class="callout warning">
+<strong>The root is a boundary, not a restriction on styling or configuration.</strong> The primary HTML must render one stable top-level element; only whitespace and HTML comments may appear outside it. Controls may configure the root or its descendants. Conditions and loops may render content inside the root, but must not conditionally replace, repeat or surround the root. A <code>dropZone()</code> or <code>childArea()</code> belongs inside the parent root; the child markup it inserts remains owned by each child part’s own root.</div>
 </section>
 <section class="reference-entry">
 <h3><code>:host</code></h3>
