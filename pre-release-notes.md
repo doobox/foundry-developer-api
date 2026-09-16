@@ -11,9 +11,9 @@ description: Highlights from Foundry preview builds distributed before public re
     <h1>Pre-release notes</h1>
     <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
     <nav class="release-jump" aria-label="Jump to a preview build">
-        <a href="#build-3">Build 3</a>
-        <a href="#build-4">Build 4</a>
         <a href="#build-5">Build 5</a>
+        <a href="#build-4">Build 4</a>
+        <a href="#build-3">Build 3</a>
     </nav>
 </header>
 
@@ -22,6 +22,73 @@ description: Highlights from Foundry preview builds distributed before public re
 </div>
 
 <div class="release-timeline">
+    <article class="release-build" id="build-5">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 5</span>
+                <h2>Selection clarity and batch editing</h2>
+            </div>
+            <time datetime="2026-09-15">15 September 2026</time>
+        </header>
+        <p class="release-summary">A focused interaction release that made complex and nested canvases easier to understand, select and edit.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Canvas chrome</h3>
+                <ul class="release-list">
+                    <li>Unified chrome state priority so editing, drop targets, selection and hover no longer compete visually.</li>
+                    <li>Kept selected labels visible after pointer exit while clearing genuine hover state when leaving the canvas.</li>
+                    <li>Improved nested and multiple-selection label ordering, giving the primary selection visual priority.</li>
+                    <li>Separated drop indicators from rendered Part styles so dragging no longer replaces a Part’s own box shadow.</li>
+                    <li>Added empty-canvas click and Escape as clear ways to remove the current selection.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Multiple-Part editing</h3>
+                <ul class="release-list">
+                    <li>Allowed multiple instances of the same Part to share one Inspector and be edited together.</li>
+                    <li>Used the last instance added to the selection as the Inspector’s visible source value.</li>
+                    <li>Applied each subsequent change across every compatible selected instance, including conditional and visibility-related settings.</li>
+                    <li>Refined canvas synchronisation after grouped edits so all affected instances update together.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-4">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 4</span>
+                <h2>World-class layout foundations</h2>
+            </div>
+            <time datetime="2026-09-15">15 September 2026</time>
+        </header>
+        <p class="release-summary">The first major pass over Foundry’s built-in layout system, with a shared Inspector language and more dependable live canvas rendering.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Built-in layout Parts</h3>
+                <ul class="release-list">
+                    <li>Added dedicated <strong>Stack</strong> and <strong>Grid</strong> Parts alongside Section, Container and Columns.</li>
+                    <li>Greatly expanded Section, Container and Columns with responsive flex, grid, alignment, sizing and spacing options.</li>
+                    <li>Standardised common Inspector groups so equivalent settings appear in predictable places across layout Parts.</li>
+                    <li>Added opt-in presentation controls and hover states where they make sense, while hiding unused settings until enabled.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Canvas fidelity</h3>
+                <ul class="release-list">
+                    <li>Fixed cases where the canvas could fall behind the current Inspector settings while browser Preview remained correct.</li>
+                    <li>Moved editing chrome inside Part bounds so developer borders remain visible.</li>
+                    <li>Improved chrome visibility over images and highly styled Parts.</li>
+                    <li>Added regression coverage for live Part updates and the built-in layout system.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
     <article class="release-build" id="build-3">
         <header class="release-build-header">
             <div>
@@ -76,71 +143,5 @@ description: Highlights from Foundry preview builds distributed before public re
         </div>
     </article>
 
-    <article class="release-build" id="build-4">
-        <header class="release-build-header">
-            <div>
-                <span class="release-build-number">Build 4</span>
-                <h2>World-class layout foundations</h2>
-            </div>
-            <time datetime="2026-09-15">15 September 2026</time>
-        </header>
-        <p class="release-summary">The first major pass over Foundry’s built-in layout system, with a shared Inspector language and more dependable live canvas rendering.</p>
-
-        <div class="release-groups">
-            <section class="release-group">
-                <h3>Built-in layout Parts</h3>
-                <ul class="release-list">
-                    <li>Added dedicated <strong>Stack</strong> and <strong>Grid</strong> Parts alongside Section, Container and Columns.</li>
-                    <li>Greatly expanded Section, Container and Columns with responsive flex, grid, alignment, sizing and spacing options.</li>
-                    <li>Standardised common Inspector groups so equivalent settings appear in predictable places across layout Parts.</li>
-                    <li>Added opt-in presentation controls and hover states where they make sense, while hiding unused settings until enabled.</li>
-                </ul>
-            </section>
-
-            <section class="release-group">
-                <h3>Canvas fidelity</h3>
-                <ul class="release-list">
-                    <li>Fixed cases where the canvas could fall behind the current Inspector settings while browser Preview remained correct.</li>
-                    <li>Moved editing chrome inside Part bounds so developer borders remain visible.</li>
-                    <li>Improved chrome visibility over images and highly styled Parts.</li>
-                    <li>Added regression coverage for live Part updates and the built-in layout system.</li>
-                </ul>
-            </section>
-        </div>
-    </article>
-
-    <article class="release-build" id="build-5">
-        <header class="release-build-header">
-            <div>
-                <span class="release-build-number">Build 5</span>
-                <h2>Selection clarity and batch editing</h2>
-            </div>
-            <time datetime="2026-09-15">15 September 2026</time>
-        </header>
-        <p class="release-summary">A focused interaction release that made complex and nested canvases easier to understand, select and edit.</p>
-
-        <div class="release-groups">
-            <section class="release-group">
-                <h3>Canvas chrome</h3>
-                <ul class="release-list">
-                    <li>Unified chrome state priority so editing, drop targets, selection and hover no longer compete visually.</li>
-                    <li>Kept selected labels visible after pointer exit while clearing genuine hover state when leaving the canvas.</li>
-                    <li>Improved nested and multiple-selection label ordering, giving the primary selection visual priority.</li>
-                    <li>Separated drop indicators from rendered Part styles so dragging no longer replaces a Part’s own box shadow.</li>
-                    <li>Added empty-canvas click and Escape as clear ways to remove the current selection.</li>
-                </ul>
-            </section>
-
-            <section class="release-group">
-                <h3>Multiple-Part editing</h3>
-                <ul class="release-list">
-                    <li>Allowed multiple instances of the same Part to share one Inspector and be edited together.</li>
-                    <li>Used the last instance added to the selection as the Inspector’s visible source value.</li>
-                    <li>Applied each subsequent change across every compatible selected instance, including conditional and visibility-related settings.</li>
-                    <li>Refined canvas synchronisation after grouped edits so all affected instances update together.</li>
-                </ul>
-            </section>
-        </div>
-    </article>
 </div>
 {% endraw %}
