@@ -42,7 +42,7 @@ description: Highlights from Foundry preview builds distributed before public re
                     <li>Added site-wide title suffix, default description and social-image fallbacks for pages that do not provide their own metadata.</li>
                     <li>Added site-logo and social-image wells with native file picking and drag-and-drop workflows.</li>
                     <li>Separated search indexing, canonical URL, sitemap and robots.txt controls from publishing configuration, with guidance when a valid public web address is required.</li>
-                    <li>Exported managed site artwork with the project and migrated earlier visible logo and favicon assets into private managed storage without removing the originals.</li>
+                    <li>Exported managed site artwork with the project while keeping source artwork private to the document package.</li>
                 </ul>
             </section>
 
@@ -52,7 +52,7 @@ description: Highlights from Foundry preview builds distributed before public re
                     <li>Added a managed web-icon generator that accepts a square source image of at least 256 pixels.</li>
                     <li>Generated and stored favicon and Apple touch-icon variants once, then reused them across previews and published output.</li>
                     <li>Kept imported source artwork and generated icon files private to the project while emitting depth-correct icon links on every exported page.</li>
-                    <li>Removed generated icon output cleanly when the source is cleared and preserved compatibility with projects that used the earlier favicon field.</li>
+                    <li>Removed generated icon output cleanly when the source is cleared.</li>
                 </ul>
             </section>
 
