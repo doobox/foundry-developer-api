@@ -33,14 +33,22 @@ font-style: {{ control.font.style }};
 
 ## Colours and shadows
 
-[Framework colour](framework-colour-control.html) selects a palette with light and dark shades and optional literal colour editing. [Shadow](shadow-control.html) selects a framework shadow with optional custom layers. Their individual pages define defaults, capabilities and template output.
+[Framework colour](framework-colour-control.html) selects a palette with light and dark shades and optional literal colour editing. [Framework shadow](framework-shadow-control.html) selects a framework shadow with optional custom layers. Their individual pages define defaults, capabilities and template output.
 
 Use [Color](colour.html) for literal colour editing without framework palettes.
+
+## Spacing
+
+[Framework padding](framework-padding-control.html), [Framework margin](framework-margin-control.html) and [Framework spacing](framework-spacing-control.html) select tokens from the framework's spacing scale — including the project's custom tokens — with an optional custom-value mode. Use [Edges](edges-control.html) for raw per-edge lengths without framework tokens.
+
+## Borders and radii
+
+[Framework border](framework-border-control.html) selects a framework border width, and [Framework radius](framework-radius-control.html) selects a corner-radius token, each with an optional custom-value mode. Use [Corners](corners-control.html) for raw per-corner lengths without framework tokens.
 
 ## Template ownership
 
 Foundry resolves framework selections against the active project framework. The part's own templates still decide which element and CSS declaration consume the result. A control does not automatically style a part.
 
-There is currently no Select extension for framework font sizes or spacing. Use explicit options for literal choices; do not declare a framework source on Select.
+Select never declares a framework source — framework values reach templates only through the dedicated controls above. Templates can also consume the framework directly through [Foundry CSS](foundry-css.html) tokens and utilities without any control at all.
 
 {% endraw %}

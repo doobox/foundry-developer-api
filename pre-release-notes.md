@@ -11,6 +11,7 @@ description: Highlights from Foundry preview builds distributed before public re
     <h1>Pre-release notes</h1>
     <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
     <nav class="release-jump" aria-label="Jump to a preview build">
+        <a href="#build-8">Build 8</a>
         <a href="#build-7">Build 7</a>
         <a href="#build-6">Build 6</a>
         <a href="#build-5">Build 5</a>
@@ -24,6 +25,54 @@ description: Highlights from Foundry preview builds distributed before public re
 </div>
 
 <div class="release-timeline">
+    <article class="release-build" id="build-8">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 8</span>
+                <h2>Foundry CSS</h2>
+            </div>
+            <time datetime="2026-09-20">20 September 2026</time>
+        </header>
+        <p class="release-summary">Every project now compiles its own build of <strong>Foundry CSS</strong> — the framework generated from the Framework editor's values — shared identically by the canvas, browser preview and published output. This build also removes the last framework-owned legacy classes and completes the framework naming sweep with <code>frameworkShadow</code>.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Foundry CSS 1</h3>
+                <ul class="release-list">
+                    <li>Published sites ship one <code>files/site.css</code> built from the project: three cascade layers (<code>foundry.tokens</code>, <code>foundry.base</code>, <code>foundry.utilities</code>) with Part and page CSS unlayered — a Part's own styles beat the framework by architecture, never by specificity fights. See the new <a href="foundry-css.html">Foundry CSS</a> reference.</li>
+                    <li>Every Framework editor value is a documented <code>--foundry-*</code> token, joined by reserved motion durations, a standard easing curve and a focus-ring outline value.</li>
+                    <li>Token-mirroring utility classes with the <code>fd-{property}-{token}</code> grammar cover spacing, gap, text sizes, colour roles, fonts, radii, borders, shadows, z-index and the container — including classes for your custom tokens, and mobile-first responsive variants such as <code>fd-md:p-lg</code> for enabled screens.</li>
+                    <li>The base layer is a token-driven reset and defaults: honours reduced-motion by zeroing the motion tokens, brand-matches native form controls through <code>accent-color</code>, consumes the focus-ring token on <code>:focus-visible</code>, balances heading wrapping, and styles plain <code>hr</code>, <code>blockquote</code> and <code>table</code> content from tokens.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Legacy classes removed</h3>
+                <ul class="release-list">
+                    <li>The framework no longer owns the <code>.foundry-container</code>, <code>.foundry-button</code>, <code>.foundry-grid</code> and <code>.foundry-heading</code> global rules; built-in parts style themselves. Parts that relied on those rules must declare their own styles.</li>
+                    <li>Framework-generated image markup now uses <code>.fd-image</code>; Part CSS targeting <code>.foundry-image</code> must be updated.</li>
+                    <li>Fixed the Container part's Max Width control being silently overpowered by the old global rule.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>frameworkShadow</h3>
+                <ul class="release-list">
+                    <li>Renamed the <code>shadow</code> control type to <code>frameworkShadow</code>, completing the framework prefix across every framework-aware control. The old name is a validation error; update existing manifests. See <a href="framework-shadow-control.html">Framework shadow</a>.</li>
+                    <li>The control now presents like the other framework controls: the framework-mode toggle beside the picker switches between framework shadows and the custom layer editor, replacing the popup's Custom entry.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Fixes</h3>
+                <ul class="release-list">
+                    <li>Button, Heading and other single-primitive parts can be deleted from the canvas with the Delete key again.</li>
+                    <li>The Foundry Framework document type is now declared as an exported type, silencing the launch-time UTI warning.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
     <article class="release-build" id="build-7">
         <header class="release-build-header">
             <div>

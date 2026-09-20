@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Shadow control · Foundry Developer
-permalink: "/shadow-control.html"
+title: Framework shadow control · Foundry Developer
+permalink: "/framework-shadow-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
-<h1>Shadow</h1>
-<p class="lede">A framework shadow picker with an optional author-editable stack of outer or inset shadow layers.</p>
+<h1>Framework shadow</h1>
+<p class="lede">A framework shadow picker with an optional author-editable stack of outer or inset shadow layers behind the framework-mode toggle.</p>
 
 
 <figure class="control-screenshot">
@@ -21,7 +21,7 @@ Add this dictionary to your part's `controls` array:
 
 ```xml
 <dict>
-    <key>type</key><string>shadow</string>
+    <key>type</key><string>frameworkShadow</string>
     <key>id</key><string>cardShadow</string>
     <key>defaults</key>
     <dict>
@@ -46,11 +46,11 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Identifies this item as a Shadow control. Always use `shadow`.
+Identifies this item as a Framework shadow control. Always use `frameworkShadow`.
 
 ```xml
 <key>type</key>
-<string>shadow</string>
+<string>frameworkShadow</string>
 ```
 
 
@@ -67,7 +67,7 @@ The unique name used to store this control and read it in templates. It must sta
 <h3 class="property-heading"><code>label</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
-Text shown beside the Shadow control in the Inspector.
+Text shown beside the Framework shadow control in the Inspector.
 
 ```xml
 <key>label</key>
@@ -147,12 +147,12 @@ Set to true to allow the selected framework shadow or custom layer stack to vary
 
 ## Shadow options
 
-These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown. Do not declare `frameworkValues` or `count`: Shadow uses the active framework automatically and edits one shadow value.
+These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown. Do not declare `frameworkValues` or `count`: Framework shadow uses the active framework automatically and edits one shadow value.
 
 <h3 class="property-heading"><code>allowsCustom</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Adds a Custom choice after the framework shadows. Selecting it reveals the editable shadow-layer stack.
+Enables custom mode. The control shows the framework-mode toggle to the picker's right; switching it off replaces the picker with the editable shadow-layer stack, exactly as the framework spacing controls switch between tokens and custom values.
 
 ```xml
 <key>allowsCustom</key>
@@ -166,7 +166,7 @@ Adds a Custom choice after the framework shadows. Selecting it reveals the edita
 
 The popup lists custom shadows from the active project framework followed by the predefined scale. Portable predefined IDs are `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` and `2xl`. Do not declare `frameworkValues`; this control loads framework shadows automatically.
 
-When `allowsCustom` is true, Custom reveals a layer editor. Each layer has horizontal and vertical offsets, blur, spread, colour, opacity and an outer or inset position. Multiple layers produce a comma-separated CSS value; no layers produce `none`.
+The framework-mode toggle beside the picker switches to a custom layer editor. Each layer has horizontal and vertical offsets, blur, spread, colour, opacity and an outer or inset position. Multiple layers produce a comma-separated CSS value; no layers produce `none`.
 
 > **Important:** Framework selections resolve through the active project framework. Custom layers store horizontal and vertical offsets, blur, spread, colour, opacity and outer or inset position together under this property ID.
 </div>
@@ -190,7 +190,7 @@ box-shadow: {{ control.cardShadow }};
         <key>id</key><string>cardShadow</string>
         <key>label</key><string>Shadow</string>
         <key>group</key><string>Content</string>
-        <key>type</key><string>shadow</string>
+        <key>type</key><string>frameworkShadow</string>
         <key>allowsCustom</key><true/>
         <key>defaults</key><dict><key>base</key><string>md</string></dict>
         <key>responsive</key><false/>

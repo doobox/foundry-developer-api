@@ -49,7 +49,7 @@ permalink: "/editable-text.html"
 
 </div>
 
-<p><code>{{ image("hero") }}</code> creates an implicit image value and a drop target in the canvas. Once an image is selected, Foundry emits an <code>img.foundry-image</code> element. Add captions, aspect-ratio wrappers and production styling in your own template and CSS.</p>
+<p><code>{{ image("hero") }}</code> creates an implicit image value and a drop target in the canvas. Once an image is selected, Foundry emits an <code>img.fd-image</code> element. Add captions, aspect-ratio wrappers and production styling in your own template and CSS.</p>
 <h2>Permanent names</h2>
 <p>Every editable macro requires a quoted developer-defined name. It must begin with a letter and may then contain letters, numbers, underscores and hyphens. Names must be unique across all editable macros and drop zones in the part and cannot duplicate a <code>controls</code> control <code>id</code>.</p>
 

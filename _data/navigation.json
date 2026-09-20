@@ -93,10 +93,6 @@
             "select-control.html"
           ],
           [
-            "Shadow",
-            "shadow-control.html"
-          ],
-          [
             "Slider",
             "slider-control.html"
           ],
@@ -135,6 +131,10 @@
           [
             "Framework radius",
             "framework-radius-control.html"
+          ],
+          [
+            "Framework shadow",
+            "framework-shadow-control.html"
           ],
           [
             "Framework spacing",
@@ -262,6 +262,10 @@
   {
     "title": "Frameworks",
     "links": [
+      [
+        "Foundry CSS",
+        "foundry-css.html"
+      ],
       [
         "Framework values",
         "framework-controls.html"

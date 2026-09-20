@@ -21,7 +21,7 @@ permalink: /template-areas.html
 <dt>
 <code>{{ image("name") }}</code>
 </dt>
-<dd>Creates an editable image area and an image drop target on the canvas. Once populated, it renders an <code>img.foundry-image</code> element.</dd>
+<dd>Creates an editable image area and an image drop target on the canvas. Once populated, it renders an <code>img.fd-image</code> element.</dd>
 <dt>
 <code>{{ dropZone("name") }}</code>
 </dt>
