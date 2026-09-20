@@ -5,15 +5,15 @@ permalink: "/control-groups.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controlGroups</p>
+<p class="eyebrow">Info.plist · controls</p>
 <h1>Reusable control groups</h1>
 <p class="lede">Add a coordinated set of controls, CSS and optional markup maintained by Foundry. Control groups are built from the same public controls, visibility expressions and template features available to developer-authored parts.</p>
 
-<p>Declare <code>controlGroups</code> beside <code>controls</code>. Their generated controls participate in responsive values, template access, validation and Inspector grouping exactly like controls declared directly by the part.</p>
+<p>Declare a Grouped control inline in the <code>controls</code> array, at the position its Inspector section should occupy among your own controls. Its generated controls participate in responsive values, template access, validation and Inspector grouping exactly like controls declared directly by the part, and its section carries its standard icon automatically.</p>
 
 ```xml
 <key>minimumAPIVersion</key><integer>1</integer>
-<key>controlGroups</key>
+<key>controls</key>
 <array>
     <dict>
         <key>type</key><string>background</string>
@@ -44,7 +44,7 @@ permalink: "/control-groups.html"
 <p>Use <code>styles</code> and <code>states</code> when a part needs only part of the Background group. Foundry creates only the selected controls, CSS and conditional markup.</p>
 
 ```xml
-<key>controlGroups</key>
+<key>controls</key>
 <array>
     <dict>
         <key>type</key><string>background</string>
@@ -132,5 +132,5 @@ permalink: "/control-groups.html"
 <p>Only values belonging to selected styles and states are generated. Generated values are responsive except <code>backgroundMode</code>, video selections and their posters. A responsive background style can reveal or hide video, but the selected video remains the same at every breakpoint.</p>
 
 <h2>Combining groups and custom controls</h2>
-<p>A part may declare ordinary <code>controls</code> and <code>controlGroups</code> together. The generated Background IDs listed above are reserved by the group, so custom control IDs must not duplicate them. Foundry validates group-generated controls as part of the complete manifest.</p>
+<p>Grouped controls sit in the same <code>controls</code> array as ordinary controls, in any order. The generated Background IDs listed above are reserved by the group, so custom control IDs must not duplicate them. Foundry validates group-generated controls as part of the complete manifest.</p>
 {% endraw %}

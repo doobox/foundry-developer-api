@@ -48,12 +48,14 @@ Motion and focus are part of the contract ahead of gaining Framework-editor cont
 
 ## Layer two: base
 
-A reset and token-driven page defaults, containing no literal values:
+A preflight-style reset and token-driven page defaults, containing no literal values:
 
-- Border-box sizing, zeroed body margin, media elements block-level and bounded, form elements inheriting fonts.
-- The body uses the page colour, text colour, body font and base type step, breaks overflowing words, and sets `accent-color` so native checkboxes, radios and progress bars follow the accent role.
+- Border-box sizing everywhere, and every element starts with `border-width: 0; border-style: solid; border-color: currentColor` — setting only a border width from Part CSS produces a visible solid border in the text colour.
+- User-agent margins never fight Part spacing controls: `h1`–`h6`, `p`, `figure`, `dl`, `dd`, `fieldset` and lists are zeroed. Lists keep their markers with a spacing-token indent (`padding-inline-start`). Spacing between Parts comes only from Part controls and utilities; Parts that emit multiple paragraphs internally own that flow spacing in their own Part CSS.
+- Media elements are block-level and bounded; form controls inherit font and colour with zeroed margins, and `::placeholder` takes the muted text role at full opacity.
+- The body uses the page colour, text colour, body font and base type step, breaks overflowing words, disables iOS text-size inflation, and sets `accent-color` so native checkboxes, radios and progress bars follow the accent role.
 - Headings use the heading font, descend the type scale from `h1` at the 4XL step to `h6` at the base step, and balance multi-line wrapping.
-- Links take the links role, `:focus-visible` applies `outline: var(--foundry-focus-ring)`, `::selection` derives from accent, and `code`/`pre` use the monospaced font.
+- Links take the links role, `:focus-visible` applies `outline: var(--foundry-focus-ring)`, `::selection` derives from accent, and `code`/`pre` use the monospaced font at `1em` so inline code never shrinks. `b`/`strong` resolve to `bolder`, and `sub`/`sup` are positioned without disturbing line height.
 - Plain content with no Part CSS still styles from tokens: `hr`, `blockquote` and `table` take spacing-token margins and borders mixed down from the text colour, with blockquote text in the muted role.
 - `.fd-image` — the class Foundry emits on `img` elements produced by image values — displays block-level at full width with automatic height. Target it from Part CSS to restyle generated images.
 
