@@ -11,8 +11,8 @@ permalink: /theme-spacing-control.html
 
 
 <figure class="control-screenshot">
-    <img src="assets/screenshots/theme-spacing-control.png" width="348" height="42" alt="Theme spacing picker labelled Gap, with SM · 1 rem selected." />
-    <figcaption>Developers supply the label; this example uses the spacing value as a gap.</figcaption>
+    <img src="assets/screenshots/theme-spacing-control.png?v=2" width="381" height="38" alt="Theme spacing picker labelled Row Gap with MD - 1.5rem selected, beside the theme/custom mode button." />
+    <figcaption>Developers supply the label; this example uses the spacing value as a row gap. The box button switches between theme and custom values.</figcaption>
 </figure>
 
 ## Quick example
@@ -71,7 +71,9 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 A theme spacing token (`3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`), `none`, or a custom length dictionary containing exactly `value` (finite, nonnegative Number) and `unit` (`px`, `rem`, `em`, `%`). Arrays, edge dictionaries, negative lengths, `auto`, and raw CSS strings such as `16px` are rejected.
 
-The picker offers the current theme’s spacing choices, including user-created theme spacing values. Portable manifest defaults use the predefined tokens above. The declared default decides the editor: a theme token shows the theme-value picker, and a custom length shows a number field with a unit menu. There is no Inspector switch between the two; declare a custom default when the author should edit a raw length.
+The picker offers the current theme’s spacing choices, including user-created theme spacing values. Portable manifest defaults use the predefined tokens above.
+
+A mode button beside the control switches between theme values and a custom length, matching the four-edge spacing controls. Theme mode shows the theme-value picker; custom mode shows a number field with a unit menu. Switching to custom starts with the selected theme amount in rem; switching back to theme selects the nearest theme value.
 
 ```xml
 <key>defaults</key><dict><key>base</key><dict>
