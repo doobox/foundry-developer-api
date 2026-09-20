@@ -7,11 +7,11 @@ permalink: "/theme-padding-control.html"
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Theme padding</h1>
-<p class="lede">Four always-visible edge rows with theme spacing, custom lengths, and coordinated linking.</p>
+<p class="lede">A four-edge box editor with theme spacing, custom lengths, and coordinated linking.</p>
 
 <figure class="control-screenshot">
-    <img src="assets/screenshots/theme-padding-control.png?v=retina" width="348" height="155" alt="Foundry’s Theme padding control showing Top, Bottom, Left and Right set to XL · 3 rem, with all four edges linked." />
-    <figcaption>All four edges remain visible when linked. Blue link buttons and connecting lines show the linked state.</figcaption>
+    <img src="assets/screenshots/theme-padding-control.png?v=2" width="372" height="140" alt="Foundry’s Theme padding box editor in theme mode with Top and Bottom set to XL - 3rem, Left and Right set to MD - 1.5rem, and both pairs unlinked." />
+    <figcaption>All four edge fields stay visible in every state. Dashed lines link each pair, and the box button switches every edge between theme and custom values.</figcaption>
 </figure>
 
 ## Quick example
@@ -54,7 +54,7 @@ Unique control identifier, starting with a letter and containing letters, number
 <h3 class="property-heading"><code>label</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Padding</span></div>
 
-The control's label in the Inspector's normal left-hand label column, beside the all-edges link button. An omitted, empty or whitespace-only label displays Padding. The four fixed row labels are Top, Bottom, Left and Right.
+The control's label in the Inspector's normal left-hand label column. An omitted, empty or whitespace-only label displays Padding. The four edge fields are Top, Bottom, Left and Right.
 
 <h3 class="property-heading"><code>group</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
@@ -96,9 +96,11 @@ For different initial values:
 </dict></dict>
 ```
 
-Identical edge selections start linked; differing selections start independent. All four rows remain visible. Selecting Custom converts the selected theme amount to rem as the starting value; the return-to-theme button restores the previous theme choice.
+A shared default, or a four-edge dictionary whose edges are all equal, starts with both pairs linked; any differing edge starts the control fully unlinked. All four edge fields remain visible in every state.
 
-The header links all edges using Top. A pair button links Top–Bottom using Top or Left–Right using Left, regardless of which button was clicked. Linking the second pair promotes to all-linked using Top. Unlinking preserves values. Linking also shares the custom/theme mode and unit; it does not merely copy the displayed number.
+A single mode button switches the whole control between theme values and custom lengths; there is no per-edge Custom choice. Theme mode shows each edge as a picker of the active theme's spacing values. Custom mode shows a number field and unit menu (`px`, `rem`, `em`, `%`) for each edge. Switching to custom starts each edge with its theme amount in rem; switching back to theme selects the nearest theme value for each edge.
+
+Two link buttons connect the edges: one links Top–Bottom using Top, the other links Left–Right using Left, regardless of which end was clicked. With both pairs linked, all four edges edit together, and completing the second link copies its own pair's leading edge — Top or Left — to all four. Unlinking preserves values. Linking shares the complete selection, token or amount and unit; it does not merely copy the displayed number.
 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>

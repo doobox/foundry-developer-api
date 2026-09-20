@@ -71,7 +71,7 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 A theme spacing token (`3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`), `none`, or a custom length dictionary containing exactly `value` (finite, nonnegative Number) and `unit` (`px`, `rem`, `em`, `%`). Arrays, edge dictionaries, negative lengths, `auto`, and raw CSS strings such as `16px` are rejected.
 
-The picker offers the current theme’s spacing choices, including user-created theme spacing values. Portable manifest defaults use the predefined tokens above. Custom inputs are always available. Switching to Custom starts with the resolved theme amount in `rem`; returning to theme restores the previous choice.
+The picker offers the current theme’s spacing choices, including user-created theme spacing values. Portable manifest defaults use the predefined tokens above. The declared default decides the editor: a theme token shows the theme-value picker, and a custom length shows a number field with a unit menu. There is no Inspector switch between the two; declare a custom default when the author should edit a raw length.
 
 ```xml
 <key>defaults</key><dict><key>base</key><dict>

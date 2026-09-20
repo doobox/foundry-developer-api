@@ -7,12 +7,12 @@ permalink: /theme-border-control.html
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Theme border</h1>
-<p class="lede">Four linked width rows and an optional style picker.</p>
+<p class="lede">A four-edge width editor and an optional style picker.</p>
 
 
 <figure class="control-screenshot">
-    <img src="assets/screenshots/theme-border-control.png" width="348" height="186" alt="Linked border widths set to SM · 1 px, with the optional Style row set to Solid." />
-    <figcaption>Four linked edge widths, with the optional border-style picker enabled.</figcaption>
+    <img src="assets/screenshots/theme-border-control.png?v=2" width="377" height="202" alt="Foundry’s Theme border width editor in theme mode with all four edges set to None - 0 and both pairs unlinked, above a Style row set to Solid and a separate Colour row." />
+    <figcaption>The four-edge width editor with the optional Style row. The Colour row shown below is a separate theme colour control.</figcaption>
 </figure>
 
 ## Quick example
@@ -47,7 +47,7 @@ Use it in the part's CSS template:
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Always `themeBorder`. Width rows are always visible. The optional Style row appears below them. Does not accept `count`, `options`, `themeValues`, `minimum`, `maximum`, `step`, or `unit`.
+Always `themeBorder`. The four width fields are always visible. The optional Style row appears below them. Does not accept `count`, `options`, `themeValues`, `minimum`, `maximum`, `step`, or `unit`.
 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -57,7 +57,7 @@ Unique identifier starting with a letter and containing letters, numbers, unders
 <h3 class="property-heading"><code>label</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Border</span></div>
 
-Shown in the normal Inspector label column beside the all-edges link button. Empty labels also fall back to Border. Fixed width rows are Top, Bottom, Left and Right; the optional additional row is Style.
+Shown in the normal Inspector label column. Empty labels also fall back to Border. The four width fields are Top, Bottom, Left and Right; the optional additional row is Style.
 
 <h3 class="property-heading"><code>group</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
@@ -79,7 +79,11 @@ Contains required `width` and optional `style`. No other keys are accepted.
 
 Accepts `none`, `xs`, `sm`, `md`, `lg`, or `xl`; a custom length dictionary with exactly `value` (finite, nonnegative Number) and `unit` (`px`, `rem`, or `em`); or a dictionary containing all four `top`, `right`, `bottom`, `left` selections. Each edge accepts a token or custom length. Percentages, negative lengths, `auto`, arrays and raw CSS strings are rejected.
 
-Theme tokens use the border-width scale in pixels. None outputs `0`. Identical selections start linked; differing edges start independent. Linking all uses Top; Top–Bottom uses Top; Left–Right uses Left. Linking the second pair promotes to all-linked using Top. Unlinking preserves values. Custom starts with the current theme amount in pixels; returning to theme restores the previous token.
+Theme tokens use the border-width scale in pixels. None outputs `0`. A shared default, or a four-edge dictionary whose edges are all equal, starts with both pairs linked; any differing edge starts the control fully unlinked.
+
+A single mode button switches the whole control between theme values and custom lengths; there is no per-edge Custom choice. Theme mode shows each edge as a picker of the theme's border widths. Custom mode shows a number field and unit menu (`px`, `rem`, `em`) for each edge. Switching to custom starts each edge with its theme amount in pixels; switching back to theme selects the nearest theme value for each edge.
+
+Two link buttons connect the edges: one links Top–Bottom using Top, the other links Left–Right using Left, regardless of which end was clicked. With both pairs linked, all four edges edit together, and completing the second link copies its own pair's leading edge — Top or Left — to all four. Unlinking preserves values. Linking shares the complete selection, token or amount and unit.
 
 <h3 class="property-heading"><code>defaults.base.style</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: solid</span></div>

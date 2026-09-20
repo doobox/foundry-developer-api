@@ -7,7 +7,7 @@ permalink: "/theme-radius-control.html"
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Theme radius</h1>
-<p class="lede">Four always-visible corner rows with theme radius, custom lengths, and coordinated linking.</p>
+<p class="lede">A four-corner box editor with theme radius, custom lengths, and coordinated linking.</p>
 
 
 <figure class="control-screenshot">
@@ -55,7 +55,7 @@ Unique control identifier, starting with a letter and containing letters, number
 <h3 class="property-heading"><code>label</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Radius</span></div>
 
-The control's label in the Inspector's normal left-hand label column, beside the all-corners link button. An omitted, empty or whitespace-only label displays Radius. The four fixed row labels are Top Left, Top Right, Bottom Left and Bottom Right.
+The control's label in the Inspector's normal left-hand label column. An omitted, empty or whitespace-only label displays Radius. The four corner fields are Top Left, Top Right, Bottom Left and Bottom Right.
 
 <h3 class="property-heading"><code>group</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
@@ -97,9 +97,11 @@ For different initial values:
 </dict></dict>
 ```
 
-Identical corner selections start linked; differing selections start independent. All four rows remain visible. Selecting Custom converts the selected theme amount to px as the starting value; the return-to-theme button restores the previous theme choice.
+A shared default, or a four-corner dictionary whose corners are all equal, starts with both pairs linked; any differing corner starts the control fully unlinked. All four corner fields remain visible in every state.
 
-The header links all corners using Top Left. A pair button links Top Left–Top Right using Top Left, or Bottom Left–Bottom Right using Bottom Left, regardless of which button was clicked. Linking the second pair promotes to all-linked using Top Left. Unlinking preserves values. Linking also shares the custom/theme mode and unit; it does not merely copy the displayed number.
+A single mode button switches the whole control between theme values and custom lengths; there is no per-corner Custom choice. Theme mode shows each corner as a picker of the theme's radius values. Custom mode shows a number field and unit menu (`px`, `rem`, `em`, `%`) for each corner. Switching to custom starts each corner with its theme amount in pixels; switching back to theme selects the nearest theme value for each corner.
+
+Two link buttons connect the corners: one links Top Left–Top Right using Top Left, the other links Bottom Left–Bottom Right using Bottom Left, regardless of which end was clicked. With both pairs linked, all four corners edit together, and completing the second link copies its own pair's leading corner — Top Left or Bottom Left — to all four. Unlinking preserves values. Linking shares the complete selection, token or amount and unit; it does not merely copy the displayed number.
 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>

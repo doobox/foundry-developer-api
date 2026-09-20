@@ -162,11 +162,49 @@ The initial literal colour for both appearances. It must be `#RRGGBB`, requires 
 
 Allows alpha for the literal Custom Colour choice. It does not add an opacity adjustment to palette selections.
 
+<h3 class="property-heading"><code>outputFormat</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: hex</span></div>
+
+Controls how the resolved colour is supplied to templates. Only the complete-colour formats are accepted: `hex`, `rgb`, `rgba`, `hsl`, or `hsla`, with the same output shapes as the [Colour control](colour.html). The fragment formats (`hexValue`, `rgbValues`, `rgbaValues`, `hslValues`, `hslaValues`) are rejected — a theme colour must stay a complete CSS colour so it can adapt between light and dark; use the qualified `light`/`dark` fields below for embeddable fragments.
+
 ## Return value
 
 Returns a CSS colour, not a palette ID or shade number. The canvas resolves the appearance being edited. Light-only and dark-only sites export the corresponding colour. Sites supporting both export a CSS `light-dark(light, dark)` colour, following the browser's system preference unless explicitly overridden. Custom Colour selections include their appearance-specific opacity when enabled. Use the result directly in CSS rather than treating it as a hexadecimal string.
 
 For sites supporting both appearances, a part can call `window.foundryAppearance.set('light')`, `.set('dark')`, or `.set('system')` in its browser script. The visitor's choice is remembered for that site. This interface is not installed in the editing canvas or on single-appearance sites.
+
+## Derived values
+
+A theme colour is a light/dark pair, so its derived values come in two kinds. Colour-valued outputs stay unqualified and adapt between appearances automatically, exactly like the main value. Numeric outputs are fixed numbers baked into the published file, so they are qualified with `light` or `dark` — both are always available and always truthful, whatever the site's appearance setting.
+
+Unqualified, appearance-aware:
+
+- `contrastColor` returns `#000000` or `#FFFFFF` per appearance, combined into `light-dark(…)` on sites supporting both.
+- The [colour filters](colour.html#colour-filters) — `lighten`, `darken`, `withAlpha`, and `mix` — apply to each appearance's colour independently and return one appearance-aware colour. `mix` with another theme colour mixes light with light and dark with dark.
+
+```css
+.card {
+    background: {{ control.backgroundColor }};
+    color: {{ control.backgroundColor.contrastColor }};
+    border-color: {{ control.backgroundColor | darken(20) }};
+}
+```
+
+Qualified with `light` or `dark`:
+
+- `red`, `green` and `blue` return numbers from 0 through 255; `alpha` returns 0 through 1; `hue` returns degrees; `saturation` and `lightness` return percentages as numbers.
+- `relativeLuminance`, `contrastColor`, `contrastRatioWithBlack` and `contrastRatioWithWhite` return that appearance's accessibility values.
+- `hexValue`, `rgbValues`, `rgbaValues`, `hslValues` and `hslaValues` return embeddable fragments.
+- The colour filters also chain from a qualified colour, returning that one appearance's result.
+
+```css
+:root {
+    --brand-rgb: {{ control.backgroundColor.light.rgbValues }};
+    --brand-rgb-dark: {{ control.backgroundColor.dark.rgbValues }};
+}
+```
+
+Qualified numbers never change with the site's appearance setting: `light.red` always means "the red channel of the light selection", including while the canvas shows dark. Numeric values are usable in template expressions.
 
 ## Complete example
 
