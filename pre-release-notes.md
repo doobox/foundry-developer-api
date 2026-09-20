@@ -11,6 +11,7 @@ description: Highlights from Foundry preview builds distributed before public re
     <h1>Pre-release notes</h1>
     <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
     <nav class="release-jump" aria-label="Jump to a preview build">
+        <a href="#build-7">Build 7</a>
         <a href="#build-6">Build 6</a>
         <a href="#build-5">Build 5</a>
         <a href="#build-4">Build 4</a>
@@ -23,6 +24,66 @@ description: Highlights from Foundry preview builds distributed before public re
 </div>
 
 <div class="release-timeline">
+    <article class="release-build" id="build-7">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 7</span>
+                <h2>Frameworks, box-model editing and manual responsive pins</h2>
+            </div>
+            <time datetime="2026-09-20">20 September 2026</time>
+        </header>
+        <p class="release-summary">A breaking platform release: frameworks replace themes across the app, the Part API and every file format, alongside redesigned four-edge editors, generic length controls, richer framework colours and a new manual model for responsive overrides.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Themes are now frameworks</h3>
+                <ul class="release-list">
+                    <li>Renamed themes to <strong>frameworks</strong> throughout the app, the documentation and the Part API — they are complete design systems, and the shippingbox symbol now represents them everywhere.</li>
+                    <li>Renamed the manifest control types: <code>frameworkColor</code>, <code>frameworkPadding</code>, <code>frameworkMargin</code>, <code>frameworkBorder</code>, <code>frameworkRadius</code>, <code>frameworkSpacing</code> and <code>frameworkFont</code>, plus the <code>frameworkValues</code> key. The old <code>theme*</code> names are validation errors; update existing manifests.</li>
+                    <li>Renamed framework bundles to <code>.foundryframework</code>. Earlier projects and <code>.foundrytheme</code> bundles do not open in this build; recreate test content.</li>
+                    <li>Added a z-index token scale to frameworks.</li>
+                    <li>Moved this documentation to framework-named pages; earlier theme-named links no longer resolve.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Manifest controls</h3>
+                <ul class="release-list">
+                    <li>Grouped controls are now declared inline in the <code>controls</code> array at the position you want them, in exactly the author's order. The separate <code>controlGroups</code> key has been removed and no longer validates.</li>
+                    <li>Added the generic <strong>Edges</strong> and <strong>Corners</strong> controls: the four-length box editors with raw values only — your declared <code>units</code>, an optional <code>linked</code> starting state, and no framework values or mode button.</li>
+                    <li>Extended <code>frameworkColor</code> with derived values: appearance-aware <code>contrastColor</code>, the colour filters, an <code>outputFormat</code> accepting the complete-colour formats, and per-appearance channels, accessibility values and fragment formats behind <code>light</code>/<code>dark</code> qualification.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Inspector editing</h3>
+                <ul class="release-list">
+                    <li>Replaced the four-row spacing editors with box-model controls: padding, margin and border widths place each edge field around linked pair lines, and radius places each corner in a two-by-two grid joined by a single all-or-none link ring.</li>
+                    <li>Replaced the per-edge Custom picker item with one shippingbox mode button that switches every edge between framework values and custom lengths, carrying amounts into custom mode and snapping to the nearest framework value on the way back. The single framework spacing control gained the same button.</li>
+                    <li>Framework value pickers now label options as token and amount, such as <code>SM - 1rem</code>.</li>
+                    <li>Restyled the Part Inspector edge-to-edge with tighter spacing and per-section symbols.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Responsive editing</h3>
+                <ul class="release-list">
+                    <li>Breakpoint overrides are now created only by clicking the blue dot, which pins the value currently showing at that breakpoint. Editing a value no longer creates overrides silently.</li>
+                    <li>An edit fills whichever pin — or the base value — governs the breakpoint being viewed, so with no pins a change applies everywhere, and pinned breakpoints hold their range until unpinned.</li>
+                    <li>Developer-declared breakpoint defaults behave as implicit pins: editing above one materialises the change at the default's breakpoint without leaking below it.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Projects and performance</h3>
+                <ul class="release-list">
+                    <li>Made project asset loading lazy, keeping large projects responsive on open.</li>
+                    <li>Fixed publishing debounce so repeated publishes no longer rebuild the full bundle unnecessarily.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
     <article class="release-build" id="build-6">
         <header class="release-build-header">
             <div>
