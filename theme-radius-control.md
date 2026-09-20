@@ -11,8 +11,8 @@ permalink: "/theme-radius-control.html"
 
 
 <figure class="control-screenshot">
-    <img src="assets/screenshots/theme-radius-control.png" width="348" height="166" alt="Four linked corner radii set to MD · 8 px." />
-    <figcaption>All four corner rows remain visible when linked.</figcaption>
+    <img src="assets/screenshots/theme-radius-control.png?v=2" width="374" height="112" alt="Foundry’s Theme radius grid editor in theme mode with all four corners set to 2XL - 24px and the link ring unlinked." />
+    <figcaption>Each corner's picker sits at its own corner, joined by the all-or-none link ring. The box button switches every corner between theme and custom values.</figcaption>
 </figure>
 
 ## Quick example
@@ -97,11 +97,11 @@ For different initial values:
 </dict></dict>
 ```
 
-A shared default, or a four-corner dictionary whose corners are all equal, starts with both pairs linked; any differing corner starts the control fully unlinked. All four corner fields remain visible in every state.
+Each corner's field sits at its own corner of a two-by-two grid. A shared default, or a four-corner dictionary whose corners are all equal, starts linked; any differing corner starts the control unlinked. All four corner fields remain visible in every state.
 
 A single mode button switches the whole control between theme values and custom lengths; there is no per-corner Custom choice. Theme mode shows each corner as a picker of the theme's radius values. Custom mode shows a number field and unit menu (`px`, `rem`, `em`, `%`) for each corner. Switching to custom starts each corner with its theme amount in pixels; switching back to theme selects the nearest theme value for each corner.
 
-Two link buttons connect the corners: one links Top Left–Top Right using Top Left, the other links Bottom Left–Bottom Right using Bottom Left, regardless of which end was clicked. With both pairs linked, all four corners edit together, and completing the second link copies its own pair's leading corner — Top Left or Bottom Left — to all four. Unlinking preserves values. Linking shares the complete selection, token or amount and unit; it does not merely copy the displayed number.
+One link joins all four corners — there is no pair linking. It is drawn as a ring of segments between adjacent fields, and clicking any segment toggles it. Linked, every corner shares one selection, and completing the link copies Top Left to all four. Unlinking preserves values and makes every corner independent. Linking shares the complete selection, token or amount and unit; it does not merely copy the displayed number.
 
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>

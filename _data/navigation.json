@@ -49,12 +49,20 @@
             "colour.html"
           ],
           [
+            "Corners",
+            "corners-control.html"
+          ],
+          [
             "Date",
             "date-control.html"
           ],
           [
             "Divider",
             "divider-control.html"
+          ],
+          [
+            "Edges",
+            "edges-control.html"
           ],
           [
             "Icon",
