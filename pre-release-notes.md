@@ -82,6 +82,7 @@ description: Highlights from Foundry preview builds distributed before public re
                 <h3>Developer reliability</h3>
                 <ul class="release-list">
                     <li>Added validation requiring a Part’s primary HTML output to have one stable top-level root when developer validation is enabled.</li>
+                    <li>Added the Inspector’s canonical String, wildcard, array-membership and empty-value predicates to template expressions, with shared matching semantics across both APIs.</li>
                     <li>Improved live-refresh boundary coverage so malformed templates are reported before they can produce unreliable canvas updates.</li>
                     <li>Expanded regression coverage for project migration, managed site artwork, generated icons, publishing URLs and package validation.</li>
                 </ul>

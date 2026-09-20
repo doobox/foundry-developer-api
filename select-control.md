@@ -178,6 +178,15 @@ Set to true to allow a different selected value at each responsive breakpoint.
 
 These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown.
 
+<h3 class="property-heading"><code>presentation</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: menu</span></div>
+
+Use <code>menu</code> for the standard popup or <code>segmented</code> for an inline segmented picker.
+
+```xml
+<key>presentation</key><string>segmented</string>
+```
+
 <h3 class="property-heading"><code>count</code></h3>
 <div class="property-meta"><span class="property-type">Integer</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
 
@@ -220,6 +229,16 @@ Lists choices supplied by the part. Each dictionary needs a value to store and a
         <string>Comfortable</string>
     </dict>
 </array>
+```
+
+Each option may include a <code>systemImage</code> String containing an SF Symbol name. Segmented controls display the symbol in place of the visible title while retaining <code>title</code> as the accessible label and help text.
+
+```xml
+<dict>
+    <key>value</key><string>image</string>
+    <key>title</key><string>Image</string>
+    <key>systemImage</key><string>photo</string>
+</dict>
 ```
 
 Select offers only the options declared here. It does not populate choices from the theme. Use a dedicated theme control for theme-aware editing.

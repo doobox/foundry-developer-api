@@ -29,12 +29,43 @@ permalink: "/visible-when.html"
 
 <p>The item is shown only while <code>layout</code> equals <code>grid</code>. String <code>"1"</code>, Number <code>1</code>, Boolean <code>true</code>, and String <code>"true"</code> are different values. Equality does not coerce types or round numbers.</p>
 
+<h2>Compound conditions</h2>
+<p>Combine conditions with <code>all</code> and <code>any</code>. Each key contains a non-empty array of complete condition dictionaries, and compound expressions may be nested. Use exactly one of <code>id</code>, <code>all</code>, or <code>any</code> in each dictionary.</p>
+
+```xml
+<key>visibleWhen</key>
+<dict>
+    <key>all</key>
+    <array>
+        <dict>
+            <key>id</key><string>state</string>
+            <key>value</key><string>hover</string>
+        </dict>
+        <dict>
+            <key>any</key>
+            <array>
+                <dict><key>id</key><string>style</string><key>value</key><string>image</string></dict>
+                <dict><key>id</key><string>style</string><key>value</key><string>video</string></dict>
+            </array>
+        </dict>
+    </array>
+</dict>
+```
+
+<p>The example is visible when <code>state</code> is <code>hover</code> and <code>style</code> is either <code>image</code> or <code>video</code>.</p>
+
 <h2>visibleWhen dictionary keys</h2>
 <section class="key-reference"><h3><code>id</code></h3>
 <div class="key-meta">
-<span>String</span><strong>Required</strong>
+<span>String</span><strong>Conditionally required</strong>
 </div>
-<p>ID of another value-producing control in the same part. Append a zero-based index such as <code>titles[2]</code> to read one member of a multi-control.</p></section>
+<p>ID of another value-producing control in the same part. Required for a leaf condition and mutually exclusive with <code>all</code> and <code>any</code>. Append a zero-based index such as <code>titles[2]</code> to read one member of a multi-control.</p></section>
+<section class="key-reference"><h3><code>all</code></h3>
+<div class="key-meta"><span>Array of condition dictionaries</span><strong>Conditionally required</strong></div>
+<p>Succeeds only when every nested condition succeeds. Mutually exclusive with <code>id</code> and <code>any</code>.</p></section>
+<section class="key-reference"><h3><code>any</code></h3>
+<div class="key-meta"><span>Array of condition dictionaries</span><strong>Conditionally required</strong></div>
+<p>Succeeds when at least one nested condition succeeds. Mutually exclusive with <code>id</code> and <code>all</code>.</p></section>
 <section class="key-reference"><h3><code>operation</code></h3>
 <div class="key-meta">
 <span>String</span><strong>Optional</strong><span>Default: ==</span>
@@ -81,9 +112,6 @@ permalink: "/visible-when.html"
 <code>matchesInsensitive</code> and <code>notMatchesInsensitive</code> perform wildcard matches while ignoring case.</li>
 </ul>
 <p>Wildcard patterns use <code>*</code> for zero or more characters and <code>?</code> for exactly one character. <code>Red*</code> matches <code>Red</code> and <code>Reddish</code>; <code>R?d</code> matches <code>Red</code> and <code>Rad</code>.</p>
-<div class="note">
-<strong>Compatibility aliases:</strong> <code>doesntcontain</code> maps to <code>notContainsInsensitive</code>, <code>caseInsensitiveMatches</code> maps to <code>matchesInsensitive</code>, and <code>caseInsensitiveDoesntMatch</code> maps to <code>notMatchesInsensitive</code>.</div>
-
 <h2>Empty and array values</h2>
 <ul class="rule-list">
 <li>
@@ -141,7 +169,7 @@ permalink: "/visible-when.html"
 </ul>
 
 <h2>Validation</h2>
-<p>Foundry rejects malformed indexed references, unknown control IDs, self-references, dependency cycles, unsupported operations, missing required values, values supplied to empty checks, and indexes outside a multi-control’s declared count.</p>
+<p>Foundry rejects empty compound arrays, dictionaries that combine <code>id</code>, <code>all</code>, or <code>any</code>, malformed indexed references, unknown control IDs, self-references, dependency cycles, unsupported operations, missing required values, values supplied to empty checks, and indexes outside a multi-control’s declared count.</p>
 <div class="page-links">
 <a class="card" href="custom-controls.html"><strong>All custom controls</strong><p>Choose the inspector building part to conditionally present.</p></a><a class="card" href="control-arrays.html"><strong>Control arrays</strong><p>Declare and reference two to four related values.</p></a>
 </div>

@@ -61,6 +61,10 @@
             "icon-control.html"
           ],
           [
+            "Image",
+            "image-control.html"
+          ],
+          [
             "Link",
             "link-control.html"
           ],
@@ -133,6 +137,10 @@
             "toggle-control.html"
           ],
           [
+            "Video",
+            "video-control.html"
+          ],
+          [
             "Control arrays",
             "control-arrays.html"
           ],
@@ -143,12 +151,20 @@
         ]
       ],
       [
+        "Control groups",
+        "control-groups.html"
+      ],
+      [
         "Template declarations",
         "templates.html",
         [
           [
             "Primary HTML",
             "templates.html#primary-html"
+          ],
+          [
+            "HTML contributions",
+            "templates.html#html-contributions"
           ],
           [
             "CSS",

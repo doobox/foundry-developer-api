@@ -97,6 +97,22 @@ permalink: "/templates.html"
 
 </div>
 
+<h2 id="html-contributions">HTML contributions</h2>
+<p>Parts may add optional rendered fragments immediately inside their primary root without modifying the primary HTML file. Declare an <code>htmlContributions</code> array inside <code>templates</code>. Each entry requires an inline <code>template</code> String and a <code>placement</code> of <code>afterOpeningTag</code> or <code>beforeClosingTag</code>.</p>
+
+```xml
+<key>htmlContributions</key>
+<array>
+    <dict>
+        <key>placement</key><string>afterOpeningTag</string>
+        <key>template</key>
+        <string>{{ if control.showBadge }}&lt;span class="badge"&gt;New&lt;/span&gt;{{ endif }}</string>
+    </dict>
+</array>
+```
+
+<p>Contribution templates use the ordinary template language, including controls, conditions, paths and output-encoding filters. Empty rendered contributions insert nothing. Foundry validates their control references and template expressions with the rest of the part.</p>
+
 
 
 <div class="api-table template-table">
