@@ -165,7 +165,7 @@ description: Highlights from Foundry preview builds distributed before public re
             </div>
             <time datetime="2026-09-14">14 September 2026</time>
         </header>
-        <p class="release-summary">A broad foundation release that established the modern Part API, rebuilt the theme workflow and made large previews substantially more responsive.</p>
+        <p class="release-summary">A broad foundation release that established the modern Part API, rebuilt the framework workflow and made large previews substantially more responsive.</p>
 
         <div class="release-groups">
             <section class="release-group">
@@ -173,7 +173,7 @@ description: Highlights from Foundry preview builds distributed before public re
                 <ul class="release-list">
                     <li>Standardised the product language around <strong>Parts</strong>, including packs, the Inspector, Structure and developer documentation.</li>
                     <li>Expanded the custom-control API with colour, date, icon, link, shadow, typography, spacing, margin, padding, border and radius controls.</li>
-                    <li>Added responsive defaults and theme-aware values so controls can inherit from project themes while retaining breakpoint overrides.</li>
+                    <li>Added responsive defaults and framework-aware values so controls can inherit from project frameworks while retaining breakpoint overrides.</li>
                     <li>Added named drop zones, managed child pickers, collection loops and persistent editable text, HTML and image areas.</li>
                     <li>Added the signed Part update workflow, update discovery and in-app release availability.</li>
                 </ul>
@@ -190,11 +190,11 @@ description: Highlights from Foundry preview builds distributed before public re
             </section>
 
             <section class="release-group">
-                <h3>Themes and projects</h3>
+                <h3>Frameworks and projects</h3>
                 <ul class="release-list">
-                    <li>Redesigned the Theme Editor around persistent colour palettes, fonts, type scales, spacing, shadows, borders and radii.</li>
-                    <li>Moved responsive breakpoints to project settings so changing themes no longer changes a project’s responsive behaviour.</li>
-                    <li>Allowed built-in themes to be adjusted within a project without modifying the installed theme.</li>
+                    <li>Redesigned the Framework Editor around persistent colour palettes, fonts, type scales, spacing, shadows, borders and radii.</li>
+                    <li>Moved responsive breakpoints to project settings so changing frameworks no longer changes a project’s responsive behaviour.</li>
+                    <li>Allowed built-in frameworks to be adjusted within a project without modifying the installed framework.</li>
                     <li>Added a native welcome window, recent-project access and substantial workspace and Inspector refinements.</li>
                 </ul>
             </section>

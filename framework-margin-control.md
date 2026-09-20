@@ -1,18 +1,18 @@
 ---
 layout: default
-title: Theme margin control · Foundry Developer
-permalink: "/theme-margin-control.html"
+title: Framework margin control · Foundry Developer
+permalink: "/framework-margin-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
-<h1>Theme margin</h1>
-<p class="lede">A four-edge box editor with theme spacing, custom lengths, and coordinated linking.</p>
+<h1>Framework margin</h1>
+<p class="lede">A four-edge box editor with framework spacing, custom lengths, and coordinated linking.</p>
 
 
 <figure class="control-screenshot">
-    <img src="assets/screenshots/theme-margin-control.png?v=2" width="371" height="131" alt="Foundry’s Theme margin box editor in theme mode with all four edges set to None - 0 and both pairs unlinked." />
-    <figcaption>Top, Bottom, Left and Right fields around the pair link lines, with the box button switching between theme and custom values.</figcaption>
+    <img src="assets/screenshots/framework-margin-control.png?v=2" width="371" height="131" alt="Foundry’s Framework margin box editor in framework mode with all four edges set to None - 0 and both pairs unlinked." />
+    <figcaption>Top, Bottom, Left and Right fields around the pair link lines, with the box button switching between framework and custom values.</figcaption>
 </figure>
 
 ## Quick example
@@ -21,8 +21,8 @@ Add this dictionary to your part's `controls` array:
 
 ```xml
 <dict>
-    <key>type</key><string>themeMargin</string>
-    <key>id</key><string>themeMargin</string>
+    <key>type</key><string>frameworkMargin</string>
+    <key>id</key><string>frameworkMargin</string>
     <key>defaults</key>
     <dict>
         <key>base</key><string>sm</string>
@@ -34,7 +34,7 @@ Use it in the part's CSS template:
 
 ```css
 :instance {
-    margin: {{ control.themeMargin }};
+    margin: {{ control.frameworkMargin }};
 }
 ```
 
@@ -43,9 +43,9 @@ Use it in the part's CSS template:
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Always `themeMargin`. This is a dedicated control, not a Select extension.
+Always `frameworkMargin`. This is a dedicated control, not a Select extension.
 
-The control includes all four edges and built-in custom inputs. It does not accept `count`, `options`, `themeValues`, `allowsCustom`, `minimum`, `maximum`, `step`, or a top-level `unit`. Only the properties listed on this page are accepted.
+The control includes all four edges and built-in custom inputs. It does not accept `count`, `options`, `frameworkValues`, `allowsCustom`, `minimum`, `maximum`, `step`, or a top-level `unit`. Only the properties listed on this page are accepted.
 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -72,12 +72,12 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 Declare one value for every edge, or a dictionary containing all four keys: `top`, `right`, `bottom` and `left`. Each edge accepts either:
 
-- A portable theme spacing ID: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, or `3xl`.
+- A portable framework spacing ID: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, or `3xl`.
 - `none`, which produces zero margin.
 - `auto`, which lets CSS layout determine the margin. Its effect depends on the layout; it is not a fixed length.
 - A custom length dictionary containing exactly `value` (a finite Number) and `unit` (String: `px`, `rem`, `em`, or `%`).
 
-A single token or custom length dictionary applies to all four edges. Four-edge dictionaries must include every edge and no other keys. Negative custom lengths are supported. Arrays and raw CSS strings such as `"16px"` are not accepted. Project-specific custom theme IDs cannot be declared as portable defaults; authors select them from the active theme in the Inspector.
+A single token or custom length dictionary applies to all four edges. Four-edge dictionaries must include every edge and no other keys. Negative custom lengths are supported. Arrays and raw CSS strings such as `"16px"` are not accepted. Project-specific custom framework IDs cannot be declared as portable defaults; authors select them from the active framework in the Inspector.
 
 ```xml
 <key>defaults</key><dict><key>base</key><string>sm</string></dict>
@@ -100,7 +100,7 @@ For different initial values:
 
 A shared default, or a four-edge dictionary whose edges are all equal, starts with both pairs linked; any differing edge starts the control fully unlinked. All four edge fields remain visible in every state.
 
-A single mode button switches the whole control between theme values and custom lengths; there is no per-edge Custom choice. Theme mode shows each edge as a picker of the active theme's spacing values, plus None and Auto. Custom mode shows a number field and unit menu (`px`, `rem`, `em`, `%`) for each edge; negative amounts are accepted. Switching to custom starts each edge with its theme amount in rem; switching back to theme selects the nearest theme value for each edge.
+A single mode button switches the whole control between framework values and custom lengths; there is no per-edge Custom choice. Framework mode shows each edge as a picker of the active framework's spacing values, plus None and Auto. Custom mode shows a number field and unit menu (`px`, `rem`, `em`, `%`) for each edge; negative amounts are accepted. Switching to custom starts each edge with its framework amount in rem; switching back to framework selects the nearest framework value for each edge.
 
 Two link buttons connect the edges: one links Top–Bottom using Top, the other links Left–Right using Left, regardless of which end was clicked. With both pairs linked, all four edges edit together, and completing the second link copies its own pair's leading edge — Top or Left — to all four. Unlinking preserves values. Linking shares the complete selection, token or amount and unit; it does not merely copy the displayed number.
 
@@ -126,28 +126,28 @@ Shows the complete control when another control meets the declared condition. Se
 
 ## Return value
 
-Use `{{ control.themeMargin }}` directly to output the four CSS lengths in shorthand order: top, right, bottom, left. Qualified fields remain available:
+Use `{{ control.frameworkMargin }}` directly to output the four CSS lengths in shorthand order: top, right, bottom, left. Qualified fields remain available:
 
 - `top`, `right`, `bottom`, `left`: resolved CSS lengths.
 - `css`: the four lengths in CSS shorthand order: top, right, bottom, left.
 - `values`: an object containing the numeric amount for each edge (`top`, `right`, `bottom`, `left`).
 - `units`: an object containing the corresponding unit String for each edge.
 
-Theme choices resolve to CSS variable references, such as `var(--foundry-space-sm)`, so theme edits continue to affect the part. Custom lengths include their units. None resolves to `0`. A removed custom theme spacing choice remains marked as missing in the Inspector and resolves to `0` until replaced.
+Framework choices resolve to CSS variable references, such as `var(--foundry-space-sm)`, so framework edits continue to affect the part. Custom lengths include their units. None resolves to `0`. A removed custom framework spacing choice remains marked as missing in the Inspector and resolves to `0` until replaced.
 
 Do not append units to the CSS shorthand or individual CSS edge fields. Declaring the control does not apply margin automatically; the template chooses where to use it.
 
 For calculations or JavaScript, use `values` together with `units`:
 
 ```text
-{{ control.themeMargin.top }}        → var(--foundry-space-sm)
-{{ control.themeMargin.values.top }} → 1
-{{ control.themeMargin.units.top }}  → rem
+{{ control.frameworkMargin.top }}        → var(--foundry-space-sm)
+{{ control.frameworkMargin.values.top }} → 1
+{{ control.frameworkMargin.units.top }}  → rem
 ```
 
-This example uses the standard theme's SM spacing. Theme spacing amounts resolve from the current theme in `rem`; custom lengths retain their entered amount and unit (`px`, `rem`, `em`, or `%`). For `auto`, the edge's numeric entry is absent from `values` (direct interpolation is empty), and its unit is an empty String. Check the CSS edge field for `auto` before doing calculations. None and missing theme choices return numeric `0` and an empty unit String. A custom zero retains its chosen unit.
+This example uses the standard framework's SM spacing. Framework spacing amounts resolve from the current framework in `rem`; custom lengths retain their entered amount and unit (`px`, `rem`, `em`, or `%`). For `auto`, the edge's numeric entry is absent from `values` (direct interpolation is empty), and its unit is an empty String. Check the CSS edge field for `auto` before doing calculations. None and missing framework choices return numeric `0` and an empty unit String. A custom zero retains its chosen unit.
 
-These amounts are not browser-computed pixel measurements: `1rem`, `1px`, and `1%` are different lengths. Theme amounts reflect the theme at rendering time, not later CSS variable overrides. Keep using the CSS fields for styles that should follow CSS variables.
+These amounts are not browser-computed pixel measurements: `1rem`, `1px`, and `1%` are different lengths. Framework amounts reflect the framework at rendering time, not later CSS variable overrides. Keep using the CSS fields for styles that should follow CSS variables.
 
 ## Example
 
@@ -155,8 +155,8 @@ Declare this item inside the `controls` array in `Info.plist`:
 
 ```xml
 <dict>
-    <key>type</key><string>themeMargin</string>
-    <key>id</key><string>themeMargin</string>
+    <key>type</key><string>frameworkMargin</string>
+    <key>id</key><string>frameworkMargin</string>
     <key>label</key><string>Content margin</string>
     <key>group</key><string>Layout</string>
     <key>defaults</key><dict><key>base</key><string>sm</string></dict>
@@ -168,7 +168,7 @@ Use it in the part's CSS template:
 
 ```css
 :instance {
-    margin: {{ control.themeMargin }};
+    margin: {{ control.frameworkMargin }};
 }
 ```
 
@@ -176,10 +176,10 @@ Or apply individual edges:
 
 ```css
 :instance {
-    margin-top: {{ control.themeMargin.top }};
-    margin-right: {{ control.themeMargin.right }};
-    margin-bottom: {{ control.themeMargin.bottom }};
-    margin-left: {{ control.themeMargin.left }};
+    margin-top: {{ control.frameworkMargin.top }};
+    margin-right: {{ control.frameworkMargin.right }};
+    margin-bottom: {{ control.frameworkMargin.bottom }};
+    margin-left: {{ control.frameworkMargin.left }};
 }
 ```
 {% endraw %}

@@ -113,32 +113,32 @@
             "text-area-control.html"
           ],
           [
-            "Theme border",
-            "theme-border-control.html"
+            "Framework border",
+            "framework-border-control.html"
           ],
           [
-            "Theme colour",
-            "theme-colour-control.html"
+            "Framework colour",
+            "framework-colour-control.html"
           ],
           [
-            "Theme font",
-            "theme-font-control.html"
+            "Framework font",
+            "framework-font-control.html"
           ],
           [
-            "Theme margin",
-            "theme-margin-control.html"
+            "Framework margin",
+            "framework-margin-control.html"
           ],
           [
-            "Theme padding",
-            "theme-padding-control.html"
+            "Framework padding",
+            "framework-padding-control.html"
           ],
           [
-            "Theme radius",
-            "theme-radius-control.html"
+            "Framework radius",
+            "framework-radius-control.html"
           ],
           [
-            "Theme spacing",
-            "theme-spacing-control.html"
+            "Framework spacing",
+            "framework-spacing-control.html"
           ],
           [
             "Toggle",
@@ -260,15 +260,15 @@
     ]
   },
   {
-    "title": "Themes",
+    "title": "Frameworks",
     "links": [
       [
-        "Theme values",
-        "theme-controls.html"
+        "Framework values",
+        "framework-controls.html"
       ],
       [
-        "Theme bundles",
-        "theme-bundles.html"
+        "Framework bundles",
+        "framework-bundles.html"
       ]
     ]
   },

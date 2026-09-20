@@ -7,7 +7,7 @@ permalink: "/quick-start.html"
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Quick start</p>
 <h1>Build your first part</h1>
-<p class="lede">Start with an editable heading. Once it works, add theme controls and a place for child parts.</p>
+<p class="lede">Start with an editable heading. Once it works, add framework controls and a place for child parts.</p>
 
 <div class="hero-actions">
 <a class="button" href="assets/downloads/Callout-starter.zip" download>Download starter</a>
@@ -104,7 +104,7 @@ Find **Callout** under **Content** in the Parts panel and add it to a page. You 
 
 **That is a working part.** The next stage adds optional capabilities to these same files.
 
-## 3. Add theme controls
+## 3. Add framework controls
 
 Add the following `controls` entry inside the **outer dictionary** of `Info.plist`, immediately before its closing `</dict>`. Keep the existing identity and template declarations.
 
@@ -113,15 +113,15 @@ Add the following `controls` entry inside the **outer dictionary** of `Info.plis
 <key>controls</key>
 <array>
     <dict>
-        <key>type</key><string>themePadding</string>
-        <key>id</key><string>themePadding</string>
+        <key>type</key><string>frameworkPadding</string>
+        <key>id</key><string>frameworkPadding</string>
         <key>label</key><string>Padding</string>
         <key>defaults</key>
         <dict><key>base</key><string>lg</string></dict>
         <key>responsive</key><true/>
     </dict>
     <dict>
-        <key>type</key><string>themeColor</string>
+        <key>type</key><string>frameworkColor</string>
         <key>id</key><string>accentColor</string>
         <key>label</key><string>Accent</string>
         <key>defaults</key>
@@ -138,12 +138,12 @@ Replace `part.css` with:
 <!-- complete:part.css -->
 ```css
 :instance {
-    padding: {{ control.themePadding }};
+    padding: {{ control.frameworkPadding }};
     border-left: 4px solid {{ control.accentColor }};
 }
 ```
 
-Reload parts. Select the Callout and open its **Settings** group in the Inspector. Padding now uses the theme spacing scale; Accent uses the theme colour ribbon. Change each and check the canvas. Padding can also vary by breakpoint because its declaration enables `responsive`.
+Reload parts. Select the Callout and open its **Settings** group in the Inspector. Padding now uses the framework spacing scale; Accent uses the framework colour ribbon. Change each and check the canvas. Padding can also vary by breakpoint because its declaration enables `responsive`.
 
 Control declarations do not apply CSS automatically. The two `control` expressions above connect the Inspector values to your styles.
 

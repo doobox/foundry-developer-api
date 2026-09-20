@@ -35,8 +35,8 @@ This is the canonical, separate repository for Foundry's developer documentation
 - Button arrays use optional `selectionMode`: `multiple` by default for independent Buttons, or `single` for a segmented Picker with exactly one selection.
 - Button presentation keys `buttonText`, `buttonIcon`, `activeButtonText` and `activeButtonIcon` accept a String for one Button or an indexed String array with `count`.
 - A `single` Button array always has exactly one selection and returns one selected mapped value, not an array.
-- Keep literal `color` and theme-aware `themeColor` as separate control contracts. Never restore `themeValues` to either colour control.
-- Put a cross-key constraint beside the key that enables or governs it, such as `themeColor` prohibiting `count` or `allowsCustom` permitting a custom default.
+- Keep literal `color` and framework-aware `frameworkColor` as separate control contracts. Never restore `frameworkValues` to either colour control.
+- Put a cross-key constraint beside the key that enables or governs it, such as `frameworkColor` prohibiting `count` or `allowsCustom` permitting a custom default.
 - Document runtime behaviour only when it changes what the developer must declare or what a template receives; omit internal implementation details.
 - Do not add a separate `Validation and behaviour` summary that repeats key entries.
 - Do not add `Related documentation` sections or bottom-of-page navigation lists; the sidebar is the documentation navigation.

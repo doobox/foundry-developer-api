@@ -7,11 +7,11 @@ permalink: "/corners-control.html"
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Corners</h1>
-<p class="lede">A four-corner box editor for raw lengths with all-or-none linking. The general-purpose version of the theme radius control: your units, no theme values.</p>
+<p class="lede">A four-corner box editor for raw lengths with all-or-none linking. The general-purpose version of the framework radius control: your units, no framework values.</p>
 
 <figure class="control-screenshot">
     <img src="assets/screenshots/corners-control.png" width="376" height="128" alt="Foundry’s Corners grid editor with Top Left, Top Right, Bottom Left and Bottom Right number fields set to 0 px, unlinked." />
-    <figcaption>Each corner's field sits at its own corner, joined by the single all-or-none link ring. Every field is a number with a unit menu; there is no theme/custom mode button.</figcaption>
+    <figcaption>Each corner's field sits at its own corner, joined by the single all-or-none link ring. Every field is a number with a unit menu; there is no framework/custom mode button.</figcaption>
 </figure>
 
 ## Quick example
@@ -47,9 +47,9 @@ Use it in the part's CSS template:
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Always `corners`. The control shows the same four-corner grid editor as [Theme radius](theme-radius-control.html), but every corner is always a plain number field with a unit menu — there is no theme-value picker and no theme/custom mode button. Use the theme radius control instead when authors should choose from the theme's radius scale.
+Always `corners`. The control shows the same four-corner grid editor as [Framework radius](framework-radius-control.html), but every corner is always a plain number field with a unit menu — there is no framework-value picker and no framework/custom mode button. Use the framework radius control instead when authors should choose from the framework's radius scale.
 
-It does not accept `count`, `options`, `themeValues`, `allowsCustom`, `minimum`, `maximum`, or `step`. Only the properties listed on this page are accepted.
+It does not accept `count`, `options`, `frameworkValues`, `allowsCustom`, `minimum`, `maximum`, or `step`. Only the properties listed on this page are accepted.
 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -84,7 +84,7 @@ A dictionary containing the required `base` value and optional breakpoint values
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-One length for every corner, or a dictionary containing all four keys: `topLeft`, `topRight`, `bottomRight` and `bottomLeft`. Each length is a dictionary containing exactly `value` (a finite, nonnegative Number) and `unit` (one of the declared units). Theme tokens, `none`, `auto`, negative lengths, arrays and raw CSS strings are not accepted.
+One length for every corner, or a dictionary containing all four keys: `topLeft`, `topRight`, `bottomRight` and `bottomLeft`. Each length is a dictionary containing exactly `value` (a finite, nonnegative Number) and `unit` (one of the declared units). Framework tokens, `none`, `auto`, negative lengths, arrays and raw CSS strings are not accepted.
 
 ```xml
 <key>defaults</key><dict><key>base</key><dict>
@@ -125,7 +125,7 @@ Use `{{ control.yourID }}` directly to output the four CSS lengths in shorthand 
 - `values`: an object containing the numeric amount for each corner (`topLeft`, `topRight`, `bottomRight`, `bottomLeft`).
 - `units`: an object containing the corresponding unit String for each corner.
 
-Every length is the entered amount with its unit — there are no CSS variable references, because the value never comes from the theme. Numeric amounts are usable in template expressions and JavaScript.
+Every length is the entered amount with its unit — there are no CSS variable references, because the value never comes from the framework. Numeric amounts are usable in template expressions and JavaScript.
 
 Declaring the control does not apply anything automatically; the template chooses which CSS property receives the value.
 

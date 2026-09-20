@@ -95,7 +95,7 @@ permalink: "/control-groups.html"
 
 <h3>Static values</h3>
 <section class="key-reference"><h4><code>control.backgroundStyle</code></h4><div class="key-meta"><span>String</span><span><code>color</code>, <code>image</code>, <code>gradient</code> or <code>video</code></span></div></section>
-<section class="key-reference"><h4><code>control.backgroundColor</code></h4><div class="key-meta"><span>CSS colour</span></div><p>The resolved theme or custom colour, including its opacity.</p></section>
+<section class="key-reference"><h4><code>control.backgroundColor</code></h4><div class="key-meta"><span>CSS colour</span></div><p>The resolved framework or custom colour, including its opacity.</p></section>
 <section class="key-reference"><h4><code>control.backgroundImage</code></h4><div class="key-meta"><span>String</span></div><p>The selected managed image path.</p></section>
 <section class="key-reference"><h4><code>control.backgroundPosition</code></h4><div class="key-meta"><span>String</span></div><p>A CSS <code>background-position</code> value.</p></section>
 <section class="key-reference"><h4><code>control.backgroundSize</code></h4><div class="key-meta"><span>String</span><span><code>cover</code>, <code>contain</code> or <code>auto</code></span></div></section>

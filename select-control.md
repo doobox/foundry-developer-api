@@ -241,7 +241,7 @@ Each option may include a <code>systemImage</code> String containing an SF Symbo
 </dict>
 ```
 
-Select offers only the options declared here. It does not populate choices from the theme. Use a dedicated theme control for theme-aware editing.
+Select offers only the options declared here. It does not populate choices from the framework. Use a dedicated framework control for framework-aware editing.
 
 ## Return value
 

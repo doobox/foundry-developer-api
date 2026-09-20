@@ -164,7 +164,7 @@ permalink: "/visible-when.html"
 <li>Hiding an item preserves its stored value, and that value remains available to templates.</li>
 <li>The Inspector updates when the controlling value changes.</li>
 <li>Responsive conditions use the controlling property’s effective value at the selected breakpoint.</li>
-<li>Theme-backed controls compare their stored semantic reference rather than resolved CSS output.</li>
+<li>Framework-backed controls compare their stored semantic reference rather than resolved CSS output.</li>
 <li>A missing or unavailable runtime value safely evaluates as hidden.</li>
 </ul>
 

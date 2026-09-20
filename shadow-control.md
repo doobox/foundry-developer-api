@@ -7,7 +7,7 @@ permalink: "/shadow-control.html"
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Shadow</h1>
-<p class="lede">A theme shadow picker with an optional author-editable stack of outer or inset shadow layers.</p>
+<p class="lede">A framework shadow picker with an optional author-editable stack of outer or inset shadow layers.</p>
 
 
 <figure class="control-screenshot">
@@ -127,7 +127,7 @@ A dictionary containing the required `base` value and optional breakpoint values
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Value</span><span class="required">Required</span></div>
 
-The initially selected portable theme shadow. Use `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` or `2xl`; use `custom` only when Custom is enabled. `sm` is the standard default-sized shadow.
+The initially selected portable framework shadow. Use `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` or `2xl`; use `custom` only when Custom is enabled. `sm` is the standard default-sized shadow.
 
 ```xml
 <key>defaults</key><dict><key>base</key><string>md</string></dict>
@@ -138,7 +138,7 @@ The initially selected portable theme shadow. Use `none`, `inner`, `xs`, `sm`, `
 <h3 class="property-heading"><code>responsive</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Set to true to allow the selected theme shadow or custom layer stack to vary at each responsive breakpoint.
+Set to true to allow the selected framework shadow or custom layer stack to vary at each responsive breakpoint.
 
 ```xml
 <key>responsive</key>
@@ -147,12 +147,12 @@ Set to true to allow the selected theme shadow or custom layer stack to vary at 
 
 ## Shadow options
 
-These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown. Do not declare `themeValues` or `count`: Shadow uses the active theme automatically and edits one shadow value.
+These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown. Do not declare `frameworkValues` or `count`: Shadow uses the active framework automatically and edits one shadow value.
 
 <h3 class="property-heading"><code>allowsCustom</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Adds a Custom choice after the theme shadows. Selecting it reveals the editable shadow-layer stack.
+Adds a Custom choice after the framework shadows. Selecting it reveals the editable shadow-layer stack.
 
 ```xml
 <key>allowsCustom</key>
@@ -162,13 +162,13 @@ Adds a Custom choice after the theme shadows. Selecting it reveals the editable 
 > Custom layers are author-owned. The manifest enables the editor but does not declare initial layer values; Foundry supplies the initial editable layer.
 
 <div class="guidance" markdown="1">
-<h3>Theme and custom shadows</h3>
+<h3>Framework and custom shadows</h3>
 
-The popup lists custom shadows from the active project theme followed by the predefined scale. Portable predefined IDs are `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` and `2xl`. Do not declare `themeValues`; this control loads theme shadows automatically.
+The popup lists custom shadows from the active project framework followed by the predefined scale. Portable predefined IDs are `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` and `2xl`. Do not declare `frameworkValues`; this control loads framework shadows automatically.
 
 When `allowsCustom` is true, Custom reveals a layer editor. Each layer has horizontal and vertical offsets, blur, spread, colour, opacity and an outer or inset position. Multiple layers produce a comma-separated CSS value; no layers produce `none`.
 
-> **Important:** Theme selections resolve through the active project theme. Custom layers store horizontal and vertical offsets, blur, spread, colour, opacity and outer or inset position together under this property ID.
+> **Important:** Framework selections resolve through the active project framework. Custom layers store horizontal and vertical offsets, blur, spread, colour, opacity and outer or inset position together under this property ID.
 </div>
 
 ## Return value

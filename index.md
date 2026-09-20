@@ -43,7 +43,7 @@ description: Build parts for Foundry with ordinary HTML, CSS, JavaScript, and
 <h2>Common destinations</h2>
 <div class="page-links">
     <a class="card" href="custom-controls.html"><strong>Custom controls</strong><p>Build the part Inspector with text, colour, links, icons, typography, and more.</p></a>
-    <a class="card" href="theme-controls.html"><strong>Theme-aware values</strong><p>Let compatible controls follow the active project theme.</p></a>
+    <a class="card" href="framework-controls.html"><strong>Framework-aware values</strong><p>Let compatible controls follow the active project framework.</p></a>
     <a class="card" href="parts.html"><strong>API map</strong><p>Jump directly to every implemented developer-facing topic.</p></a>
 </div>
 {% endraw %}

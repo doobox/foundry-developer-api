@@ -7,11 +7,11 @@ permalink: "/edges-control.html"
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
 <h1>Edges</h1>
-<p class="lede">A four-edge box editor for raw lengths with coordinated linking. The general-purpose version of the theme spacing controls: your units, no theme values.</p>
+<p class="lede">A four-edge box editor for raw lengths with coordinated linking. The general-purpose version of the framework spacing controls: your units, no framework values.</p>
 
 <figure class="control-screenshot">
     <img src="assets/screenshots/edges-control.png" width="380" height="140" alt="Foundry’s Edges box editor with Top, Bottom, Left and Right number fields set to 0 px and both pairs unlinked." />
-    <figcaption>Every edge is a number field with a unit menu. The pair link lines work exactly as in the theme spacing controls; there is no theme/custom mode button.</figcaption>
+    <figcaption>Every edge is a number field with a unit menu. The pair link lines work exactly as in the framework spacing controls; there is no framework/custom mode button.</figcaption>
 </figure>
 
 ## Quick example
@@ -47,9 +47,9 @@ Use it in the part's CSS template:
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Always `edges`. The control shows the same four-edge box editor as [Theme padding](theme-padding-control.html) and [Theme margin](theme-margin-control.html), but every edge is always a plain number field with a unit menu — there is no theme-value picker and no theme/custom mode button. Use a theme spacing control instead when authors should choose from the theme's spacing scale.
+Always `edges`. The control shows the same four-edge box editor as [Framework padding](framework-padding-control.html) and [Framework margin](framework-margin-control.html), but every edge is always a plain number field with a unit menu — there is no framework-value picker and no framework/custom mode button. Use a framework spacing control instead when authors should choose from the framework's spacing scale.
 
-It does not accept `count`, `options`, `themeValues`, `allowsCustom`, `minimum`, `maximum`, or `step`. Only the properties listed on this page are accepted.
+It does not accept `count`, `options`, `frameworkValues`, `allowsCustom`, `minimum`, `maximum`, or `step`. Only the properties listed on this page are accepted.
 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -88,7 +88,7 @@ A dictionary containing the required `base` value and optional breakpoint values
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 
-One length for every edge, or a dictionary containing all four keys: `top`, `right`, `bottom` and `left`. Each length is a dictionary containing exactly `value` (a finite Number; negative values are permitted) and `unit` (one of the declared units). Theme tokens, `none`, `auto`, arrays and raw CSS strings are not accepted.
+One length for every edge, or a dictionary containing all four keys: `top`, `right`, `bottom` and `left`. Each length is a dictionary containing exactly `value` (a finite Number; negative values are permitted) and `unit` (one of the declared units). Framework tokens, `none`, `auto`, arrays and raw CSS strings are not accepted.
 
 ```xml
 <key>defaults</key><dict><key>base</key><dict>
@@ -140,7 +140,7 @@ Use `{{ control.yourID }}` directly to output the four CSS lengths in shorthand 
 - `values`: an object containing the numeric amount for each edge (`top`, `right`, `bottom`, `left`).
 - `units`: an object containing the corresponding unit String for each edge.
 
-Every length is the entered amount with its unit — there are no CSS variable references, because the value never comes from the theme. Numeric amounts are usable in template expressions and JavaScript.
+Every length is the entered amount with its unit — there are no CSS variable references, because the value never comes from the framework. Numeric amounts are usable in template expressions and JavaScript.
 
 Declaring the control does not apply anything automatically; the template chooses which CSS property receives the value.
 

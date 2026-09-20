@@ -1,18 +1,18 @@
 ---
 layout: default
-title: Theme spacing control · Foundry Developer
-permalink: /theme-spacing-control.html
+title: Framework spacing control · Foundry Developer
+permalink: /framework-spacing-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
-<h1>Theme spacing</h1>
-<p class="lede">A single theme-aware spacing value with custom lengths. Label and apply it wherever a nonnegative spacing value is needed.</p>
+<h1>Framework spacing</h1>
+<p class="lede">A single framework-aware spacing value with custom lengths. Label and apply it wherever a nonnegative spacing value is needed.</p>
 
 
 <figure class="control-screenshot">
-    <img src="assets/screenshots/theme-spacing-control.png?v=2" width="381" height="38" alt="Theme spacing picker labelled Row Gap with MD - 1.5rem selected, beside the theme/custom mode button." />
-    <figcaption>Developers supply the label; this example uses the spacing value as a row gap. The box button switches between theme and custom values.</figcaption>
+    <img src="assets/screenshots/framework-spacing-control.png?v=2" width="381" height="38" alt="Framework spacing picker labelled Row Gap with MD - 1.5rem selected, beside the framework/custom mode button." />
+    <figcaption>Developers supply the label; this example uses the spacing value as a row gap. The box button switches between framework and custom values.</figcaption>
 </figure>
 
 ## Quick example
@@ -21,7 +21,7 @@ Add this dictionary to your part's `controls` array:
 
 ```xml
 <dict>
-    <key>type</key><string>themeSpacing</string>
+    <key>type</key><string>frameworkSpacing</string>
     <key>id</key><string>gap</string>
     <key>defaults</key>
     <dict>
@@ -44,7 +44,7 @@ Use it in the part's CSS template:
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Always `themeSpacing`. This is a single value, without edge rows or linking. It does not accept `count`, `options`, `themeValues`, `allowsCustom`, `minimum`, `maximum`, `step`, or a top-level `unit`.
+Always `frameworkSpacing`. This is a single value, without edge rows or linking. It does not accept `count`, `options`, `frameworkValues`, `allowsCustom`, `minimum`, `maximum`, `step`, or a top-level `unit`.
 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -69,11 +69,11 @@ A dictionary containing the required `base` value and optional breakpoint values
 <h3 class="property-heading"><code>defaults.base</code></h3>
 <div class="property-meta"><span class="property-type">String or Dictionary</span><span class="required">Required</span></div>
 
-A theme spacing token (`3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`), `none`, or a custom length dictionary containing exactly `value` (finite, nonnegative Number) and `unit` (`px`, `rem`, `em`, `%`). Arrays, edge dictionaries, negative lengths, `auto`, and raw CSS strings such as `16px` are rejected.
+A framework spacing token (`3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`), `none`, or a custom length dictionary containing exactly `value` (finite, nonnegative Number) and `unit` (`px`, `rem`, `em`, `%`). Arrays, edge dictionaries, negative lengths, `auto`, and raw CSS strings such as `16px` are rejected.
 
-The picker offers the current theme’s spacing choices, including user-created theme spacing values. Portable manifest defaults use the predefined tokens above.
+The picker offers the current framework’s spacing choices, including user-created framework spacing values. Portable manifest defaults use the predefined tokens above.
 
-A mode button beside the control switches between theme values and a custom length, matching the four-edge spacing controls. Theme mode shows the theme-value picker; custom mode shows a number field with a unit menu. Switching to custom starts with the selected theme amount in rem; switching back to theme selects the nearest theme value.
+A mode button beside the control switches between framework values and a custom length, matching the four-edge spacing controls. Framework mode shows the framework-value picker; custom mode shows a number field with a unit menu. Switching to custom starts with the selected framework amount in rem; switching back to framework selects the nearest framework value.
 
 ```xml
 <key>defaults</key><dict><key>base</key><dict>
@@ -109,15 +109,15 @@ Shows the control when another control meets the condition. See [Conditional vis
 - `{{ control.gap.value }}`: numeric amount.
 - `{{ control.gap.unit }}`: corresponding unit.
 
-Theme amounts resolve in `rem`; custom amounts retain their entered unit. None and missing theme choices resolve to CSS `0`, numeric `0`, and an empty unit. A custom zero retains its chosen unit. Missing choices remain marked in the Inspector until replaced.
+Framework amounts resolve in `rem`; custom amounts retain their entered unit. None and missing framework choices resolve to CSS `0`, numeric `0`, and an empty unit. A custom zero retains its chosen unit. Missing choices remain marked in the Inspector until replaced.
 
-Do not append units to the CSS output. Numeric amounts are not browser-computed pixels: use the unit alongside the number. Theme amounts reflect the theme at render time, not subsequent CSS variable overrides.
+Do not append units to the CSS output. Numeric amounts are not browser-computed pixels: use the unit alongside the number. Framework amounts reflect the framework at render time, not subsequent CSS variable overrides.
 
 ## Example
 
 ```xml
 <dict>
-    <key>type</key><string>themeSpacing</string>
+    <key>type</key><string>frameworkSpacing</string>
     <key>id</key><string>gap</string>
     <key>label</key><string>Gap</string>
     <key>group</key><string>Layout</string>

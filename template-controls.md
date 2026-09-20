@@ -10,7 +10,7 @@ permalink: /template-controls.html
 <p class="lede">Read Inspector values and Foundry’s current site, page and output paths.</p>
 <section class="reference-entry">
 <h3><code>{{ control.&lt;id&gt; }}</code></h3>
-<p>Resolves a value declared by <code>controls</code> or a named theme control. Responsive values resolve at the breakpoint currently being rendered.</p>
+<p>Resolves a value declared by <code>controls</code> or a named framework control. Responsive values resolve at the breakpoint currently being rendered.</p>
 
 
 <div markdown="1">

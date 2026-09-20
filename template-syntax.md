@@ -11,7 +11,7 @@ permalink: /template-syntax.html
 
 <div class="api-table">
 <div class="api-row api-header"><strong>Pattern</strong><span>Example</span><span>Output</span><span>Use</span></div>
-<div class="api-row"><strong>Dotted value</strong><span><code>{{ control.themePadding }}</code></span><span>Escaped value</span><span>Read controls, package identity, page values and paths.</span></div>
+<div class="api-row"><strong>Dotted value</strong><span><code>{{ control.frameworkPadding }}</code></span><span>Escaped value</span><span>Read controls, package identity, page values and paths.</span></div>
 <div class="api-row"><strong>Asset function</strong><span><code>{{ asset("images/icon.svg") }}</code></span><span>Escaped URL</span><span>Resolve one path declared by the manifest’s <code>assets</code> array.</span></div>
 <div class="api-row"><strong>Editable function</strong><span><code>{{ text("heading") }}</code></span><span>Editable content</span><span>Place persistent text, HTML or image content.</span></div>
 <div class="api-row"><strong>Drop zone</strong><span><code>{{ dropZone("content") }}</code></span><span>Child markup</span><span>Place an ordinary area accepting any part.</span></div>

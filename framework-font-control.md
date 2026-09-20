@@ -1,17 +1,17 @@
 ---
 layout: default
-title: Theme font control · Foundry Developer
-permalink: "/theme-font-control.html"
+title: Framework font control · Foundry Developer
+permalink: "/framework-font-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Info.plist · controls</p>
-<h1>Theme font</h1>
-<p class="lede">One configurable font control with coordinated family, weight and style rows. Font browsing and previews remain in the Theme Editor.</p>
+<h1>Framework font</h1>
+<p class="lede">One configurable font control with coordinated family, weight and style rows. Font browsing and previews remain in the Framework Editor.</p>
 
 
 <figure class="control-screenshot">
-    <img src="assets/screenshots/theme-font-control.png" width="348" height="101" alt="Theme font set to Heading, with Weight 400 and Style Normal." />
+    <img src="assets/screenshots/framework-font-control.png" width="348" height="101" alt="Framework font set to Heading, with Weight 400 and Style Normal." />
     <figcaption>The optional weight and style pickers appear beneath the font choice.</figcaption>
 </figure>
 
@@ -21,7 +21,7 @@ Add this dictionary to your part's `controls` array:
 
 ```xml
 <dict>
-    <key>type</key><string>themeFont</string>
+    <key>type</key><string>frameworkFont</string>
     <key>id</key><string>font</string>
     <key>defaults</key>
     <dict>
@@ -43,7 +43,7 @@ Use it in the part's CSS template:
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
 
-Always `themeFont`. This is not a `select` extension. It does not accept `count`, `options`, `themeValues` or `allowsCustom`. Authors manage custom fonts in the Theme Editor, not inside this control.
+Always `frameworkFont`. This is not a `select` extension. It does not accept `count`, `options`, `frameworkValues` or `allowsCustom`. Authors manage custom fonts in the Framework Editor, not inside this control.
 
 <h3 class="property-heading"><code>id</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -75,7 +75,7 @@ A role string such as `heading` is shorthand for a dictionary containing only `f
 <h3 class="property-heading"><code>showsFamily</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: true</span></div>
 
-Shows the native family picker, grouped into Theme Fonts and Custom Fonts. Set false to fix the family to the declared default while exposing weight and/or style. A hidden family does not receive responsive overrides, but is still returned in the structured value. At least one of these three capabilities must be enabled.
+Shows the native family picker, grouped into Framework Fonts and Custom Fonts. Set false to fix the family to the declared default while exposing weight and/or style. A hidden family does not receive responsive overrides, but is still returned in the structured value. At least one of these three capabilities must be enabled.
 
 <h3 class="property-heading"><code>showsWeight</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
@@ -115,17 +115,17 @@ A missing family shows a warning and its family field resolves to `inherit`. Una
 
 ## Available faces
 
-Uploaded font files supply their face metadata. Google fonts configured in the Theme Editor supply their saved included faces and weight ranges, which also drive the Google stylesheet request. Both sources coordinate the Weight and Style rows automatically—no control-ID linking is needed.
+Uploaded font files supply their face metadata. Google fonts configured in the Framework Editor supply their saved included faces and weight ranges, which also drive the Google stylesheet request. Both sources coordinate the Weight and Style rows automatically—no control-ID linking is needed.
 
-Existing Google entries without saved metadata offer **Configure included styles…** in the Theme Editor. Until configured, those entries and system fonts offer standard CSS choices with availability marked unverified in help.
+Existing Google entries without saved metadata offer **Configure included styles…** in the Framework Editor. Until configured, those entries and system fonts offer standard CSS choices with availability marked unverified in help.
 
-Disabling an included face in the Theme Editor does not rewrite parts. If a selected style or weight disappears entirely, the control offers the remaining family choices so authors can recover.
+Disabling an included face in the Framework Editor does not rewrite parts. If a selected style or weight disappears entirely, the control offers the remaining family choices so authors can recover.
 
 ## Example
 
 ```xml
 <dict>
-    <key>type</key><string>themeFont</string>
+    <key>type</key><string>frameworkFont</string>
     <key>id</key><string>font</string>
     <key>label</key><string>Font</string>
     <key>group</key><string>Typography</string>
