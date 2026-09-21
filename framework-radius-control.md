@@ -99,7 +99,7 @@ For different initial values:
 
 Each corner's field sits at its own corner of a two-by-two grid. A shared default, or a four-corner dictionary whose corners are all equal, starts linked; any differing corner starts the control unlinked. All four corner fields remain visible in every state.
 
-A single mode button switches the whole control between framework values and custom lengths; there is no per-corner Custom choice. Framework mode shows each corner as a picker of the framework's radius values. Custom mode shows a number field and unit menu (`px`, `rem`, `em`, `%`) for each corner. Switching to custom starts each corner with its framework amount in pixels; switching back to framework selects the nearest framework value for each corner.
+A single mode button switches the whole control between framework values and custom lengths; there is no per-corner Custom choice. Framework mode shows each corner as a picker of the framework's radius values, including user-created radii from the active framework; portable manifest defaults use the predefined tokens only. Custom mode shows a number field and unit menu (`px`, `rem`, `em`, `%`) for each corner. Switching to custom starts each corner with its framework amount in pixels; switching back to framework selects the nearest framework value for each corner.
 
 One link joins all four corners — there is no pair linking. It is drawn as a ring of segments between adjacent fields, and clicking any segment toggles it. Linked, every corner shares one selection, and completing the link copies Top Left to all four. Unlinking preserves values and makes every corner independent. Linking shares the complete selection, token or amount and unit; it does not merely copy the displayed number.
 

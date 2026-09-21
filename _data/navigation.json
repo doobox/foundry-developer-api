@@ -121,6 +121,10 @@
             "framework-font-control.html"
           ],
           [
+            "Framework font size",
+            "framework-font-size-control.html"
+          ],
+          [
             "Framework margin",
             "framework-margin-control.html"
           ],
@@ -139,6 +143,10 @@
           [
             "Framework spacing",
             "framework-spacing-control.html"
+          ],
+          [
+            "Framework stacking order",
+            "framework-stacking-order-control.html"
           ],
           [
             "Toggle",

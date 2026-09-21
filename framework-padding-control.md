@@ -71,7 +71,7 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 Declare one value for every edge, or a dictionary containing all four keys: `top`, `right`, `bottom` and `left`. Each edge accepts either:
 
-- A portable framework spacing ID: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, or `3xl`.
+- A portable framework spacing ID: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, or `4xl`.
 - `none`, which produces zero padding.
 - A custom length dictionary containing exactly `value` (a finite, nonnegative Number) and `unit` (String: `px`, `rem`, `em`, or `%`).
 

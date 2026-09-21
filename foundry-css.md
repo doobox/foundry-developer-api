@@ -13,7 +13,7 @@ permalink: "/foundry-css.html"
 
 Every project emits one build at <code>files/site.css</code>, shared by every page; each page adds only its own part-instance styles. The same build renders in the editing canvas, browser Preview and published output, so what you author against is what visitors receive.
 
-The build's contents come entirely from the project: colour palettes, fonts, the type scale, spacing, shadows, borders, radii, z-index and the project's responsive screens. A custom spacing token you create in the Framework editor becomes a real class in your build; a disabled breakpoint generates nothing. The current version is <strong>Foundry CSS 1</strong>, stamped in a header comment at the top of the build.
+The build's contents come entirely from the project: colour palettes, fonts, font sizes, spacing, shadows, borders, radii, z-index and the project's responsive screens. A custom spacing or stacking-order token you create in the Framework editor becomes a real class in your build; custom border widths and radii become CSS variables; a disabled breakpoint generates nothing. The current version is <strong>Foundry CSS 1</strong>, stamped in a header comment at the top of the build.
 
 ## Cascade layers
 
@@ -33,7 +33,7 @@ Every Framework editor value is a custom property on <code>:root</code>. These a
 | --- | --- |
 | Colours | `--foundry-color-page`, `-surface`, `-text`, `-muted`, `-brand`, `-accent`, `-links` — appearance-aware on light-and-dark sites |
 | Fonts | `--foundry-font-body`, `-heading`, `-monospace`, plus `--foundry-font-custom-<id>` per custom font |
-| Type scale | `--foundry-font-size-<step>` and `--foundry-font-size-<step>-line-height` per step |
+| Font sizes | `--foundry-font-size-<step>` and `--foundry-font-size-<step>-line-height` per step |
 | Spacing | `--foundry-spacing-base` and `--foundry-space-<token>`, including custom tokens |
 | Shadows | `--foundry-shadow-<token>` |
 | Borders | `--foundry-border-width-<token>` and `--foundry-border-radius-<token>` |
@@ -54,7 +54,7 @@ A preflight-style reset and token-driven page defaults, containing no literal va
 - User-agent margins never fight Part spacing controls: `h1`–`h6`, `p`, `figure`, `dl`, `dd`, `fieldset` and lists are zeroed. Lists keep their markers with a spacing-token indent (`padding-inline-start`). Spacing between Parts comes only from Part controls and utilities; Parts that emit multiple paragraphs internally own that flow spacing in their own Part CSS.
 - Media elements are block-level and bounded; form controls inherit font and colour with zeroed margins, and `::placeholder` takes the muted text role at full opacity.
 - The body uses the page colour, text colour, body font and base type step, breaks overflowing words, disables iOS text-size inflation, and sets `accent-color` so native checkboxes, radios and progress bars follow the accent role.
-- Headings use the heading font, descend the type scale from `h1` at the 4XL step to `h6` at the base step, and balance multi-line wrapping.
+- Headings use the heading font, descend the font size scale from `h1` at the 4XL step to `h6` at the base step, and balance multi-line wrapping.
 - Links take the links role, `:focus-visible` applies `outline: var(--foundry-focus-ring)`, `::selection` derives from accent, and `code`/`pre` use the monospaced font at `1em` so inline code never shrinks. `b`/`strong` resolve to `bolder`, and `sub`/`sup` are positioned without disturbing line height.
 - Plain content with no Part CSS still styles from tokens: `hr`, `blockquote` and `table` take spacing-token margins and borders mixed down from the text colour, with blockquote text in the muted role.
 - `.fd-image` — the class Foundry emits on `img` elements produced by image values — displays block-level at full width with automatic height. Target it from Part CSS to restyle generated images.

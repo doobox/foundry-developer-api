@@ -178,7 +178,7 @@ Channels are numeric, so they can also be used in template expressions.
 Each colour also provides values that help choose readable foreground colours:
 
 - `relativeLuminance` returns the WCAG relative luminance from 0 through 1.
-- `contrastColor` returns `#000000` or `#FFFFFF`, whichever has the higher contrast ratio.
+- `contrastColor` returns `#FFFFFF` when white meets WCAG's 3:1 large-text contrast against the colour, and `#000000` otherwise. This matches the text colour designers choose in practice: the raw ratio comparison would pick black on saturated mid colours where white is the everyday choice.
 - `contrastRatioWithBlack` and `contrastRatioWithWhite` return the corresponding WCAG contrast ratios.
 
 ```html

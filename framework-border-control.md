@@ -81,7 +81,7 @@ Accepts `none`, `xs`, `sm`, `md`, `lg`, or `xl`; a custom length dictionary with
 
 Framework tokens use the border-width scale in pixels. None outputs `0`. A shared default, or a four-edge dictionary whose edges are all equal, starts with both pairs linked; any differing edge starts the control fully unlinked.
 
-A single mode button switches the whole control between framework values and custom lengths; there is no per-edge Custom choice. Framework mode shows each edge as a picker of the framework's border widths. Custom mode shows a number field and unit menu (`px`, `rem`, `em`) for each edge. Switching to custom starts each edge with its framework amount in pixels; switching back to framework selects the nearest framework value for each edge.
+A single mode button switches the whole control between framework values and custom lengths; there is no per-edge Custom choice. Framework mode shows each edge as a picker of the framework's border widths, including user-created border widths from the active framework; portable manifest defaults use the predefined tokens only. Custom mode shows a number field and unit menu (`px`, `rem`, `em`) for each edge. Switching to custom starts each edge with its framework amount in pixels; switching back to framework selects the nearest framework value for each edge.
 
 Two link buttons connect the edges: one links Top–Bottom using Top, the other links Left–Right using Left, regardless of which end was clicked. With both pairs linked, all four edges edit together, and completing the second link copies its own pair's leading edge — Top or Left — to all four. Unlinking preserves values. Linking shares the complete selection, token or amount and unit.
 

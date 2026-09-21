@@ -11,6 +11,7 @@ description: Highlights from Foundry preview builds distributed before public re
     <h1>Pre-release notes</h1>
     <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
     <nav class="release-jump" aria-label="Jump to a preview build">
+        <a href="#build-9">Build 9</a>
         <a href="#build-8">Build 8</a>
         <a href="#build-7">Build 7</a>
         <a href="#build-6">Build 6</a>
@@ -25,6 +26,75 @@ description: Highlights from Foundry preview builds distributed before public re
 </div>
 
 <div class="release-timeline">
+    <article class="release-build" id="build-9">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 9</span>
+                <h2>Custom framework values and text colours</h2>
+            </div>
+            <time datetime="2026-09-21">21 September 2026</time>
+        </header>
+        <p class="release-summary">Every framework scale now accepts your own custom values, the Framework editor sections share one refined row-per-value layout, editable text gains framework palette colours that follow later palette edits, and the Part API adds <code>frameworkFontSize</code> and <code>frameworkStackingOrder</code> controls.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Editable text colours</h3>
+                <ul class="release-list">
+                    <li>The text editor's colour picker is now the framework palette popover: colours are stored as palette references and resolved at render time, so palette edits recolour existing text, and light/dark appearances resolve per palette shade. Deleting a palette lets text fall back to its inherited colour without losing the reference.</li>
+                    <li>Rebuilt the text editor's toolbar along the top of the sheet with regular-size native controls and the expected shortcuts: ⌘B/I/U, ⇧⌘X for strikethrough, ⌘− and ⌘= for text size, and ⌘K for links.</li>
+                    <li>The HTML source editor no longer substitutes curly quotes or autocorrects while you type code.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Framework editor</h3>
+                <ul class="release-list">
+                    <li>Renamed Type Scale to <strong>Font Size</strong> and rebuilt it in the Fonts layout: a sidebar of custom and framework sizes with a per-size detail pane, where the size slider carries an ideal line height with it and the line-height slider overrides manually.</li>
+                    <li>Rebuilt Spacing, Border Width, Border Radius and Stacking Order as single pages with one row per value — name, slider, precise field and unit — with a Custom Values card above each framework scale for adding, renaming and deleting your own entries.</li>
+                    <li>Spacing now edits in rem, the unit the published CSS actually uses, with the pixel equivalent alongside.</li>
+                    <li>Reset Scale sits inside the card it resets, restores the source framework's saved values, never touches custom values, and disables when nothing has changed. Custom values stay editable on built-in frameworks.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Custom framework values</h3>
+                <ul class="release-list">
+                    <li>Border widths, corner radii and stacking order now accept project custom values alongside custom spacing, each emitting its own <code>--foundry-*</code> CSS variable; custom spacing and stacking values also generate <code>fd-*</code> utility classes.</li>
+                    <li>Added a <strong>4XL</strong> spacing token (8 rem / 128 px) to the predefined scale for section-level whitespace.</li>
+                    <li>Framework value pickers list your custom values in a Custom section above the framework scale.</li>
+                    <li>Deleting a custom value no longer asks for a replacement: parts still using it keep its exact size baked in as a custom length, token-only selections snap to the closest predefined token, and the whole operation is one undoable step.</li>
+                    <li>Custom values survive switching frameworks, and new entries are named <code>new</code>, <code>new1</code>, <code>new2</code>…</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Part API</h3>
+                <ul class="release-list">
+                    <li>Added the <a href="framework-font-size-control.html"><code>frameworkFontSize</code></a> control: a picker of the framework's font sizes resolving both the size variable and its paired <code>.lineHeight</code> variable.</li>
+                    <li>Added the <a href="framework-stacking-order-control.html"><code>frameworkStackingOrder</code></a> control: a picker of the framework's stacking tokens with the framework-mode toggle switching to a custom integer, matching the spacing controls.</li>
+                    <li>The built-in Paragraph and Heading parts gained an opt-in <strong>Custom Size</strong> toggle revealing a framework Size picker with its paired line height, responsive per breakpoint.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Globals</h3>
+                <ul class="release-list">
+                    <li>Added <strong>Explode Global</strong> to a global root's Structure and canvas context menus and its Inspector, permanently converting the whole instance back to ordinary parts.</li>
+                    <li>Local Override is now child-level only; an overridden child keeps its global badge in blue as <em>Global — Child — Overridden</em>, and selected global children show their own part type in the Inspector.</li>
+                    <li>Global canvas chrome is now consistently green, including a lighter green for hover and drop targets, mirroring the blue used by ordinary parts.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Fixes and workspace</h3>
+                <ul class="release-list">
+                    <li>The Templates and Globals panels support multiple selection for bulk deleting and rearranging, matching Assets.</li>
+                    <li>The derived <code>contrastColor</code> now prefers white whenever it clears the WCAG 3:1 large-text bar, so colours like the macOS system blue read as white-on-blue rather than black.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
     <article class="release-build" id="build-8">
         <header class="release-build-header">
             <div>

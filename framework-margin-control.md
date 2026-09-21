@@ -72,7 +72,7 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 Declare one value for every edge, or a dictionary containing all four keys: `top`, `right`, `bottom` and `left`. Each edge accepts either:
 
-- A portable framework spacing ID: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, or `3xl`.
+- A portable framework spacing ID: `3xs`, `2xs`, `xs`, `sm`, `md`, `lg`, `xl`, `2xl`, `3xl`, or `4xl`.
 - `none`, which produces zero margin.
 - `auto`, which lets CSS layout determine the margin. Its effect depends on the layout; it is not a fixed length.
 - A custom length dictionary containing exactly `value` (a finite Number) and `unit` (String: `px`, `rem`, `em`, or `%`).

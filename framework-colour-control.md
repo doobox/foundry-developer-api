@@ -179,7 +179,7 @@ A framework colour is a light/dark pair, so its derived values come in two kinds
 
 Unqualified, appearance-aware:
 
-- `contrastColor` returns `#000000` or `#FFFFFF` per appearance, combined into `light-dark(…)` on sites supporting both.
+- `contrastColor` returns `#FFFFFF` when white meets WCAG's 3:1 large-text contrast against that appearance's colour and `#000000` otherwise, combined into `light-dark(…)` on sites supporting both.
 - The [colour filters](colour.html#colour-filters) — `lighten`, `darken`, `withAlpha`, and `mix` — apply to each appearance's colour independently and return one appearance-aware colour. `mix` with another framework colour mixes light with light and dark with dark.
 
 ```css
