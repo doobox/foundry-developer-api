@@ -20,6 +20,7 @@ permalink: "/editable-text.html"
 </div>
 
 <p>The first quoted argument permanently names the editable value. The optional <code>default:</code> argument supplies its starting text; when omitted, Foundry uses its placeholder paragraph. Double-clicking any text primitive on the canvas opens the same rich-text editor, whether the text is a short label, a heading or a longer passage. Authors can format selected text with bold, italic, underline, strikethrough, size, colour and structured links.</p>
+<p>Text colours come from the framework's colour picker — framework roles, standard palettes and the project's custom palettes, with a shade selection. Foundry stores the palette reference, not a literal colour: the resolved value is emitted where the text renders, so palette edits recolour existing text, and sites supporting both appearances emit an adaptive <code>light-dark()</code> colour. If a referenced custom palette is later deleted, that text inherits its part's colour until recoloured.</p>
 <p>The link popover supports the same destinations as a Link control: URLs, pages, resources, anchors, new-window behaviour and custom attributes. Page and resource links remain connected to their Foundry items if the site is reorganised.</p>
 <p>Unformatted values remain plain text and are HTML-escaped. When formatting is used, Foundry stores the value in a versioned internal form and emits only the supported inline markup. Part developers do not need to change their template.</p>
 <h2>Trusted HTML</h2>

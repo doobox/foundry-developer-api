@@ -9,7 +9,7 @@ permalink: "/framework-bundles.html"
 <h1>Framework bundles</h1>
 <p class="lede">Foundry imports and exports reusable framework settings as self-contained <code>.foundryframework</code> bundles, including their preview and bundled font resources.</p>
 <p>New frameworks start from the bundled System UI defaults and require a title and supplied image. User-created and imported frameworks are editable without a developer preference; built-in frameworks are read-only. Update Framework saves edited settings into the reusable framework. Edit Framework changes only its title and artwork.</p>
-<p>Saved frameworks include only the fixed framework colour palettes: Page, Background, Surface, Text, Muted Text, Accent and Links. Custom colour palettes belong to the project and are not included in the bundle. They remain in the project when creating, updating or switching frameworks. Matching names do not override another palette. Standard colour palettes are supplied by Foundry and are not bundled.</p>
+<p>Saved frameworks include only the fixed framework colour palettes: Page, Surface, Text, Muted, Brand, Accent and Links. Custom colour palettes belong to the project and are not included in the bundle. They remain in the project when creating, updating or switching frameworks. Matching names do not override another palette. Standard colour palettes are supplied by Foundry and are not bundled.</p>
 <h2>Bundle structure</h2>
 
 <div markdown="1">

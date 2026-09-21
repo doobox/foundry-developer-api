@@ -150,7 +150,7 @@ Allows a different selection at each responsive breakpoint. Each breakpoint valu
 <h3 class="property-heading"><code>allowsCustom</code></h3>
 <div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
 
-Adds a Custom Colour choice and literal colour picker. This permits `defaults.base.palette` to be `custom`, which also requires `customColor`. It does not control access to the project's custom palettes; those are available alongside framework and standard palettes.
+Adds a shippingbox mode button on the control that switches between framework palettes and a literal colour picker, matching the framework spacing and shadow controls. This permits `defaults.base.palette` to be `custom`, which also requires `customColor`. It does not control access to the project's custom palettes; those are available alongside framework and standard palettes.
 
 <h3 class="property-heading"><code>customColor</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: #000000</span></div>
