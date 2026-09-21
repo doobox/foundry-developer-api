@@ -149,6 +149,10 @@
             "framework-stacking-order-control.html"
           ],
           [
+            "Page folder",
+            "page-folder-control.html"
+          ],
+          [
             "Toggle",
             "toggle-control.html"
           ],

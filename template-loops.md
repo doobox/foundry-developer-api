@@ -158,7 +158,8 @@ permalink: /template-loops.html
 
 <h3>Navigation collections</h3>
 <dl class="syntax-list">
-<dt><code>navigation.items</code></dt><dd>Top-level pages included in navigation, in page-tree order.</dd>
+<dt><code>navigation.items</code></dt><dd>Top-level pages and navigation folders, in Pages-panel order.</dd>
+<dt><code>navigation.folders</code></dt><dd>Every non-empty page folder as a group item, whether or not it joins the site navigation — address one by <code>id</code> or <code>slug</code> with a <code>where</code> expression to build folder-scoped menus. Pair with the <a href="page-folder-control.html">page folder control</a> so users pick the folder in the Inspector.</dd>
 <dt><code>navigation.current.children</code></dt><dd>Visible children of the current page.</dd>
 <dt><code>navigation.current.siblings</code></dt><dd>Visible pages with the same parent as the current page.</dd>
 <dt><code>navigation.ancestors</code></dt><dd>The current page’s ancestors, from the root downward.</dd>
@@ -168,6 +169,110 @@ permalink: /template-loops.html
 </dl>
 
 <p>A navigation item provides <code>id</code>, <code>title</code>, <code>href</code>, <code>slug</code>, <code>depth</code>, <code>current</code>, <code>ancestor</code>, <code>home</code>, <code>hasChildren</code> and <code>children</code>. Users control membership with the page Inspector’s <strong>Include in Navigation</strong> setting. If a page is excluded, its visible descendants are promoted one level.</p>
+
+<p>Page folders join menus by default, so navigation mirrors the Pages panel. A folder emits a group item carrying the same fields plus <code>folder</code> as <code>true</code>: its <code>href</code> is empty, <code>current</code> is always <code>false</code>, <code>ancestor</code> reports whether the current page lives inside it, and <code>children</code> holds its contents. Render group items as labels, not links. A folder opted out through its Inspector’s <strong>Include in Navigation</strong> setting promotes its contents in place, and empty groups are omitted.</p>
+
+<h3>Worked examples</h3>
+
+<p>A Pages panel using both hierarchies — Services is a page with nested pages, Company is a folder:</p>
+
+<div markdown="1">
+
+```text
+Pages panel                        navigation.items
+───────────────────────────       ─────────────────────────────────────────────
+Home                               Home            href "/"                home
+Services                           Services        href "/services/"       hasChildren
+├─ Consulting                      ├─ Consulting   href "/services/consulting/"
+└─ Training                        └─ Training     href "/services/training/"
+Company            (folder)        Company         href ""     folder     hasChildren
+├─ About                           ├─ About        href "/company/about/"
+└─ Team                            └─ Team         href "/company/team/"
+Contact                            Contact         href "/contact/"
+```
+
+</div>
+
+<p>Services is a destination — its item links to the overview page and carries its nested pages as <code>children</code>. Company is a group — <code>folder</code> is <code>true</code>, its <code>href</code> is empty, and its pages sit in <code>children</code> with URLs shaped by the folder’s slug.</p>
+
+<p>The same panel after two opt-outs — the Company folder’s <strong>Include in Navigation</strong> is off, and the Training page’s is off:</p>
+
+<div markdown="1">
+
+```text
+Pages panel                        navigation.items
+───────────────────────────       ─────────────────────────────────────────────
+Home                               Home            href "/"                home
+Services                           Services        href "/services/"       hasChildren
+├─ Consulting                      └─ Consulting   href "/services/consulting/"
+└─ Training        (excluded)      About           href "/company/about/"
+Company    (folder, excluded)      Team            href "/company/team/"
+├─ About                           Contact         href "/contact/"
+└─ Team
+Contact
+```
+
+</div>
+
+<p>Opting out changes menu placement, never URLs: About and Team promote to the top level at the folder’s position while keeping their <code>/company/…</code> paths, and Training simply disappears from menus while remaining published at <code>/services/training/</code>.</p>
+
+<h3>Build a menu from the tree</h3>
+
+<p>Nested loops turn the tree into a menu-ready list. Pages link; folders render as labels; either kind carries its <code>children</code>:</p>
+
+<div markdown="1">
+
+```html
+<ul class="menu">
+    {{ loop navigation.items as item }}
+    <li>
+        {{ if item.folder }}
+        <span>{{ item.title }}</span>
+        {{ else }}
+        <a href="{{ item.href }}"{{ if item.current }} aria-current="page"{{ endif }}>{{ item.title }}</a>
+        {{ endif }}
+        {{ if item.hasChildren }}
+        <ul>
+            {{ loop item.children as child }}
+            <li><a href="{{ child.href }}"{{ if child.current }} aria-current="page"{{ endif }}>{{ child.title }}</a></li>
+            {{ endloop }}
+        </ul>
+        {{ endif }}
+    </li>
+    {{ endloop }}
+</ul>
+```
+
+</div>
+
+<p>Rendering the first example’s site from its Home page emits:</p>
+
+<div markdown="1">
+
+```html
+<ul class="menu">
+    <li><a href="/" aria-current="page">Home</a></li>
+    <li>
+        <a href="/services/">Services</a>
+        <ul>
+            <li><a href="/services/consulting/">Consulting</a></li>
+            <li><a href="/services/training/">Training</a></li>
+        </ul>
+    </li>
+    <li>
+        <span>Company</span>
+        <ul>
+            <li><a href="/company/about/">About</a></li>
+            <li><a href="/company/team/">Team</a></li>
+        </ul>
+    </li>
+    <li><a href="/contact/">Contact</a></li>
+</ul>
+```
+
+</div>
+
+<p>Templates do not recurse, so each menu level is an explicit loop; add a third level by nesting another <code>{{ loop child.children as sub }}</code> the same way. From here it is styling and, if you want dropdown or disclosure behaviour, an instance script — the built-in Navigation part is a complete worked example of both.</p>
 
 <h3>Page and asset collections</h3>
 <dl class="syntax-list">
