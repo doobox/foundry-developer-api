@@ -31,7 +31,7 @@ Every Framework editor value is a custom property on <code>:root</code>. These a
 
 | Family | Properties |
 | --- | --- |
-| Colours | `--foundry-color-page`, `-background`, `-surface`, `-text`, `-muted-text`, `-accent`, `-links` — appearance-aware on light-and-dark sites |
+| Colours | `--foundry-color-page`, `-surface`, `-text`, `-muted`, `-brand`, `-accent`, `-links` — appearance-aware on light-and-dark sites |
 | Fonts | `--foundry-font-body`, `-heading`, `-monospace`, plus `--foundry-font-custom-<id>` per custom font |
 | Type scale | `--foundry-font-size-<step>` and `--foundry-font-size-<step>-line-height` per step |
 | Spacing | `--foundry-spacing-base` and `--foundry-space-<token>`, including custom tokens |
