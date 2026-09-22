@@ -29,6 +29,30 @@ permalink: "/visible-when.html"
 
 <p>The item is shown only while <code>layout</code> equals <code>grid</code>. String <code>"1"</code>, Number <code>1</code>, Boolean <code>true</code>, and String <code>"true"</code> are different values. Equality does not coerce types or round numbers.</p>
 
+<h2>Template value availability</h2>
+<p>Inspector visibility does not change template values by default. Add <code>valueAvailability</code> beside <code>visibleWhen</code> when a hidden control should instead be unavailable through <code>control.&lt;id&gt;</code>.</p>
+
+```xml
+<key>visibleWhen</key>
+<dict>
+    <key>id</key><string>sizeMode</string>
+    <key>value</key><string>preset</string>
+</dict>
+<key>valueAvailability</key><string>whenVisible</string>
+```
+
+<p><code>valueAvailability</code> is an optional String with a default of <code>always</code>. It accepts <code>always</code> or <code>whenVisible</code>; <code>whenVisible</code> requires <code>visibleWhen</code>. A false condition preserves the stored value but makes the primary value and its qualified derived values unavailable while templates render.</p>
+
+<p>Mutually exclusive controls can therefore contribute to one declaration without repeating their selection condition:</p>
+
+```css
+:instance {
+    font-size: {{ control.presetSize }}{{ control.customSize }};
+}
+```
+
+<p>Declare both size controls with <code>valueAvailability</code> set to <code>whenVisible</code> and complementary conditions. Ensure exactly one condition succeeds; if neither succeeds, both substitutions are empty.</p>
+
 <h2>Compound conditions</h2>
 <p>Combine conditions with <code>all</code> and <code>any</code>. Each key contains a non-empty array of complete condition dictionaries, and compound expressions may be nested. Use exactly one of <code>id</code>, <code>all</code>, or <code>any</code> in each dictionary.</p>
 
@@ -161,7 +185,7 @@ permalink: "/visible-when.html"
 <h2>Runtime behaviour</h2>
 <ul class="rule-list">
 <li>An item without <code>visibleWhen</code> is shown. A failed condition hides the complete inspector item rather than disabling it.</li>
-<li>Hiding an item preserves its stored value, and that value remains available to templates.</li>
+<li>Hiding an item preserves its stored value. The value remains available to templates unless <code>valueAvailability</code> is <code>whenVisible</code>.</li>
 <li>The Inspector updates when the controlling value changes.</li>
 <li>Responsive conditions use the controlling property’s effective value at the selected breakpoint.</li>
 <li>Framework-backed controls compare their stored semantic reference rather than resolved CSS output.</li>

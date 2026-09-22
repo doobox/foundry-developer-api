@@ -34,6 +34,24 @@ permalink: /template-conditions.html
 <p>Exactly one environment value is true: <code>canvas</code> in Foundry’s editor, <code>preview</code> when Foundry generates a site for its local preview server, or <code>published</code> for final export and publishing output. These values describe how Foundry generated the files; <code>published</code> does not attempt to detect whether the files are currently hosted on a live server.</p>
 <p>Environment conditions are available in instance-, page-, and site-scoped templates. Each <code>if</code> requires one <code>endif</code>, may contain any number of <code>elseif</code> branches, and accepts at most one final <code>else</code>.</p>
 <section class="reference-entry">
+<h3>Project breakpoints</h3>
+<p>Every template scope can inspect the project’s responsive breakpoints. Each entry provides a Boolean <code>enabled</code> value and a numeric <code>minimumWidth</code> in pixels. Available names are <code>mobile</code>, <code>small</code>, <code>medium</code>, <code>large</code>, <code>extraLarge</code>, and <code>doubleExtraLarge</code>.</p>
+
+<div markdown="1">
+
+```css
+{{ if breakpoints.medium.enabled }}
+@media (min-width: {{ breakpoints.medium.minimumWidth }}px) {
+    .card { display: grid; }
+}
+{{ endif }}
+```
+
+</div>
+
+<p><code>minimumWidth</code> is deliberately unitless so it can participate in calculations or be used by JavaScript. Add <code>px</code> when emitting a CSS media query. The mobile breakpoint normally has a minimum width of <code>0</code> and does not require a media query.</p>
+</section>
+<section class="reference-entry">
 <h3>Expression operators</h3>
 <p>Use <code>!</code> for not, <code>&amp;&amp;</code> for and, and <code>||</code> for or. Foundry does not accept word aliases such as <code>and</code>, <code>or</code> or <code>not</code>.</p>
 

@@ -29,6 +29,7 @@ permalink: /template-controls.html
 </div>
 
 <p>Instance CSS is rendered separately for every placed part. Use <code>:instance</code> when a rule contains control values so that one instance’s values cannot style another instance of the same package. Use <code>:host</code> only for shared package-wide CSS that does not vary by instance.</p>
+<p>A control with <code>valueAvailability</code> set to <code>whenVisible</code> resolves to an empty substitution while its <code>visibleWhen</code> condition is false. Its stored value is preserved. See <a href="visible-when.html">Conditional visibility</a>.</p>
 </section>
 <section class="reference-entry">
 <h3><code>{{ control.&lt;id&gt;[&lt;index&gt;] }}</code></h3>

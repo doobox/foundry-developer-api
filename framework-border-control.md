@@ -114,6 +114,11 @@ Supporting text beneath the width editor.
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
 
 Controls visibility of the whole control. See [Conditional visibility](visible-when.html). The border is not a scalar comparison source.
+<h3 class="property-heading"><code>valueAvailability</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: always</span></div>
+
+Controls when this control's value is available to templates. `always` preserves the value when the control is hidden. `whenVisible` makes `control.<id>` and its qualified derived values unavailable while `visibleWhen` is false, without discarding the stored value. `whenVisible` requires `visibleWhen`. See [Conditional visibility](visible-when.html).
+
 
 ## Return value
 

@@ -107,6 +107,11 @@ Supporting text shown beneath the picker. With `count`, use an array containing 
 
 Shows this control only when another control meets the stated condition. See [Conditional visibility](visible-when.html).
 
+<h3 class="property-heading"><code>valueAvailability</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: always</span></div>
+
+Controls when this control's value is available to templates. `always` preserves the value when the control is hidden. `whenVisible` makes `control.<id>` and its qualified derived values unavailable while `visibleWhen` is false, without discarding the stored value. `whenVisible` requires `visibleWhen`. See [Conditional visibility](visible-when.html).
+
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
 

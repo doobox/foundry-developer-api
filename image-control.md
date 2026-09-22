@@ -41,6 +41,7 @@ permalink: "/image-control.html"
 <section class="key-reference"><h3><code>responsive</code></h3><div class="key-meta"><span>Boolean</span><span>Optional</span><span>Default: false</span></div><p>A responsive image control lets each breakpoint override the selected image and its focal point. Always <code>true</code> when <code>focalPoint</code> is declared.</p></section>
 <section class="key-reference"><h3><code>tooltip</code></h3><div class="key-meta"><span>String</span><span>Optional</span></div></section>
 <section class="key-reference"><h3><code>visibleWhen</code></h3><div class="key-meta"><span>Dictionary</span><span>Optional</span></div><p>Conditionally shows the complete image row. A hidden row retains its selected value.</p></section>
+<section class="key-reference"><h3><code>valueAvailability</code></h3><div class="key-meta"><span>String</span><span>Optional</span><span>Default: always</span></div><p>Use <code>always</code> to keep this control's template value available while hidden, or <code>whenVisible</code> to make the value and its qualified derived values unavailable while <code>visibleWhen</code> is false. The stored value is preserved. <code>whenVisible</code> requires <code>visibleWhen</code>.</p></section>
 
 ## Template values
 

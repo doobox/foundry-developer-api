@@ -195,6 +195,10 @@
             "effects-control-group.html"
           ],
           [
+            "Reveal",
+            "reveal-control-group.html"
+          ],
+          [
             "Layout item",
             "layout-item-control-group.html"
           ]
