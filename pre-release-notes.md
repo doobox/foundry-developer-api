@@ -11,6 +11,7 @@ description: Highlights from Foundry preview builds distributed before public re
     <h1>Pre-release notes</h1>
     <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
     <nav class="release-jump" aria-label="Jump to a preview build">
+        <a href="#build-10">Build 10</a>
         <a href="#build-9">Build 9</a>
         <a href="#build-8">Build 8</a>
         <a href="#build-7">Build 7</a>
@@ -26,6 +27,57 @@ description: Highlights from Foundry preview builds distributed before public re
 </div>
 
 <div class="release-timeline">
+    <article class="release-build" id="build-10">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 10</span>
+                <h2>Navigation, extensible control groups and motion</h2>
+            </div>
+            <time datetime="2026-09-22">22 September 2026</time>
+        </header>
+        <p class="release-summary">Build 10 adds a complete built-in Navigation part, makes Foundry’s built-in control groups manifest-backed and directly inspectable, introduces Alpine, GSAP and ScrollTrigger resources, and adds an opt-in Reveal group for polished entrance motion.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Navigation</h3>
+                <ul class="release-list">
+                    <li>Added a built-in Navigation part with responsive desktop and mobile menus, nested page dropdowns, current-page and ancestor states, and configurable menu sources.</li>
+                    <li>Navigation follows the Pages panel’s mixed page-and-folder order. Navigation folders become labelled menu groups, while folders excluded from navigation transparently promote their included contents.</li>
+                    <li>Added the <a href="page-folder-control.html"><code>pageFolder</code></a> control for selecting a page folder as a Part value, including an optional whole-site choice.</li>
+                    <li>The Help menu now links directly to the browsable Foundry Developer documentation.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Control groups</h3>
+                <ul class="release-list">
+                    <li>Foundry’s Background, Borders, Effects, Layout Item, Sizing and Spacing groups are now defined by readable plist manifests, using the same control model available to Part developers.</li>
+                    <li>Each built-in group now has its own API reference page, with its generated controls, defaults, output values and rendering behaviour documented independently.</li>
+                    <li>Added <code>valueAvailability: whenVisible</code> for controls whose values should disappear from templates while their <code>visibleWhen</code> condition is false. This is useful when a hidden dependent value must not affect output.</li>
+                    <li>Presentation-only controls remain intentionally unavailable as <code>control.&lt;id&gt;</code> values; visibility conditions target real value-producing controls.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Libraries and Reveal</h3>
+                <ul class="release-list">
+                    <li>Part manifests can request bundled Alpine 3, GSAP 3 and GSAP ScrollTrigger resources. Foundry resolves dependencies, loads scripts in the required order and exports each requested library once.</li>
+                    <li>Added the <a href="reveal-control-group.html">Reveal control group</a> with fade, directional, scale and blur effects plus distance, duration, delay, easing, stagger, trigger position and replay settings.</li>
+                    <li>Reveal is available on the built-in content, media and layout parts, remains disabled by default, and respects the visitor’s reduced-motion preference.</li>
+                    <li>Reveal uses the standard global GSAP and ScrollTrigger APIs, so Part developers remain free to build their own timelines and interactions alongside it.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Template API</h3>
+                <ul class="release-list">
+                    <li>HTML, CSS and JavaScript templates can inspect every project breakpoint through <code>breakpoints.&lt;name&gt;.enabled</code> and the numeric <code>breakpoints.&lt;name&gt;.minimumWidth</code> value.</li>
+                    <li>Breakpoint metadata is available in instance-, page- and site-scoped templates, including canvas, preview and published rendering.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
     <article class="release-build" id="build-9">
         <header class="release-build-header">
             <div>
