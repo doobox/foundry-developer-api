@@ -172,7 +172,33 @@
       ],
       [
         "Control groups",
-        "control-groups.html"
+        "control-groups.html",
+        [
+          [
+            "Background",
+            "background-control-group.html"
+          ],
+          [
+            "Spacing",
+            "spacing-control-group.html"
+          ],
+          [
+            "Sizing",
+            "sizing-control-group.html"
+          ],
+          [
+            "Borders",
+            "borders-control-group.html"
+          ],
+          [
+            "Effects",
+            "effects-control-group.html"
+          ],
+          [
+            "Layout item",
+            "layout-item-control-group.html"
+          ]
+        ]
       ],
       [
         "Template declarations",
