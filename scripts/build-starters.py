@@ -36,10 +36,24 @@ def starter_files(source):
 
 def archive(files):
     output = io.BytesIO()
+    pack_manifest = plistlib.dumps({
+        "formatVersion": 2,
+        "id": "uk.co.example.callout-pack",
+        "title": "Callout",
+        "version": "1.0.0",
+        "minimumAPIVersion": 1,
+    }, sort_keys=False)
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as zipped:
+        root_info = zipfile.ZipInfo("Callout.foundrydevpack/Info.plist", (2026, 1, 1, 0, 0, 0))
+        root_info.create_system = 3
+        root_info.external_attr = 0o100644 << 16
+        zipped.writestr(root_info, pack_manifest)
         for name, content in sorted(files.items()):
             relative = name if name == "Info.plist" else f"Resources/{name}"
-            info = zipfile.ZipInfo(f"Callout.foundrydevpack/Contents/{relative}", (2026, 1, 1, 0, 0, 0))
+            info = zipfile.ZipInfo(
+                f"Callout.foundrydevpack/Parts/uk.co.example.callout/{relative}",
+                (2026, 1, 1, 0, 0, 0),
+            )
             info.create_system = 3
             info.external_attr = 0o100644 << 16
             zipped.writestr(info, content)
@@ -56,7 +70,7 @@ def main():
         if args.check:
             if not destination.exists() or destination.read_bytes() != expected:
                 raise SystemExit(f"{destination.name} is missing or stale. Run python3 scripts/build-starters.py")
-            print(f"Verified {destination.name}: 4 files match the tutorial")
+            print(f"Verified {destination.name}: 5 files match the tutorial")
         else:
             destination.parent.mkdir(parents=True, exist_ok=True)
             if not destination.exists() or destination.read_bytes() != expected:

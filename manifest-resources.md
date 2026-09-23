@@ -128,7 +128,7 @@ gsap.from(".feature", {
 
 <dl class="syntax-list">
 <dt><code>path</code></dt>
-<dd>Required. A safe path relative to <code>Contents/Resources</code>. It must identify an existing file or folder.</dd>
+<dd>Required. A safe path relative to the individual part's <code>Resources</code> directory. It must identify an existing file or folder.</dd>
 <dt><code>scope</code></dt>
 <dd>Optional. Accepts <code>page</code> or <code>site</code> and defaults to <code>page</code> when omitted.</dd>
 </dl>

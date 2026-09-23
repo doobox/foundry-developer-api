@@ -75,6 +75,15 @@ description: Highlights from Foundry preview builds distributed before public re
                     <li>Breakpoint metadata is available in instance-, page- and site-scoped templates, including canvas, preview and published rendering.</li>
                 </ul>
             </section>
+
+            <section class="release-group">
+                <h3>Pack format</h3>
+                <ul class="release-list">
+                    <li>Foundry packs now use one outer <code>.foundrypack</code> or <code>.foundrydevpack</code> with plain <code>Parts</code>, <code>Templates</code> and <code>Frameworks</code> directories.</li>
+                    <li>Removed recursive nested packs, collection manifests, standalone framework bundles and macOS-style <code>Contents</code> directories. This alpha build intentionally does not load the earlier format.</li>
+                    <li>Development packs are watched in place, while installed release-pack content remains read-only. Personal templates and frameworks are saved into a writable personal development pack.</li>
+                </ul>
+            </section>
         </div>
     </article>
 

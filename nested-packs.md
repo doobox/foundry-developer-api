@@ -1,53 +1,47 @@
 ---
 layout: default
-title: Collections and nested packs · Foundry Developer
+title: Pack contents · Foundry Developer
 permalink: "/nested-packs.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Package</p>
-<h1>Collections and nested packs</h1>
-<p class="lede">Ship one part, a product containing many parts, or functional packs nested to any depth. The same rules apply to built-ins and third-party packs.</p>
-
+<h1>Pack contents</h1>
+<p class="lede">Ship one part or a coordinated library of parts, templates and frameworks in the same outer pack.</p>
 
 <div markdown="1">
 
 ```text
 Acme.foundrypack/
-└── Contents/
-    ├── Info.plist                    collection = true
-    └── Resources/
-        ├── Hero.foundrypack/         collection omitted
-        └── Navigation.foundrypack/   collection omitted
-            └── Contents/
-                └── Resources/
-                    └── MenuItem.foundrypack/
+├── Info.plist
+├── Parts/
+│   ├── Hero/
+│   │   ├── Info.plist
+│   │   └── Resources/
+│   ├── Navigation/
+│   │   ├── Info.plist
+│   │   └── Resources/
+│   └── MenuItem/
+│       ├── Info.plist
+│       └── Resources/
+├── Templates/
+│   └── LandingPage/
+│       ├── Info.plist
+│       └── Resources/
+└── Frameworks/
+    └── AcmeBrand/
+        ├── Info.plist
+        └── Resources/
 ```
 
 </div>
 
+<h2>Flat typed collections</h2>
+<p>Every item is a direct child of its type directory. Relationships between parts are expressed through part identifiers—for example with Child picker <code>accepts</code>, <code>pickerItems</code>, <code>initial</code>, and <code>allowedParents</code>—not by nesting one part directory inside another.</p>
 
-<h2>Functional outer packs</h2>
-<p>The top-level pack does not have to be a collection. With <code>collection</code> omitted or set to <code>false</code>, it is a part that can render its own HTML while still containing more packs under <code>Contents/Resources</code>.</p>
 <h2>Installation behaviour</h2>
-<p>Foundry installs the selected outer bundle once. It recursively discovers valid packs without moving, renaming or flattening any child. Relative resources therefore remain stable.</p>
-<h2>Collection Info.plist</h2>
+<p>Foundry validates the outer manifest and every typed item before installing a release pack. It copies the complete outer pack into the Foundry library without flattening its contents. Development packs are loaded and watched in place.</p>
 
-
-<div markdown="1">
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<plist version="1.0">
-<dict>
-    <key>collection</key><true/>
-</dict>
-</plist>
-```
-
-</div>
-
-
-<div class="callout">
-<strong>This is the complete collection manifest.</strong> Set <code>collection</code> to <code>true</code> only when the parent pack itself has no part behaviour. Nesting does not require the key.</div>
+<h2>No collection manifest</h2>
+<p>The former <code>collection = true</code> manifest and recursively nested <code>.foundrypack</code> bundles are not supported. The outer format-version-2 manifest always identifies the distributable pack; individual part manifests live only beneath <code>Parts</code>.</p>
 {% endraw %}

@@ -23,10 +23,15 @@ class StarterTests(unittest.TestCase):
             self.assertEqual(archive, builder["archive"](files))
             with zipfile.ZipFile(io.BytesIO(archive)) as zipped:
                 self.assertIsNone(zipped.testzip())
-                self.assertEqual(len(zipped.namelist()), 4)
+                self.assertEqual(len(zipped.namelist()), 5)
+                outer = plistlib.loads(zipped.read("Callout.foundrydevpack/Info.plist"))
+                self.assertEqual(outer["formatVersion"], 2)
                 for name, data in files.items():
                     relative = name if name == "Info.plist" else f"Resources/{name}"
-                    self.assertEqual(zipped.read(f"Callout.foundrydevpack/Contents/{relative}"), data)
+                    self.assertEqual(
+                        zipped.read(f"Callout.foundrydevpack/Parts/uk.co.example.callout/{relative}"),
+                        data,
+                    )
 
     def test_missing_marker_fails(self):
         with self.assertRaises(ValueError):

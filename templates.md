@@ -11,7 +11,7 @@ permalink: "/templates.html"
 <p>Foundry does not scan the pack and guess which files are templates. Every HTML, CSS, JavaScript or PHP template the part uses must be declared explicitly in this dictionary.</p>
 
 <div class="note">
-<strong>Paths are relative to Contents/Resources.</strong> Every declared file must exist inside the part pack. Foundry determines an additional template’s type from its filename extension.</div>
+<strong>Paths are relative to the part's Resources directory.</strong> Every declared file must exist inside that individual part directory. Foundry determines an additional template’s type from its filename extension.</div>
 
 <h2 id="primary-html">Primary HTML</h2>
 <p>Every part needs one primary HTML template. Name it with the <code>html</code> key inside the <code>templates</code> dictionary. Do not also list it in <code>files</code>.</p>

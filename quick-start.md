@@ -18,21 +18,23 @@ Both downloads contain `Callout.foundrydevpack`. Unzip **one** to begin; they ar
 
 ## 1. Create the pack
 
-Use the starter download, or create these four files yourself. If Finder treats the pack as one file, right-click it and choose **Show Package Contents**.
+Use the starter download, or create these five files yourself.
 
 ```text
 Callout.foundrydevpack/
-└── Contents/
-    ├── Info.plist
-    └── Resources/
-        ├── part.html
-        ├── part.css
-        └── icon.svg
+├── Info.plist
+└── Parts/
+    └── uk.co.example.callout/
+        ├── Info.plist
+        └── Resources/
+            ├── part.html
+            ├── part.css
+            └── icon.svg
 ```
 
 ### Declare the files
 
-Save as `Contents/Info.plist`. This first version has no Inspector controls.
+The starter's root `Info.plist` declares pack format 2 and identifies the outer pack. Save the following part manifest as `Parts/uk.co.example.callout/Info.plist`. This first version has no Inspector controls.
 
 <!-- starter:Info.plist -->
 ```xml
@@ -58,7 +60,7 @@ Save as `Contents/Info.plist`. This first version has no Inspector controls.
 
 ### Add an editable heading
 
-Save as `Contents/Resources/part.html`:
+Save as `Parts/uk.co.example.callout/Resources/part.html`:
 
 <!-- starter:part.html -->
 ```html
@@ -71,7 +73,7 @@ Keep `{{ part.class }}` and `{{ part.attributes }}` on the root element: they le
 
 ### Style it
 
-Save as `Contents/Resources/part.css`:
+Save as `Parts/uk.co.example.callout/Resources/part.css`:
 
 <!-- starter:part.css -->
 ```css
@@ -86,7 +88,7 @@ Save as `Contents/Resources/part.css`:
 
 ### Give it an icon
 
-Save as `Contents/Resources/icon.svg`:
+Save as `Parts/uk.co.example.callout/Resources/icon.svg`:
 
 <!-- starter:icon.svg -->
 ```svg
