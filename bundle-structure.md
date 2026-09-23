@@ -33,12 +33,17 @@ Example.foundrypack/
 │   └── Brand/
 │       ├── Info.plist
 │       └── Resources/
-└── Assets/
-    └── stock-photos/
-        ├── Info.plist        (optional — licence and title)
-        ├── hero.jpg
-        └── badges/
-            └── badge.svg
+├── Assets/
+│   └── stock-photos/
+│       ├── Info.plist        (optional — licence and title)
+│       ├── hero.jpg
+│       └── badges/
+│           └── badge.svg
+└── Sites/
+    └── Restaurant Starter/
+        ├── site.foundry
+        ├── preview.png       (optional — chooser card artwork)
+        └── Info.plist        (optional — title and description)
 ```
 
 </div>
@@ -67,6 +72,8 @@ Example.foundrypack/
 <dd>Reusable design frameworks, including framework metadata, <code>framework.json</code>, preview artwork and bundled font assets.</dd>
 <dt>Assets</dt>
 <dd>Curated collections of importable files — photos, SVG icons, textures, fonts, video. Each direct child folder is one collection: put files straight inside it, organized into nested folders however you like, and Foundry presents that structure as-is. No manifest is required — the folder's name is its title. Add an optional <code>Info.plist</code> at the collection's root to declare a display <code>title</code>, a stable <code>id</code>, and <code>license</code>, <code>licenseURL</code> and <code>attribution</code>, which Foundry shows before anything imports. Importing always copies files into the project's own asset library — published sites never reference a pack.</dd>
+<dt>Sites</dt>
+<dd>Starter project kits. Each child folder holds one <code>.foundry</code> document plus optional <code>preview.png</code> card artwork and an optional <code>Info.plist</code> declaring a display <code>title</code> and one-line <code>description</code>. Kits appear in Foundry's Create a New Project chooser; choosing one stamps a fresh project with its own identity and factory publishing settings — the kit is never opened in place.</dd>
 <dt>Resources</dt>
 <dd>Optional resources shared by the pack as a whole. Item-specific files remain in the item's own <code>Resources</code> directory.</dd>
 </dl>

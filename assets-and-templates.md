@@ -6,8 +6,8 @@ permalink: "/assets-and-templates.html"
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Packages</p>
-<h1>Ship assets and templates</h1>
-<p class="lede">A pack can carry more than parts. Asset collections are plain folders of files you assemble in Finder; templates are page compositions you author in Foundry and arrange into folders. Both install with the pack and import as copies — projects never reference a pack in place.</p>
+<h1>Ship assets, templates &amp; site kits</h1>
+<p class="lede">A pack can carry more than parts. Asset collections are plain folders of files you assemble in Finder; templates are page compositions you author in Foundry and arrange into folders; site kits are complete starter projects. Everything installs with the pack and imports as copies — projects never reference a pack in place.</p>
 
 <h2>Asset collections</h2>
 <p>Every direct child folder of <code>Assets/</code> is one collection. Put files straight inside it and organize them into nested folders however you like — Foundry presents that structure as-is in the Assets panel. No manifest is required; the folder's name is the collection's title.</p>
@@ -70,5 +70,23 @@ Acme.foundrypack/
 
 <p>A pack may ship only templates — no parts at all. Templates that use custom parts should ship those parts in the same pack, so compositions never land with missing pieces.</p>
 
-<div class="note"><strong>Different kind of template.</strong> This page covers reusable page-content templates. A part's HTML source files are also called templates — those are documented under <a href="templates.html">part templates</a>.</div>
+<h2>Site kits</h2>
+<p>A kit is a complete starter project. Save a <code>.foundry</code> document, make a folder for it under <code>Sites/</code>, and it appears as a card in Foundry's Create a New Project chooser — kits from open development packs group under Development so you can test the real flow before shipping.</p>
+
+<div markdown="1">
+
+```text
+Acme.foundrypack/
+└── Sites/
+    └── Restaurant Starter/
+        ├── site.foundry
+        ├── preview.png       (optional — 16:10 card artwork)
+        └── Info.plist        (optional)
+```
+
+</div>
+
+<p>The optional <code>Info.plist</code> declares a display <code>title</code> (defaults to the folder name) and a one-line <code>description</code> shown under the card. When someone creates a project from your kit, Foundry stamps a fresh copy: a new site identity, factory publishing settings — your host details never travel — and everything else exactly as you saved it. Ship any custom parts the kit's pages use in the same pack.</p>
+
+<div class="note"><strong>Different kind of template.</strong> This page covers reusable page-content templates and starter kits. A part's HTML source files are also called templates — those are documented under <a href="templates.html">part templates</a>.</div>
 {% endraw %}
