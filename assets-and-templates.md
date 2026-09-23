@@ -42,6 +42,24 @@ Acme.foundrypack/
 <dt>attribution</dt>
 <dd>Credit line displayed alongside the licence.</dd>
 </dl>
+
+<div markdown="1">
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>title</key><string>Stock Photos</string>
+    <key>license</key><string>CC0 1.0</string>
+    <key>licenseURL</key><string>https://creativecommons.org/publicdomain/zero/1.0/</string>
+    <key>attribution</key><string>Photos by Example Studio</string>
+</dict>
+</plist>
+```
+
+</div>
+
 <p>The manifest never lists as a file, and the name <code>Info.plist</code> is reserved at the collection root. Hidden files such as <code>.DS_Store</code> never ship.</p>
 
 <h3>How users see collections</h3>
@@ -86,7 +104,34 @@ Acme.foundrypack/
 
 </div>
 
-<p>The optional <code>Info.plist</code> declares a display <code>title</code> (defaults to the folder name) and a one-line <code>description</code> shown under the card. When someone creates a project from your kit, Foundry stamps a fresh copy: a new site identity, factory publishing settings — your host details never travel — and everything else exactly as you saved it. Ship any custom parts the kit's pages use in the same pack.</p>
+<h3>The optional kit Info.plist</h3>
+<p>Both keys are optional; a bare folder with a document is a complete kit.</p>
+<dl>
+<dt>title</dt>
+<dd>Display name on the chooser card, and the new project's initial site name. Defaults to the folder name.</dd>
+<dt>description</dt>
+<dd>One line shown under the card title — your sales pitch, e.g. <em>High-impact website for restaurants</em>. Without it the card shows the pack's title.</dd>
+</dl>
+
+<div markdown="1">
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>title</key><string>Restaurant Starter</string>
+    <key>description</key><string>High-impact website for restaurants.</string>
+</dict>
+</plist>
+```
+
+</div>
+
+<h3>Card artwork</h3>
+<p><code>preview.png</code> displays in a 16:10 card and is scaled to fill, so any size works — off-ratio images are centre-cropped. Recommended: <strong>1200 × 750 px</strong> PNG (16:10 at 2× card resolution); a screenshot of the kit's home page is usually the right artwork. Without one the card shows a placeholder glyph.</p>
+
+<p>When someone creates a project from your kit, Foundry stamps a fresh copy: a new site identity, factory publishing settings — your host details never travel — and everything else exactly as you saved it. Ship any custom parts the kit's pages use in the same pack.</p>
 
 <div class="note"><strong>Different kind of template.</strong> This page covers reusable page-content templates and starter kits. A part's HTML source files are also called templates — those are documented under <a href="templates.html">part templates</a>.</div>
 {% endraw %}
