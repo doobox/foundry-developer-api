@@ -22,24 +22,33 @@ Example.foundrypack/
 │           ├── part.css
 │           └── icon.svg
 ├── Templates/
-│   └── 7B6E…/
+│   ├── Heroes/               (organization folder)
+│   │   └── 7B6E…/
+│   │       ├── Info.plist
+│   │       └── Resources/
+│   └── 3F91…/
 │       ├── Info.plist
 │       └── Resources/
-└── Frameworks/
-    └── Brand/
-        ├── Info.plist
-        └── Resources/
+├── Frameworks/
+│   └── Brand/
+│       ├── Info.plist
+│       └── Resources/
+└── Assets/
+    └── stock-photos/
+        ├── Info.plist        (optional — licence and title)
+        ├── hero.jpg
+        └── badges/
+            └── badge.svg
 ```
 
 </div>
 
 <h2>Outer Info.plist</h2>
-<p>The root manifest identifies and versions the complete pack. Its required keys are <code>formatVersion</code> (currently <code>2</code>), <code>id</code>, and the pack metadata used for installation and updates. Part controls and templates do not belong in this manifest.</p>
+<p>The root manifest identifies and versions the complete pack. Its only required key is <code>id</code>; the rest is pack metadata used for installation and updates. Part controls and templates do not belong in this manifest.</p>
 
 <div markdown="1">
 
 ```xml
-<key>formatVersion</key><integer>2</integer>
 <key>id</key><string>uk.co.example.components</string>
 <key>title</key><string>Example Components</string>
 <key>version</key><string>1.0.0</string>
@@ -53,19 +62,21 @@ Example.foundrypack/
 <dt>Parts</dt>
 <dd>Each direct child is one part. Its <code>Info.plist</code> declares the part API, and paths declared by that manifest are relative to its sibling <code>Resources</code> directory.</dd>
 <dt>Templates</dt>
-<dd>Reusable page-content templates saved by Foundry. Each template owns its manifest, serialized part tree, preview and embedded assets.</dd>
+<dd>Reusable page-content templates saved by Foundry. Each template owns its manifest, serialized part tree, preview and embedded assets. Templates organize into plain subdirectories: a child folder without an <code>Info.plist</code> is an organization folder, shown as a folder in the Templates panel — arrange a pack's templates in Finder and Foundry presents that structure as-is, folders first, alphabetically.</dd>
 <dt>Frameworks</dt>
 <dd>Reusable design frameworks, including framework metadata, <code>framework.json</code>, preview artwork and bundled font assets.</dd>
+<dt>Assets</dt>
+<dd>Curated collections of importable files — photos, SVG icons, textures, fonts, video. Each direct child folder is one collection: put files straight inside it, organized into nested folders however you like, and Foundry presents that structure as-is. No manifest is required — the folder's name is its title. Add an optional <code>Info.plist</code> at the collection's root to declare a display <code>title</code>, a stable <code>id</code>, and <code>license</code>, <code>licenseURL</code> and <code>attribution</code>, which Foundry shows before anything imports. Importing always copies files into the project's own asset library — published sites never reference a pack.</dd>
 <dt>Resources</dt>
 <dd>Optional resources shared by the pack as a whole. Item-specific files remain in the item's own <code>Resources</code> directory.</dd>
 </dl>
-<p>The parent directory determines an item's type. Item folder names are storage names and do not replace the stable identifier in the item's manifest.</p>
+<p>The parent directory determines an item's type. Item folder names are storage names and do not replace the stable identifier in the item's manifest. For the full story on shipping asset collections and template packs, see <a href="assets-and-templates.html">Assets &amp; templates</a>.</p>
 <div class="callout warning"><strong>Only the outer directory uses a Foundry pack extension.</strong> Do not add <code>.foundrypack</code>, <code>.foundrydevpack</code>, <code>.foundryframework</code>, or a macOS <code>Contents</code> directory to an item.</div>
 
 <h2>Development packs</h2>
 <p>Use <code>.foundrydevpack</code> while developing and <code>.foundrypack</code> for distribution. Their internal structure is identical. Foundry loads an opened development pack in place and watches its complete typed-directory tree for the current session.</p>
 <p>You can also place packs in <code>~/Library/Application Support/Foundry/Packs</code>. Installed release packs are treated as read-only; saved personal templates and frameworks are written to <code>My Library.foundrydevpack</code>.</p>
-<div class="note"><strong>Pack boundary.</strong> Foundry does not recursively search inside an outer pack for more packs. Unknown visible top-level directories fail validation; hidden files such as <code>.git</code> are ignored, so a development pack can live inside a source checkout. While a development pack is open, an incomplete item folder — for example a part still missing its <code>Info.plist</code> or <code>Resources</code> — is skipped so the rest of the pack keeps loading, but installing or releasing a <code>.foundrypack</code> that contains one is rejected.</div>
+<div class="note"><strong>Pack boundary.</strong> Foundry does not recursively search inside an outer pack for more packs. Unknown visible top-level directories fail validation; hidden files such as <code>.git</code> are ignored, so a development pack can live inside a source checkout. While a development pack is open, an incomplete item folder — for example a part still missing its <code>Info.plist</code> or <code>Resources</code> — is skipped so the rest of the pack keeps loading, but installing or releasing a <code>.foundrypack</code> that contains one is rejected. Asset collections are exempt: any plain folder under <code>Assets</code> is complete.</div>
 
 <h2>Declared part resources</h2>
 <p>HTML, CSS, JavaScript and PHP template files are named under <a href="templates.html"><code>templates</code></a>. Other part files referenced with <code>{{ asset("…") }}</code> must be listed under <a href="manifest-resources.html"><code>assets</code></a>. Every path is relative to that part's <code>Resources</code> directory.</p>

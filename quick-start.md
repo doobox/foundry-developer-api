@@ -163,9 +163,27 @@ Replace `part.html` with:
 
 Reload parts, then drop another part into the Callout's content area. `dropZone("content")` creates an ordinary child-content area; it needs no additional manifest declaration. The completed download includes stages 3 and 4.
 
+## 5. Next steps: grow the pack
+
+Your pack can carry more than parts.
+
+**Add an asset collection.** Make a folder inside `Assets/` at the pack root, drop your files in — nested folders welcome — and reload. That is the whole format:
+
+```text
+Callout.foundrydevpack/
+└── Assets/
+    └── Callout Icons/
+        ├── info.svg
+        └── warning.svg
+```
+
+The collection appears in Foundry's Assets panel, titled by its folder name. To declare a licence or a display title, add an optional `Info.plist` inside the collection folder — see [Assets & templates](assets-and-templates.html).
+
+**Add templates.** Templates are page compositions authored in Foundry, not by hand: with your dev pack open, compose parts on the canvas and drop the composition onto your pack's section in the Templates panel's Dev tab. Foundry writes the bundle and its preview for you; arrange the results into plain folders inside `Templates/`, from the panel or in Finder. A pack of nothing but templates is a perfectly good product — ship any custom parts they use in the same pack.
+
 ## If something does not work
 
-- **The part does not appear:** check that the pack root has its own `Info.plist` declaring `formatVersion` 2, that the part folder under `Parts/` contains both `Info.plist` and `Resources/`, and reload parts.
+- **The part does not appear:** check that the pack root has its own `Info.plist` declaring the pack `id`, that the part folder under `Parts/` contains both `Info.plist` and `Resources/`, and reload parts.
 - **Foundry rejects it:** enable the Developer panel in Foundry's Developer preferences. It reports the invalid manifest key, template line or missing file.
 - **Styles or controls seem unchanged:** save the source files and reload parts. Confirm you are editing the installed development pack rather than another extracted copy.
 

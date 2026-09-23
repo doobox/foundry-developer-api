@@ -28,10 +28,15 @@ Acme.foundrypack/
 │   └── LandingPage/
 │       ├── Info.plist
 │       └── Resources/
-└── Frameworks/
-    └── AcmeBrand/
-        ├── Info.plist
-        └── Resources/
+├── Frameworks/
+│   └── AcmeBrand/
+│       ├── Info.plist
+│       └── Resources/
+└── Assets/
+    └── AcmeStockPhotos/
+        ├── Info.plist        (optional — licence and title)
+        ├── hero.jpg
+        └── badges/
 ```
 
 </div>
