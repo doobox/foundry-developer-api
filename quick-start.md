@@ -165,7 +165,7 @@ Reload parts, then drop another part into the Callout's content area. `dropZone(
 
 ## If something does not work
 
-- **The part does not appear:** check that `Info.plist` is inside `Contents`, not at the pack root, and reload parts.
+- **The part does not appear:** check that the pack root has its own `Info.plist` declaring `formatVersion` 2, that the part folder under `Parts/` contains both `Info.plist` and `Resources/`, and reload parts.
 - **Foundry rejects it:** enable the Developer panel in Foundry's Developer preferences. It reports the invalid manifest key, template line or missing file.
 - **Styles or controls seem unchanged:** save the source files and reload parts. Confirm you are editing the installed development pack rather than another extracted copy.
 

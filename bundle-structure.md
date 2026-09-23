@@ -64,8 +64,8 @@ Example.foundrypack/
 
 <h2>Development packs</h2>
 <p>Use <code>.foundrydevpack</code> while developing and <code>.foundrypack</code> for distribution. Their internal structure is identical. Foundry loads an opened development pack in place and watches its complete typed-directory tree for the current session.</p>
-<p>You can also place packs in <code>~/Library/Application Support/Foundry/Packs</code>. Installed release packs are treated as read-only; saved personal templates and frameworks are written to <code>My Foundry Content.foundrydevpack</code>.</p>
-<div class="note"><strong>Pack boundary.</strong> Foundry does not recursively search inside an outer pack for more packs. Unknown top-level directories and malformed typed items fail validation.</div>
+<p>You can also place packs in <code>~/Library/Application Support/Foundry/Packs</code>. Installed release packs are treated as read-only; saved personal templates and frameworks are written to <code>My Library.foundrydevpack</code>.</p>
+<div class="note"><strong>Pack boundary.</strong> Foundry does not recursively search inside an outer pack for more packs. Unknown visible top-level directories fail validation; hidden files such as <code>.git</code> are ignored, so a development pack can live inside a source checkout. While a development pack is open, an incomplete item folder — for example a part still missing its <code>Info.plist</code> or <code>Resources</code> — is skipped so the rest of the pack keeps loading, but installing or releasing a <code>.foundrypack</code> that contains one is rejected.</div>
 
 <h2>Declared part resources</h2>
 <p>HTML, CSS, JavaScript and PHP template files are named under <a href="templates.html"><code>templates</code></a>. Other part files referenced with <code>{{ asset("…") }}</code> must be listed under <a href="manifest-resources.html"><code>assets</code></a>. Every path is relative to that part's <code>Resources</code> directory.</p>
