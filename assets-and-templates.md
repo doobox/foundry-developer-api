@@ -98,7 +98,7 @@ Acme.foundrypack/
 └── Sites/
     └── Restaurant Starter/
         ├── site.foundry
-        ├── preview.png       (optional — 16:10 card artwork)
+        ├── preview.jpg       (optional — 16:10 card artwork)
         └── Info.plist        (optional)
 ```
 
@@ -129,7 +129,7 @@ Acme.foundrypack/
 </div>
 
 <h3>Card artwork</h3>
-<p><code>preview.png</code> displays in a 16:10 card and is scaled to fill, so any size works — off-ratio images are centre-cropped. Recommended: <strong>1200 × 750 px</strong> PNG (16:10 at 2× card resolution); a screenshot of the kit's home page is usually the right artwork. Without one the card shows a placeholder glyph.</p>
+<p>Name the file <code>preview.png</code>, <code>preview.jpg</code>, or <code>preview.webp</code>. It displays in a 16:10 card and is scaled to fill, so any size works — off-ratio images are centre-cropped, and an exact 16:10 image shows uncropped. Recommended: <strong>1200 × 750 px</strong> (16:10 at 2× card resolution), as JPEG for photographic artwork; a screenshot of the kit's home page hero is usually the right image. Without one the card shows a placeholder glyph.</p>
 
 <p>When someone creates a project from your kit, Foundry stamps a fresh copy: a new site identity, factory publishing settings — your host details never travel — and everything else exactly as you saved it. Ship any custom parts the kit's pages use in the same pack.</p>
 
