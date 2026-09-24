@@ -5,7 +5,7 @@ permalink: "/framework-font-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Framework font</h1>
 <p class="lede">One configurable font control with coordinated family, weight and style rows. Font browsing and previews remain in the Framework Editor.</p>
 
@@ -17,7 +17,7 @@ permalink: "/framework-font-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -53,11 +53,6 @@ Unique control identifier, starting with a letter and containing letters, number
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
 Text in the family row’s left-hand label column. Enabled companion rows are labelled Weight and Style.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section containing the control.
 
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
@@ -132,7 +127,6 @@ Disabling an included face in the Framework Editor does not rewrite parts. If a 
     "type" : "frameworkFont",
     "id" : "font",
     "label" : "Font",
-    "group" : "Typography",
     "showsWeight" : true,
     "showsStyle" : true,
     "defaults" : {

@@ -7,7 +7,7 @@ permalink: "/editable-text.html"
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
 <p class="eyebrow">Canvas editing</p>
 <h1>Editable content primitives</h1>
-<p class="lede">Put editable text, trusted HTML or an image directly into developer-owned markup without declaring a visible <code>controls</code> control.</p>
+<p class="lede">Put editable text, trusted HTML or an image directly into developer-owned markup without declaring a visible <code>inspector</code> control.</p>
 <h2>Editable rich text</h2>
 
 <div markdown="1">
@@ -52,7 +52,7 @@ permalink: "/editable-text.html"
 
 <p><code>{{ image("hero") }}</code> creates an implicit image value and a drop target in the canvas. Once an image is selected, Foundry emits an <code>img.fd-image</code> element. Add captions, aspect-ratio wrappers and production styling in your own template and CSS.</p>
 <h2>Permanent names</h2>
-<p>Every editable macro requires a quoted developer-defined name. It must begin with a letter and may then contain letters, numbers, underscores and hyphens. Names must be unique across all editable macros and drop zones in the part and cannot duplicate a <code>controls</code> control <code>id</code>.</p>
+<p>Every editable macro requires a quoted developer-defined name. It must begin with a letter and may then contain letters, numbers, underscores and hyphens. Names must be unique across all editable macros and drop zones in the part and cannot duplicate an <code>inspector</code> control <code>id</code>.</p>
 
 <div markdown="1">
 
@@ -70,5 +70,5 @@ permalink: "/editable-text.html"
 <p>The name is part of the part’s persistent API. Reordering named macros leaves their values attached correctly. Removing a macro preserves its stored value, and restoring the same name reconnects it. Changing a name removes the old editable area and creates a new one.</p>
 <p>Defaults use quoted strings with JSON-style escaping. Write <code>\&quot;</code> for a double quote, <code>\\</code> for a backslash, and <code>\n</code> for a line break.</p>
 <div class="callout warning">
-<strong>Use controls for Inspector values.</strong> If content needs responsive variants, reuse in another template file, conditional visibility, or specialised Inspector UI, declare it under <code>controls</code>.</div>
+<strong>Use controls for Inspector values.</strong> If content needs responsive variants, reuse in another template file, conditional visibility, or specialised Inspector UI, declare it under <code>inspector</code>.</div>
 {% endraw %}

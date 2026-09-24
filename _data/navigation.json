@@ -205,6 +205,10 @@
           [
             "Layout item",
             "layout-item-control-group.html"
+          ],
+          [
+            "Advanced",
+            "advanced-control-group.html"
           ]
         ]
       ],

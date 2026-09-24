@@ -5,7 +5,7 @@ permalink: "/edges-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Edges</h1>
 <p class="lede">A four-edge box editor for raw lengths with coordinated linking. The general-purpose version of the framework spacing controls: your units, no framework values.</p>
 
@@ -16,7 +16,7 @@ permalink: "/edges-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -58,11 +58,6 @@ Unique control identifier, starting with a letter and containing letters, number
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Edges</span></div>
 
 The control's label in the Inspector's normal left-hand label column. An omitted, empty or whitespace-only label displays Edges. The four edge fields are Top, Bottom, Left and Right.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section containing the control.
 
 <h3 class="property-heading"><code>units</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: px, rem, em, %</span></div>
@@ -174,7 +169,6 @@ Declaring the control does not apply anything automatically; the template choose
     "type" : "edges",
     "id" : "scrollMargin",
     "label" : "Scroll margin",
-    "group" : "Layout",
     "units" : [
         "px",
         "rem"

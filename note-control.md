@@ -5,9 +5,9 @@ permalink: "/note-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Note</h1>
-<p class="lede">Presentation-only explanatory text in an inspector group.</p>
+<p class="lede">Presentation-only explanatory text in an Inspector section.</p>
 
 
 <figure class="control-screenshot">
@@ -17,7 +17,7 @@ permalink: "/note-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -33,7 +33,7 @@ This item displays guidance in the Inspector; it produces no template value.
 
 ## Basic properties
 
-Each item in `controls` defines one Inspector item. These keys set its name and placement.
+Each item in the `inspector` array defines one Inspector item. These keys set its identity and content.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -52,15 +52,6 @@ The unique name for this Inspector item. It must start with a letter and may con
 
 ```json
 "id" : "guidance"
-```
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section that contains this control. Omit the key to place it in Settings.
-
-```json
-"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>title</code></h3>
@@ -131,13 +122,12 @@ No template value
 ### manifest.json
 
 ```json
-"controls" : [
+"inspector" : [
     {
         "id" : "guidance",
         "title" : "About responsive settings",
         "body" : "Changes here affect every breakpoint.",
         "systemImage" : "info.circle",
-        "group" : "Derived values",
         "type" : "note"
     }
 ]

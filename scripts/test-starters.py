@@ -14,8 +14,8 @@ source = (Path(__file__).resolve().parents[1] / "quick-start.md").read_text()
 class StarterTests(unittest.TestCase):
     def test_stages_and_archives(self):
         stages = builder["starter_files"](source)
-        self.assertNotIn("controls", json.loads(stages["starter"]["manifest.json"]))
-        self.assertEqual(len(json.loads(stages["complete"]["manifest.json"])["controls"]), 2)
+        self.assertNotIn("inspector", json.loads(stages["starter"]["manifest.json"]))
+        self.assertEqual(len(json.loads(stages["complete"]["manifest.json"])["inspector"]), 2)
         self.assertNotIn(b"dropZone", stages["starter"]["part.html"])
         self.assertIn(b'dropZone("content")', stages["complete"]["part.html"])
         for stage, files in stages.items():

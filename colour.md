@@ -5,7 +5,7 @@ permalink: "/colour.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Colour</h1>
 <p class="lede">A colour picker that supplies a literal hexadecimal colour to templates.</p>
 
@@ -17,7 +17,7 @@ permalink: "/colour.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -57,11 +57,6 @@ The unique template name. It must start with a letter and may contain letters, n
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
 Text shown to the left of the control, including when `count` is present.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section containing the control.
 
 <h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
@@ -233,7 +228,6 @@ color: {{ control.textColor }};
     "type" : "color",
     "id" : "textColor",
     "label" : "Text colour",
-    "group" : "Appearance",
     "opacity" : true,
     "defaults" : {
         "base" : "#3366CC"

@@ -5,7 +5,7 @@ permalink: /borders-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls · control groups</p>
+<p class="eyebrow">manifest.json · inspector · control groups</p>
 <h1>Borders</h1>
 <p class="lede">Adds a responsive enable switch, framework border, colour and radius to the Borders Inspector section.</p>
 

@@ -5,7 +5,7 @@ permalink: /framework-spacing-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Framework spacing</h1>
 <p class="lede">A single framework-aware spacing value with custom lengths. Label and apply it wherever a nonnegative spacing value is needed.</p>
 
@@ -17,7 +17,7 @@ permalink: /framework-spacing-control.html
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -54,11 +54,6 @@ Unique identifier starting with a letter and containing letters, numbers, unders
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Spacing</span></div>
 
 Developer-supplied label in the normal Inspector row grid. Empty or whitespace-only labels fall back to Spacing.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-Inspector section containing the control.
 
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
@@ -126,7 +121,6 @@ Do not append units to the CSS output. Numeric amounts are not browser-computed 
     "type" : "frameworkSpacing",
     "id" : "gap",
     "label" : "Gap",
-    "group" : "Layout",
     "defaults" : {
         "base" : "sm"
     },

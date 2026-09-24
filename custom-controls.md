@@ -5,20 +5,19 @@ permalink: "/custom-controls.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Custom controls</h1>
-<p class="lede">Each dictionary in <code>controls</code> creates part of the part Inspector. Declare what the author can change, then read the resulting value from HTML, CSS, JavaScript, or PHP.</p>
+<p class="lede">Each dictionary in <code>inspector</code> creates part of the part Inspector. Declare what the author can change, then read the resulting value from HTML, CSS, JavaScript, or PHP.</p>
 <h2>Declare one control</h2>
-<p>Every dictionary in <code>controls</code> is one complete control declaration. Value-producing controls have a stable <code>id</code>, an author-facing <code>label</code> value, a <code>type</code>, a matching <code>defaults.base</code>, and explicit responsive behaviour. Use <code>group</code> to choose the Inspector section, or omit it to use <code>Settings</code>.</p>
+<p>Every dictionary in <code>inspector</code> with a <code>type</code> is one complete control declaration. Value-producing controls have a stable <code>id</code>, an author-facing <code>label</code> value, a <code>type</code>, a matching <code>defaults.base</code>, and explicit responsive behaviour. Controls declared at the top level of the <code>inspector</code> appear in the <code>Settings</code> Inspector section; wrap controls in a section entry to place them elsewhere.</p>
 
 <div markdown="1">
 
 ```json
-"controls" : [
+"inspector" : [
     {
         "id" : "heading",
         "label" : "Heading",
-        "group" : "Content",
         "type" : "text",
         "defaults" : {
             "base" : "Welcome"
@@ -54,24 +53,57 @@ Use responsive values in CSS templates to generate breakpoint rules. HTML and Ja
 
 Slider requires an explicit numeric `defaults.base` within its range, just like Number. Image may omit `defaults` to start empty; its asset default is base-only. Note, Divider, Math and ChildPicker do not accept `defaults`; ChildPicker uses `initial` for its children.
 
-<h2>Group icons</h2>
+<h2>Sections</h2>
 
-Every Inspector section shows an icon on its disclosure header. Declare icons for your groups in an optional top-level `groups` array, naming each group exactly as your controls' `group` values name it:
+An entry in `inspector` without a `type` declares an Inspector section. It names the section once with `section`, optionally names its disclosure-header icon with `systemImage`, and lists the section's controls in its own `controls` array. Controls left at the top level of the part's `inspector` array belong to `Settings`:
 
 ```json
-"groups" : [
+"inspector" : [
     {
-        "name" : "Gallery",
-        "systemImage" : "photo.stack"
+        "type" : "text",
+        "id" : "heading",
+        "label" : "Heading",
+        "defaults" : {
+            "base" : "Welcome"
+        }
     },
     {
-        "name" : "Content",
-        "systemImage" : "doc.text"
+        "section" : "Gallery",
+        "systemImage" : "photo.stack",
+        "controls" : [
+            {
+                "type" : "number",
+                "id" : "columns",
+                "label" : "Columns",
+                "defaults" : {
+                    "base" : 3
+                }
+            },
+            {
+                "type" : "toggle",
+                "id" : "captions",
+                "label" : "Captions",
+                "defaults" : {
+                    "base" : true
+                }
+            }
+        ]
     }
 ]
 ```
 
-`systemImage` is an SF Symbol name and is optional; groups without one — declared or not — use a generic fallback icon. [Grouped controls](control-groups.html) carry their sections' standard icons automatically, so declare entries only for your own groups. Each `name` must be unique and must match a group your controls actually use; `Content` is always accepted because editable template content lives there.
+Heading appears in Settings; Columns and Captions appear together in a Gallery section. `systemImage` is an SF Symbol name and is optional; a section without one uses a generic fallback icon. [Grouped controls](control-groups.html) carry their own standard section name and icon automatically, so they stay at the top level of the `inspector` and may not appear inside a section entry.
+
+A section entry may omit `controls` to set only an icon. The implicit `Content` section — where editable template content lives — accepts an icon this way:
+
+```json
+{
+    "section" : "Content",
+    "systemImage" : "doc.text"
+}
+```
+
+Each section name may be declared only once, and sections cannot nest: a section entry inside another section entry is a validation error, as is a duplicate name.
 
 <h2>Control types</h2>
 <div class="card-grid">

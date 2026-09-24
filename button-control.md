@@ -5,7 +5,7 @@ permalink: "/button-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Button</h1>
 <p class="lede">A persistent push button backed by Boolean state and optional mapped outputs.</p>
 
@@ -17,7 +17,7 @@ permalink: "/button-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -39,7 +39,7 @@ Use it in your HTML template:
 
 ## Basic properties
 
-Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour where applicable.
+Each item in the `inspector` array defines one Inspector item. These keys set its name, initial value and responsive behaviour where applicable.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -67,15 +67,6 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 ```json
 "label" : "Button"
-```
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section that contains this control. Omit the key to place it in Settings.
-
-```json
-"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -280,11 +271,10 @@ data-state="{{ control.state }}"
 ### manifest.json
 
 ```json
-"controls" : [
+"inspector" : [
     {
         "id" : "state",
         "label" : "Button",
-        "group" : "Content",
         "type" : "button",
         "buttonText" : "Apply",
         "buttonIcon" : "bolt.fill",

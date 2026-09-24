@@ -5,7 +5,7 @@ permalink: "/link-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Link</h1>
 <p class="lede">A structured destination supporting URLs, plain text, project pages, project resources, anchors, new-window behaviour, and custom attributes.</p>
 
@@ -17,7 +17,7 @@ permalink: "/link-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -42,7 +42,7 @@ The initial link is empty. Choose a destination in the Inspector to make the lin
 
 ## Basic properties
 
-Each item in `controls` defines one Inspector item. These keys set its name, placement and initial value.
+Each item in the `inspector` array defines one Inspector item. These keys set its name and initial value.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -69,15 +69,6 @@ Text shown to the left of the control in the Inspector.
 
 ```json
 "label" : "Destination"
-```
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section that contains this control. Omit the key to place it in Settings.
-
-```json
-"group" : "Content"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -170,12 +161,11 @@ Invalid HTML attribute names are omitted. Opening a new window emits `_blank` an
 ### manifest.json
 
 ```json
-"controls" : [
+"inspector" : [
     {
         "type" : "link",
         "id" : "destination",
         "label" : "Destination",
-        "group" : "Content",
         "absoluteURL" : true,
         "defaults" : {
             "base" : ""

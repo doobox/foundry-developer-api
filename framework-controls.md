@@ -8,7 +8,7 @@ permalink: "/framework-controls.html"
 
 # Framework-aware controls
 
-Framework-aware editing uses dedicated custom controls in the ordinary `controls` array. Each control owns its supported choices and output contract; Select offers only explicitly declared options.
+Framework-aware editing uses dedicated custom controls in the ordinary `inspector` array. Each control owns its supported choices and output contract; Select offers only explicitly declared options.
 
 ## Fonts
 

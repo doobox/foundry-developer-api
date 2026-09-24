@@ -5,13 +5,13 @@ permalink: /framework-font-size-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Framework font size</h1>
 <p class="lede">A picker of the framework's font sizes that resolves the selected size — and its paired line height — for templates.</p>
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -59,11 +59,6 @@ The unique template name. It must start with a letter and may contain letters, n
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
 
 Text shown to the left of the control.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section containing the control.
 
 <h3 class="property-heading"><code>tooltip</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>

@@ -48,7 +48,7 @@ sources = {p.name: p.read_text() for p in ROOT.glob("*.md")}
 control_pages = {}
 for name, source in sources.items():
     match = re.search(r'"type"\s*:\s*"([^"]+)"', source)
-    if 'manifest.json · controls' in source and match:
+    if 'manifest.json · inspector' in source and match:
         keys = set(re.findall(r'<h3 class="property-heading"><code>([^<.]+)</code>', source))
         if {"type", "id"} <= keys:
             control_pages[match[1]] = (name, keys)
@@ -73,8 +73,40 @@ for name, source in sources.items():
         except Exception as error:
             fail(location, f"invalid JSON syntax: {error}")
             continue
+        section_names = []
         for item in dictionaries(value):
+            if "groups" in item and isinstance(item["groups"], list):
+                fail(location, "retired top-level groups array; declare sections inline in the inspector")
             kind = item.get("type")
+            if kind is None and "group" in item and ("controls" in item or "systemImage" in item) and "id" not in item and "title" not in item:
+                fail(location, "retired section wrapper key group; name the section with section")
+                continue
+            if "controls" in item and isinstance(item["controls"], list) and "section" not in item:
+                fail(location, "retired controls array; the Inspector array is now inspector")
+            if kind is None and "section" in item and "id" not in item and "title" not in item:
+                # An inspector entry without a type is an Inspector section wrapper.
+                unknown = set(item) - {"section", "systemImage", "controls"}
+                if unknown:
+                    fail(location, f"section entry: undocumented keys {sorted(unknown)}")
+                section = item["section"]
+                if not isinstance(section, str) or not section:
+                    fail(location, "section entry: section must be a non-empty section name")
+                elif section in section_names:
+                    fail(location, f"duplicate section name {section}")
+                else:
+                    section_names.append(section)
+                members = item.get("controls", [])
+                if not isinstance(members, list):
+                    fail(location, "section entry: controls must be an array")
+                    continue
+                for member in members:
+                    if not isinstance(member, dict) or "type" not in member:
+                        fail(location, "sections cannot nest; every entry inside a section needs a type")
+                    elif member["type"] in {"background", "spacing", "sizing", "borders", "effects", "reveal", "layoutItem"}:
+                        fail(location, f"grouped control {member['type']} may not appear inside a section entry")
+                continue
+            if isinstance(kind, str) and ("group" in item or "section" in item):
+                fail(location, "controls no longer take group or section; wrap the control in a section entry")
             if not isinstance(kind, str) or "id" not in item:
                 continue
             if kind not in control_pages:

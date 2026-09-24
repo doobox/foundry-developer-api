@@ -5,7 +5,7 @@ permalink: "/framework-margin-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Framework margin</h1>
 <p class="lede">A four-edge box editor with framework spacing, custom lengths, and coordinated linking.</p>
 
@@ -17,7 +17,7 @@ permalink: "/framework-margin-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -55,11 +55,6 @@ Unique control identifier, starting with a letter and containing letters, number
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Margin</span></div>
 
 The control's label in the Inspector's normal left-hand label column. An omitted, empty or whitespace-only label displays Margin. The four edge fields are Top, Bottom, Left and Right.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section containing the control.
 
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
@@ -158,14 +153,13 @@ These amounts are not browser-computed pixel measurements: `1rem`, `1px`, and `1
 
 ## Example
 
-Declare this item inside the `controls` array in `manifest.json`:
+Declare this item inside the `inspector` array in `manifest.json`:
 
 ```json
 {
     "type" : "frameworkMargin",
     "id" : "frameworkMargin",
     "label" : "Content margin",
-    "group" : "Layout",
     "defaults" : {
         "base" : "sm"
     },

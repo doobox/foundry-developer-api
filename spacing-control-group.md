@@ -5,7 +5,7 @@ permalink: /spacing-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls · control groups</p>
+<p class="eyebrow">manifest.json · inspector · control groups</p>
 <h1>Spacing</h1>
 <p class="lede">Adds a responsive enable switch, framework padding and framework margin to the Spacing Inspector section.</p>
 

@@ -5,7 +5,7 @@ permalink: "/corners-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Corners</h1>
 <p class="lede">A four-corner box editor for raw lengths with all-or-none linking. The general-purpose version of the framework radius control: your units, no framework values.</p>
 
@@ -16,7 +16,7 @@ permalink: "/corners-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -58,11 +58,6 @@ Unique control identifier, starting with a letter and containing letters, number
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Corners</span></div>
 
 The control's label in the Inspector's normal left-hand label column. An omitted, empty or whitespace-only label displays Corners. The four corner fields are Top Left, Top Right, Bottom Left and Bottom Right.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section containing the control.
 
 <h3 class="property-heading"><code>units</code></h3>
 <div class="property-meta"><span class="property-type">String array</span><span class="optional">Optional</span><span class="default">Default: px, rem, em, %</span></div>
@@ -142,7 +137,6 @@ Declaring the control does not apply anything automatically; the template choose
     "type" : "corners",
     "id" : "maskRadius",
     "label" : "Mask radius",
-    "group" : "Appearance",
     "units" : [
         "px",
         "%"

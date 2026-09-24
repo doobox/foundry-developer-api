@@ -24,15 +24,15 @@ def starter_files(source):
             raise ValueError(f"Duplicate snippet: {stage}:{name}")
         snippets[key] = content.encode()
     expected = {("starter", name) for name in ("manifest.json", "part.html", "part.css")}
-    expected |= {("complete", name) for name in ("controls", "part.html", "part.css")}
+    expected |= {("complete", name) for name in ("inspector", "part.html", "part.css")}
     if set(snippets) != expected:
         raise ValueError(f"Unexpected or missing starter markers: {set(snippets) ^ expected}")
     basic = {name: snippets["starter", name] for name in ("manifest.json", "part.html", "part.css")}
     basic["icon.svg"] = STARTER_ICON.read_bytes()
     manifest = json.loads(basic["manifest.json"])
-    additions = json.loads(b"{" + snippets["complete", "controls"] + b"}")
-    if set(additions) != {"controls"} or "controls" in manifest:
-        raise ValueError("The controls stage must add exactly one controls entry to the basic manifest")
+    additions = json.loads(b"{" + snippets["complete", "inspector"] + b"}")
+    if set(additions) != {"inspector"} or "inspector" in manifest:
+        raise ValueError("The inspector stage must add exactly one inspector entry to the basic manifest")
     complete = dict(basic)
     complete["manifest.json"] = dump_json({**manifest, **additions})
     for name in ("part.html", "part.css"):

@@ -5,7 +5,7 @@ permalink: "/image-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Image</h1>
 <p class="lede">Let someone choose, import, replace or clear a project image using the standard media well.</p>
 
@@ -15,8 +15,7 @@ permalink: "/image-control.html"
 {
     "type" : "image",
     "id" : "hero",
-    "label" : "Image",
-    "group" : "Media"
+    "label" : "Image"
 }
 ```
 
@@ -33,7 +32,6 @@ permalink: "/image-control.html"
 <section class="key-reference"><h3><code>type</code></h3><div class="key-meta"><span>String</span><strong>Required</strong><span><code>image</code></span></div><p>This control does not support <code>count</code>: an image control represents one named image. Declare each image property explicitly.</p></section>
 <section class="key-reference"><h3><code>id</code></h3><div class="key-meta"><span>String</span><strong>Required</strong></div><p>The unique control and template value name.</p></section>
 <section class="key-reference"><h3><code>label</code></h3><div class="key-meta"><span>String</span><span>Optional</span></div></section>
-<section class="key-reference"><h3><code>group</code></h3><div class="key-meta"><span>String</span><span>Optional</span><span>Default: Settings</span></div></section>
 <section class="key-reference"><h3><code>defaults</code></h3><div class="key-meta"><span>Dictionary</span><span>Optional</span></div><p>Omit <code>defaults</code> to start empty. A non-empty <code>base</code> is a package-relative path and must reference a declared package asset, which is used until someone chooses their own image. Image asset defaults support <code>base</code> only; breakpoints apply to responsive selections, not defaults.</p></section>
 <section class="key-reference"><h3><code>alt</code></h3><div class="key-meta"><span>String</span><span>Optional</span><span>Default: empty</span></div><p>The initial alternative text. Site authors edit the final text in the Inspector's Alt field. Only image controls accept <code>alt</code>.</p></section>
 <section class="key-reference"><h3><code>focalPoint</code></h3><div class="key-meta"><span>Boolean</span><span>Optional</span><span>Default: false</span></div><p>Adds a draggable focal-point marker over the Inspector preview and provides the <code>position</code>, <code>focalPointX</code> and <code>focalPointY</code> template values. Declaring <code>focalPoint</code> makes the control responsive so the focal point can differ at each breakpoint. Only image controls accept <code>focalPoint</code>.</p></section>

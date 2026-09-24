@@ -52,7 +52,7 @@ Example.foundrypack/
 </div>
 
 <h2>Outer manifest.json</h2>
-<p>The root manifest identifies and versions the complete pack. Its only required key is <code>id</code>; the rest is pack metadata used for installation and updates. Part controls and templates do not belong in this manifest.</p>
+<p>The root manifest identifies and versions the complete pack. Its only required key is <code>id</code>; the rest is pack metadata used for installation and updates. A part's inspector and templates do not belong in this manifest.</p>
 
 <div markdown="1">
 

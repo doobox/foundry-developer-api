@@ -23,7 +23,6 @@ permalink: "/control-arrays.html"
         "Accent",
         "Surface"
     ],
-    "group" : "Appearance",
     "type" : "color",
     "count" : 4,
     "defaults" : {

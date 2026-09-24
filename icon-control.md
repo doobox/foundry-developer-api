@@ -5,7 +5,7 @@ permalink: "/icon-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Icon</h1>
 <p class="lede">A searchable visual picker containing every icon in Foundry’s built-in icon library.</p>
 
@@ -17,7 +17,7 @@ permalink: "/icon-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -38,7 +38,7 @@ Use it in your HTML template:
 
 ## Basic properties
 
-Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour.
+Each item in the `inspector` array defines one Inspector item. These keys set its name, initial value and responsive behaviour.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -66,15 +66,6 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 ```json
 "label" : "Icon"
-```
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section that contains this control.
-
-```json
-"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -177,12 +168,11 @@ For a multi Icon, read each name by zero-based index.
 ### manifest.json
 
 ```json
-"controls" : [
+"inspector" : [
     {
         "type" : "icon",
         "id" : "symbol",
         "label" : "Icon",
-        "group" : "Appearance",
         "defaults" : {
             "base" : "stars"
         }

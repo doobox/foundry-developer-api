@@ -5,13 +5,13 @@ permalink: /background-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls · control groups</p>
+<p class="eyebrow">manifest.json · inspector · control groups</p>
 <h1>Background</h1>
 <p class="lede">Adds configurable colour, image, gradient and video backgrounds, with optional hover states, and applies the result to an explicitly marked template element.</p>
 
 ## Quick example
 
-Add the group to the part's `controls` array:
+Add the group to the part's `inspector` array:
 
 ```json
 {

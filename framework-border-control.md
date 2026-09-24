@@ -5,7 +5,7 @@ permalink: /framework-border-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Framework border</h1>
 <p class="lede">A four-edge width editor and an optional style picker.</p>
 
@@ -17,7 +17,7 @@ permalink: /framework-border-control.html
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -56,11 +56,6 @@ Unique identifier starting with a letter and containing letters, numbers, unders
 <div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Border</span></div>
 
 Shown in the normal Inspector label column. Empty labels also fall back to Border. The four width fields are Top, Bottom, Left and Right; the optional additional row is Style.
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-Inspector section containing all rows.
 
 <h3 class="property-heading"><code>defaults</code></h3>
 <div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
@@ -138,7 +133,6 @@ Framework widths return CSS variables such as `var(--foundry-border-width-sm)`. 
     "type" : "frameworkBorder",
     "id" : "border",
     "label" : "Border",
-    "group" : "Border",
     "showsStyle" : true,
     "responsive" : true,
     "defaults" : {

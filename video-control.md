@@ -5,7 +5,7 @@ permalink: "/video-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Video</h1>
 <p class="lede">Let someone choose, import, replace or clear a project video using the standard media well.</p>
 
@@ -16,7 +16,6 @@ permalink: "/video-control.html"
     "type" : "video",
     "id" : "film",
     "label" : "Video",
-    "group" : "Media",
     "defaults" : {
         "base" : ""
     }
@@ -44,7 +43,6 @@ permalink: "/video-control.html"
 <section class="key-reference"><h3><code>type</code></h3><div class="key-meta"><span>String</span><strong>Required</strong><span><code>video</code></span></div></section>
 <section class="key-reference"><h3><code>id</code></h3><div class="key-meta"><span>String</span><strong>Required</strong></div><p>The unique control and template value name.</p></section>
 <section class="key-reference"><h3><code>label</code></h3><div class="key-meta"><span>String</span><span>Optional</span></div></section>
-<section class="key-reference"><h3><code>group</code></h3><div class="key-meta"><span>String</span><span>Optional</span><span>Default: Settings</span></div></section>
 <section class="key-reference"><h3><code>defaults</code></h3><div class="key-meta"><span>Dictionary</span><strong>Required</strong></div><p>Use an empty String for no selected video.</p></section>
 <section class="key-reference"><h3><code>tooltip</code></h3><div class="key-meta"><span>String</span><span>Optional</span></div></section>
 <section class="key-reference"><h3><code>visibleWhen</code></h3><div class="key-meta"><span>Dictionary</span><span>Optional</span></div><p>Conditionally shows the complete video row. A hidden row retains its selected value.</p></section>

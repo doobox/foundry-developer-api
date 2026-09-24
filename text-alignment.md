@@ -5,7 +5,7 @@ permalink: "/text-alignment.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Text alignment</h1>
 <p class="lede">A preconfigured segmented control that produces logical CSS text-alignment values.</p>
 
@@ -17,7 +17,7 @@ permalink: "/text-alignment.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -40,7 +40,7 @@ Use it in the part's CSS template:
 
 ## Basic properties
 
-Each item in `controls` defines one Inspector item. These keys set its name, placement, initial value and responsive behaviour.
+Each item in the `inspector` array defines one Inspector item. These keys set its name, initial value and responsive behaviour.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -67,15 +67,6 @@ Text shown beside the control in the Inspector.
 
 ```json
 "label" : "Alignment"
-```
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section that contains this control. Omit the key to place it in Settings.
-
-```json
-"group" : "Typography"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -179,12 +170,11 @@ text-align: {{ control.alignment }};
 ### manifest.json
 
 ```json
-"controls" : [
+"inspector" : [
     {
         "type" : "textAlignment",
         "id" : "alignment",
         "label" : "Alignment",
-        "group" : "Typography",
         "defaults" : {
             "base" : "start"
         },

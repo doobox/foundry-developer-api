@@ -114,11 +114,11 @@ Find **Callout** under **Content** in the Parts panel and add it to a page. You 
 
 ## 3. Add framework controls
 
-Add the following `controls` entry inside the **top-level object** of `manifest.json`, immediately before its closing `}`. Keep the existing identity and template declarations.
+Add the following `inspector` entry inside the **top-level object** of `manifest.json`, immediately before its closing `}`. Keep the existing identity and template declarations.
 
-<!-- complete:controls -->
+<!-- complete:inspector -->
 ```json
-"controls" : [
+"inspector" : [
     {
         "type" : "frameworkPadding",
         "id" : "frameworkPadding",
@@ -151,7 +151,7 @@ Replace `part.css` with:
 }
 ```
 
-Reload parts. Select the Callout and open its **Settings** group in the Inspector. Padding now uses the framework spacing scale; Accent uses the framework colour ribbon. Change each and check the canvas. Padding can also vary by breakpoint because its declaration enables `responsive`.
+Reload parts. Select the Callout and open its **Settings** section in the Inspector. Padding now uses the framework spacing scale; Accent uses the framework colour ribbon. Change each and check the canvas. Padding can also vary by breakpoint because its declaration enables `responsive`.
 
 Control declarations do not apply CSS automatically. The two `control` expressions above connect the Inspector values to your styles.
 

@@ -5,7 +5,7 @@ permalink: /reveal-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls · control groups</p>
+<p class="eyebrow">manifest.json · inspector · control groups</p>
 <h1>Reveal</h1>
 <p class="lede">Adds configurable GSAP entrance animation to a part and activates it with ScrollTrigger as the part enters the viewport.</p>
 

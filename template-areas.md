@@ -8,7 +8,7 @@ permalink: /template-areas.html
 <p class="eyebrow">Template API</p>
 <h1>Persistent template areas</h1>
 <p class="lede">Place named editable content, ordinary drop zones and managed child areas.</p>
-<p>Content areas use named function-call syntax. The first quoted argument is the permanent developer-defined name. It must begin with a letter and may then contain letters, numbers, underscores and hyphens. Editable and drop-zone names must be unique in the part and cannot duplicate a <code>controls</code> control <code>id</code>.</p>
+<p>Content areas use named function-call syntax. The first quoted argument is the permanent developer-defined name. It must begin with a letter and may then contain letters, numbers, underscores and hyphens. Editable and drop-zone names must be unique in the part and cannot duplicate an <code>inspector</code> control <code>id</code>.</p>
 <dl class="syntax-list">
 <dt>
 <code>{{ text("name", default: "Text") }}</code>
@@ -29,7 +29,7 @@ permalink: /template-areas.html
 <dt>
 <code>{{ childArea("name") }}</code>
 </dt>
-<dd>Places the raw child-part markup managed by the <code>childPicker</code> whose control <code>id</code> is <code>name</code>. Unlike <code>dropZone()</code>, its permitted choices, limits, initial children and containment are declared under <code>controls</code>.</dd>
+<dd>Places the raw child-part markup managed by the <code>childPicker</code> whose control <code>id</code> is <code>name</code>. Unlike <code>dropZone()</code>, its permitted choices, limits, initial children and containment are declared under <code>inspector</code>.</dd>
 </dl>
 <p>Names are persistent API identifiers rather than display labels. Reordering these macros keeps saved content attached to the correct area. Removing one preserves its stored content but stops rendering it; restoring the same name reconnects that content. Changing a name removes the old area and creates a new one. See <a href="editable-text.html">Editable content primitives</a> for editing and output details.</p>
 

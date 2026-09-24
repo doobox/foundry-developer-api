@@ -20,7 +20,9 @@ GitHub Pages continues to build the published site with Jekyll. The `github-page
 
 ## Authoring
 
-Every control reference starts with a **Quick example**: a small dictionary for the `controls` array followed by template usage, or an explicit statement that the item has no output. Put `type` before `id`. Keep required prerequisites beside the example and retain the complete property reference below it.
+Every control reference starts with a **Quick example**: a small dictionary for the `inspector` array followed by template usage, or an explicit statement that the item has no output. Put `type` before `id`. Keep required prerequisites beside the example and retain the complete property reference below it.
+
+Controls belong to the Settings Inspector section unless wrapped in a section entry — an `inspector` entry without a `type`, named by its `section` key and carrying its own inner `controls` array. A per-control `group` key is a validation error, as is a section wrapper named with `group`. The top-level manifest `group` key (the Parts panel category beside `title`) is a different, unrelated key and remains valid.
 
 ## Check documentation
 
@@ -36,7 +38,7 @@ After `./serve-docs`, also check the rendered links and search index. Pass the *
 python3 scripts/check-docs.py --site /path/to/jekyll/output
 ```
 
-The checker validates complete JSON snippets, control-example keys against the documented property entries, default dictionaries, numeric default ranges, quick-example placement, local links and heading anchors. Explicitly abbreviated snippets containing ellipses are skipped. External URLs are not fetched. This is not the application's full manifest validator: importing example packs into Foundry is still required for end-to-end validation.
+The checker validates complete JSON snippets, control-example keys against the documented property entries, Inspector section entries, default dictionaries, numeric default ranges, quick-example placement, local links and heading anchors. Explicitly abbreviated snippets containing ellipses are skipped. External URLs are not fetched. This is not the application's full manifest validator: importing example packs into Foundry is still required for end-to-end validation.
 
 ### Navigation
 
@@ -65,6 +67,6 @@ xcodebuild test -project Foundry.xcodeproj -scheme Foundry \
   '-only-testing:FoundryTests/PartPackageTests/developerDocumentationQuickStartLoads()'
 ```
 
-These tests package the 24 Quick examples, the 24 full control examples and both quick-start stages, then run Foundry's package loader and prepare their template payloads. Control snippets are placed inside a valid host part; HTML fragments receive a root wrapper. The ZIP consistency check separately verifies the downloads match those source snippets. This checks declarations and HTML/CSS template preparation, not browser appearance, standalone text-output fragments or every template-language example. The tests are skipped when this sibling repository is absent. Verify that the test report actually ran **three tests**, rather than accepting a successful build with zero selected tests.
+These tests package the 39 Quick examples, the 26 full control examples and both quick-start stages, then run Foundry's package loader and prepare their template payloads. Control snippets are placed inside a valid host part; HTML fragments receive a root wrapper. The ZIP consistency check separately verifies the downloads match those source snippets. This checks declarations and HTML/CSS template preparation, not browser appearance, standalone text-output fragments or every template-language example. The tests are skipped when this sibling repository is absent. Verify that the test report actually ran **three tests**, rather than accepting a successful build with zero selected tests.
 
 The Markdown files in this repository are the single source of truth. Jekyll renders those same files both for local preview and for GitHub Pages. JavaScript enhances the rendered pages with navigation and copy buttons, but documentation content must remain in Markdown.

@@ -5,7 +5,7 @@ permalink: "/child-picker-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">manifest.json · controls</p>
+<p class="eyebrow">manifest.json · inspector</p>
 <h1>Child picker</h1>
 <p class="lede">An Inspector control that adds and manages real child-part instances inside a part.</p>
 
@@ -17,7 +17,7 @@ permalink: "/child-picker-control.html"
 
 ## Quick example
 
-Add this dictionary to your part's `controls` array:
+Add this dictionary to your part's `inspector` array:
 
 ```json
 {
@@ -40,7 +40,7 @@ Install a child part with ID `com.example.metric-card` before using this example
 
 ## Basic properties
 
-Each item in `controls` defines one Inspector control. These keys set the child picker's identity, name and placement.
+Each item in the `inspector` array defines one Inspector control. These keys set the child picker's identity and name.
 
 <h3 class="property-heading"><code>type</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
@@ -67,15 +67,6 @@ The title shown for this child collection in the Inspector.
 
 ```json
 "label" : "Cards"
-```
-
-<h3 class="property-heading"><code>group</code></h3>
-<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: Settings</span></div>
-
-The Inspector section associated with this control. Omit the key to use Settings.
-
-```json
-"group" : "Content"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -181,19 +172,18 @@ Each added child is an independent part instance with its own Inspector values. 
 
 Set `showsInPartLibrary` to `false` in a managed child's manifest when it should be available through the parent picker but hidden from the main Parts panel.
 
-The Child picker `id` is a persistent content-location identifier. Reordering the control in `controls` keeps its children attached. Removing or renaming it preserves its children but stops rendering them. Structure marks them as belonging to an unavailable Child picker and offers compatible current child areas to which the author can move them. Restoring the same `id` reconnects the preserved children.
+The Child picker `id` is a persistent content-location identifier. Reordering the control in the `inspector` keeps its children attached. Removing or renaming it preserves its children but stops rendering them. Structure marks them as belonging to an unavailable Child picker and offers compatible current child areas to which the author can move them. Restoring the same `id` reconnects the preserved children.
 
 ## Complete example
 
 ### manifest.json
 
 ```json
-"controls" : [
+"inspector" : [
     {
         "type" : "childPicker",
         "id" : "cards",
         "label" : "Cards",
-        "group" : "Content",
         "tooltip" : "Add a feature or metric card.",
         "pickerItems" : [
             "com.example.metric-card"
