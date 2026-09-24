@@ -35,11 +35,11 @@ class StarterTests(unittest.TestCase):
 
     def test_missing_marker_fails(self):
         with self.assertRaises(ValueError):
-            builder["starter_files"](source.replace("<!-- starter:icon.svg -->", ""))
+            builder["starter_files"](source.replace("<!-- starter:part.css -->", ""))
 
     def test_duplicate_marker_fails(self):
         with self.assertRaises(ValueError):
-            builder["starter_files"](source + '\n<!-- starter:icon.svg -->\n```svg\n<svg/>\n```')
+            builder["starter_files"](source + '\n<!-- starter:part.css -->\n```css\n:instance {}\n```')
 
 
 if __name__ == "__main__":

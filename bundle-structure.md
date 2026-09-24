@@ -21,7 +21,9 @@ Example.foundrypack/
 │           ├── part.html
 │           ├── part.css
 │           ├── icon.svg          (square — Structure, Inspector, canvas)
-│           └── tile.svg          (optional 2:1 — the Parts panel tile)
+│           ├── icon-dark.svg     (optional dark-appearance variant)
+│           ├── tile.svg          (optional landscape — the Parts panel tile)
+│           └── tile-dark.svg     (optional dark-appearance variant)
 ├── Templates/
 │   ├── Heroes/               (organization folder)
 │   │   └── 7B6E…/

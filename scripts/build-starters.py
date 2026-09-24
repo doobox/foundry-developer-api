@@ -8,6 +8,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+STARTER_ICON = Path(__file__).with_name("starter-icon.svg")
 
 
 def starter_files(source):
@@ -18,11 +19,12 @@ def starter_files(source):
         if key in snippets:
             raise ValueError(f"Duplicate snippet: {stage}:{name}")
         snippets[key] = content.encode()
-    expected = {("starter", name) for name in ("Info.plist", "part.html", "part.css", "icon.svg")}
+    expected = {("starter", name) for name in ("Info.plist", "part.html", "part.css")}
     expected |= {("complete", name) for name in ("controls", "part.html", "part.css")}
     if set(snippets) != expected:
         raise ValueError(f"Unexpected or missing starter markers: {set(snippets) ^ expected}")
-    basic = {name: snippets["starter", name] for name in ("Info.plist", "part.html", "part.css", "icon.svg")}
+    basic = {name: snippets["starter", name] for name in ("Info.plist", "part.html", "part.css")}
+    basic["icon.svg"] = STARTER_ICON.read_bytes()
     manifest = plistlib.loads(basic["Info.plist"])
     additions = plistlib.loads(b'<plist version="1.0"><dict>' + snippets["complete", "controls"] + b'</dict></plist>')
     if set(additions) != {"controls"} or "controls" in manifest:
