@@ -88,13 +88,13 @@ Save as `Parts/uk.co.example.callout/Resources/part.css`:
 
 ### Give it an icon
 
-Save as `Parts/uk.co.example.callout/Resources/icon.svg`:
+Part icons display in a 2:1 landscape slot — think of the icon as a miniature preview of the part. Author the SVG with a 2:1 viewBox; other shapes letterbox in the centre. Save as `Parts/uk.co.example.callout/Resources/icon.svg`:
 
 <!-- starter:icon.svg -->
 ```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <rect x="2" y="3" width="20" height="18" rx="3" fill="#5B5BD6"/>
-    <path d="M7 8h10M7 12h10M7 16h6" fill="none" stroke="#fff" stroke-width="2"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 24">
+    <rect x="1" y="3" width="46" height="18" rx="3" fill="#5B5BD6"/>
+    <path d="M7 8h34M7 12h34M7 16h20" fill="none" stroke="#fff" stroke-width="2"/>
 </svg>
 ```
 
