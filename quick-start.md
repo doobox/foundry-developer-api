@@ -88,7 +88,7 @@ Save as `Parts/uk.co.example.callout/Resources/part.css`:
 
 ### Give it an icon
 
-Part icons display in a 2:1 landscape slot — think of the icon as a miniature preview of the part. Author the SVG with a 2:1 viewBox; other shapes letterbox in the centre. Save as `Parts/uk.co.example.callout/Resources/icon.svg`:
+Part icons display on a 2:1 landscape tile. Your SVG can be any aspect ratio — it fits inside the tile without cropping — and Foundry draws a subtle tile background behind it, so an icon with a transparent background looks right too. A 2:1 viewBox fills the tile like a miniature preview. Save as `Parts/uk.co.example.callout/Resources/icon.svg`:
 
 <!-- starter:icon.svg -->
 ```svg
