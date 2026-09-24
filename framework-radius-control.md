@@ -5,7 +5,7 @@ permalink: "/framework-radius-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework radius</h1>
 <p class="lede">A four-corner box editor with framework radius, custom lengths, and coordinated linking.</p>
 
@@ -19,15 +19,14 @@ permalink: "/framework-radius-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkRadius</string>
-    <key>id</key><string>frameworkRadius</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>sm</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkRadius",
+    "id" : "frameworkRadius",
+    "defaults" : {
+        "base" : "sm"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -78,23 +77,26 @@ Declare one value for every corner, or a dictionary containing all four keys: `t
 
 A single token or custom length dictionary applies to all four corners. Four-corner dictionaries must include every corner and no other keys. Arrays, raw CSS strings such as `"16px"`, negative lengths and `auto` are not accepted. Only the predefined radius token IDs are supported; the framework sets their pixel values. `full` is a framework token (9,999px in the standard framework), not a percentage. Elliptical radii with separate horizontal/vertical values are not supported.
 
-```xml
-<key>defaults</key><dict><key>base</key><string>sm</string></dict>
+```json
+"defaults" : {
+    "base" : "sm"
+}
 ```
 
 For different initial values:
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>topLeft</key><string>lg</string>
-    <key>topRight</key><string>sm</string>
-    <key>bottomRight</key><string>lg</string>
-    <key>bottomLeft</key>
-    <dict>
-        <key>value</key><real>1.5</real>
-        <key>unit</key><string>rem</string>
-    </dict>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "topLeft" : "lg",
+        "topRight" : "sm",
+        "bottomRight" : "lg",
+        "bottomLeft" : {
+            "value" : 1.5,
+            "unit" : "rem"
+        }
+    }
+}
 ```
 
 Each corner's field sits at its own corner of a two-by-two grid. A shared default, or a four-corner dictionary whose corners are all equal, starts linked; any differing corner starts the control unlinked. All four corner fields remain visible in every state.
@@ -155,17 +157,19 @@ These amounts are not browser-computed pixel measurements: `1rem`, `1px`, and `1
 
 ## Example
 
-Declare this item inside the `controls` array in `Info.plist`:
+Declare this item inside the `controls` array in `manifest.json`:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkRadius</string>
-    <key>id</key><string>frameworkRadius</string>
-    <key>label</key><string>Content radius</string>
-    <key>group</key><string>Layout</string>
-    <key>defaults</key><dict><key>base</key><string>sm</string></dict>
-    <key>responsive</key><true/>
-</dict>
+```json
+{
+    "type" : "frameworkRadius",
+    "id" : "frameworkRadius",
+    "label" : "Content radius",
+    "group" : "Layout",
+    "defaults" : {
+        "base" : "sm"
+    },
+    "responsive" : true
+}
 ```
 
 Use it in the part's CSS template:

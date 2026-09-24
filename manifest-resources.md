@@ -5,7 +5,7 @@ permalink: "/manifest-resources.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist</p>
+<p class="eyebrow">manifest.json</p>
 <h1>Libraries and assets</h1>
 <p class="lede">Use libraries for Foundry-managed web dependencies and assets for part-owned files that templates reference but do not process as source templates.</p>
 
@@ -21,14 +21,13 @@ permalink: "/manifest-resources.html"
 
 <div markdown="1">
 
-```xml
-<key>libraries</key>
-<array>
-    <dict>
-        <key>id</key><string>bootstrapIcons</string>
-        <key>majorVersion</key><integer>1</integer>
-    </dict>
-</array>
+```json
+"libraries" : [
+    {
+        "id" : "bootstrapIcons",
+        "majorVersion" : 1
+    }
+]
 ```
 
 </div>
@@ -52,18 +51,17 @@ permalink: "/manifest-resources.html"
 
 <div markdown="1">
 
-```xml
-<key>libraries</key>
-<array>
-    <dict>
-        <key>id</key><string>alpine</string>
-        <key>majorVersion</key><integer>3</integer>
-    </dict>
-    <dict>
-        <key>id</key><string>gsapScrollTrigger</string>
-        <key>majorVersion</key><integer>3</integer>
-    </dict>
-</array>
+```json
+"libraries" : [
+    {
+        "id" : "alpine",
+        "majorVersion" : 3
+    },
+    {
+        "id" : "gsapScrollTrigger",
+        "majorVersion" : 3
+    }
+]
 ```
 
 </div>
@@ -99,16 +97,15 @@ gsap.from(".feature", {
 
 <div markdown="1">
 
-```xml
-<key>assets</key>
-<array>
-    <dict>
-        <key>path</key><string>images/badge.svg</string>
-    </dict>
-    <dict>
-        <key>path</key><string>data/defaults.json</string>
-    </dict>
-</array>
+```json
+"assets" : [
+    {
+        "path" : "images/badge.svg"
+    },
+    {
+        "path" : "data/defaults.json"
+    }
+]
 ```
 
 </div>
@@ -138,11 +135,11 @@ gsap.from(".feature", {
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>path</key><string>shared/icons</string>
-    <key>scope</key><string>site</string>
-</dict>
+```json
+{
+    "path" : "shared/icons",
+    "scope" : "site"
+}
 ```
 
 </div>
@@ -164,9 +161,8 @@ gsap.from(".feature", {
 
 <div markdown="1">
 
-```xml
-<key>requiresPHP</key>
-<true/>
+```json
+"requiresPHP" : true
 ```
 
 </div>

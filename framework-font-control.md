@@ -5,7 +5,7 @@ permalink: "/framework-font-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework font</h1>
 <p class="lede">One configurable font control with coordinated family, weight and style rows. Font browsing and previews remain in the Framework Editor.</p>
 
@@ -19,15 +19,14 @@ permalink: "/framework-font-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkFont</string>
-    <key>id</key><string>font</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>body</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkFont",
+    "id" : "font",
+    "defaults" : {
+        "base" : "body"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -128,21 +127,23 @@ Disabling an included face in the Framework Editor does not rewrite parts. If a 
 
 ## Example
 
-```xml
-<dict>
-    <key>type</key><string>frameworkFont</string>
-    <key>id</key><string>font</string>
-    <key>label</key><string>Font</string>
-    <key>group</key><string>Typography</string>
-    <key>showsWeight</key><true/>
-    <key>showsStyle</key><true/>
-    <key>defaults</key><dict><key>base</key><dict>
-        <key>family</key><string>heading</string>
-        <key>weight</key><integer>700</integer>
-        <key>style</key><string>normal</string>
-    </dict></dict>
-    <key>responsive</key><true/>
-</dict>
+```json
+{
+    "type" : "frameworkFont",
+    "id" : "font",
+    "label" : "Font",
+    "group" : "Typography",
+    "showsWeight" : true,
+    "showsStyle" : true,
+    "defaults" : {
+        "base" : {
+            "family" : "heading",
+            "weight" : 700,
+            "style" : "normal"
+        }
+    },
+    "responsive" : true
+}
 ```
 
 In the part CSS template:

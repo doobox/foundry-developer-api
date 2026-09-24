@@ -5,7 +5,7 @@ permalink: "/framework-colour-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework colour</h1>
 <p class="lede">A palette and shade selector that resolves the selected colour for templates.</p>
 
@@ -18,19 +18,17 @@ permalink: "/framework-colour-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkColor</string>
-    <key>id</key><string>textColour</string>
-    <key>label</key><string>Colour</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key>
-        <dict>
-            <key>palette</key><string>text</string>
-        </dict>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkColor",
+    "id" : "textColour",
+    "label" : "Colour",
+    "defaults" : {
+        "base" : {
+            "palette" : "text"
+        }
+    }
+}
 ```
 
 Use its resolved CSS value in your stylesheet:
@@ -58,9 +56,8 @@ Use the separate `color` control when only a literal colour picker is needed.
 
 Identifies this item as Framework colour. Always use `frameworkColor`. This control does not support `count`.
 
-```xml
-<key>type</key>
-<string>frameworkColor</string>
+```json
+"type" : "frameworkColor"
 ```
 
 <h3 class="property-heading"><code>id</code></h3>
@@ -117,12 +114,14 @@ Use the exact ID, not the display name. Project-specific custom palette IDs are 
 
 For example, start with Lime:
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>palette</key><string>standard.lime</string>
-    <key>lightShade</key><integer>8</integer>
-    <key>darkShade</key><integer>3</integer>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "palette" : "standard.lime",
+        "lightShade" : 8,
+        "darkShade" : 3
+    }
+}
 ```
 
 <h3 class="property-heading"><code>defaults.base.lightShade</code></h3>
@@ -132,12 +131,14 @@ The initial light-appearance shade number, from `1` to `11` inclusive. Omit it t
 
 Available only inside a `frameworkColor` default dictionary with a framework-role or standard `palette`; it cannot be combined with `palette: custom`. This setting controls initial creation, not subsequent palette choices in the Inspector.
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>palette</key><string>accent</string>
-    <key>lightShade</key><integer>8</integer>
-    <key>darkShade</key><integer>3</integer>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "palette" : "accent",
+        "lightShade" : 8,
+        "darkShade" : 3
+    }
+}
 ```
 
 <h3 class="property-heading"><code>defaults.base.darkShade</code></h3>
@@ -213,19 +214,21 @@ Qualified numbers never change with the site's appearance setting: `light.red` a
 
 ## Complete example
 
-```xml
-<dict>
-    <key>type</key><string>frameworkColor</string>
-    <key>id</key><string>backgroundColor</string>
-    <key>label</key><string>Background</string>
-    <key>group</key><string>Appearance</string>
-    <key>allowsCustom</key><true/>
-    <key>customColor</key><string>#3366CC</string>
-    <key>opacity</key><true/>
-    <key>defaults</key><dict><key>base</key><dict>
-        <key>palette</key><string>accent</string>
-    </dict></dict>
-</dict>
+```json
+{
+    "type" : "frameworkColor",
+    "id" : "backgroundColor",
+    "label" : "Background",
+    "group" : "Appearance",
+    "allowsCustom" : true,
+    "customColor" : "#3366CC",
+    "opacity" : true,
+    "defaults" : {
+        "base" : {
+            "palette" : "accent"
+        }
+    }
+}
 ```
 
 ```css

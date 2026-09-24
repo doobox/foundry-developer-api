@@ -5,7 +5,7 @@ permalink: "/number-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Number</h1>
 <p class="lede">A numeric text field with bounds, increments and an optional displayed unit.</p>
 
@@ -19,17 +19,16 @@ permalink: "/number-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>number</string>
-    <key>id</key><string>spacing</string>
-    <key>minimum</key><real>0</real>
-    <key>maximum</key><real>100</real>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><real>24</real>
-    </dict>
-</dict>
+```json
+{
+    "type" : "number",
+    "id" : "spacing",
+    "minimum" : 0.0,
+    "maximum" : 100.0,
+    "defaults" : {
+        "base" : 24.0
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -50,9 +49,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as Number. Always use `number`.
 
-```xml
-<key>type</key>
-<string>number</string>
+```json
+"type" : "number"
 ```
 
 
@@ -61,9 +59,8 @@ Identifies this item as Number. Always use `number`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>spacing</string>
+```json
+"id" : "spacing"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -71,9 +68,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown to the left of the control in the Inspector, including when `count` is present.
 
-```xml
-<key>label</key>
-<string>Number</string>
+```json
+"label" : "Number"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -81,9 +77,8 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -91,9 +86,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose a value.</string>
+```json
+"tooltip" : "Choose a value."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -103,19 +97,17 @@ Supporting text shown beneath the control. Use a String for one control or a Str
 
 Single control
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 Control array
 
-```xml
-<key>subtitle</key>
-<array>
-    <string>First value</string>
-    <string>Second value</string>
-</array>
+```json
+"subtitle" : [
+    "First value",
+    "Second value"
+]
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -123,14 +115,11 @@ Control array
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -150,17 +139,21 @@ The numeric value initially stored for this control. It cannot be lower than an 
 
 Single control
 
-```xml
-<key>defaults</key><dict><key>base</key><real>24</real></dict>
+```json
+"defaults" : {
+    "base" : 24.0
+}
 ```
 
 Control array
 
-```xml
-<key>defaults</key><dict><key>base</key><array>
-    <real>24</real>
-    <real>24</real>
-</array></dict>
+```json
+"defaults" : {
+    "base" : [
+        24.0,
+        24.0
+    ]
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -168,9 +161,8 @@ Control array
 
 Set to true to allow a different value at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Number options
@@ -184,9 +176,8 @@ Creates two to four controls that are stored as one array. Read each value with 
 
 Control array
 
-```xml
-<key>count</key>
-<integer>2</integer>
+```json
+"count" : 2
 ```
 
 <h3 class="property-heading"><code>minimum</code></h3>
@@ -194,9 +185,8 @@ Control array
 
 Lower editor bound.
 
-```xml
-<key>minimum</key>
-<real>0</real>
+```json
+"minimum" : 0.0
 ```
 
 <h3 class="property-heading"><code>maximum</code></h3>
@@ -204,9 +194,8 @@ Lower editor bound.
 
 Upper editor bound.
 
-```xml
-<key>maximum</key>
-<real>100</real>
+```json
+"maximum" : 100.0
 ```
 
 <h3 class="property-heading"><code>step</code></h3>
@@ -214,9 +203,8 @@ Upper editor bound.
 
 Editor increment.
 
-```xml
-<key>step</key>
-<real>1</real>
+```json
+"step" : 1.0
 ```
 
 <h3 class="property-heading"><code>units</code></h3>
@@ -226,19 +214,17 @@ Inspector-only unit label. Use a string for one value or one array entry per mul
 
 Single control
 
-```xml
-<key>units</key>
-<string>px</string>
+```json
+"units" : "px"
 ```
 
 Control array
 
-```xml
-<key>units</key>
-<array>
-    <string>px</string>
-    <string>%</string>
-</array>
+```json
+"units" : [
+    "px",
+    "%"
+]
 ```
 
 ## Return value
@@ -251,24 +237,25 @@ padding: {{ control.spacing }}px;
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>spacing</string>
-        <key>label</key><string>Number</string>
-        <key>group</key><string>Content</string>
-        <key>type</key><string>number</string>
-        <key>minimum</key><real>0</real>
-        <key>maximum</key><real>100</real>
-        <key>step</key><real>1</real>
-        <key>units</key><string>px</string>
-        <key>defaults</key><dict><key>base</key><real>24</real></dict>
-        <key>responsive</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "spacing",
+        "label" : "Number",
+        "group" : "Content",
+        "type" : "number",
+        "minimum" : 0.0,
+        "maximum" : 100.0,
+        "step" : 1.0,
+        "units" : "px",
+        "defaults" : {
+            "base" : 24.0
+        },
+        "responsive" : false
+    }
+]
 ```
 
 ### Use it in a template

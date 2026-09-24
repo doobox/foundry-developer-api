@@ -5,7 +5,7 @@ permalink: /framework-spacing-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework spacing</h1>
 <p class="lede">A single framework-aware spacing value with custom lengths. Label and apply it wherever a nonnegative spacing value is needed.</p>
 
@@ -19,15 +19,14 @@ permalink: /framework-spacing-control.html
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkSpacing</string>
-    <key>id</key><string>gap</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>sm</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkSpacing",
+    "id" : "gap",
+    "defaults" : {
+        "base" : "sm"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -75,11 +74,13 @@ The picker offers the current framework’s spacing choices, including user-crea
 
 A mode button beside the control switches between framework values and a custom length, matching the four-edge spacing controls. Framework mode shows the framework-value picker; custom mode shows a number field with a unit menu. Switching to custom starts with the selected framework amount in rem; switching back to framework selects the nearest framework value.
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>value</key><real>1.5</real>
-    <key>unit</key><string>rem</string>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "value" : 1.5,
+        "unit" : "rem"
+    }
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -120,15 +121,17 @@ Do not append units to the CSS output. Numeric amounts are not browser-computed 
 
 ## Example
 
-```xml
-<dict>
-    <key>type</key><string>frameworkSpacing</string>
-    <key>id</key><string>gap</string>
-    <key>label</key><string>Gap</string>
-    <key>group</key><string>Layout</string>
-    <key>defaults</key><dict><key>base</key><string>sm</string></dict>
-    <key>responsive</key><true/>
-</dict>
+```json
+{
+    "type" : "frameworkSpacing",
+    "id" : "gap",
+    "label" : "Gap",
+    "group" : "Layout",
+    "defaults" : {
+        "base" : "sm"
+    },
+    "responsive" : true
+}
 ```
 
 ```css

@@ -5,7 +5,7 @@ permalink: "/custom-controls.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Custom controls</h1>
 <p class="lede">Each dictionary in <code>controls</code> creates part of the part Inspector. Declare what the author can change, then read the resulting value from HTML, CSS, JavaScript, or PHP.</p>
 <h2>Declare one control</h2>
@@ -13,18 +13,19 @@ permalink: "/custom-controls.html"
 
 <div markdown="1">
 
-```xml
-<key>controls</key>
-<array>
-<dict>
-    <key>id</key><string>heading</string>
-    <key>label</key><string>Heading</string>
-    <key>group</key><string>Content</string>
-    <key>type</key><string>text</string>
-    <key>defaults</key><dict><key>base</key><string>Welcome</string></dict>
-    <key>responsive</key><false/>
-</dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "heading",
+        "label" : "Heading",
+        "group" : "Content",
+        "type" : "text",
+        "defaults" : {
+            "base" : "Welcome"
+        },
+        "responsive" : false
+    }
+]
 ```
 
 </div>
@@ -34,16 +35,15 @@ permalink: "/custom-controls.html"
 
 Declare initial values in one <code>defaults</code> dictionary, even when only a base value is needed. <code>base</code> is required inside it. Each breakpoint entry is a complete value of the same type as <code>base</code>, including complete arrays and structured values.
 
-```xml
-<key>type</key><string>frameworkSpacing</string>
-<key>id</key><string>gap</string>
-<key>responsive</key><true/>
-<key>defaults</key>
-<dict>
-    <key>base</key><string>sm</string>
-    <key>medium</key><string>md</string>
-    <key>large</key><string>xl</string>
-</dict>
+```json
+"type" : "frameworkSpacing",
+"id" : "gap",
+"responsive" : true,
+"defaults" : {
+    "base" : "sm",
+    "medium" : "md",
+    "large" : "xl"
+}
 ```
 
 Accepted breakpoint names are `small`, `medium`, `large`, `extraLarge`, and `doubleExtraLarge`. Non-base entries require a responsive value control and `responsive: true`. Missing entries inherit from the preceding enabled breakpoint, starting at `base`. Thresholds come from the project's framework, not fixed pixel values in the part.
@@ -58,12 +58,17 @@ Slider requires an explicit numeric `defaults.base` within its range, just like 
 
 Every Inspector section shows an icon on its disclosure header. Declare icons for your groups in an optional top-level `groups` array, naming each group exactly as your controls' `group` values name it:
 
-```xml
-<key>groups</key>
-<array>
-    <dict><key>name</key><string>Gallery</string><key>systemImage</key><string>photo.stack</string></dict>
-    <dict><key>name</key><string>Content</string><key>systemImage</key><string>doc.text</string></dict>
-</array>
+```json
+"groups" : [
+    {
+        "name" : "Gallery",
+        "systemImage" : "photo.stack"
+    },
+    {
+        "name" : "Content",
+        "systemImage" : "doc.text"
+    }
+]
 ```
 
 `systemImage` is an SF Symbol name and is optional; groups without one — declared or not — use a generic fallback icon. [Grouped controls](control-groups.html) carry their sections' standard icons automatically, so declare entries only for your own groups. Each `name` must be unique and must match a group your controls actually use; `Content` is always accepted because editable template content lives there.

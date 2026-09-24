@@ -5,7 +5,7 @@ permalink: "/text-alignment.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Text alignment</h1>
 <p class="lede">A preconfigured segmented control that produces logical CSS text-alignment values.</p>
 
@@ -19,15 +19,14 @@ permalink: "/text-alignment.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>textAlignment</string>
-    <key>id</key><string>alignment</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>start</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "textAlignment",
+    "id" : "alignment",
+    "defaults" : {
+        "base" : "start"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -48,9 +47,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as a Text alignment control. Always use `textAlignment`.
 
-```xml
-<key>type</key>
-<string>textAlignment</string>
+```json
+"type" : "textAlignment"
 ```
 
 <h3 class="property-heading"><code>id</code></h3>
@@ -58,9 +56,8 @@ Identifies this item as a Text alignment control. Always use `textAlignment`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores or hyphens.
 
-```xml
-<key>id</key>
-<string>alignment</string>
+```json
+"id" : "alignment"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -68,9 +65,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown beside the control in the Inspector.
 
-```xml
-<key>label</key>
-<string>Alignment</string>
+```json
+"label" : "Alignment"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -78,9 +74,8 @@ Text shown beside the control in the Inspector.
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Typography</string>
+```json
+"group" : "Typography"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -88,9 +83,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose text alignment.</string>
+```json
+"tooltip" : "Choose text alignment."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -98,12 +92,11 @@ Help text that explains what the control changes.
 
 Supporting text for members of a control array. Use this key only when `count` is present.
 
-```xml
-<key>subtitle</key>
-<array>
-    <string>First value</string>
-    <string>Second value</string>
-</array>
+```json
+"subtitle" : [
+    "First value",
+    "Second value"
+]
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -111,12 +104,11 @@ Supporting text for members of a control array. Use this key only when `count` i
 
 Shows this control only when another control meets the stated condition. See [Conditional visibility](visible-when.html).
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key><string>showControl</string>
-    <key>value</key><true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -134,8 +126,10 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 The initially selected logical alignment. Use `start`, `center`, `end`, or `justify`.
 
-```xml
-<key>defaults</key><dict><key>base</key><string>start</string></dict>
+```json
+"defaults" : {
+    "base" : "start"
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -143,9 +137,8 @@ The initially selected logical alignment. Use `start`, `center`, `end`, or `just
 
 Set to true to allow a different value at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Text alignment options
@@ -157,9 +150,8 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 
 Creates two to four text-alignment controls stored as one array.
 
-```xml
-<key>count</key>
-<integer>2</integer>
+```json
+"count" : 2
 ```
 
 <div class="guidance" markdown="1">
@@ -184,20 +176,21 @@ text-align: {{ control.alignment }};
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>type</key><string>textAlignment</string>
-        <key>id</key><string>alignment</string>
-        <key>label</key><string>Alignment</string>
-        <key>group</key><string>Typography</string>
-        <key>defaults</key><dict><key>base</key><string>start</string></dict>
-        <key>responsive</key><true/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "type" : "textAlignment",
+        "id" : "alignment",
+        "label" : "Alignment",
+        "group" : "Typography",
+        "defaults" : {
+            "base" : "start"
+        },
+        "responsive" : true
+    }
+]
 ```
 
 ### Use it in a template

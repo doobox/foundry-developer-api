@@ -5,16 +5,16 @@ permalink: /reveal-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls · control groups</p>
+<p class="eyebrow">manifest.json · controls · control groups</p>
 <h1>Reveal</h1>
 <p class="lede">Adds configurable GSAP entrance animation to a part and activates it with ScrollTrigger as the part enters the viewport.</p>
 
 ## Quick example
 
-```xml
-<dict>
-    <key>type</key><string>reveal</string>
-</dict>
+```json
+{
+    "type" : "reveal"
+}
 ```
 
 No template macro or custom JavaScript is required. Declaring the group automatically requests `gsap` and `gsapScrollTrigger`; Foundry emits the animation for every instance and leaves both normal global APIs available to the part's own JavaScript.

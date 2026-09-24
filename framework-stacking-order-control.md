@@ -5,7 +5,7 @@ permalink: /framework-stacking-order-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework stacking order</h1>
 <p class="lede">A picker of the framework's stacking-order tokens that resolves the selected z-index for templates.</p>
 
@@ -13,16 +13,15 @@ permalink: /framework-stacking-order-control.html
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkStackingOrder</string>
-    <key>id</key><string>layer</string>
-    <key>label</key><string>Layer</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>base</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkStackingOrder",
+    "id" : "layer",
+    "label" : "Layer",
+    "defaults" : {
+        "base" : "base"
+    }
+}
 ```
 
 Use its resolved CSS value in your stylesheet:
@@ -47,9 +46,8 @@ A mode button beside the control switches between framework values and a custom 
 
 Always `frameworkStackingOrder`. It does not accept `count`, `options`, `frameworkValues`, or `allowsCustom`.
 
-```xml
-<key>type</key>
-<string>frameworkStackingOrder</string>
+```json
+"type" : "frameworkStackingOrder"
 ```
 
 <h3 class="property-heading"><code>id</code></h3>

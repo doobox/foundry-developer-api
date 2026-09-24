@@ -5,7 +5,7 @@ permalink: /framework-font-size-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework font size</h1>
 <p class="lede">A picker of the framework's font sizes that resolves the selected size — and its paired line height — for templates.</p>
 
@@ -13,16 +13,15 @@ permalink: /framework-font-size-control.html
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkFontSize</string>
-    <key>id</key><string>textSize</string>
-    <key>label</key><string>Size</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>base</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkFontSize",
+    "id" : "textSize",
+    "label" : "Size",
+    "defaults" : {
+        "base" : "base"
+    }
+}
 ```
 
 Use its resolved CSS values in your stylesheet:
@@ -47,9 +46,8 @@ Use the separate `number` control when an arbitrary length is needed instead of 
 
 Always `frameworkFontSize`. It does not accept `count`, `options`, `frameworkValues`, or `allowsCustom`.
 
-```xml
-<key>type</key>
-<string>frameworkFontSize</string>
+```json
+"type" : "frameworkFontSize"
 ```
 
 <h3 class="property-heading"><code>id</code></h3>

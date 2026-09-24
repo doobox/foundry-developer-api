@@ -5,7 +5,7 @@ permalink: "/colour.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Colour</h1>
 <p class="lede">A colour picker that supplies a literal hexadecimal colour to templates.</p>
 
@@ -19,15 +19,14 @@ permalink: "/colour.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>color</string>
-    <key>id</key><string>textColor</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>#3366CC</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "color",
+    "id" : "textColor",
+    "defaults" : {
+        "base" : "#3366CC"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -45,9 +44,8 @@ Use it in the part's CSS template:
 
 Identifies this item as Colour. Always use `color`.
 
-```xml
-<key>type</key>
-<string>color</string>
+```json
+"type" : "color"
 ```
 
 <h3 class="property-heading"><code>id</code></h3>
@@ -95,8 +93,10 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 The initial colour. Use `#RRGGBB`, or `#RRGGBBAA` when `opacity` is true. With `count`, provide exactly one colour per picker.
 
-```xml
-<key>defaults</key><dict><key>base</key><string>#3366CC</string></dict>
+```json
+"defaults" : {
+    "base" : "#3366CC"
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -134,9 +134,8 @@ Controls how the colour is supplied to templates. The selected format applies to
 
 The explicitly alpha-bearing `rgba`, `rgbaValues`, `hsla` and `hslaValues` formats return alpha `1` when `opacity` is false. `rgbValues` and `hslValues` intentionally omit alpha so they can be embedded in custom CSS expressions.
 
-```xml
-<key>outputFormat</key>
-<string>rgbValues</string>
+```json
+"outputFormat" : "rgbValues"
 ```
 
 ```css
@@ -229,15 +228,17 @@ color: {{ control.textColor }};
 
 ## Complete example
 
-```xml
-<dict>
-    <key>type</key><string>color</string>
-    <key>id</key><string>textColor</string>
-    <key>label</key><string>Text colour</string>
-    <key>group</key><string>Appearance</string>
-    <key>opacity</key><true/>
-    <key>defaults</key><dict><key>base</key><string>#3366CC</string></dict>
-</dict>
+```json
+{
+    "type" : "color",
+    "id" : "textColor",
+    "label" : "Text colour",
+    "group" : "Appearance",
+    "opacity" : true,
+    "defaults" : {
+        "base" : "#3366CC"
+    }
+}
 ```
 
 {% endraw %}

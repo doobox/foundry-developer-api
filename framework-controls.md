@@ -14,15 +14,17 @@ Framework-aware editing uses dedicated custom controls in the ordinary `controls
 
 Use [Framework font](framework-font-control.html) to select a semantic or custom font family, with optional weight and style editors. Templates read the enabled fields from the control.
 
-```xml
-<dict>
-    <key>type</key><string>frameworkFont</string>
-    <key>id</key><string>font</string>
-    <key>label</key><string>Font</string>
-    <key>defaults</key><dict><key>base</key><string>body</string></dict>
-    <key>showsWeight</key><true/>
-    <key>showsStyle</key><true/>
-</dict>
+```json
+{
+    "type" : "frameworkFont",
+    "id" : "font",
+    "label" : "Font",
+    "defaults" : {
+        "base" : "body"
+    },
+    "showsWeight" : true,
+    "showsStyle" : true
+}
 ```
 
 ```css

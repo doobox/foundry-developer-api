@@ -5,7 +5,7 @@ permalink: /page-folder-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Page folder</h1>
 <p class="lede">A picker of the project's page folders, for parts that render a folder's contents — folder-scoped menus, link lists and footers.</p>
 
@@ -13,16 +13,15 @@ permalink: /page-folder-control.html
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>pageFolder</string>
-    <key>id</key><string>sourceFolder</string>
-    <key>label</key><string>Folder</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string></string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "pageFolder",
+    "id" : "sourceFolder",
+    "label" : "Folder",
+    "defaults" : {
+        "base" : ""
+    }
+}
 ```
 
 Pair it with the `navigation.folders` collection in your template:
@@ -46,9 +45,8 @@ The Inspector shows the project's folders by name, with nested folders labelled 
 
 Always `pageFolder`. It does not accept `count`, `options`, `frameworkValues`, or `allowsCustom`.
 
-```xml
-<key>type</key>
-<string>pageFolder</string>
+```json
+"type" : "pageFolder"
 ```
 
 <h3 class="property-heading"><code>id</code></h3>

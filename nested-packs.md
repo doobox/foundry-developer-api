@@ -13,28 +13,28 @@ permalink: "/nested-packs.html"
 
 ```text
 Acme.foundrypack/
-├── Info.plist
+├── manifest.json
 ├── Parts/
 │   ├── Hero/
-│   │   ├── Info.plist
+│   │   ├── manifest.json
 │   │   └── Resources/
 │   ├── Navigation/
-│   │   ├── Info.plist
+│   │   ├── manifest.json
 │   │   └── Resources/
 │   └── MenuItem/
-│       ├── Info.plist
+│       ├── manifest.json
 │       └── Resources/
 ├── Templates/
 │   └── LandingPage/
-│       ├── Info.plist
+│       ├── manifest.json
 │       └── Resources/
 ├── Frameworks/
 │   └── AcmeBrand/
-│       ├── Info.plist
+│       ├── manifest.json
 │       └── Resources/
 └── Assets/
     └── AcmeStockPhotos/
-        ├── Info.plist        (optional — licence and title)
+        ├── manifest.json        (optional — licence and title)
         ├── hero.jpg
         └── badges/
 ```

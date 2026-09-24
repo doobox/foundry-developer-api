@@ -11,17 +11,16 @@ permalink: "/visible-when.html"
 <p class="lede">Show a control only when another control in the same part satisfies a condition. A false condition removes the complete control and its layout space from the Inspector.</p>
 
 <h2>Equality</h2>
-<p>Add a <code>visibleWhen</code> dictionary directly to any control. Its <code>id</code> identifies the controlling control and <code>value</code> supplies the expected plist value. When <code>operation</code> is omitted, Foundry uses exact, type-aware equality.</p>
+<p>Add a <code>visibleWhen</code> dictionary directly to any control. Its <code>id</code> identifies the controlling control and <code>value</code> supplies the expected JSON value. When <code>operation</code> is omitted, Foundry uses exact, type-aware equality.</p>
 
 
 <div markdown="1">
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key><string>layout</string>
-    <key>value</key><string>grid</string>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "layout",
+    "value" : "grid"
+}
 ```
 
 </div>
@@ -32,13 +31,12 @@ permalink: "/visible-when.html"
 <h2>Template value availability</h2>
 <p>Inspector visibility does not change template values by default. Add <code>valueAvailability</code> beside <code>visibleWhen</code> when a hidden control should instead be unavailable through <code>control.&lt;id&gt;</code>.</p>
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key><string>sizeMode</string>
-    <key>value</key><string>preset</string>
-</dict>
-<key>valueAvailability</key><string>whenVisible</string>
+```json
+"visibleWhen" : {
+    "id" : "sizeMode",
+    "value" : "preset"
+},
+"valueAvailability" : "whenVisible"
 ```
 
 <p><code>valueAvailability</code> is an optional String with a default of <code>always</code>. It accepts <code>always</code> or <code>whenVisible</code>; <code>whenVisible</code> requires <code>visibleWhen</code>. A false condition preserves the stored value but makes the primary value and its qualified derived values unavailable while templates render.</p>
@@ -56,24 +54,27 @@ permalink: "/visible-when.html"
 <h2>Compound conditions</h2>
 <p>Combine conditions with <code>all</code> and <code>any</code>. Each key contains a non-empty array of complete condition dictionaries, and compound expressions may be nested. Use exactly one of <code>id</code>, <code>all</code>, or <code>any</code> in each dictionary.</p>
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>all</key>
-    <array>
-        <dict>
-            <key>id</key><string>state</string>
-            <key>value</key><string>hover</string>
-        </dict>
-        <dict>
-            <key>any</key>
-            <array>
-                <dict><key>id</key><string>style</string><key>value</key><string>image</string></dict>
-                <dict><key>id</key><string>style</string><key>value</key><string>video</string></dict>
-            </array>
-        </dict>
-    </array>
-</dict>
+```json
+"visibleWhen" : {
+    "all" : [
+        {
+            "id" : "state",
+            "value" : "hover"
+        },
+        {
+            "any" : [
+                {
+                    "id" : "style",
+                    "value" : "image"
+                },
+                {
+                    "id" : "style",
+                    "value" : "video"
+                }
+            ]
+        }
+    ]
+}
 ```
 
 <p>The example is visible when <code>state</code> is <code>hover</code> and <code>style</code> is either <code>image</code> or <code>video</code>.</p>
@@ -111,13 +112,13 @@ permalink: "/visible-when.html"
 <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, and <code>&gt;=</code> compare Numbers only.</li>
 <li>Numeric aliases: <code>lessThan</code>, <code>lessThanOrEqualTo</code>, <code>lessThanOrEquals</code>, <code>greaterThan</code>, <code>greaterThanOrEqualTo</code>, and <code>greaterThanOrEquals</code>.</li>
 </ul>
-<p>Escape symbolic operators when they appear inside XML:</p>
+<p>Symbolic operators are plain JSON strings:</p>
 
 <div markdown="1">
 
-```xml
-<key>operation</key><string>&gt;=</string>
-<key>value</key><integer>600</integer>
+```json
+"operation" : ">=",
+"value" : 600
 ```
 
 </div>
@@ -150,12 +151,11 @@ permalink: "/visible-when.html"
 
 <div markdown="1">
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key><string>destination</string>
-    <key>operation</key><string>isNotEmpty</string>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "destination",
+    "operation" : "isNotEmpty"
+}
 ```
 
 </div>
@@ -168,13 +168,12 @@ permalink: "/visible-when.html"
 
 <div markdown="1">
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key><string>titles[2]</string>
-    <key>operation</key><string>containsInsensitive</string>
-    <key>value</key><string>featured</string>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "titles[2]",
+    "operation" : "containsInsensitive",
+    "value" : "featured"
+}
 ```
 
 </div>

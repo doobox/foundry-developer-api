@@ -30,7 +30,7 @@
     ]
   },
   {
-    "title": "Info.plist",
+    "title": "manifest.json",
     "links": [
       [
         "Identity & metadata",

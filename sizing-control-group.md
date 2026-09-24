@@ -5,16 +5,16 @@ permalink: /sizing-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls · control groups</p>
+<p class="eyebrow">manifest.json · controls · control groups</p>
 <h1>Sizing</h1>
 <p class="lede">Adds responsive width, maximum-width, minimum-height and height controls to the Sizing Inspector section.</p>
 
 ## Quick example
 
-```xml
-<dict>
-    <key>type</key><string>sizing</string>
-</dict>
+```json
+{
+    "type" : "sizing"
+}
 ```
 
 ```css

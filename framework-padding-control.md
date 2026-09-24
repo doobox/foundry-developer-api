@@ -5,7 +5,7 @@ permalink: "/framework-padding-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework padding</h1>
 <p class="lede">A four-edge box editor with framework spacing, custom lengths, and coordinated linking.</p>
 
@@ -18,15 +18,14 @@ permalink: "/framework-padding-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkPadding</string>
-    <key>id</key><string>frameworkPadding</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>sm</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkPadding",
+    "id" : "frameworkPadding",
+    "defaults" : {
+        "base" : "sm"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -77,23 +76,26 @@ Declare one value for every edge, or a dictionary containing all four keys: `top
 
 A single token or custom length dictionary applies to all four edges. Four-edge dictionaries must include every edge and no other keys. Arrays, raw CSS strings such as `"16px"`, negative lengths and `auto` are not accepted. Project-specific custom framework IDs cannot be declared as portable defaults; authors select them from the active framework in the Inspector.
 
-```xml
-<key>defaults</key><dict><key>base</key><string>sm</string></dict>
+```json
+"defaults" : {
+    "base" : "sm"
+}
 ```
 
 For different initial values:
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>top</key><string>lg</string>
-    <key>right</key><string>sm</string>
-    <key>bottom</key><string>lg</string>
-    <key>left</key>
-    <dict>
-        <key>value</key><real>1.5</real>
-        <key>unit</key><string>rem</string>
-    </dict>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "top" : "lg",
+        "right" : "sm",
+        "bottom" : "lg",
+        "left" : {
+            "value" : 1.5,
+            "unit" : "rem"
+        }
+    }
+}
 ```
 
 A shared default, or a four-edge dictionary whose edges are all equal, starts with both pairs linked; any differing edge starts the control fully unlinked. All four edge fields remain visible in every state.
@@ -154,17 +156,19 @@ These amounts are not browser-computed pixel measurements: `1rem`, `1px`, and `1
 
 ## Example
 
-Declare this item inside the `controls` array in `Info.plist`:
+Declare this item inside the `controls` array in `manifest.json`:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkPadding</string>
-    <key>id</key><string>frameworkPadding</string>
-    <key>label</key><string>Content padding</string>
-    <key>group</key><string>Layout</string>
-    <key>defaults</key><dict><key>base</key><string>sm</string></dict>
-    <key>responsive</key><true/>
-</dict>
+```json
+{
+    "type" : "frameworkPadding",
+    "id" : "frameworkPadding",
+    "label" : "Content padding",
+    "group" : "Layout",
+    "defaults" : {
+        "base" : "sm"
+    },
+    "responsive" : true
+}
 ```
 
 Use it in the part's CSS template:

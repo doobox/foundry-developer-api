@@ -5,7 +5,7 @@ permalink: "/edges-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Edges</h1>
 <p class="lede">A four-edge box editor for raw lengths with coordinated linking. The general-purpose version of the framework spacing controls: your units, no framework values.</p>
 
@@ -18,20 +18,18 @@ permalink: "/edges-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>edges</string>
-    <key>id</key><string>inset</string>
-    <key>label</key><string>Inset</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key>
-        <dict>
-            <key>value</key><real>0</real>
-            <key>unit</key><string>px</string>
-        </dict>
-    </dict>
-</dict>
+```json
+{
+    "type" : "edges",
+    "id" : "inset",
+    "label" : "Inset",
+    "defaults" : {
+        "base" : {
+            "value" : 0.0,
+            "unit" : "px"
+        }
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -71,8 +69,11 @@ The Inspector section containing the control.
 
 The units offered by each edge's unit menu, in menu order. Accepts a non-empty array of distinct values from `px`, `rem`, `em`, and `%`. Every default must use one of the declared units.
 
-```xml
-<key>units</key><array><string>px</string><string>%</string></array>
+```json
+"units" : [
+    "px",
+    "%"
+]
 ```
 
 <h3 class="property-heading"><code>linked</code></h3>
@@ -90,21 +91,38 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 One length for every edge, or a dictionary containing all four keys: `top`, `right`, `bottom` and `left`. Each length is a dictionary containing exactly `value` (a finite Number; negative values are permitted) and `unit` (one of the declared units). Framework tokens, `none`, `auto`, arrays and raw CSS strings are not accepted.
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>value</key><real>1.5</real><key>unit</key><string>rem</string>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "value" : 1.5,
+        "unit" : "rem"
+    }
+}
 ```
 
 For different initial values:
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>top</key><dict><key>value</key><real>0</real><key>unit</key><string>px</string></dict>
-    <key>right</key><dict><key>value</key><real>16</real><key>unit</key><string>px</string></dict>
-    <key>bottom</key><dict><key>value</key><real>0</real><key>unit</key><string>px</string></dict>
-    <key>left</key><dict><key>value</key><real>16</real><key>unit</key><string>px</string></dict>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "top" : {
+            "value" : 0.0,
+            "unit" : "px"
+        },
+        "right" : {
+            "value" : 16.0,
+            "unit" : "px"
+        },
+        "bottom" : {
+            "value" : 0.0,
+            "unit" : "px"
+        },
+        "left" : {
+            "value" : 16.0,
+            "unit" : "px"
+        }
+    }
+}
 ```
 
 A shared default, or a four-edge dictionary whose edges are all equal, starts with both pairs linked; any differing edge starts the control fully unlinked. Declare `linked` to override the inferred state. All four edge fields remain visible in every state.
@@ -151,18 +169,24 @@ Declaring the control does not apply anything automatically; the template choose
 
 ## Example
 
-```xml
-<dict>
-    <key>type</key><string>edges</string>
-    <key>id</key><string>scrollMargin</string>
-    <key>label</key><string>Scroll margin</string>
-    <key>group</key><string>Layout</string>
-    <key>units</key><array><string>px</string><string>rem</string></array>
-    <key>defaults</key><dict><key>base</key><dict>
-        <key>value</key><real>0</real><key>unit</key><string>px</string>
-    </dict></dict>
-    <key>responsive</key><true/>
-</dict>
+```json
+{
+    "type" : "edges",
+    "id" : "scrollMargin",
+    "label" : "Scroll margin",
+    "group" : "Layout",
+    "units" : [
+        "px",
+        "rem"
+    ],
+    "defaults" : {
+        "base" : {
+            "value" : 0.0,
+            "unit" : "px"
+        }
+    },
+    "responsive" : true
+}
 ```
 
 ```css

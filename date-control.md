@@ -5,7 +5,7 @@ permalink: "/date-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Date</h1>
 <p class="lede">A native calendar-date picker storing a date-only ISO String.</p>
 
@@ -19,15 +19,14 @@ permalink: "/date-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>date</string>
-    <key>id</key><string>published</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>2026-08-30</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "date",
+    "id" : "published",
+    "defaults" : {
+        "base" : "2026-08-30"
+    }
+}
 ```
 
 Use it in your HTML template:
@@ -46,9 +45,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as Date. Always use `date`.
 
-```xml
-<key>type</key>
-<string>date</string>
+```json
+"type" : "date"
 ```
 
 
@@ -57,9 +55,8 @@ Identifies this item as Date. Always use `date`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>published</string>
+```json
+"id" : "published"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -67,9 +64,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown to the left of the control in the Inspector, including when `count` is present.
 
-```xml
-<key>label</key>
-<string>Date</string>
+```json
+"label" : "Date"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -77,9 +73,8 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -87,9 +82,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose a value.</string>
+```json
+"tooltip" : "Choose a value."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -99,19 +93,17 @@ Supporting text shown beneath the control. Use a String for one control or a Str
 
 Single control
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 Control array
 
-```xml
-<key>subtitle</key>
-<array>
-    <string>First value</string>
-    <string>Second value</string>
-</array>
+```json
+"subtitle" : [
+    "First value",
+    "Second value"
+]
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -119,14 +111,11 @@ Control array
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -146,17 +135,21 @@ The value initially stored for this control. Supply a real calendar date using `
 
 Single control
 
-```xml
-<key>defaults</key><dict><key>base</key><string>2026-08-30</string></dict>
+```json
+"defaults" : {
+    "base" : "2026-08-30"
+}
 ```
 
 Control array
 
-```xml
-<key>defaults</key><dict><key>base</key><array>
-    <string>2026-08-30</string>
-    <string>2026-09-06</string>
-</array></dict>
+```json
+"defaults" : {
+    "base" : [
+        "2026-08-30",
+        "2026-09-06"
+    ]
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -164,9 +157,8 @@ Control array
 
 Set to true to allow a different value at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Date options
@@ -178,9 +170,8 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 
 The earliest date the site author may select. Use `YYYY-MM-DD`. The default date cannot be earlier than this value.
 
-```xml
-<key>minimum</key>
-<string>2026-01-01</string>
+```json
+"minimum" : "2026-01-01"
 ```
 
 <h3 class="property-heading"><code>maximum</code></h3>
@@ -188,9 +179,8 @@ The earliest date the site author may select. Use `YYYY-MM-DD`. The default date
 
 The latest date the site author may select. Use `YYYY-MM-DD`. It must be the same as or later than `minimum`, and the default date cannot be later than this value.
 
-```xml
-<key>maximum</key>
-<string>2026-12-31</string>
+```json
+"maximum" : "2026-12-31"
 ```
 
 With `count`, the same optional bounds apply to every date picker.
@@ -202,9 +192,8 @@ Creates two to four controls that are stored as one array. Read each value with 
 
 Control array
 
-```xml
-<key>count</key>
-<integer>2</integer>
+```json
+"count" : 2
 ```
 
 ## Return value
@@ -275,22 +264,23 @@ Calendar arithmetic handles differing month lengths. For example, adding one mon
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>published</string>
-        <key>label</key><string>Date</string>
-        <key>group</key><string>Content</string>
-        <key>type</key><string>date</string>
-        <key>minimum</key><string>2026-01-01</string>
-        <key>maximum</key><string>2026-12-31</string>
-        <key>defaults</key><dict><key>base</key><string>2026-08-30</string></dict>
-        <key>responsive</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "published",
+        "label" : "Date",
+        "group" : "Content",
+        "type" : "date",
+        "minimum" : "2026-01-01",
+        "maximum" : "2026-12-31",
+        "defaults" : {
+            "base" : "2026-08-30"
+        },
+        "responsive" : false
+    }
+]
 ```
 
 ### Use it in a template

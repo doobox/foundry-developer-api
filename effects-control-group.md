@@ -5,16 +5,16 @@ permalink: /effects-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls · control groups</p>
+<p class="eyebrow">manifest.json · controls · control groups</p>
 <h1>Effects</h1>
 <p class="lede">Adds a responsive enable switch, framework shadow and opacity to the Effects Inspector section.</p>
 
 ## Quick example
 
-```xml
-<dict>
-    <key>type</key><string>effects</string>
-</dict>
+```json
+{
+    "type" : "effects"
+}
 ```
 
 ```css

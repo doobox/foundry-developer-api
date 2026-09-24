@@ -5,16 +5,16 @@ permalink: /layout-item-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls · control groups</p>
+<p class="eyebrow">manifest.json · controls · control groups</p>
 <h1>Layout item</h1>
 <p class="lede">Adds responsive flex-item and grid-item controls to the Layout item Inspector section.</p>
 
 ## Quick example
 
-```xml
-<dict>
-    <key>type</key><string>layoutItem</string>
-</dict>
+```json
+{
+    "type" : "layoutItem"
+}
 ```
 
 ```css

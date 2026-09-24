@@ -18,7 +18,7 @@ permalink: "/assets-and-templates.html"
 Acme.foundrypack/
 └── Assets/
     ├── Stock Photos/
-    │   ├── Info.plist        (optional — licence and title)
+    │   ├── manifest.json        (optional — licence and title)
     │   ├── hero.jpg
     │   └── landscapes/
     │       └── coast.jpg
@@ -28,8 +28,8 @@ Acme.foundrypack/
 
 </div>
 
-<h3>The optional collection Info.plist</h3>
-<p>Add an <code>Info.plist</code> at the collection's root to attach metadata. Every key is optional:</p>
+<h3>The optional collection manifest.json</h3>
+<p>Add a <code>manifest.json</code> at the collection's root to attach metadata. Every key is optional:</p>
 <dl>
 <dt>title</dt>
 <dd>Display name shown in Foundry. Defaults to the folder name.</dd>
@@ -45,22 +45,18 @@ Acme.foundrypack/
 
 <div markdown="1">
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>title</key><string>Stock Photos</string>
-    <key>license</key><string>CC0 1.0</string>
-    <key>licenseURL</key><string>https://creativecommons.org/publicdomain/zero/1.0/</string>
-    <key>attribution</key><string>Photos by Example Studio</string>
-</dict>
-</plist>
+```json
+{
+    "title" : "Stock Photos",
+    "license" : "CC0 1.0",
+    "licenseURL" : "https://creativecommons.org/publicdomain/zero/1.0/",
+    "attribution" : "Photos by Example Studio"
+}
 ```
 
 </div>
 
-<p>The manifest never lists as a file, and the name <code>Info.plist</code> is reserved at the collection root. Hidden files such as <code>.DS_Store</code> never ship.</p>
+<p>The manifest never lists as a file, and the name <code>manifest.json</code> is reserved at the collection root. Hidden files such as <code>.DS_Store</code> never ship.</p>
 
 <h3>How users see collections</h3>
 <p>Installed packs appear as read-only sections — marked with a padlock — on the Library tab of the Assets panel. Selecting a collection or file shows its details and licence in the Inspector, and importing always copies files into the project's own asset library, so published sites never depend on an installed pack.</p>
@@ -71,7 +67,7 @@ Acme.foundrypack/
 <ol>
 <li>Open your <code>.foundrydevpack</code> in Foundry (File&nbsp;▸&nbsp;Open). It appears as a section on the Templates panel's Dev tab.</li>
 <li>Compose parts on the canvas, then drop the composition onto your pack's section — or right-click an existing template and choose <em>Move to&nbsp;▸ your pack</em>. Foundry writes the bundle and bakes its <code>preview.png</code> automatically.</li>
-<li>Arrange templates into folders. A child of <code>Templates/</code> without an <code>Info.plist</code> is an organization folder — create them in the panel or directly in Finder; either way the other stays in sync. Folders and templates list alphabetically.</li>
+<li>Arrange templates into folders. A child of <code>Templates/</code> without a <code>manifest.json</code> is an organization folder — create them in the panel or directly in Finder; either way the other stays in sync. Folders and templates list alphabetically.</li>
 </ol>
 
 <div markdown="1">
@@ -99,12 +95,12 @@ Acme.foundrypack/
     └── Restaurant Starter/
         ├── site.foundry
         ├── preview.jpg       (optional — 16:10 card artwork)
-        └── Info.plist        (optional)
+        └── manifest.json        (optional)
 ```
 
 </div>
 
-<h3>The optional kit Info.plist</h3>
+<h3>The optional kit manifest.json</h3>
 <p>Both keys are optional; a bare folder with a document is a complete kit.</p>
 <dl>
 <dt>title</dt>
@@ -115,15 +111,11 @@ Acme.foundrypack/
 
 <div markdown="1">
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>title</key><string>Restaurant Starter</string>
-    <key>description</key><string>High-impact website for restaurants.</string>
-</dict>
-</plist>
+```json
+{
+    "title" : "Restaurant Starter",
+    "description" : "High-impact website for restaurants."
+}
 ```
 
 </div>

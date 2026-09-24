@@ -36,7 +36,7 @@ After `./serve-docs`, also check the rendered links and search index. Pass the *
 python3 scripts/check-docs.py --site /path/to/jekyll/output
 ```
 
-The checker validates complete XML/plist snippets, control-example keys against the documented property entries, default dictionaries, numeric default ranges, quick-example placement, local links and heading anchors. Explicitly abbreviated snippets containing ellipses are skipped. External URLs are not fetched. This is not the application's full manifest validator: importing example packs into Foundry is still required for end-to-end validation.
+The checker validates complete JSON snippets, control-example keys against the documented property entries, default dictionaries, numeric default ranges, quick-example placement, local links and heading anchors. Explicitly abbreviated snippets containing ellipses are skipped. External URLs are not fetched. This is not the application's full manifest validator: importing example packs into Foundry is still required for end-to-end validation.
 
 ### Navigation
 

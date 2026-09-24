@@ -5,7 +5,7 @@ permalink: "/corners-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Corners</h1>
 <p class="lede">A four-corner box editor for raw lengths with all-or-none linking. The general-purpose version of the framework radius control: your units, no framework values.</p>
 
@@ -18,20 +18,18 @@ permalink: "/corners-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>corners</string>
-    <key>id</key><string>clipRadius</string>
-    <key>label</key><string>Clip radius</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key>
-        <dict>
-            <key>value</key><real>0</real>
-            <key>unit</key><string>px</string>
-        </dict>
-    </dict>
-</dict>
+```json
+{
+    "type" : "corners",
+    "id" : "clipRadius",
+    "label" : "Clip radius",
+    "defaults" : {
+        "base" : {
+            "value" : 0.0,
+            "unit" : "px"
+        }
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -86,10 +84,13 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 One length for every corner, or a dictionary containing all four keys: `topLeft`, `topRight`, `bottomRight` and `bottomLeft`. Each length is a dictionary containing exactly `value` (a finite, nonnegative Number) and `unit` (one of the declared units). Framework tokens, `none`, `auto`, negative lengths, arrays and raw CSS strings are not accepted.
 
-```xml
-<key>defaults</key><dict><key>base</key><dict>
-    <key>value</key><real>8</real><key>unit</key><string>px</string>
-</dict></dict>
+```json
+"defaults" : {
+    "base" : {
+        "value" : 8.0,
+        "unit" : "px"
+    }
+}
 ```
 
 Each corner's field sits at its own corner of a two-by-two grid. A shared default, or a four-corner dictionary whose corners are all equal, starts linked; any differing corner starts the control unlinked. Declare `linked` to override the inferred state. All four corner fields remain visible in every state.
@@ -136,18 +137,24 @@ Declaring the control does not apply anything automatically; the template choose
 
 ## Example
 
-```xml
-<dict>
-    <key>type</key><string>corners</string>
-    <key>id</key><string>maskRadius</string>
-    <key>label</key><string>Mask radius</string>
-    <key>group</key><string>Appearance</string>
-    <key>units</key><array><string>px</string><string>%</string></array>
-    <key>defaults</key><dict><key>base</key><dict>
-        <key>value</key><real>12</real><key>unit</key><string>px</string>
-    </dict></dict>
-    <key>responsive</key><true/>
-</dict>
+```json
+{
+    "type" : "corners",
+    "id" : "maskRadius",
+    "label" : "Mask radius",
+    "group" : "Appearance",
+    "units" : [
+        "px",
+        "%"
+    ],
+    "defaults" : {
+        "base" : {
+            "value" : 12.0,
+            "unit" : "px"
+        }
+    },
+    "responsive" : true
+}
 ```
 
 ```css

@@ -5,7 +5,7 @@ permalink: /framework-border-control.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework border</h1>
 <p class="lede">A four-edge width editor and an optional style picker.</p>
 
@@ -19,18 +19,16 @@ permalink: /framework-border-control.html
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkBorder</string>
-    <key>id</key><string>border</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key>
-        <dict>
-            <key>width</key><string>sm</string>
-        </dict>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkBorder",
+    "id" : "border",
+    "defaults" : {
+        "base" : {
+            "width" : "sm"
+        }
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -135,19 +133,21 @@ Framework widths return CSS variables such as `var(--foundry-border-width-sm)`. 
 
 ## Example
 
-```xml
-<dict>
-    <key>type</key><string>frameworkBorder</string>
-    <key>id</key><string>border</string>
-    <key>label</key><string>Border</string>
-    <key>group</key><string>Border</string>
-    <key>showsStyle</key><true/>
-    <key>responsive</key><true/>
-    <key>defaults</key><dict><key>base</key><dict>
-        <key>width</key><string>sm</string>
-        <key>style</key><string>solid</string>
-    </dict></dict>
-</dict>
+```json
+{
+    "type" : "frameworkBorder",
+    "id" : "border",
+    "label" : "Border",
+    "group" : "Border",
+    "showsStyle" : true,
+    "responsive" : true,
+    "defaults" : {
+        "base" : {
+            "width" : "sm",
+            "style" : "solid"
+        }
+    }
+}
 ```
 
 ```css

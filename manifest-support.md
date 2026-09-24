@@ -5,7 +5,7 @@ permalink: "/manifest-support.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist</p>
+<p class="eyebrow">manifest.json</p>
 <h1>Support and recovery</h1>
 <p class="lede">Give authors a route to part help and preserve useful information when a project refers to a pack that is no longer available.</p>
 
@@ -20,9 +20,8 @@ permalink: "/manifest-support.html"
 
 <div markdown="1">
 
-```xml
-<key>helpURL</key>
-<string>https://example.com/parts/callout/help</string>
+```json
+"helpURL" : "https://example.com/parts/callout/help"
 ```
 
 </div>
@@ -41,14 +40,11 @@ permalink: "/manifest-support.html"
 
 <div markdown="1">
 
-```xml
-<key>missingPart</key>
-<dict>
-    <key>message</key>
-    <string>Install Example Parts to edit this Callout.</string>
-    <key>preview</key>
-    <string>&lt;aside class="callout-placeholder"&gt;Callout&lt;/aside&gt;</string>
-</dict>
+```json
+"missingPart" : {
+    "message" : "Install Example Parts to edit this Callout.",
+    "preview" : "<aside class=\"callout-placeholder\">Callout</aside>"
+}
 ```
 
 </div>

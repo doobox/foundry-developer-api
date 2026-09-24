@@ -22,10 +22,10 @@ Use the starter download, or create these five files yourself.
 
 ```text
 Callout.foundrydevpack/
-├── Info.plist
+├── manifest.json
 └── Parts/
     └── uk.co.example.callout/
-        ├── Info.plist
+        ├── manifest.json
         └── Resources/
             ├── part.html
             ├── part.css
@@ -34,28 +34,25 @@ Callout.foundrydevpack/
 
 ### Declare the files
 
-The starter's root `Info.plist` declares pack format 2 and identifies the outer pack. Save the following part manifest as `Parts/uk.co.example.callout/Info.plist`. This first version has no Inspector controls.
+The starter's root `manifest.json` declares pack format 2 and identifies the outer pack. Save the following part manifest as `Parts/uk.co.example.callout/manifest.json`. This first version has no Inspector controls.
 
-<!-- starter:Info.plist -->
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<plist version="1.0">
-<dict>
-    <key>minimumAPIVersion</key><integer>1</integer>
-    <key>id</key><string>uk.co.example.callout</string>
-    <key>title</key><string>Callout</string>
-    <key>version</key><string>1.0.0</string>
-    <key>group</key><string>Content</string>
-    <key>templates</key>
-    <dict>
-        <key>html</key><string>part.html</string>
-        <key>files</key>
-        <array>
-            <dict><key>path</key><string>part.css</string></dict>
-        </array>
-    </dict>
-</dict>
-</plist>
+<!-- starter:manifest.json -->
+```json
+{
+    "minimumAPIVersion" : 1,
+    "id" : "uk.co.example.callout",
+    "title" : "Callout",
+    "version" : "1.0.0",
+    "group" : "Content",
+    "templates" : {
+        "html" : "part.html",
+        "files" : [
+            {
+                "path" : "part.css"
+            }
+        ]
+    }
+}
 ```
 
 ### Add an editable heading
@@ -117,31 +114,31 @@ Find **Callout** under **Content** in the Parts panel and add it to a page. You 
 
 ## 3. Add framework controls
 
-Add the following `controls` entry inside the **outer dictionary** of `Info.plist`, immediately before its closing `</dict>`. Keep the existing identity and template declarations.
+Add the following `controls` entry inside the **top-level object** of `manifest.json`, immediately before its closing `}`. Keep the existing identity and template declarations.
 
 <!-- complete:controls -->
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>type</key><string>frameworkPadding</string>
-        <key>id</key><string>frameworkPadding</string>
-        <key>label</key><string>Padding</string>
-        <key>defaults</key>
-        <dict><key>base</key><string>lg</string></dict>
-        <key>responsive</key><true/>
-    </dict>
-    <dict>
-        <key>type</key><string>frameworkColor</string>
-        <key>id</key><string>accentColor</string>
-        <key>label</key><string>Accent</string>
-        <key>defaults</key>
-        <dict>
-            <key>base</key>
-            <dict><key>palette</key><string>accent</string></dict>
-        </dict>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "type" : "frameworkPadding",
+        "id" : "frameworkPadding",
+        "label" : "Padding",
+        "defaults" : {
+            "base" : "lg"
+        },
+        "responsive" : true
+    },
+    {
+        "type" : "frameworkColor",
+        "id" : "accentColor",
+        "label" : "Accent",
+        "defaults" : {
+            "base" : {
+                "palette" : "accent"
+            }
+        }
+    }
+]
 ```
 
 Replace `part.css` with:
@@ -186,13 +183,13 @@ Callout.foundrydevpack/
         └── warning.svg
 ```
 
-The collection appears in Foundry's Assets panel, titled by its folder name. To declare a licence or a display title, add an optional `Info.plist` inside the collection folder — see [Assets & templates](assets-and-templates.html).
+The collection appears in Foundry's Assets panel, titled by its folder name. To declare a licence or a display title, add an optional `manifest.json` inside the collection folder — see [Assets & templates](assets-and-templates.html).
 
 **Add templates.** Templates are page compositions authored in Foundry, not by hand: with your dev pack open, compose parts on the canvas and drop the composition onto your pack's section in the Templates panel's Dev tab. Foundry writes the bundle and its preview for you; arrange the results into plain folders inside `Templates/`, from the panel or in Finder. A pack of nothing but templates is a perfectly good product — ship any custom parts they use in the same pack.
 
 ## If something does not work
 
-- **The part does not appear:** check that the pack root has its own `Info.plist` declaring the pack `id`, that the part folder under `Parts/` contains both `Info.plist` and `Resources/`, and reload parts.
+- **The part does not appear:** check that the pack root has its own `manifest.json` declaring the pack `id`, that the part folder under `Parts/` contains both `manifest.json` and `Resources/`, and reload parts.
 - **Foundry rejects it:** enable the Developer panel in Foundry's Developer preferences. It reports the invalid manifest key, template line or missing file.
 - **Styles or controls seem unchanged:** save the source files and reload parts. Confirm you are editing the installed development pack rather than another extracted copy.
 

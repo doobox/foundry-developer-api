@@ -9,10 +9,10 @@ description: Build parts for Foundry with ordinary HTML, CSS, JavaScript, and
 <section class="hero">
 <p class="eyebrow">Foundry part API</p>
 <h1>Build parts for Foundry.</h1>
-<p class="lede">Build portable website parts from ordinary HTML, CSS, JavaScript, and PHP. <code>Info.plist</code> declares the part; templates remain yours.</p>
+<p class="lede">Build portable website parts from ordinary HTML, CSS, JavaScript, and PHP. <code>manifest.json</code> declares the part; templates remain yours.</p>
 <div class="hero-actions">
     <a class="button" href="quick-start.html">Build your first part</a>
-    <a class="button secondary" href="manifest-identity.html">Explore Info.plist</a>
+    <a class="button secondary" href="manifest-identity.html">Explore manifest.json</a>
 </div>
 </section>
 
@@ -24,7 +24,7 @@ description: Build parts for Foundry with ordinary HTML, CSS, JavaScript, and
         <p><a href="bundle-structure.html">Understand the bundle structure →</a></p>
     </section>
     <section class="step">
-        <h3>Describe it in Info.plist</h3>
+        <h3>Describe it in manifest.json</h3>
         <p>Give the part a stable identity, name its source templates and assets, request any libraries, and declare the controls authors will see.</p>
         <p><a href="manifest-identity.html">Start with part identity →</a></p>
     </section>

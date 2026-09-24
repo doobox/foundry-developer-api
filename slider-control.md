@@ -5,7 +5,7 @@ permalink: "/slider-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Slider</h1>
 <p class="lede">A continuous or stepped numeric slider with optional visual tick marks and an exact-value field.</p>
 
@@ -19,17 +19,16 @@ permalink: "/slider-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>slider</string>
-    <key>id</key><string>intensity</string>
-    <key>minimum</key><real>0</real>
-    <key>maximum</key><real>100</real>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><real>100</real>
-    </dict>
-</dict>
+```json
+{
+    "type" : "slider",
+    "id" : "intensity",
+    "minimum" : 0.0,
+    "maximum" : 100.0,
+    "defaults" : {
+        "base" : 100.0
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -50,9 +49,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as Slider. Always use `slider`.
 
-```xml
-<key>type</key>
-<string>slider</string>
+```json
+"type" : "slider"
 ```
 
 
@@ -61,9 +59,8 @@ Identifies this item as Slider. Always use `slider`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>intensity</string>
+```json
+"id" : "intensity"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -71,9 +68,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown to the left of the control in the Inspector, including when `count` is present.
 
-```xml
-<key>label</key>
-<string>Slider</string>
+```json
+"label" : "Slider"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -81,9 +77,8 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -91,9 +86,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose a value.</string>
+```json
+"tooltip" : "Choose a value."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -103,19 +97,17 @@ Supporting text shown beneath the control. Use a String for one control or a Str
 
 Single control
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 Control array
 
-```xml
-<key>subtitle</key>
-<array>
-    <string>First value</string>
-    <string>Second value</string>
-</array>
+```json
+"subtitle" : [
+    "First value",
+    "Second value"
+]
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -123,14 +115,11 @@ Control array
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -150,17 +139,21 @@ The value initially stored for this control. A value must be supplied explicitly
 
 Single control
 
-```xml
-<key>defaults</key><dict><key>base</key><real>50</real></dict>
+```json
+"defaults" : {
+    "base" : 50.0
+}
 ```
 
 Control array
 
-```xml
-<key>defaults</key><dict><key>base</key><array>
-    <real>50</real>
-    <real>50</real>
-</array></dict>
+```json
+"defaults" : {
+    "base" : [
+        50.0,
+        50.0
+    ]
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -168,9 +161,8 @@ Control array
 
 Set to true to allow a different value at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Slider options
@@ -184,9 +176,8 @@ Creates two to four controls that are stored as one array. Read each value with 
 
 Control array
 
-```xml
-<key>count</key>
-<integer>2</integer>
+```json
+"count" : 2
 ```
 
 <h3 class="property-heading"><code>minimum</code></h3>
@@ -194,9 +185,8 @@ Control array
 
 Lower slider bound.
 
-```xml
-<key>minimum</key>
-<real>0</real>
+```json
+"minimum" : 0.0
 ```
 
 <h3 class="property-heading"><code>maximum</code></h3>
@@ -204,9 +194,8 @@ Lower slider bound.
 
 Upper slider bound. It must be greater than `minimum`. Directly entered values are clamped to the resulting range.
 
-```xml
-<key>maximum</key>
-<real>100</real>
+```json
+"maximum" : 100.0
 ```
 
 <h3 class="property-heading"><code>step</code></h3>
@@ -214,9 +203,8 @@ Upper slider bound. It must be greater than `minimum`. Directly entered values a
 
 Selectable increment relative to `minimum`. It cannot be negative; zero means continuous. Directly entered values snap to a positive step.
 
-```xml
-<key>step</key>
-<real>1</real>
+```json
+"step" : 1.0
 ```
 
 <h3 class="property-heading"><code>ticks</code></h3>
@@ -224,9 +212,8 @@ Selectable increment relative to `minimum`. It cannot be negative; zero means co
 
 Exact number of evenly distributed visible marks, including both endpoints. Use zero for no marks or an integer of at least two. Ticks are visual only.
 
-```xml
-<key>ticks</key>
-<integer>11</integer>
+```json
+"ticks" : 11
 ```
 
 <h3 class="property-heading"><code>showsValueField</code></h3>
@@ -234,9 +221,8 @@ Exact number of evenly distributed visible marks, including both endpoints. Use 
 
 Shows an editable number field for precise entry beside the slider.
 
-```xml
-<key>showsValueField</key>
-<true/>
+```json
+"showsValueField" : true
 ```
 
 <h3 class="property-heading"><code>units</code></h3>
@@ -246,19 +232,17 @@ Inspector-only unit label. Use a string for one slider or one array entry per mu
 
 Single control
 
-```xml
-<key>units</key>
-<string>px</string>
+```json
+"units" : "px"
 ```
 
 Control array
 
-```xml
-<key>units</key>
-<array>
-    <string>px</string>
-    <string>%</string>
-</array>
+```json
+"units" : [
+    "px",
+    "%"
+]
 ```
 
 <div class="guidance" markdown="1">
@@ -266,11 +250,11 @@ Control array
 
 `step` controls selectable values and is measured from `minimum`. Omit it or use zero for a continuous slider. `ticks` is purely visual and gives the exact number of marks, including both endpoints. For a 0–100 percentage slider in increments of 10, use a step of 10 and 11 marks.
 
-```xml
-<key>minimum</key><real>0</real>
-<key>maximum</key><real>100</real>
-<key>step</key><real>10</real>
-<key>ticks</key><integer>11</integer>
+```json
+"minimum" : 0.0,
+"maximum" : 100.0,
+"step" : 10.0,
+"ticks" : 11
 ```
 
 For a 0–1000 integer slider without marks, use `step` 1 and omit `ticks`.
@@ -286,26 +270,27 @@ filter: brightness({{ control.intensity }}%);
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>intensity</string>
-        <key>label</key><string>Slider</string>
-        <key>group</key><string>Content</string>
-        <key>type</key><string>slider</string>
-        <key>minimum</key><real>0</real>
-        <key>maximum</key><real>100</real>
-        <key>step</key><real>10</real>
-        <key>ticks</key><integer>11</integer>
-        <key>showsValueField</key><true/>
-        <key>units</key><string>%</string>
-        <key>defaults</key><dict><key>base</key><real>100</real></dict>
-        <key>responsive</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "intensity",
+        "label" : "Slider",
+        "group" : "Content",
+        "type" : "slider",
+        "minimum" : 0.0,
+        "maximum" : 100.0,
+        "step" : 10.0,
+        "ticks" : 11,
+        "showsValueField" : true,
+        "units" : "%",
+        "defaults" : {
+            "base" : 100.0
+        },
+        "responsive" : false
+    }
+]
 ```
 
 ### Use it in a template

@@ -25,7 +25,7 @@ permalink: /template-areas.html
 <dt>
 <code>{{ dropZone("name") }}</code>
 </dt>
-<dd>Creates an ordinary child-content area at this position in the primary HTML template. Authors can drop any part there. A part may contain any number of named drop zones and does not declare them in <code>Info.plist</code>.</dd>
+<dd>Creates an ordinary child-content area at this position in the primary HTML template. Authors can drop any part there. A part may contain any number of named drop zones and does not declare them in <code>manifest.json</code>.</dd>
 <dt>
 <code>{{ childArea("name") }}</code>
 </dt>

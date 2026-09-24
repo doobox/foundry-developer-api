@@ -5,7 +5,7 @@ permalink: "/math-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Math</h1>
 <p class="lede">A virtual numeric result calculated from constants or other controls.</p>
 
@@ -14,14 +14,14 @@ permalink: "/math-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>math</string>
-    <key>id</key><string>doubleWidth</string>
-    <key>argument1</key><real>24</real>
-    <key>argument2</key><real>2</real>
-    <key>operation</key><string>*</string>
-</dict>
+```json
+{
+    "type" : "math",
+    "id" : "doubleWidth",
+    "argument1" : 24.0,
+    "argument2" : 2.0,
+    "operation" : "*"
+}
 ```
 
 Use it in the part's CSS template:
@@ -42,9 +42,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as Math. Always use `math`.
 
-```xml
-<key>type</key>
-<string>math</string>
+```json
+"type" : "math"
 ```
 
 
@@ -53,9 +52,8 @@ Identifies this item as Math. Always use `math`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>doubleWidth</string>
+```json
+"id" : "doubleWidth"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -63,9 +61,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -73,9 +70,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Supporting text shown beneath the control.
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -83,14 +79,11 @@ Supporting text shown beneath the control.
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 ## Math options
@@ -107,9 +100,8 @@ Controls when this control's value is available to templates. `always` preserves
 
 Numeric constant, numeric String, or another control ID.
 
-```xml
-<key>argument1</key>
-<string>width</string>
+```json
+"argument1" : "width"
 ```
 
 <h3 class="property-heading"><code>argument2</code></h3>
@@ -117,9 +109,8 @@ Numeric constant, numeric String, or another control ID.
 
 Numeric constant, numeric String, or another control ID.
 
-```xml
-<key>argument2</key>
-<real>2</real>
+```json
+"argument2" : 2.0
 ```
 
 <h3 class="property-heading"><code>operation</code></h3>
@@ -127,9 +118,8 @@ Numeric constant, numeric String, or another control ID.
 
 Selects addition, subtraction, multiplication, division, remainder, minimum, or maximum using `+`, `-`, `*`, `/`, `%`, `min`, or `max`. Division or remainder by zero returns `0`.
 
-```xml
-<key>operation</key>
-<string>*</string>
+```json
+"operation" : "*"
 ```
 
 <h3 class="property-heading"><code>round</code></h3>
@@ -137,9 +127,8 @@ Selects addition, subtraction, multiplication, division, remainder, minimum, or 
 
 Rounds the calculated result.
 
-```xml
-<key>round</key>
-<false/>
+```json
+"round" : false
 ```
 
 <div class="guidance" markdown="1">
@@ -160,21 +149,20 @@ width: {{ control.doubleWidth }}px;
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>doubleWidth</string>
-        <key>group</key><string>Derived values</string>
-        <key>type</key><string>math</string>
-        <key>argument1</key><real>24</real>
-        <key>argument2</key><real>2</real>
-        <key>operation</key><string>*</string>
-        <key>round</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "doubleWidth",
+        "group" : "Derived values",
+        "type" : "math",
+        "argument1" : 24.0,
+        "argument2" : 2.0,
+        "operation" : "*",
+        "round" : false
+    }
+]
 ```
 
 ### Use it in a template

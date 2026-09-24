@@ -4,7 +4,7 @@ This is the canonical, separate repository for Foundry's developer documentation
 
 ## The mantra
 
-**One repository, one Markdown source, one Jekyll rendering path. Write for developers, keep manifest concepts under Info.plist, follow the established page convention, and verify what readers will actually see.**
+**One repository, one Markdown source, one Jekyll rendering path. Write for developers, keep manifest concepts under manifest.json, follow the established page convention, and verify what readers will actually see.**
 
 ## Source of truth
 
@@ -16,9 +16,9 @@ This is the canonical, separate repository for Foundry's developer documentation
 
 ## Information architecture
 
-- Everything developers declare in `Info.plist` belongs beneath the `Info.plist` sidebar section.
-- Custom controls and their individual reference pages remain nested beneath `Info.plist → Custom controls`.
-- Template declarations belong under `Info.plist`; template-language syntax remains its own section.
+- Everything developers declare in `manifest.json` belongs beneath the `manifest.json` sidebar section.
+- Custom controls and their individual reference pages remain nested beneath `manifest.json → Custom controls`.
+- Template declarations belong under `manifest.json`; template-language syntax remains its own section.
 - Preserve the Bootstrap-inspired sidebar: no top navbar, top-level accordion with only one section open, independently collapsible subsections and non-underlined navigation links.
 
 ## Control-reference convention
@@ -27,7 +27,7 @@ This is the canonical, separate repository for Foundry's developer documentation
 - Document `type` first, above `id`; it identifies the control and is not an optional setting.
 - Keep property type, Required or Optional status, and default together using the shared `property-heading` and `property-meta` pattern.
 - Make every key entry self-contained for that page: include its accepted type, Required or Optional status, default, permitted values, constraints and developer-visible effects beside the key.
-- The plist keys are singular: `label` and `subtitle`. Never expose the app's plural internal property names as manifest keys.
+- The manifest keys are singular: `label` and `subtitle`. Never expose the app's plural internal property names as manifest keys.
 - `label` is always one optional String, including when `count` is present. It is always displayed in the Inspector's left-hand label column; never document or declare it as an array.
 - `subtitle` is optional and available to every control. It is a String for a single control and a String array when `count` is present.
 - `responsive` is optional and defaults to `false` unless a control page documents a deliberate exception.

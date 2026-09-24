@@ -5,7 +5,7 @@ permalink: "/divider-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Divider</h1>
 <p class="lede">A presentation-only visual separator between inspector controls.</p>
 
@@ -19,11 +19,11 @@ permalink: "/divider-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>divider</string>
-    <key>id</key><string>separator</string>
-</dict>
+```json
+{
+    "type" : "divider",
+    "id" : "separator"
+}
 ```
 
 This item only separates Inspector controls; it produces no template value.
@@ -38,9 +38,8 @@ Each item in `controls` defines one Inspector item. A Divider has no editable va
 
 Identifies this item as Divider. Always use `divider`.
 
-```xml
-<key>type</key>
-<string>divider</string>
+```json
+"type" : "divider"
 ```
 
 > **Important:** Divider supports only `type`, `id`, `group`, and optional `visibleWhen`. It has no author-editable state or template value.
@@ -51,9 +50,8 @@ Identifies this item as Divider. Always use `divider`.
 
 The unique name of this Inspector item. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>separator</string>
+```json
+"id" : "separator"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -61,9 +59,8 @@ The unique name of this Inspector item. It must start with a letter and may cont
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -71,14 +68,11 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 Divider does not support `label`, `subtitle`, `tooltip`, `defaults`, `responsive`, or `count`.
@@ -95,17 +89,16 @@ No template value
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>type</key><string>divider</string>
-        <key>id</key><string>separator</string>
-        <key>group</key><string>Derived values</string>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "type" : "divider",
+        "id" : "separator",
+        "group" : "Derived values"
+    }
+]
 ```
 
 ### Use it in a template

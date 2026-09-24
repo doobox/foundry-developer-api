@@ -5,7 +5,7 @@ permalink: "/icon-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Icon</h1>
 <p class="lede">A searchable visual picker containing every icon in Foundry’s built-in icon library.</p>
 
@@ -19,15 +19,14 @@ permalink: "/icon-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>icon</string>
-    <key>id</key><string>symbol</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>stars</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "icon",
+    "id" : "symbol",
+    "defaults" : {
+        "base" : "stars"
+    }
+}
 ```
 
 Use it in your HTML template:
@@ -46,9 +45,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as an Icon control. Always use `icon`.
 
-```xml
-<key>type</key>
-<string>icon</string>
+```json
+"type" : "icon"
 ```
 
 
@@ -57,9 +55,8 @@ Identifies this item as an Icon control. Always use `icon`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>symbol</string>
+```json
+"id" : "symbol"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -67,9 +64,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown to the left of the control in the Inspector, including when `count` is present.
 
-```xml
-<key>label</key>
-<string>Icon</string>
+```json
+"label" : "Icon"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -77,9 +73,8 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 The Inspector section that contains this control.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -87,9 +82,8 @@ The Inspector section that contains this control.
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose an icon.</string>
+```json
+"tooltip" : "Choose an icon."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -97,9 +91,8 @@ Help text that explains what the control changes.
 
 Supporting text shown beneath the picker. With `count`, use an array containing no more than one subtitle for each picker; entries correspond by zero-based index.
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -122,8 +115,10 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 An icon name from Foundry’s built-in catalogue, without the `bi-` prefix. A control array needs one value for each member.
 
-```xml
-<key>defaults</key><dict><key>base</key><string>stars</string></dict>
+```json
+"defaults" : {
+    "base" : "stars"
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -131,9 +126,8 @@ An icon name from Foundry’s built-in catalogue, without the `bi-` prefix. A co
 
 Set to true to allow a different icon at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Icon options
@@ -145,18 +139,18 @@ Creates two to four icon controls stored as one array. Read each value using a z
 
 When `count` is present, `defaults.base` must be an array containing exactly `count` valid icon names.
 
-```xml
-<key>count</key>
-<integer>2</integer>
-<key>subtitle</key>
-<array>
-    <string>Previous</string>
-    <string>Next</string>
-</array>
-<key>defaults</key><dict><key>base</key><array>
-    <string>arrow-left</string>
-    <string>arrow-right</string>
-</array></dict>
+```json
+"count" : 2,
+"subtitle" : [
+    "Previous",
+    "Next"
+],
+"defaults" : {
+    "base" : [
+        "arrow-left",
+        "arrow-right"
+    ]
+}
 ```
 
 ## Built-in icon library
@@ -180,19 +174,20 @@ For a multi Icon, read each name by zero-based index.
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>type</key><string>icon</string>
-        <key>id</key><string>symbol</string>
-        <key>label</key><string>Icon</string>
-        <key>group</key><string>Appearance</string>
-        <key>defaults</key><dict><key>base</key><string>stars</string></dict>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "type" : "icon",
+        "id" : "symbol",
+        "label" : "Icon",
+        "group" : "Appearance",
+        "defaults" : {
+            "base" : "stars"
+        }
+    }
+]
 ```
 
 ### Use it in a template

@@ -5,7 +5,7 @@ permalink: "/link-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Link</h1>
 <p class="lede">A structured destination supporting URLs, plain text, project pages, project resources, anchors, new-window behaviour, and custom attributes.</p>
 
@@ -19,15 +19,14 @@ permalink: "/link-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>link</string>
-    <key>id</key><string>destination</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string></string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "link",
+    "id" : "destination",
+    "defaults" : {
+        "base" : ""
+    }
+}
 ```
 
 Use it in your HTML template:
@@ -50,9 +49,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as a Link control. Always use `link`.
 
-```xml
-<key>type</key>
-<string>link</string>
+```json
+"type" : "link"
 ```
 
 <h3 class="property-heading"><code>id</code></h3>
@@ -60,9 +58,8 @@ Identifies this item as a Link control. Always use `link`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores or hyphens.
 
-```xml
-<key>id</key>
-<string>destination</string>
+```json
+"id" : "destination"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -70,9 +67,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown to the left of the control in the Inspector.
 
-```xml
-<key>label</key>
-<string>Destination</string>
+```json
+"label" : "Destination"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -80,9 +76,8 @@ Text shown to the left of the control in the Inspector.
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Content</string>
+```json
+"group" : "Content"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -90,9 +85,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose a destination.</string>
+```json
+"tooltip" : "Choose a destination."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -100,9 +94,8 @@ Help text that explains what the control changes.
 
 Supporting text shown beneath the control.
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -110,12 +103,11 @@ Supporting text shown beneath the control.
 
 Shows this control only when another control meets the stated condition. See [Conditional visibility](visible-when.html).
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key><string>showControl</string>
-    <key>value</key><true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -133,8 +125,10 @@ A dictionary containing the required `base` value in the format described below.
 
 The initial destination. An empty string means no destination; a non-empty string initializes a URL destination.
 
-```xml
-<key>defaults</key><dict><key>base</key><string></string></dict>
+```json
+"defaults" : {
+    "base" : ""
+}
 ```
 
 ## Link options
@@ -146,9 +140,8 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 
 Prefixes internal page and resource paths with the project Site URL when it is a valid HTTP(S) URL. Otherwise Foundry retains the relative path.
 
-```xml
-<key>absoluteURL</key>
-<true/>
+```json
+"absoluteURL" : true
 ```
 
 <div class="guidance" markdown="1">
@@ -174,20 +167,21 @@ Invalid HTML attribute names are omitted. Opening a new window emits `_blank` an
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>type</key><string>link</string>
-        <key>id</key><string>destination</string>
-        <key>label</key><string>Destination</string>
-        <key>group</key><string>Content</string>
-        <key>absoluteURL</key><true/>
-        <key>defaults</key><dict><key>base</key><string></string></dict>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "type" : "link",
+        "id" : "destination",
+        "label" : "Destination",
+        "group" : "Content",
+        "absoluteURL" : true,
+        "defaults" : {
+            "base" : ""
+        }
+    }
+]
 ```
 
 ### Use it in a template

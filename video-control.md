@@ -5,23 +5,22 @@ permalink: "/video-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Video</h1>
 <p class="lede">Let someone choose, import, replace or clear a project video using the standard media well.</p>
 
 ## Quick example
 
-```xml
-<dict>
-    <key>type</key><string>video</string>
-    <key>id</key><string>film</string>
-    <key>label</key><string>Video</string>
-    <key>group</key><string>Media</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string></string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "video",
+    "id" : "film",
+    "label" : "Video",
+    "group" : "Media",
+    "defaults" : {
+        "base" : ""
+    }
+}
 ```
 
 ```html

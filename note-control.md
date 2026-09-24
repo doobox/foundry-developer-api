@@ -5,7 +5,7 @@ permalink: "/note-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Note</h1>
 <p class="lede">Presentation-only explanatory text in an inspector group.</p>
 
@@ -19,13 +19,13 @@ permalink: "/note-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>note</string>
-    <key>id</key><string>guidance</string>
-    <key>title</key><string>Layout</string>
-    <key>body</key><string>Choose the spacing for this part.</string>
-</dict>
+```json
+{
+    "type" : "note",
+    "id" : "guidance",
+    "title" : "Layout",
+    "body" : "Choose the spacing for this part."
+}
 ```
 
 This item displays guidance in the Inspector; it produces no template value.
@@ -40,9 +40,8 @@ Each item in `controls` defines one Inspector item. These keys set its name and 
 
 Identifies this item as Note. Always use `note`.
 
-```xml
-<key>type</key>
-<string>note</string>
+```json
+"type" : "note"
 ```
 
 
@@ -51,9 +50,8 @@ Identifies this item as Note. Always use `note`.
 
 The unique name for this Inspector item. It must start with a letter and may contain letters, numbers, underscores and hyphens. Note is presentation-only, so this identifier is not available as a template value.
 
-```xml
-<key>id</key>
-<string>guidance</string>
+```json
+"id" : "guidance"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -61,9 +59,8 @@ The unique name for this Inspector item. It must start with a letter and may con
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>title</code></h3>
@@ -71,9 +68,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 An optional heading shown above the explanatory text. Omit this key to show the text without a heading.
 
-```xml
-<key>title</key>
-<string>About responsive settings</string>
+```json
+"title" : "About responsive settings"
 ```
 
 <h3 class="property-heading"><code>body</code></h3>
@@ -81,9 +77,8 @@ An optional heading shown above the explanatory text. Omit this key to show the 
 
 The explanatory text shown across the full width of the Inspector.
 
-```xml
-<key>body</key>
-<string>Changes here affect every breakpoint.</string>
+```json
+"body" : "Changes here affect every breakpoint."
 ```
 
 <h3 class="property-heading"><code>systemImage</code></h3>
@@ -91,9 +86,8 @@ The explanatory text shown across the full width of the Inspector.
 
 The name of an SF Symbol shown in secondary colour to the left of the title. Omit this key to show no symbol.
 
-```xml
-<key>systemImage</key>
-<string>info.circle</string>
+```json
+"systemImage" : "info.circle"
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -101,14 +95,11 @@ The name of an SF Symbol shown in secondary colour to the left of the title. Omi
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 ## Note options
@@ -120,9 +111,8 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 
 Use `body` for the required explanatory copy, optionally add `title` as a heading, and use `systemImage` when the message benefits from an SF Symbol. Note content occupies the full Inspector width rather than using the standard label and value columns.
 
-```xml
-<key>body</key>
-<string>Changes here affect every breakpoint.</string>
+```json
+"body" : "Changes here affect every breakpoint."
 ```
 
 > **Important:** Note does not use `label` or `subtitle`. It is a single, presentation-only item and does not support `count` or `responsive`.
@@ -138,20 +128,19 @@ No template value
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>guidance</string>
-        <key>title</key><string>About responsive settings</string>
-        <key>body</key><string>Changes here affect every breakpoint.</string>
-        <key>systemImage</key><string>info.circle</string>
-        <key>group</key><string>Derived values</string>
-        <key>type</key><string>note</string>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "guidance",
+        "title" : "About responsive settings",
+        "body" : "Changes here affect every breakpoint.",
+        "systemImage" : "info.circle",
+        "group" : "Derived values",
+        "type" : "note"
+    }
+]
 ```
 
 ### Use it in a template

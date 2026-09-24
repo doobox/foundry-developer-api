@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check docs source, plist examples, and optionally a Jekyll-rendered site.
+"""Check docs source, JSON examples, and optionally a Jekyll-rendered site.
 
 Uses only Python's standard library. These are documentation contract checks,
 not a replacement for importing example packs into Foundry.
@@ -9,7 +9,6 @@ import html
 from html.parser import HTMLParser
 import json
 from pathlib import Path
-import plistlib
 import re
 import sys
 import subprocess
@@ -23,13 +22,16 @@ def fail(location, message):
     errors.append(f"{location}: {message}")
 
 
-def read_plist(code):
+def read_json(code):
     code = code.strip()
-    if not code.startswith("<?xml") and not code.startswith("<plist"):
-        if code.startswith("<key>"):
-            code = f"<dict>{code}</dict>"
-        code = f'<plist version="1.0">{code}</plist>'
-    return plistlib.loads(code.encode())
+    if code.startswith('"'):
+        # Key fragments shown without their enclosing object.
+        return json.loads("{" + code + "}")
+    try:
+        return json.loads(code)
+    except json.JSONDecodeError:
+        # Sibling objects shown without their enclosing array.
+        return json.loads("[" + code + "]")
 
 
 def dictionaries(value):
@@ -45,8 +47,8 @@ def dictionaries(value):
 sources = {p.name: p.read_text() for p in ROOT.glob("*.md")}
 control_pages = {}
 for name, source in sources.items():
-    match = re.search(r'<key>type</key>\s*<string>([^<]+)</string>', source)
-    if 'Info.plist · controls' in source and match:
+    match = re.search(r'"type"\s*:\s*"([^"]+)"', source)
+    if 'manifest.json · controls' in source and match:
         keys = set(re.findall(r'<h3 class="property-heading"><code>([^<.]+)</code>', source))
         if {"type", "id"} <= keys:
             control_pages[match[1]] = (name, keys)
@@ -59,17 +61,17 @@ for name, source in sources.items():
             fail(name, "expected exactly one Quick example")
         elif source.index("## Quick example") > source.index('class="property-heading"'):
             fail(name, "Quick example must precede the property reference")
-    for index, match in enumerate(re.finditer(r'^```xml\s*\n(.*?)^```', source, re.M | re.S), 1):
-        location = f"{name}:XML example {index}"
+    for index, match in enumerate(re.finditer(r'^```json\s*\n(.*?)^```', source, re.M | re.S), 1):
+        location = f"{name}:JSON example {index}"
         code = match[1]
-        # Explicitly illustrative fragments are not complete plist documents.
+        # Explicitly illustrative fragments are not complete JSON documents.
         if "..." in code or "…" in code:
             continue
         try:
-            value = read_plist(code)
+            value = read_json(code)
             snippet_count += 1
         except Exception as error:
-            fail(location, f"invalid plist syntax: {error}")
+            fail(location, f"invalid JSON syntax: {error}")
             continue
         for item in dictionaries(value):
             kind = item.get("type")
@@ -180,7 +182,7 @@ if args.site:
             fail("search.json", "invalid search entry")
     print(f"Checked {len(pages)} rendered pages and {len(search)} search entries.")
 
-print(f"Checked {len(control_pages)} control pages, {snippet_count} plist snippets and {control_count} control declarations.")
+print(f"Checked {len(control_pages)} control pages, {snippet_count} JSON snippets and {control_count} control declarations.")
 if errors:
     print("\n".join(errors), file=sys.stderr)
     sys.exit(1)

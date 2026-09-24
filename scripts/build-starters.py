@@ -2,13 +2,17 @@
 """Build deterministic starter downloads from quick-start.md; --check detects drift."""
 import argparse
 import io
+import json
 from pathlib import Path
-import plistlib
 import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 STARTER_ICON = Path(__file__).with_name("starter-icon.svg")
+
+
+def dump_json(value):
+    return (json.dumps(value, indent=4, separators=(",", " : "), ensure_ascii=False) + "\n").encode()
 
 
 def starter_files(source):
@@ -19,18 +23,18 @@ def starter_files(source):
         if key in snippets:
             raise ValueError(f"Duplicate snippet: {stage}:{name}")
         snippets[key] = content.encode()
-    expected = {("starter", name) for name in ("Info.plist", "part.html", "part.css")}
+    expected = {("starter", name) for name in ("manifest.json", "part.html", "part.css")}
     expected |= {("complete", name) for name in ("controls", "part.html", "part.css")}
     if set(snippets) != expected:
         raise ValueError(f"Unexpected or missing starter markers: {set(snippets) ^ expected}")
-    basic = {name: snippets["starter", name] for name in ("Info.plist", "part.html", "part.css")}
+    basic = {name: snippets["starter", name] for name in ("manifest.json", "part.html", "part.css")}
     basic["icon.svg"] = STARTER_ICON.read_bytes()
-    manifest = plistlib.loads(basic["Info.plist"])
-    additions = plistlib.loads(b'<plist version="1.0"><dict>' + snippets["complete", "controls"] + b'</dict></plist>')
+    manifest = json.loads(basic["manifest.json"])
+    additions = json.loads(b"{" + snippets["complete", "controls"] + b"}")
     if set(additions) != {"controls"} or "controls" in manifest:
         raise ValueError("The controls stage must add exactly one controls entry to the basic manifest")
     complete = dict(basic)
-    complete["Info.plist"] = plistlib.dumps({**manifest, **additions}, sort_keys=False)
+    complete["manifest.json"] = dump_json({**manifest, **additions})
     for name in ("part.html", "part.css"):
         complete[name] = snippets["complete", name]
     return {"starter": basic, "complete": complete}
@@ -38,20 +42,20 @@ def starter_files(source):
 
 def archive(files):
     output = io.BytesIO()
-    pack_manifest = plistlib.dumps({
+    pack_manifest = dump_json({
         "formatVersion": 2,
         "id": "uk.co.example.callout-pack",
         "title": "Callout",
         "version": "1.0.0",
         "minimumAPIVersion": 1,
-    }, sort_keys=False)
+    })
     with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_STORED) as zipped:
-        root_info = zipfile.ZipInfo("Callout.foundrydevpack/Info.plist", (2026, 1, 1, 0, 0, 0))
+        root_info = zipfile.ZipInfo("Callout.foundrydevpack/manifest.json", (2026, 1, 1, 0, 0, 0))
         root_info.create_system = 3
         root_info.external_attr = 0o100644 << 16
         zipped.writestr(root_info, pack_manifest)
         for name, content in sorted(files.items()):
-            relative = name if name == "Info.plist" else f"Resources/{name}"
+            relative = name if name == "manifest.json" else f"Resources/{name}"
             info = zipfile.ZipInfo(
                 f"Callout.foundrydevpack/Parts/uk.co.example.callout/{relative}",
                 (2026, 1, 1, 0, 0, 0),

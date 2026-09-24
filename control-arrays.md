@@ -13,24 +13,29 @@ permalink: "/control-arrays.html"
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>id</key><string>palette</string>
-    <key>label</key><string>Palette</string>
-    <key>subtitle</key>
-    <array>
-        <string>Primary</string><string>Secondary</string>
-        <string>Accent</string><string>Surface</string>
-    </array>
-    <key>group</key><string>Appearance</string>
-    <key>type</key><string>color</string>
-    <key>count</key><integer>4</integer>
-    <key>defaults</key><dict><key>base</key><array>
-        <string>#3366CC</string><string>#8A55D7</string>
-        <string>#2DA44E</string><string>#F6F8FA</string>
-    </array></dict>
-    <key>responsive</key><true/>
-</dict>
+```json
+{
+    "id" : "palette",
+    "label" : "Palette",
+    "subtitle" : [
+        "Primary",
+        "Secondary",
+        "Accent",
+        "Surface"
+    ],
+    "group" : "Appearance",
+    "type" : "color",
+    "count" : 4,
+    "defaults" : {
+        "base" : [
+            "#3366CC",
+            "#8A55D7",
+            "#2DA44E",
+            "#F6F8FA"
+        ]
+    },
+    "responsive" : true
+}
 ```
 
 </div>

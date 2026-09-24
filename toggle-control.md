@@ -5,7 +5,7 @@ permalink: "/toggle-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Toggle</h1>
 <p class="lede">A Boolean switch.</p>
 
@@ -19,15 +19,14 @@ permalink: "/toggle-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>toggle</string>
-    <key>id</key><string>featured</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><false/>
-    </dict>
-</dict>
+```json
+{
+    "type" : "toggle",
+    "id" : "featured",
+    "defaults" : {
+        "base" : false
+    }
+}
 ```
 
 Use it in your HTML template:
@@ -46,9 +45,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as Toggle. Always use `toggle`.
 
-```xml
-<key>type</key>
-<string>toggle</string>
+```json
+"type" : "toggle"
 ```
 
 
@@ -57,9 +55,8 @@ Identifies this item as Toggle. Always use `toggle`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>featured</string>
+```json
+"id" : "featured"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -67,9 +64,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown to the left of the control in the Inspector, including when `count` is present.
 
-```xml
-<key>label</key>
-<string>Toggle</string>
+```json
+"label" : "Toggle"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -77,9 +73,8 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -87,9 +82,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose a value.</string>
+```json
+"tooltip" : "Choose a value."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -99,19 +93,17 @@ Supporting text shown beneath the control. Use a String for one control or a Str
 
 Single control
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 Control array
 
-```xml
-<key>subtitle</key>
-<array>
-    <string>First value</string>
-    <string>Second value</string>
-</array>
+```json
+"subtitle" : [
+    "First value",
+    "Second value"
+]
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -119,14 +111,11 @@ Control array
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -146,17 +135,21 @@ The value initially stored for this control. A control array needs one value for
 
 Single control
 
-```xml
-<key>defaults</key><dict><key>base</key><false/></dict>
+```json
+"defaults" : {
+    "base" : false
+}
 ```
 
 Control array
 
-```xml
-<key>defaults</key><dict><key>base</key><array>
-    <false/>
-    <false/>
-</array></dict>
+```json
+"defaults" : {
+    "base" : [
+        false,
+        false
+    ]
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -164,9 +157,8 @@ Control array
 
 Set to true to allow a different value at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Toggle options
@@ -180,9 +172,8 @@ Creates two to four controls that are stored as one array. Read each value with 
 
 Control array
 
-```xml
-<key>count</key>
-<integer>2</integer>
+```json
+"count" : 2
 ```
 
 ## Return value
@@ -195,20 +186,21 @@ Control array
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>featured</string>
-        <key>label</key><string>Toggle</string>
-        <key>group</key><string>Content</string>
-        <key>type</key><string>toggle</string>
-        <key>defaults</key><dict><key>base</key><false/></dict>
-        <key>responsive</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "featured",
+        "label" : "Toggle",
+        "group" : "Content",
+        "type" : "toggle",
+        "defaults" : {
+            "base" : false
+        },
+        "responsive" : false
+    }
+]
 ```
 
 ### Use it in a template

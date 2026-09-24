@@ -5,7 +5,7 @@ permalink: "/templates.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist template files</p>
+<p class="eyebrow">manifest.json template files</p>
 <h1>Declare exactly the files your part uses</h1>
 <p class="lede">The <code>templates</code> dictionary tells Foundry which files are source templates, how often to process them, and where their output belongs. This page separates the rules by file type so every declaration has one clear shape.</p>
 <p>Foundry does not scan the pack and guess which files are templates. Every HTML, CSS, JavaScript or PHP template the part uses must be declared explicitly in this dictionary.</p>
@@ -19,12 +19,10 @@ permalink: "/templates.html"
 
 <div markdown="1">
 
-```xml
-<key>templates</key>
-<dict>
-    <key>html</key>
-    <string>part.html</string>
-</dict>
+```json
+"templates" : {
+    "html" : "part.html"
+}
 ```
 
 </div>
@@ -85,14 +83,12 @@ permalink: "/templates.html"
 
 <div markdown="1">
 
-```xml
-<key>files</key>
-<array>
-    <dict>
-        <key>path</key>
-        <string>part.css</string>
-    </dict>
-</array>
+```json
+"files" : [
+    {
+        "path" : "part.css"
+    }
+]
 ```
 
 </div>
@@ -100,15 +96,13 @@ permalink: "/templates.html"
 <h2 id="html-contributions">HTML contributions</h2>
 <p>Parts may add optional rendered fragments immediately inside their primary root without modifying the primary HTML file. Declare an <code>htmlContributions</code> array inside <code>templates</code>. Each entry requires an inline <code>template</code> String and a <code>placement</code> of <code>afterOpeningTag</code> or <code>beforeClosingTag</code>.</p>
 
-```xml
-<key>htmlContributions</key>
-<array>
-    <dict>
-        <key>placement</key><string>afterOpeningTag</string>
-        <key>template</key>
-        <string>{{ if control.showBadge }}&lt;span class="badge"&gt;New&lt;/span&gt;{{ endif }}</string>
-    </dict>
-</array>
+```json
+"htmlContributions" : [
+    {
+        "placement" : "afterOpeningTag",
+        "template" : "{{ if control.showBadge }}<span class=\"badge\">New</span>{{ endif }}"
+    }
+]
 ```
 
 <p>Contribution templates use the ordinary template language, including controls, conditions, paths and output-encoding filters. Empty rendered contributions insert nothing. Foundry validates their control references and template expressions with the rest of the part.</p>
@@ -162,10 +156,10 @@ permalink: "/templates.html"
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>path</key><string>part.css</string>
-</dict>
+```json
+{
+    "path" : "part.css"
+}
 ```
 
 </div>
@@ -191,11 +185,11 @@ permalink: "/templates.html"
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>path</key><string>page.css</string>
-    <key>scope</key><string>page</string>
-</dict>
+```json
+{
+    "path" : "page.css",
+    "scope" : "page"
+}
 ```
 
 </div>
@@ -208,11 +202,11 @@ permalink: "/templates.html"
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>path</key><string>site.css</string>
-    <key>scope</key><string>site</string>
-</dict>
+```json
+{
+    "path" : "site.css",
+    "scope" : "site"
+}
 ```
 
 </div>
@@ -225,12 +219,12 @@ permalink: "/templates.html"
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>path</key><string>part.js</string>
-    <key>scope</key><string>instance</string>
-    <key>closure</key><true/>
-</dict>
+```json
+{
+    "path" : "part.js",
+    "scope" : "instance",
+    "closure" : true
+}
 ```
 
 </div>
@@ -279,21 +273,17 @@ const parentSection = foundry.closest("com.example.section");
 
 <div markdown="1">
 
-```xml
-<key>requiresPHP</key>
-<true/>
-
-<key>templates</key>
-<dict>
-    <key>html</key><string>part.html</string>
-    <key>files</key>
-    <array>
-        <dict>
-            <key>path</key><string>part.php</string>
-            <key>scope</key><string>instance</string>
-        </dict>
-    </array>
-</dict>
+```json
+"requiresPHP" : true,
+"templates" : {
+    "html" : "part.html",
+    "files" : [
+        {
+            "path" : "part.php",
+            "scope" : "instance"
+        }
+    ]
+}
 ```
 
 </div>
@@ -308,12 +298,12 @@ const parentSection = foundry.closest("com.example.section");
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>path</key><string>metadata.html</string>
-    <key>scope</key><string>page</string>
-    <key>placement</key><string>headEnd</string>
-</dict>
+```json
+{
+    "path" : "metadata.html",
+    "scope" : "page",
+    "placement" : "headEnd"
+}
 ```
 
 </div>
@@ -337,12 +327,11 @@ const parentSection = foundry.closest("com.example.section");
 
 <div markdown="1">
 
-```xml
-<key>templates</key>
-<dict>
-    <key>html</key><string>part.html</string>
-    <key>editorCSS</key><string>editor.css</string>
-</dict>
+```json
+"templates" : {
+    "html" : "part.html",
+    "editorCSS" : "editor.css"
+}
 ```
 
 </div>
@@ -369,47 +358,41 @@ const parentSection = foundry.closest("com.example.section");
 
 <div markdown="1">
 
-```xml
-<key>requiresPHP</key>
-<true/>
-
-<key>assets</key>
-<array>
-    <dict>
-        <key>path</key><string>images/badge.svg</string>
-    </dict>
-    <dict>
-        <key>path</key><string>shared/icons</string>
-        <key>scope</key><string>site</string>
-    </dict>
-</array>
-
-<key>templates</key>
-<dict>
-    <key>html</key><string>part.html</string>
-    <key>files</key>
-    <array>
-        <dict>
-            <key>path</key><string>part.css</string>
-        </dict>
-        <dict>
-            <key>path</key><string>site.css</string>
-            <key>scope</key><string>site</string>
-        </dict>
-        <dict>
-            <key>path</key><string>part.js</string>
-        </dict>
-        <dict>
-            <key>path</key><string>part.php</string>
-        </dict>
-        <dict>
-            <key>path</key><string>metadata.html</string>
-            <key>scope</key><string>page</string>
-            <key>placement</key><string>headEnd</string>
-        </dict>
-    </array>
-    <key>editorCSS</key><string>editor.css</string>
-</dict>
+```json
+"requiresPHP" : true,
+"assets" : [
+    {
+        "path" : "images/badge.svg"
+    },
+    {
+        "path" : "shared/icons",
+        "scope" : "site"
+    }
+],
+"templates" : {
+    "html" : "part.html",
+    "files" : [
+        {
+            "path" : "part.css"
+        },
+        {
+            "path" : "site.css",
+            "scope" : "site"
+        },
+        {
+            "path" : "part.js"
+        },
+        {
+            "path" : "part.php"
+        },
+        {
+            "path" : "metadata.html",
+            "scope" : "page",
+            "placement" : "headEnd"
+        }
+    ],
+    "editorCSS" : "editor.css"
+}
 ```
 
 </div>

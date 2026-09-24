@@ -5,7 +5,7 @@ permalink: "/select-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Select</h1>
 <p class="lede">A native popup containing explicitly declared options.</p>
 
@@ -19,19 +19,24 @@ permalink: "/select-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>select</string>
-    <key>id</key><string>layout</string>
-    <key>options</key><array>
-        <dict><key>value</key><string>block</string><key>title</key><string>Block</string></dict>
-        <dict><key>value</key><string>flex</string><key>title</key><string>Flex</string></dict>
-    </array>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>block</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "select",
+    "id" : "layout",
+    "options" : [
+        {
+            "value" : "block",
+            "title" : "Block"
+        },
+        {
+            "value" : "flex",
+            "title" : "Flex"
+        }
+    ],
+    "defaults" : {
+        "base" : "block"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -52,9 +57,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as a Select. Always use `select`.
 
-```xml
-<key>type</key>
-<string>select</string>
+```json
+"type" : "select"
 ```
 
 
@@ -63,9 +67,8 @@ Identifies this item as a Select. Always use `select`.
 
 The unique name used to store this Select and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>mySelect</string>
+```json
+"id" : "mySelect"
 ```
 
 > Replace `mySelect` with your own identifier. The name is not predefined, but it must be unique in the part and follow the identifier rules above.
@@ -75,9 +78,8 @@ The unique name used to store this Select and read it in templates. It must star
 
 Text shown to the left of the Select in the Inspector, including for a [Multi Select](#count).
 
-```xml
-<key>label</key>
-<string>Font Size</string>
+```json
+"label" : "Font Size"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -85,9 +87,8 @@ Text shown to the left of the Select in the Inspector, including for a [Multi Se
 
 The Inspector section that contains this Select. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Typography</string>
+```json
+"group" : "Typography"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -95,9 +96,8 @@ The Inspector section that contains this Select. Omit the key to place it in Set
 
 Help text that explains what the Select changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose the text size.</string>
+```json
+"tooltip" : "Choose the text size."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -107,19 +107,17 @@ Supporting text shown beneath the control. Use a String for one control or a Str
 
 Single control
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 Multi Select
 
-```xml
-<key>subtitle</key>
-<array>
-    <string>Small screen</string>
-    <string>Large screen</string>
-</array>
+```json
+"subtitle" : [
+    "Small screen",
+    "Large screen"
+]
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -127,14 +125,11 @@ Multi Select
 
 Shows this Select only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showTypography</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showTypography",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -154,17 +149,21 @@ The initially selected value. Use a declared option value. A Multi Select needs 
 
 Single Select
 
-```xml
-<key>defaults</key><dict><key>base</key><string>base</string></dict>
+```json
+"defaults" : {
+    "base" : "base"
+}
 ```
 
 Multi Select
 
-```xml
-<key>defaults</key><dict><key>base</key><array>
-    <string>compact</string>
-    <string>comfortable</string>
-</array></dict>
+```json
+"defaults" : {
+    "base" : [
+        "compact",
+        "comfortable"
+    ]
+}
 ```
 
 > Use the `value` of a declared option.
@@ -174,9 +173,8 @@ Multi Select
 
 Set to true to allow a different selected value at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Select options
@@ -188,8 +186,8 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 
 Use <code>menu</code> for the standard popup or <code>segmented</code> for an inline segmented picker.
 
-```xml
-<key>presentation</key><string>segmented</string>
+```json
+"presentation" : "segmented"
 ```
 
 <h3 class="property-heading"><code>count</code></h3>
@@ -199,9 +197,8 @@ Creates two to four popups that share the same declared options. Their values ar
 
 Multi Select
 
-```xml
-<key>count</key>
-<integer>2</integer>
+```json
+"count" : 2
 ```
 
 Template access
@@ -218,32 +215,27 @@ Template access
 
 Lists choices supplied by the part. Each dictionary needs a value to store and a title to show in the popup.
 
-```xml
-<key>options</key>
-<array>
-    <dict>
-        <key>value</key>
-        <string>compact</string>
-        <key>title</key>
-        <string>Compact</string>
-    </dict>
-    <dict>
-        <key>value</key>
-        <string>comfortable</string>
-        <key>title</key>
-        <string>Comfortable</string>
-    </dict>
-</array>
+```json
+"options" : [
+    {
+        "value" : "compact",
+        "title" : "Compact"
+    },
+    {
+        "value" : "comfortable",
+        "title" : "Comfortable"
+    }
+]
 ```
 
 Each option may include a <code>systemImage</code> String containing an SF Symbol name. Segmented controls display the symbol in place of the visible title while retaining <code>title</code> as the accessible label and help text.
 
-```xml
-<dict>
-    <key>value</key><string>image</string>
-    <key>title</key><string>Image</string>
-    <key>systemImage</key><string>photo</string>
-</dict>
+```json
+{
+    "value" : "image",
+    "title" : "Image",
+    "systemImage" : "photo"
+}
 ```
 
 Select offers only the options declared here. It does not populate choices from the framework. Use a dedicated framework control for framework-aware editing.
@@ -254,25 +246,31 @@ Select offers only the options declared here. It does not populate choices from 
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>type</key><string>select</string>
-        <key>id</key><string>layout</string>
-        <key>label</key><string>Layout</string>
-        <key>group</key><string>Content</string>
-        <key>options</key>
-        <array>
-            <dict><key>value</key><string>block</string><key>title</key><string>Block</string></dict>
-            <dict><key>value</key><string>flex</string><key>title</key><string>Flex</string></dict>
-        </array>
-        <key>defaults</key><dict><key>base</key><string>block</string></dict>
-        <key>responsive</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "type" : "select",
+        "id" : "layout",
+        "label" : "Layout",
+        "group" : "Content",
+        "options" : [
+            {
+                "value" : "block",
+                "title" : "Block"
+            },
+            {
+                "value" : "flex",
+                "title" : "Flex"
+            }
+        ],
+        "defaults" : {
+            "base" : "block"
+        },
+        "responsive" : false
+    }
+]
 ```
 
 ### Use it in a template

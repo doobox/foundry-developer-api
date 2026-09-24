@@ -5,7 +5,7 @@ permalink: "/button-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Button</h1>
 <p class="lede">A persistent push button backed by Boolean state and optional mapped outputs.</p>
 
@@ -19,16 +19,15 @@ permalink: "/button-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>button</string>
-    <key>id</key><string>state</string>
-    <key>buttonText</key><string>Featured</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><false/>
-    </dict>
-</dict>
+```json
+{
+    "type" : "button",
+    "id" : "state",
+    "buttonText" : "Featured",
+    "defaults" : {
+        "base" : false
+    }
+}
 ```
 
 Use it in your HTML template:
@@ -47,9 +46,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as Button. Always use `button`.
 
-```xml
-<key>type</key>
-<string>button</string>
+```json
+"type" : "button"
 ```
 
 
@@ -58,9 +56,8 @@ Identifies this item as Button. Always use `button`.
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>state</string>
+```json
+"id" : "state"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -68,9 +65,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown to the left of the control in the Inspector, including when `count` is present.
 
-```xml
-<key>label</key>
-<string>Button</string>
+```json
+"label" : "Button"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -78,9 +74,8 @@ Text shown to the left of the control in the Inspector, including when `count` i
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -88,9 +83,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose a value.</string>
+```json
+"tooltip" : "Choose a value."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -100,19 +94,17 @@ Supporting text shown beneath the control. Use a String for one control or a Str
 
 Single control
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 Control array
 
-```xml
-<key>subtitle</key>
-<array>
-    <string>First value</string>
-    <string>Second value</string>
-</array>
+```json
+"subtitle" : [
+    "First value",
+    "Second value"
+]
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -120,14 +112,11 @@ Control array
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -147,17 +136,21 @@ The Boolean state initially stored by the Inspector. A control array requires ex
 
 Single control
 
-```xml
-<key>defaults</key><dict><key>base</key><false/></dict>
+```json
+"defaults" : {
+    "base" : false
+}
 ```
 
 Control array
 
-```xml
-<key>defaults</key><dict><key>base</key><array>
-    <false/>
-    <false/>
-</array></dict>
+```json
+"defaults" : {
+    "base" : [
+        false,
+        false
+    ]
+}
 ```
 
 <h3 class="property-heading"><code>responsive</code></h3>
@@ -165,9 +158,8 @@ Control array
 
 Set to true to allow a different value at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Button options
@@ -181,9 +173,8 @@ Creates two to four controls that are stored as one array. Read each value with 
 
 Control array
 
-```xml
-<key>count</key>
-<integer>2</integer>
+```json
+"count" : 2
 ```
 
 <h3 class="property-heading"><code>selectionMode</code></h3>
@@ -196,9 +187,8 @@ Controls how Buttons behave when `count` is present.
 
 With `single`, the `defaults.base` array must contain exactly one `true` value.
 
-```xml
-<key>selectionMode</key>
-<string>single</string>
+```json
+"selectionMode" : "single"
 ```
 
 <h3 class="property-heading"><code>buttonText</code></h3>
@@ -210,19 +200,17 @@ When `buttonIcon` is present and the corresponding text is omitted or empty, Fou
 
 Single control
 
-```xml
-<key>buttonText</key>
-<string>Apply</string>
+```json
+"buttonText" : "Apply"
 ```
 
 Control array
 
-```xml
-<key>buttonText</key>
-<array>
-    <string>Previous</string>
-    <string>Next</string>
-</array>
+```json
+"buttonText" : [
+    "Previous",
+    "Next"
+]
 ```
 
 <h3 class="property-heading"><code>buttonIcon</code></h3>
@@ -230,12 +218,11 @@ Control array
 
 SF Symbol displayed beside `buttonText`. With `count`, provide an array to assign a different icon to each Button.
 
-```xml
-<key>buttonIcon</key>
-<array>
-    <string>arrow.left</string>
-    <string>arrow.right</string>
-</array>
+```json
+"buttonIcon" : [
+    "arrow.left",
+    "arrow.right"
+]
 ```
 
 <h3 class="property-heading"><code>activeButtonText</code></h3>
@@ -243,9 +230,8 @@ SF Symbol displayed beside `buttonText`. With `count`, provide an array to assig
 
 Replacement Button text while its stored state is `true`. With `count`, each entry corresponds to the Button at the same index.
 
-```xml
-<key>activeButtonText</key>
-<string>Applied</string>
+```json
+"activeButtonText" : "Applied"
 ```
 
 <h3 class="property-heading"><code>activeButtonIcon</code></h3>
@@ -253,9 +239,8 @@ Replacement Button text while its stored state is `true`. With `count`, each ent
 
 Replacement SF Symbol while a Button's stored state is `true`. With `count`, each entry corresponds to the Button at the same index.
 
-```xml
-<key>activeButtonIcon</key>
-<string>checkmark</string>
+```json
+"activeButtonIcon" : "checkmark"
 ```
 
 <h3 class="property-heading"><code>trueValue</code></h3>
@@ -263,9 +248,8 @@ Replacement SF Symbol while a Button's stored state is `true`. With `count`, eac
 
 The value supplied to templates while the stored Boolean state is `true`. With `selectionMode` `multiple`, use one value for every Button or an array containing exactly `count` mapped values. With `single`, an array maps each segment to the scalar value returned when selected.
 
-```xml
-<key>trueValue</key>
-<string>active</string>
+```json
+"trueValue" : "active"
 ```
 
 <h3 class="property-heading"><code>falseValue</code></h3>
@@ -273,9 +257,8 @@ The value supplied to templates while the stored Boolean state is `true`. With `
 
 The value supplied to templates while the stored Boolean state is `false`. This applies to single Buttons and `multiple` Button arrays; a `single` segmented Picker returns only its selected `trueValue`.
 
-```xml
-<key>falseValue</key>
-<string>idle</string>
+```json
+"falseValue" : "idle"
 ```
 
 <div class="guidance" markdown="1">
@@ -294,24 +277,25 @@ data-state="{{ control.state }}"
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>state</string>
-        <key>label</key><string>Button</string>
-        <key>group</key><string>Content</string>
-        <key>type</key><string>button</string>
-        <key>buttonText</key><string>Apply</string>
-        <key>buttonIcon</key><string>bolt.fill</string>
-        <key>trueValue</key><string>active</string>
-        <key>falseValue</key><string>idle</string>
-        <key>defaults</key><dict><key>base</key><false/></dict>
-        <key>responsive</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "state",
+        "label" : "Button",
+        "group" : "Content",
+        "type" : "button",
+        "buttonText" : "Apply",
+        "buttonIcon" : "bolt.fill",
+        "trueValue" : "active",
+        "falseValue" : "idle",
+        "defaults" : {
+            "base" : false
+        },
+        "responsive" : false
+    }
+]
 ```
 
 ### Use it in a template

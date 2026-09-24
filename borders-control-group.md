@@ -5,16 +5,16 @@ permalink: /borders-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls · control groups</p>
+<p class="eyebrow">manifest.json · controls · control groups</p>
 <h1>Borders</h1>
 <p class="lede">Adds a responsive enable switch, framework border, colour and radius to the Borders Inspector section.</p>
 
 ## Quick example
 
-```xml
-<dict>
-    <key>type</key><string>borders</string>
-</dict>
+```json
+{
+    "type" : "borders"
+}
 ```
 
 ```css

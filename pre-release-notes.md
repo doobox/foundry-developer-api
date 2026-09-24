@@ -51,7 +51,7 @@ description: Highlights from Foundry preview builds distributed before public re
             <section class="release-group">
                 <h3>Control groups</h3>
                 <ul class="release-list">
-                    <li>Foundry’s Background, Borders, Effects, Layout Item, Sizing and Spacing groups are now defined by readable plist manifests, using the same control model available to Part developers.</li>
+                    <li>Foundry’s Background, Borders, Effects, Layout Item, Sizing and Spacing groups are now defined by readable JSON manifests, using the same control model available to Part developers.</li>
                     <li>Each built-in group now has its own API reference page, with its generated controls, defaults, output values and rendering behaviour documented independently.</li>
                     <li>Added <code>valueAvailability: whenVisible</code> for controls whose values should disappear from templates while their <code>visibleWhen</code> condition is false. This is useful when a hidden dependent value must not affect output.</li>
                     <li>Presentation-only controls remain intentionally unavailable as <code>control.&lt;id&gt;</code> values; visibility conditions target real value-producing controls.</li>

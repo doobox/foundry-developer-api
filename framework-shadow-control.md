@@ -5,7 +5,7 @@ permalink: "/framework-shadow-control.html"
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls</p>
+<p class="eyebrow">manifest.json · controls</p>
 <h1>Framework shadow</h1>
 <p class="lede">A framework shadow picker with an optional author-editable stack of outer or inset shadow layers behind the framework-mode toggle.</p>
 
@@ -19,15 +19,14 @@ permalink: "/framework-shadow-control.html"
 
 Add this dictionary to your part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>frameworkShadow</string>
-    <key>id</key><string>cardShadow</string>
-    <key>defaults</key>
-    <dict>
-        <key>base</key><string>md</string>
-    </dict>
-</dict>
+```json
+{
+    "type" : "frameworkShadow",
+    "id" : "cardShadow",
+    "defaults" : {
+        "base" : "md"
+    }
+}
 ```
 
 Use it in the part's CSS template:
@@ -48,9 +47,8 @@ Each item in `controls` defines one Inspector item. These keys set its name, pla
 
 Identifies this item as a Framework shadow control. Always use `frameworkShadow`.
 
-```xml
-<key>type</key>
-<string>frameworkShadow</string>
+```json
+"type" : "frameworkShadow"
 ```
 
 
@@ -59,9 +57,8 @@ Identifies this item as a Framework shadow control. Always use `frameworkShadow`
 
 The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores and hyphens.
 
-```xml
-<key>id</key>
-<string>cardShadow</string>
+```json
+"id" : "cardShadow"
 ```
 
 <h3 class="property-heading"><code>label</code></h3>
@@ -69,9 +66,8 @@ The unique name used to store this control and read it in templates. It must sta
 
 Text shown beside the Framework shadow control in the Inspector.
 
-```xml
-<key>label</key>
-<string>Shadow</string>
+```json
+"label" : "Shadow"
 ```
 
 <h3 class="property-heading"><code>group</code></h3>
@@ -79,9 +75,8 @@ Text shown beside the Framework shadow control in the Inspector.
 
 The Inspector section that contains this control. Omit the key to place it in Settings.
 
-```xml
-<key>group</key>
-<string>Appearance</string>
+```json
+"group" : "Appearance"
 ```
 
 <h3 class="property-heading"><code>tooltip</code></h3>
@@ -89,9 +84,8 @@ The Inspector section that contains this control. Omit the key to place it in Se
 
 Help text that explains what the control changes.
 
-```xml
-<key>tooltip</key>
-<string>Choose a value.</string>
+```json
+"tooltip" : "Choose a value."
 ```
 
 <h3 class="property-heading"><code>subtitle</code></h3>
@@ -99,9 +93,8 @@ Help text that explains what the control changes.
 
 Supporting text shown beneath the control.
 
-```xml
-<key>subtitle</key>
-<string>Additional guidance</string>
+```json
+"subtitle" : "Additional guidance"
 ```
 
 <h3 class="property-heading"><code>visibleWhen</code></h3>
@@ -109,14 +102,11 @@ Supporting text shown beneath the control.
 
 Shows this control only when another control meets the stated condition.
 
-```xml
-<key>visibleWhen</key>
-<dict>
-    <key>id</key>
-    <string>showControl</string>
-    <key>value</key>
-    <true/>
-</dict>
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
 ```
 
 <h3 class="property-heading"><code>valueAvailability</code></h3>
@@ -134,8 +124,10 @@ A dictionary containing the required `base` value and optional breakpoint values
 
 The initially selected portable framework shadow. Use `none`, `inner`, `xs`, `sm`, `md`, `lg`, `xl` or `2xl`; use `custom` only when Custom is enabled. `sm` is the standard default-sized shadow.
 
-```xml
-<key>defaults</key><dict><key>base</key><string>md</string></dict>
+```json
+"defaults" : {
+    "base" : "md"
+}
 ```
 
 > Use a portable predefined shadow ID. Use `custom` only when `allowsCustom` is true. Project-specific custom shadow IDs can be selected by an author but are not portable manifest defaults.
@@ -145,9 +137,8 @@ The initially selected portable framework shadow. Use `none`, `inner`, `xs`, `sm
 
 Set to true to allow the selected framework shadow or custom layer stack to vary at each responsive breakpoint.
 
-```xml
-<key>responsive</key>
-<false/>
+```json
+"responsive" : false
 ```
 
 ## Shadow options
@@ -159,9 +150,8 @@ These keys sit directly in the same custom-item dictionary. Omitted optional key
 
 Enables custom mode. The control shows the framework-mode toggle to the picker's right; switching it off replaces the picker with the editable shadow-layer stack, exactly as the framework spacing controls switch between tokens and custom values.
 
-```xml
-<key>allowsCustom</key>
-<true/>
+```json
+"allowsCustom" : true
 ```
 
 > Custom layers are author-owned. The manifest enables the editor but does not declare initial layer values; Foundry supplies the initial editable layer.
@@ -186,21 +176,22 @@ box-shadow: {{ control.cardShadow }};
 
 ## Complete example
 
-### Info.plist
+### manifest.json
 
-```xml
-<key>controls</key>
-<array>
-    <dict>
-        <key>id</key><string>cardShadow</string>
-        <key>label</key><string>Shadow</string>
-        <key>group</key><string>Content</string>
-        <key>type</key><string>frameworkShadow</string>
-        <key>allowsCustom</key><true/>
-        <key>defaults</key><dict><key>base</key><string>md</string></dict>
-        <key>responsive</key><false/>
-    </dict>
-</array>
+```json
+"controls" : [
+    {
+        "id" : "cardShadow",
+        "label" : "Shadow",
+        "group" : "Content",
+        "type" : "frameworkShadow",
+        "allowsCustom" : true,
+        "defaults" : {
+            "base" : "md"
+        },
+        "responsive" : false
+    }
+]
 ```
 
 ### Use it in a template

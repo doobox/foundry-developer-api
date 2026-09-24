@@ -48,16 +48,18 @@ permalink: /template-loops.html
 
 <div markdown="1">
 
-```xml
-<dict>
-    <key>id</key><string>itemCount</string>
-    <key>label</key><string>Items</string>
-    <key>type</key><string>number</string>
-    <key>minimum</key><integer>0</integer>
-    <key>maximum</key><integer>12</integer>
-    <key>defaults</key><dict><key>base</key><integer>4</integer></dict>
-    <key>responsive</key><false/>
-</dict>
+```json
+{
+    "id" : "itemCount",
+    "label" : "Items",
+    "type" : "number",
+    "minimum" : 0,
+    "maximum" : 12,
+    "defaults" : {
+        "base" : 4
+    },
+    "responsive" : false
+}
 ```
 
 </div>

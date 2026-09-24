@@ -5,7 +5,7 @@ permalink: /background-control-group.html
 ---
 {% raw %}
 {% endraw %}{% include breadcrumbs.html %}{% raw %}
-<p class="eyebrow">Info.plist · controls · control groups</p>
+<p class="eyebrow">manifest.json · controls · control groups</p>
 <h1>Background</h1>
 <p class="lede">Adds configurable colour, image, gradient and video backgrounds, with optional hover states, and applies the result to an explicitly marked template element.</p>
 
@@ -13,10 +13,10 @@ permalink: /background-control-group.html
 
 Add the group to the part's `controls` array:
 
-```xml
-<dict>
-    <key>type</key><string>background</string>
-</dict>
+```json
+{
+    "type" : "background"
+}
 ```
 
 Place its attribute macro on exactly one element in the primary HTML template:
@@ -43,15 +43,14 @@ Always `background`. The group does not accept `id`, `label`, `group`, `responsi
 
 Selects the background styles offered by the Inspector. Accepted values are `colour`, `image`, `gradient`, and `video`. The array must contain at least one unique value. Its first value is the initial Static style. Omitting the key includes every style.
 
-```xml
-<dict>
-    <key>type</key><string>background</string>
-    <key>styles</key>
-    <array>
-        <string>colour</string>
-        <string>image</string>
-    </array>
-</dict>
+```json
+{
+    "type" : "background",
+    "styles" : [
+        "colour",
+        "image"
+    ]
+}
 ```
 
 <h3 class="property-heading"><code>states</code></h3>
