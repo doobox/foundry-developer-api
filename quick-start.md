@@ -88,9 +88,21 @@ Save as `Parts/uk.co.example.callout/Resources/part.css`:
 
 ### Give it an icon
 
-Part icons display on a 2:1 landscape tile. Your SVG can be any aspect ratio — it fits inside the tile without cropping — and Foundry draws a subtle tile background behind it, so an icon with a transparent background looks right too. A 2:1 viewBox fills the tile like a miniature preview. Save as `Parts/uk.co.example.callout/Resources/icon.svg`:
+A part ships two pieces of artwork, both SVG, both drawn on a subtle tile background so transparent artwork looks right:
+
+- **`icon.svg` (required, square)** — used everywhere the part appears outside the Parts panel: Structure rows, the Inspector, the canvas. Save as `Parts/uk.co.example.callout/Resources/icon.svg`:
 
 <!-- starter:icon.svg -->
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <rect x="2" y="3" width="20" height="18" rx="3" fill="#5B5BD6"/>
+    <path d="M7 8h10M7 12h10M7 16h6" fill="none" stroke="#fff" stroke-width="2"/>
+</svg>
+```
+
+- **`tile.svg` (optional, 2:1 landscape)** — the Parts panel tile, a miniature preview of the part. Any aspect ratio fits without cropping; without this file the panel centres your square icon on the tile. Save beside the icon as `tile.svg`:
+
+<!-- starter:tile.svg -->
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 24">
     <rect x="1" y="3" width="46" height="18" rx="3" fill="#5B5BD6"/>

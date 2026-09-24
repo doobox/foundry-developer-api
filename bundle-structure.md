@@ -20,7 +20,8 @@ Example.foundrypack/
 │       └── Resources/
 │           ├── part.html
 │           ├── part.css
-│           └── icon.svg
+│           ├── icon.svg          (square — Structure, Inspector, canvas)
+│           └── tile.svg          (optional 2:1 — the Parts panel tile)
 ├── Templates/
 │   ├── Heroes/               (organization folder)
 │   │   └── 7B6E…/
