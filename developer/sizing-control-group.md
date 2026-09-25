@@ -71,7 +71,7 @@ A pixel minimum height from 0 through 10,000.
 <h3 class="property-heading"><code>control.heightMode</code></h3>
 <div class="property-meta"><span class="property-type">String</span><span class="default">Default: auto</span><span>Responsive</span></div>
 
-One of `auto`, `viewport`, or `custom`, displayed as Fit content, Fill viewport, and Custom.
+One of `auto`, `fill`, `viewport`, or `custom`, displayed as Fit content, Fill Remaining Space, Fill viewport, and Custom. `fill` grows the part into the viewport space its siblings leave free — the page body is a minimum-height flex column, so `flex: 1 1 auto` on the part is all it takes.
 
 <h3 class="property-heading"><code>control.customHeight</code></h3>
 <div class="property-meta"><span class="property-type">Number</span><span class="default">Default: 400</span><span>Responsive</span></div>

@@ -11,6 +11,7 @@ description: Highlights from Foundry preview builds distributed before public re
     <h1>Pre-release notes</h1>
     <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
     <nav class="release-jump" aria-label="Jump to a preview build">
+        <a href="#build-11">Build 11</a>
         <a href="#build-10">Build 10</a>
         <a href="#build-9">Build 9</a>
         <a href="#build-8">Build 8</a>
@@ -27,6 +28,82 @@ description: Highlights from Foundry preview builds distributed before public re
 </div>
 
 <div class="release-timeline">
+    <article class="release-build" id="build-11">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 11</span>
+                <h2>Structured layout, page metadata and a faster preview</h2>
+            </div>
+            <time datetime="2026-09-25">25 September 2026</time>
+        </header>
+        <p class="release-summary">Build 11 restructures the layout system around Container, Flex and Grid working as a team — including the new Flex Item and Grid Item parts — completes per-page metadata and SEO, splits the documentation into a user guide and developer reference, introduces site kits and the project chooser, moves pack manifests to JSON with named Inspector sections, and makes preview generation roughly three times faster.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Layout parts</h3>
+                <ul class="release-list">
+                    <li>Container gained a <strong>Content Layout</strong> section — Align, Align Horizontally and Gap for its content — plus a Custom content width alongside Contained and Full Width. Vertical alignment now works in every height mode, including Fill Viewport.</li>
+                    <li>Added the <strong>Fill Remaining Space</strong> height mode to Container, Flex and Grid: the part grows into whatever viewport space its siblings leave free. The page body is now a viewport-height flex column, so top-level filling and alignment behave dependably; Fill Viewport is a true minimum that grows with content, keeping backgrounds behind everything.</li>
+                    <li>Renamed Stack to <strong>Flex</strong>, now defaulting to a wrapping row, and unified control names, defaults and section order across Container, Flex and Grid — Distribute, Align, Gap and friends mean the same thing everywhere.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Flex Item and Grid Item</h3>
+                <ul class="release-list">
+                    <li>Added two supporting parts: <strong>Flex Item</strong> carries Grow, Shrink and Align Self; <strong>Grid Item</strong> carries responsive Span Columns and Span Rows. Both arrange their own children with Flexbox, so a spanning grid card is also a column stack.</li>
+                    <li>Selecting a Flex or Grid now shows an <strong>Items</strong> row with an Add button that inserts the matching item part — the first built-in use of the <a href="child-picker-control.html"><code>childPicker</code></a> slot. Both areas still accept any part dropped in directly.</li>
+                    <li>The item parts stay out of the parts library and only offer themselves inside the parents they belong to; the developer setting for hidden parts reveals them when needed.</li>
+                    <li>Removed the Layout Item section from every built-in part: in-parent behaviour now lives on the item parts, so Paragraphs, Headings and Buttons carry no inert flex or grid settings. The <a href="layout-item-control-group.html"><code>layoutItem</code></a> group remains available to pack developers.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Pages, metadata and search</h3>
+                <ul class="release-list">
+                    <li>Rebuilt Page Info as a native grouped form: browser title and descriptions with live character counts that warn near the limits, social title, description and a social image well, and a curated language picker shared with Site Settings.</li>
+                    <li>Added per-page <strong>Folder</strong> and <strong>Filename</strong> overrides that control the exported path and links, with PHP pages keeping their required extension.</li>
+                    <li>Added per-page <strong>Include in Sitemap</strong> and <strong>Include in Search</strong> toggles — excluded pages emit <code>noindex</code> and leave the sitemap, and the sitemap lists only indexable pages.</li>
+                    <li>Sites now emit social tags automatically: <code>og:site_name</code>, <code>og:type</code>, <code>og:locale</code>, <code>og:url</code> and Twitter cards, with new Site Identity fields for the social image description and social account.</li>
+                    <li>The home page wears a house icon in the Structure panel.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Built-in parts</h3>
+                <ul class="release-list">
+                    <li>Added the <strong>Copyright</strong> part, rendering an always-current copyright line. Removed the Image Slider.</li>
+                    <li>Navigation 1.1 adds Content Width, Link Spacing, Link Style, Capitalise Links and open-on-hover dropdown menus.</li>
+                    <li>Redrew artwork for every built-in part under the new two-file contract: a square <code>icon.svg</code> plus an optional 2:1 <code>tile.svg</code>, each with dark-appearance variants, presented on refreshed parts-panel tiles.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Packs and the developer API</h3>
+                <ul class="release-list">
+                    <li>Part manifests are now <strong>JSON</strong> (<code>manifest.json</code>), replacing property lists across parts, packs and the documentation.</li>
+                    <li>The <code>inspector</code> array replaces <code>controls</code>, and named <strong>section wrappers</strong> give developers full ownership of Inspector sectioning — every section is declared with its name, icon and contents, with the Advanced group remaining top level.</li>
+                    <li>Added <strong>site kits</strong> and the Create a New Project chooser, a sectioned template library with project templates, asset collections in tabbed pack libraries, and the hand-authorable typed-directory pack format with document-owned publish manifests.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Documentation</h3>
+                <ul class="release-list">
+                    <li>The documentation site now opens with a landing page forking into the new <strong>Foundry User Guide</strong> and the Developer API reference, and the app's Help menu links to each directly.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Performance</h3>
+                <ul class="release-list">
+                    <li>Preview generation is roughly <strong>three times faster</strong> on layout-heavy pages: stylesheet tidying is a single linear pass, per-page navigation values are computed once instead of per part, and property resolution in both renderers stopped rescanning part definitions per key.</li>
+                    <li>Site kits scan lazily at launch, and project assets continue to load on demand.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
     <article class="release-build" id="build-10">
         <header class="release-build-header">
             <div>
