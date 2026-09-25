@@ -1,4 +1,6 @@
-# Foundry Developer documentation
+# Foundry documentation
+
+One Jekyll site with two sections: the end-user guide (`guide/`) and the part developer API (`developer/`).
 
 The documentation is a GitHub Pages site built with Jekyll.
 

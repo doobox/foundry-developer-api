@@ -1,4 +1,4 @@
-{% for section in site.data.navigation %}
+{% for section in docs_nav | default: site.data.navigation %}
 {% if include.compact %}<strong>{{ section.title | escape }}</strong>{% else %}<h2>{{ section.title | escape }}</h2>{% endif %}
 <ul class="map-links">
 {% for entry in section.links %}

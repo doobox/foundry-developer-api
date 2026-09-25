@@ -9,12 +9,13 @@
 <script src="{{ '/app.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
 </head>
 <body data-base="{{ '/' | relative_url }}">
-<script id="docs-navigation" type="application/json">{{ site.data.navigation | jsonify | replace: '</', '<\/' }}</script>
+{% if page.url contains '/guide' %}{% assign docs_nav = site.data.guide_navigation %}{% else %}{% assign docs_nav = site.data.navigation %}{% endif %}
+<script id="docs-navigation" type="application/json">{{ docs_nav | jsonify | replace: '</', '<\/' }}</script>
 <a class="skip-link" href="#main-content">Skip to content</a>
 <div class="shell">
 <nav data-doc-nav aria-label="Documentation">
 <noscript>
-<a class="brand" href="{{ '/' | relative_url }}">Foundry Developer API</a>
+<a class="brand" href="{{ '/' | relative_url }}">{% if page.url contains '/guide' %}Foundry User Guide{% else %}Foundry Developer API{% endif %}</a>
 <p>Browse the documentation. Enable JavaScript for search and expandable navigation.</p>
 {% include navigation-map.html compact=true %}
 </noscript>

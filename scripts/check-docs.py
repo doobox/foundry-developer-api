@@ -44,7 +44,7 @@ def dictionaries(value):
             yield from dictionaries(child)
 
 
-sources = {p.name: p.read_text() for p in ROOT.glob("*.md")}
+sources = {p.name: p.read_text() for p in (ROOT / "developer").glob("*.md")}
 control_pages = {}
 for name, source in sources.items():
     match = re.search(r'"type"\s*:\s*"([^"]+)"', source)
@@ -102,8 +102,8 @@ for name, source in sources.items():
                 for member in members:
                     if not isinstance(member, dict) or "type" not in member:
                         fail(location, "sections cannot nest; every entry inside a section needs a type")
-                    elif member["type"] in {"background", "spacing", "sizing", "borders", "effects", "reveal", "layoutItem"}:
-                        fail(location, f"grouped control {member['type']} may not appear inside a section entry")
+                    elif member["type"] == "advanced":
+                        fail(location, "the advanced group is Foundry's own section; declare it at the top level")
                 continue
             if isinstance(kind, str) and ("group" in item or "section" in item):
                 fail(location, "controls no longer take group or section; wrap the control in a section entry")

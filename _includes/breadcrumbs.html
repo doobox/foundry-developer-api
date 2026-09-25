@@ -1,12 +1,13 @@
 {% assign current = page.url | split: '/' | last %}
 {% assign parent_section = nil %}
 {% assign parent_link = nil %}
-{% for section in site.data.navigation %}
+{% if page.url contains '/guide' %}{% assign crumb_nav = site.data.guide_navigation %}{% else %}{% assign crumb_nav = site.data.navigation %}{% endif %}
+{% for section in crumb_nav %}
   {% for entry in section.links %}
-    {% assign entry_page = entry[1] | split: '#' | first %}
+    {% assign entry_page = entry[1] | split: '/' | last | split: '#' | first %}
     {% if entry_page == current %}{% assign parent_section = section.title %}{% endif %}
     {% for child in entry[2] %}
-      {% assign child_page = child[1] | split: '#' | first %}
+      {% assign child_page = child[1] | split: '/' | last | split: '#' | first %}
       {% if child_page == current %}
         {% assign parent_section = section.title %}
         {% if entry_page != current %}{% assign parent_link = entry %}{% endif %}
@@ -15,7 +16,7 @@
   {% endfor %}
 {% endfor %}
 <div class="breadcrumbs" aria-label="Breadcrumb">
-<a href="{{ '/index.html' | relative_url }}">Foundry Developer</a>
+<a href="{{ '/' | relative_url }}">Foundry Docs</a><span aria-hidden="true">›</span>{% if page.url contains '/guide' %}<a href="{{ '/guide/' | relative_url }}">User Guide</a>{% else %}<a href="{{ '/developer/' | relative_url }}">Developer API</a>{% endif %}
 {% if parent_section %}<span aria-hidden="true">›</span><span>{{ parent_section | escape }}</span>{% endif %}
 {% if parent_link %}<span aria-hidden="true">›</span><a href="{{ parent_link[1] | relative_url }}">{{ parent_link[0] | escape }}</a>{% endif %}
 </div>

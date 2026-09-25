@@ -9,6 +9,12 @@ if [ -x "$homebrew_ruby/ruby" ]; then
 fi
 export PATH
 
+# Sass reads theme sources as US-ASCII without a UTF-8 locale and fails on
+# typographic characters, so pin one when the environment has none.
+if [ -z "${LC_ALL:-}" ] && [ -z "${LANG:-}" ]; then
+    export LC_ALL=en_US.UTF-8
+fi
+
 if ! command -v ruby >/dev/null 2>&1 || ! ruby -e 'exit RUBY_VERSION.start_with?("3.3.") ? 0 : 1'; then
     echo "Ruby 3.3 is required. Install it with: brew install ruby@3.3" >&2
     exit 1

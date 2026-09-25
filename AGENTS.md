@@ -1,6 +1,13 @@
-# Foundry Developer API documentation charter
+# Foundry documentation charter
 
-This is the canonical, separate repository for Foundry's developer documentation. The application repository is the sibling `Mac/Foundry/Foundry` repository.
+This is the canonical, separate repository for Foundry's documentation. The application repository is the sibling `Mac/Foundry/Foundry` repository.
+
+## Site structure
+
+- The site landing page (`index.md`) forks to two sections that share one layout, stylesheet and search.
+- `developer/` holds the part developer API reference; its sidebar is `_data/navigation.json`.
+- `guide/` holds the end-user guide; its sidebar is `_data/guide_navigation.json`.
+- The user guide is task-oriented and written for site builders, not developers; the control-reference conventions below apply to `developer/` pages only.
 
 ## The mantra
 

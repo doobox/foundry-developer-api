@@ -1,0 +1,15 @@
+[
+  {
+    "title": "Getting Started",
+    "links": [
+      [
+        "Welcome",
+        "guide/index.html"
+      ],
+      [
+        "Your First Site",
+        "guide/get-started.html"
+      ]
+    ]
+  }
+]

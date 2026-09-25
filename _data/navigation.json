@@ -4,11 +4,11 @@
     "links": [
       [
         "Overview",
-        "index.html"
+        "developer/index.html"
       ],
       [
         "Build your first part",
-        "quick-start.html"
+        "developer/quick-start.html"
       ]
     ]
   },
@@ -17,15 +17,15 @@
     "links": [
       [
         "Bundle structure",
-        "bundle-structure.html"
+        "developer/bundle-structure.html"
       ],
       [
         "Collections & nested packs",
-        "nested-packs.html"
+        "developer/nested-packs.html"
       ],
       [
         "Assets, templates & kits",
-        "assets-and-templates.html"
+        "developer/assets-and-templates.html"
       ]
     ]
   },
@@ -34,225 +34,221 @@
     "links": [
       [
         "Identity & metadata",
-        "manifest-identity.html"
+        "developer/manifest-identity.html"
       ],
       [
         "Custom controls",
-        "custom-controls.html",
+        "developer/custom-controls.html",
         [
           [
             "Button",
-            "button-control.html"
+            "developer/button-control.html"
           ],
           [
             "Child picker",
-            "child-picker-control.html"
+            "developer/child-picker-control.html"
           ],
           [
             "Colour",
-            "colour.html"
+            "developer/colour.html"
           ],
           [
             "Corners",
-            "corners-control.html"
+            "developer/corners-control.html"
           ],
           [
             "Date",
-            "date-control.html"
+            "developer/date-control.html"
           ],
           [
             "Divider",
-            "divider-control.html"
+            "developer/divider-control.html"
           ],
           [
             "Edges",
-            "edges-control.html"
+            "developer/edges-control.html"
           ],
           [
             "Icon",
-            "icon-control.html"
+            "developer/icon-control.html"
           ],
           [
             "Image",
-            "image-control.html"
+            "developer/image-control.html"
           ],
           [
             "Link",
-            "link-control.html"
+            "developer/link-control.html"
           ],
           [
             "Math",
-            "math-control.html"
+            "developer/math-control.html"
           ],
           [
             "Note",
-            "note-control.html"
+            "developer/note-control.html"
           ],
           [
             "Number",
-            "number-control.html"
+            "developer/number-control.html"
           ],
           [
             "Select",
-            "select-control.html"
+            "developer/select-control.html"
           ],
           [
             "Slider",
-            "slider-control.html"
+            "developer/slider-control.html"
           ],
           [
             "Text",
-            "text-control.html"
+            "developer/text-control.html"
           ],
           [
             "Text alignment",
-            "text-alignment.html"
+            "developer/text-alignment.html"
           ],
           [
             "Text area",
-            "text-area-control.html"
+            "developer/text-area-control.html"
           ],
           [
             "Framework border",
-            "framework-border-control.html"
+            "developer/framework-border-control.html"
           ],
           [
             "Framework colour",
-            "framework-colour-control.html"
+            "developer/framework-colour-control.html"
           ],
           [
             "Framework font",
-            "framework-font-control.html"
+            "developer/framework-font-control.html"
           ],
           [
             "Framework font size",
-            "framework-font-size-control.html"
+            "developer/framework-font-size-control.html"
           ],
           [
             "Framework margin",
-            "framework-margin-control.html"
+            "developer/framework-margin-control.html"
           ],
           [
             "Framework padding",
-            "framework-padding-control.html"
+            "developer/framework-padding-control.html"
           ],
           [
             "Framework radius",
-            "framework-radius-control.html"
+            "developer/framework-radius-control.html"
           ],
           [
             "Framework shadow",
-            "framework-shadow-control.html"
+            "developer/framework-shadow-control.html"
           ],
           [
             "Framework spacing",
-            "framework-spacing-control.html"
+            "developer/framework-spacing-control.html"
           ],
           [
             "Framework stacking order",
-            "framework-stacking-order-control.html"
+            "developer/framework-stacking-order-control.html"
           ],
           [
             "Page folder",
-            "page-folder-control.html"
+            "developer/page-folder-control.html"
           ],
           [
             "Toggle",
-            "toggle-control.html"
+            "developer/toggle-control.html"
           ],
           [
             "Video",
-            "video-control.html"
+            "developer/video-control.html"
           ],
           [
             "Control arrays",
-            "control-arrays.html"
+            "developer/control-arrays.html"
           ],
           [
             "Conditional visibility",
-            "visible-when.html"
+            "developer/visible-when.html"
           ]
         ]
       ],
       [
         "Control groups",
-        "control-groups.html",
+        "developer/control-groups.html",
         [
           [
             "Background",
-            "background-control-group.html"
+            "developer/background-control-group.html"
           ],
           [
             "Spacing",
-            "spacing-control-group.html"
+            "developer/spacing-control-group.html"
           ],
           [
             "Sizing",
-            "sizing-control-group.html"
+            "developer/sizing-control-group.html"
           ],
           [
             "Borders",
-            "borders-control-group.html"
+            "developer/borders-control-group.html"
           ],
           [
             "Effects",
-            "effects-control-group.html"
+            "developer/effects-control-group.html"
           ],
           [
             "Reveal",
-            "reveal-control-group.html"
+            "developer/reveal-control-group.html"
           ],
           [
             "Layout item",
-            "layout-item-control-group.html"
+            "developer/layout-item-control-group.html"
           ],
           [
             "Advanced",
-            "advanced-control-group.html"
+            "developer/advanced-control-group.html"
           ]
         ]
       ],
       [
         "Template declarations",
-        "templates.html",
+        "developer/templates.html",
         [
           [
             "Primary HTML",
-            "templates.html#primary-html"
+            "developer/templates.html#primary-html"
           ],
           [
             "HTML contributions",
-            "templates.html#html-contributions"
+            "developer/templates.html#html-contributions"
           ],
           [
             "CSS",
-            "templates.html#css"
+            "developer/templates.html#css"
           ],
           [
             "JavaScript",
-            "templates.html#javascript"
+            "developer/templates.html#javascript"
           ],
           [
             "PHP",
-            "templates.html#php"
+            "developer/templates.html#php"
           ],
           [
             "Additional HTML",
-            "templates.html#additional-html"
+            "developer/templates.html#additional-html"
           ],
           [
             "Editor CSS",
-            "templates.html#editor-css"
+            "developer/templates.html#editor-css"
           ]
         ]
       ],
       [
         "Libraries & assets",
-        "manifest-resources.html"
-      ],
-      [
-        "Support & recovery",
-        "manifest-support.html"
+        "developer/manifest-resources.html"
       ]
     ]
   },
@@ -261,51 +257,51 @@
     "links": [
       [
         "Syntax at a glance",
-        "template-syntax.html"
+        "developer/template-syntax.html"
       ],
       [
         "Part roots & CSS",
-        "template-identity.html"
+        "developer/template-identity.html"
       ],
       [
         "Values & paths",
-        "template-controls.html"
+        "developer/template-controls.html"
       ],
       [
         "Persistent areas",
-        "template-areas.html"
+        "developer/template-areas.html"
       ],
       [
         "Conditions",
-        "template-conditions.html"
+        "developer/template-conditions.html"
       ],
       [
         "Loops",
-        "template-loops.html"
+        "developer/template-loops.html"
       ],
       [
         "Filters",
-        "template-filters.html"
+        "developer/template-filters.html"
       ],
       [
         "Output encoding",
-        "template-encoding.html"
+        "developer/template-encoding.html"
       ],
       [
         "Editable content",
-        "editable-text.html"
+        "developer/editable-text.html"
       ],
       [
         "Path reference",
-        "template-paths.html"
+        "developer/template-paths.html"
       ],
       [
         "Root attributes",
-        "template-root-attributes.html"
+        "developer/template-root-attributes.html"
       ],
       [
         "Editor hooks",
-        "template-hooks.html"
+        "developer/template-hooks.html"
       ]
     ]
   },
@@ -314,15 +310,15 @@
     "links": [
       [
         "Foundry CSS",
-        "foundry-css.html"
+        "developer/foundry-css.html"
       ],
       [
         "Framework values",
-        "framework-controls.html"
+        "developer/framework-controls.html"
       ],
       [
         "Framework bundles",
-        "framework-bundles.html"
+        "developer/framework-bundles.html"
       ]
     ]
   },
@@ -331,25 +327,25 @@
     "links": [
       [
         "API map",
-        "parts.html"
+        "developer/parts.html"
       ],
       [
         "Pack updates",
-        "pack-updates.html",
+        "developer/pack-updates.html",
         [
           [
             "Publishing updates",
-            "pack-updates.html"
+            "developer/pack-updates.html"
           ],
           [
             "Appcast format",
-            "pack-appcast.html"
+            "developer/pack-appcast.html"
           ]
         ]
       ],
       [
         "Pre Release Notes",
-        "pre-release-notes.html"
+        "developer/pre-release-notes.html"
       ]
     ]
   }

@@ -1,0 +1,456 @@
+---
+layout: default
+title: Pre Release Notes · Foundry Developer
+permalink: /developer/pre-release-notes.html
+description: Highlights from Foundry preview builds distributed before public release.
+---
+{% raw %}
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
+<header class="release-hero">
+    <p class="eyebrow">Foundry for macOS</p>
+    <h1>Pre-release notes</h1>
+    <p class="lede">A concise history of the preview builds shared with Foundry’s early developers. Each build includes everything listed in the builds before it.</p>
+    <nav class="release-jump" aria-label="Jump to a preview build">
+        <a href="#build-10">Build 10</a>
+        <a href="#build-9">Build 9</a>
+        <a href="#build-8">Build 8</a>
+        <a href="#build-7">Build 7</a>
+        <a href="#build-6">Build 6</a>
+        <a href="#build-5">Build 5</a>
+        <a href="#build-4">Build 4</a>
+        <a href="#build-3">Build 3</a>
+    </nav>
+</header>
+
+<div class="note release-note">
+    <strong>Preview software:</strong> projects and part APIs may continue to evolve before Foundry’s public release. Keep a backup of important projects and development packs when moving between builds.
+</div>
+
+<div class="release-timeline">
+    <article class="release-build" id="build-10">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 10</span>
+                <h2>Navigation, extensible control groups and motion</h2>
+            </div>
+            <time datetime="2026-09-22">22 September 2026</time>
+        </header>
+        <p class="release-summary">Build 10 adds a complete built-in Navigation part, makes Foundry’s built-in control groups manifest-backed and directly inspectable, introduces Alpine, GSAP and ScrollTrigger resources, and adds an opt-in Reveal group for polished entrance motion.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Navigation</h3>
+                <ul class="release-list">
+                    <li>Added a built-in Navigation part with responsive desktop and mobile menus, nested page dropdowns, current-page and ancestor states, and configurable menu sources.</li>
+                    <li>Navigation follows the Pages panel’s mixed page-and-folder order. Navigation folders become labelled menu groups, while folders excluded from navigation transparently promote their included contents.</li>
+                    <li>Added the <a href="page-folder-control.html"><code>pageFolder</code></a> control for selecting a page folder as a Part value, including an optional whole-site choice.</li>
+                    <li>The Help menu now links directly to the browsable Foundry Developer documentation.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Control groups</h3>
+                <ul class="release-list">
+                    <li>Foundry’s Background, Borders, Effects, Layout Item, Sizing and Spacing groups are now defined by readable JSON manifests, using the same control model available to Part developers.</li>
+                    <li>Each built-in group now has its own API reference page, with its generated controls, defaults, output values and rendering behaviour documented independently.</li>
+                    <li>Added <code>valueAvailability: whenVisible</code> for controls whose values should disappear from templates while their <code>visibleWhen</code> condition is false. This is useful when a hidden dependent value must not affect output.</li>
+                    <li>Presentation-only controls remain intentionally unavailable as <code>control.&lt;id&gt;</code> values; visibility conditions target real value-producing controls.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Libraries and Reveal</h3>
+                <ul class="release-list">
+                    <li>Part manifests can request bundled Alpine 3, GSAP 3 and GSAP ScrollTrigger resources. Foundry resolves dependencies, loads scripts in the required order and exports each requested library once.</li>
+                    <li>Added the <a href="reveal-control-group.html">Reveal control group</a> with fade, directional, scale and blur effects plus distance, duration, delay, easing, stagger, trigger position and replay settings.</li>
+                    <li>Reveal is available on the built-in content, media and layout parts, remains disabled by default, and respects the visitor’s reduced-motion preference.</li>
+                    <li>Reveal uses the standard global GSAP and ScrollTrigger APIs, so Part developers remain free to build their own timelines and interactions alongside it.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Template API</h3>
+                <ul class="release-list">
+                    <li>HTML, CSS and JavaScript templates can inspect every project breakpoint through <code>breakpoints.&lt;name&gt;.enabled</code> and the numeric <code>breakpoints.&lt;name&gt;.minimumWidth</code> value.</li>
+                    <li>Breakpoint metadata is available in instance-, page- and site-scoped templates, including canvas, preview and published rendering.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Pack format</h3>
+                <ul class="release-list">
+                    <li>Foundry packs now use one outer <code>.foundrypack</code> or <code>.foundrydevpack</code> with plain <code>Parts</code>, <code>Templates</code> and <code>Frameworks</code> directories.</li>
+                    <li>Removed recursive nested packs, collection manifests, standalone framework bundles and macOS-style <code>Contents</code> directories. This alpha build intentionally does not load the earlier format.</li>
+                    <li>Development packs are watched in place, while installed release-pack content remains read-only. Personal templates and frameworks are saved into a writable personal development pack.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-9">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 9</span>
+                <h2>Custom framework values and text colours</h2>
+            </div>
+            <time datetime="2026-09-21">21 September 2026</time>
+        </header>
+        <p class="release-summary">Every framework scale now accepts your own custom values, the Framework editor sections share one refined row-per-value layout, editable text gains framework palette colours that follow later palette edits, and the Part API adds <code>frameworkFontSize</code> and <code>frameworkStackingOrder</code> controls.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Editable text colours</h3>
+                <ul class="release-list">
+                    <li>The text editor's colour picker is now the framework palette popover: colours are stored as palette references and resolved at render time, so palette edits recolour existing text, and light/dark appearances resolve per palette shade. Deleting a palette lets text fall back to its inherited colour without losing the reference.</li>
+                    <li>Rebuilt the text editor's toolbar along the top of the sheet with regular-size native controls and the expected shortcuts: ⌘B/I/U, ⇧⌘X for strikethrough, ⌘− and ⌘= for text size, and ⌘K for links.</li>
+                    <li>The HTML source editor no longer substitutes curly quotes or autocorrects while you type code.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Framework editor</h3>
+                <ul class="release-list">
+                    <li>Renamed Type Scale to <strong>Font Size</strong> and rebuilt it in the Fonts layout: a sidebar of custom and framework sizes with a per-size detail pane, where the size slider carries an ideal line height with it and the line-height slider overrides manually.</li>
+                    <li>Rebuilt Spacing, Border Width, Border Radius and Stacking Order as single pages with one row per value — name, slider, precise field and unit — with a Custom Values card above each framework scale for adding, renaming and deleting your own entries.</li>
+                    <li>Spacing now edits in rem, the unit the published CSS actually uses, with the pixel equivalent alongside.</li>
+                    <li>Reset Scale sits inside the card it resets, restores the source framework's saved values, never touches custom values, and disables when nothing has changed. Custom values stay editable on built-in frameworks.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Custom framework values</h3>
+                <ul class="release-list">
+                    <li>Border widths, corner radii and stacking order now accept project custom values alongside custom spacing, each emitting its own <code>--foundry-*</code> CSS variable; custom spacing and stacking values also generate <code>fd-*</code> utility classes.</li>
+                    <li>Added a <strong>4XL</strong> spacing token (8 rem / 128 px) to the predefined scale for section-level whitespace.</li>
+                    <li>Framework value pickers list your custom values in a Custom section above the framework scale.</li>
+                    <li>Deleting a custom value no longer asks for a replacement: parts still using it keep its exact size baked in as a custom length, token-only selections snap to the closest predefined token, and the whole operation is one undoable step.</li>
+                    <li>Custom values survive switching frameworks, and new entries are named <code>new</code>, <code>new1</code>, <code>new2</code>…</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Part API</h3>
+                <ul class="release-list">
+                    <li>Added the <a href="framework-font-size-control.html"><code>frameworkFontSize</code></a> control: a picker of the framework's font sizes resolving both the size variable and its paired <code>.lineHeight</code> variable.</li>
+                    <li>Added the <a href="framework-stacking-order-control.html"><code>frameworkStackingOrder</code></a> control: a picker of the framework's stacking tokens with the framework-mode toggle switching to a custom integer, matching the spacing controls.</li>
+                    <li>The built-in Paragraph and Heading parts gained an opt-in <strong>Custom Size</strong> toggle revealing a framework Size picker with its paired line height, responsive per breakpoint.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Globals</h3>
+                <ul class="release-list">
+                    <li>Added <strong>Explode Global</strong> to a global root's Structure and canvas context menus and its Inspector, permanently converting the whole instance back to ordinary parts.</li>
+                    <li>Local Override is now child-level only; an overridden child keeps its global badge in blue as <em>Global — Child — Overridden</em>, and selected global children show their own part type in the Inspector.</li>
+                    <li>Global canvas chrome is now consistently green, including a lighter green for hover and drop targets, mirroring the blue used by ordinary parts.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Fixes and workspace</h3>
+                <ul class="release-list">
+                    <li>The Templates and Globals panels support multiple selection for bulk deleting and rearranging, matching Assets.</li>
+                    <li>The derived <code>contrastColor</code> now prefers white whenever it clears the WCAG 3:1 large-text bar, so colours like the macOS system blue read as white-on-blue rather than black.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-8">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 8</span>
+                <h2>Foundry CSS</h2>
+            </div>
+            <time datetime="2026-09-20">20 September 2026</time>
+        </header>
+        <p class="release-summary">Every project now compiles its own build of <strong>Foundry CSS</strong> — the framework generated from the Framework editor's values — shared identically by the canvas, browser preview and published output. This build also removes the last framework-owned legacy classes and completes the framework naming sweep with <code>frameworkShadow</code>.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Foundry CSS 1</h3>
+                <ul class="release-list">
+                    <li>Published sites ship one <code>files/site.css</code> built from the project: three cascade layers (<code>foundry.tokens</code>, <code>foundry.base</code>, <code>foundry.utilities</code>) with Part and page CSS unlayered — a Part's own styles beat the framework by architecture, never by specificity fights. See the new <a href="foundry-css.html">Foundry CSS</a> reference.</li>
+                    <li>Every Framework editor value is a documented <code>--foundry-*</code> token, joined by reserved motion durations, a standard easing curve and a focus-ring outline value.</li>
+                    <li>Token-mirroring utility classes with the <code>fd-{property}-{token}</code> grammar cover spacing, gap, text sizes, colour roles, fonts, radii, borders, shadows, z-index and the container — including classes for your custom tokens, and mobile-first responsive variants such as <code>fd-md:p-lg</code> for enabled screens.</li>
+                    <li>The base layer is a token-driven reset and defaults: honours reduced-motion by zeroing the motion tokens, brand-matches native form controls through <code>accent-color</code>, consumes the focus-ring token on <code>:focus-visible</code>, balances heading wrapping, and styles plain <code>hr</code>, <code>blockquote</code> and <code>table</code> content from tokens.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Legacy classes removed</h3>
+                <ul class="release-list">
+                    <li>The framework no longer owns the <code>.foundry-container</code>, <code>.foundry-button</code>, <code>.foundry-grid</code> and <code>.foundry-heading</code> global rules; built-in parts style themselves. Parts that relied on those rules must declare their own styles.</li>
+                    <li>Framework-generated image markup now uses <code>.fd-image</code>; Part CSS targeting <code>.foundry-image</code> must be updated.</li>
+                    <li>Fixed the Container part's Max Width control being silently overpowered by the old global rule.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>frameworkShadow</h3>
+                <ul class="release-list">
+                    <li>Renamed the <code>shadow</code> control type to <code>frameworkShadow</code>, completing the framework prefix across every framework-aware control. The old name is a validation error; update existing manifests. See <a href="framework-shadow-control.html">Framework shadow</a>.</li>
+                    <li>The control now presents like the other framework controls: the framework-mode toggle beside the picker switches between framework shadows and the custom layer editor, replacing the popup's Custom entry.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Fixes</h3>
+                <ul class="release-list">
+                    <li>Button, Heading and other single-primitive parts can be deleted from the canvas with the Delete key again.</li>
+                    <li>The Foundry Framework document type is now declared as an exported type, silencing the launch-time UTI warning.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-7">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 7</span>
+                <h2>Frameworks, box-model editing and manual responsive pins</h2>
+            </div>
+            <time datetime="2026-09-20">20 September 2026</time>
+        </header>
+        <p class="release-summary">A breaking platform release: frameworks replace themes across the app, the Part API and every file format, alongside redesigned four-edge editors, generic length controls, richer framework colours and a new manual model for responsive overrides.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Themes are now frameworks</h3>
+                <ul class="release-list">
+                    <li>Renamed themes to <strong>frameworks</strong> throughout the app, the documentation and the Part API — they are complete design systems, and the shippingbox symbol now represents them everywhere.</li>
+                    <li>Renamed the manifest control types: <code>frameworkColor</code>, <code>frameworkPadding</code>, <code>frameworkMargin</code>, <code>frameworkBorder</code>, <code>frameworkRadius</code>, <code>frameworkSpacing</code> and <code>frameworkFont</code>, plus the <code>frameworkValues</code> key. The old <code>theme*</code> names are validation errors; update existing manifests.</li>
+                    <li>Renamed framework bundles to <code>.foundryframework</code>. Earlier projects and <code>.foundrytheme</code> bundles do not open in this build; recreate test content.</li>
+                    <li>Added a z-index token scale to frameworks.</li>
+                    <li>Moved this documentation to framework-named pages; earlier theme-named links no longer resolve.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Manifest controls</h3>
+                <ul class="release-list">
+                    <li>Grouped controls are now declared inline in the <code>controls</code> array at the position you want them, in exactly the author's order. The separate <code>controlGroups</code> key has been removed and no longer validates.</li>
+                    <li>Added the generic <strong>Edges</strong> and <strong>Corners</strong> controls: the four-length box editors with raw values only — your declared <code>units</code>, an optional <code>linked</code> starting state, and no framework values or mode button.</li>
+                    <li>Extended <code>frameworkColor</code> with derived values: appearance-aware <code>contrastColor</code>, the colour filters, an <code>outputFormat</code> accepting the complete-colour formats, and per-appearance channels, accessibility values and fragment formats behind <code>light</code>/<code>dark</code> qualification.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Inspector editing</h3>
+                <ul class="release-list">
+                    <li>Replaced the four-row spacing editors with box-model controls: padding, margin and border widths place each edge field around linked pair lines, and radius places each corner in a two-by-two grid joined by a single all-or-none link ring.</li>
+                    <li>Replaced the per-edge Custom picker item with one shippingbox mode button that switches every edge between framework values and custom lengths, carrying amounts into custom mode and snapping to the nearest framework value on the way back. The single framework spacing control gained the same button.</li>
+                    <li>Framework value pickers now label options as token and amount, such as <code>SM - 1rem</code>.</li>
+                    <li>Restyled the Part Inspector edge-to-edge with tighter spacing and per-section symbols.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Responsive editing</h3>
+                <ul class="release-list">
+                    <li>Breakpoint overrides are now created only by clicking the blue dot, which pins the value currently showing at that breakpoint. Editing a value no longer creates overrides silently.</li>
+                    <li>An edit fills whichever pin — or the base value — governs the breakpoint being viewed, so with no pins a change applies everywhere, and pinned breakpoints hold their range until unpinned.</li>
+                    <li>Developer-declared breakpoint defaults behave as implicit pins: editing above one materialises the change at the default's breakpoint without leaking below it.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Projects and performance</h3>
+                <ul class="release-list">
+                    <li>Made project asset loading lazy, keeping large projects responsive on open.</li>
+                    <li>Fixed publishing debounce so repeated publishes no longer rebuild the full bundle unnecessarily.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-6">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 6</span>
+                <h2>Site identity and flexible publishing</h2>
+            </div>
+            <time datetime="2026-09-16">16 September 2026</time>
+        </header>
+        <p class="release-summary">A project-configuration release that brings site identity, generated web icons, search visibility and reusable publishing destinations into one clearer workflow.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Project and site settings</h3>
+                <ul class="release-list">
+                    <li>Moved Site Settings into its own resizable project window and redesigned it with consistent grid rows and dedicated sections for General, Site Identity, Web Icons, SEO &amp; Search, Publishing and Code &amp; Analytics.</li>
+                    <li>Improved General settings with web-address validation, a language picker, managed site-logo artwork and alt text, and the project’s dark-mode option.</li>
+                    <li>Added site-wide title suffix, default description and social-image fallbacks for pages that do not provide their own metadata.</li>
+                    <li>Added site-logo and social-image wells with native file picking and drag-and-drop workflows.</li>
+                    <li>Separated search indexing, canonical URL, sitemap and robots.txt controls from publishing configuration, with guidance when a valid public web address is required.</li>
+                    <li>Exported managed site artwork with the project while keeping source artwork private to the document package.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Web icons</h3>
+                <ul class="release-list">
+                    <li>Added a managed web-icon generator that accepts a square source image of at least 256 pixels.</li>
+                    <li>Generated and stored favicon and Apple touch-icon variants once, then reused them across previews and published output.</li>
+                    <li>Kept imported source artwork and generated icon files private to the project while emitting depth-correct icon links on every exported page.</li>
+                    <li>Removed generated icon output cleanly when the source is cleared.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Structure and workspace</h3>
+                <ul class="release-list">
+                    <li>Added the current page as the root item in Structure, making the page itself selectable for metadata inspection.</li>
+                    <li>Allowed Parts to be dragged directly onto the page root and made root-level ordering clearer alongside nested drop zones and child pickers.</li>
+                    <li>Kept the page root and selected Part hierarchy expanded when revealing selections.</li>
+                    <li>Refined Pages, Structure and Assets outline backgrounds so they blend correctly with sidebar materials.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Publishing destinations</h3>
+                <ul class="release-list">
+                    <li>Added multiple named Local Folder, SFTP, FTP, FTPS and Amazon S3 destinations with one clearly selected default.</li>
+                    <li>Added reusable destination bookmarks for recalling connection settings in other projects, with credentials retained securely in Keychain.</li>
+                    <li>Improved connection testing with clear success and failure states, including recognition of remote directories that will be created on first publish.</li>
+                    <li>Extended the toolbar Publish control with destination selection, full republishing and direct access to Publishing Setup.</li>
+                    <li>Automatically migrated projects using the earlier single-destination publishing settings.</li>
+                    <li>Scoped local folders, credentials and publishing manifests to their individual destinations while keeping the sole remaining destination as the default.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Developer reliability</h3>
+                <ul class="release-list">
+                    <li>Added validation requiring a Part’s primary HTML output to have one stable top-level root when developer validation is enabled.</li>
+                    <li>Added the Inspector’s canonical String, wildcard, array-membership and empty-value predicates to template expressions, with shared matching semantics across both APIs.</li>
+                    <li>Improved live-refresh boundary coverage so malformed templates are reported before they can produce unreliable canvas updates.</li>
+                    <li>Expanded regression coverage for project migration, managed site artwork, generated icons, publishing URLs and package validation.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-5">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 5</span>
+                <h2>Selection clarity and batch editing</h2>
+            </div>
+            <time datetime="2026-09-15">15 September 2026</time>
+        </header>
+        <p class="release-summary">A focused interaction release that made complex and nested canvases easier to understand, select and edit.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Canvas chrome</h3>
+                <ul class="release-list">
+                    <li>Unified chrome state priority so editing, drop targets, selection and hover no longer compete visually.</li>
+                    <li>Kept selected labels visible after pointer exit while clearing genuine hover state when leaving the canvas.</li>
+                    <li>Improved nested and multiple-selection label ordering, giving the primary selection visual priority.</li>
+                    <li>Separated drop indicators from rendered Part styles so dragging no longer replaces a Part’s own box shadow.</li>
+                    <li>Added empty-canvas click and Escape as clear ways to remove the current selection.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Multiple-Part editing</h3>
+                <ul class="release-list">
+                    <li>Allowed multiple instances of the same Part to share one Inspector and be edited together.</li>
+                    <li>Used the last instance added to the selection as the Inspector’s visible source value.</li>
+                    <li>Applied each subsequent change across every compatible selected instance, including conditional and visibility-related settings.</li>
+                    <li>Refined canvas synchronisation after grouped edits so all affected instances update together.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-4">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 4</span>
+                <h2>World-class layout foundations</h2>
+            </div>
+            <time datetime="2026-09-15">15 September 2026</time>
+        </header>
+        <p class="release-summary">The first major pass over Foundry’s built-in layout system, with a shared Inspector language and more dependable live canvas rendering.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Built-in layout Parts</h3>
+                <ul class="release-list">
+                    <li>Added dedicated <strong>Stack</strong> and <strong>Grid</strong> Parts alongside Section, Container and Columns.</li>
+                    <li>Greatly expanded Section, Container and Columns with responsive flex, grid, alignment, sizing and spacing options.</li>
+                    <li>Standardised common Inspector groups so equivalent settings appear in predictable places across layout Parts.</li>
+                    <li>Added opt-in presentation controls and hover states where they make sense, while hiding unused settings until enabled.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Canvas fidelity</h3>
+                <ul class="release-list">
+                    <li>Fixed cases where the canvas could fall behind the current Inspector settings while browser Preview remained correct.</li>
+                    <li>Moved editing chrome inside Part bounds so developer borders remain visible.</li>
+                    <li>Improved chrome visibility over images and highly styled Parts.</li>
+                    <li>Added regression coverage for live Part updates and the built-in layout system.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+    <article class="release-build" id="build-3">
+        <header class="release-build-header">
+            <div>
+                <span class="release-build-number">Build 3</span>
+                <h2>Developer platform and preview foundations</h2>
+            </div>
+            <time datetime="2026-09-14">14 September 2026</time>
+        </header>
+        <p class="release-summary">A broad foundation release that established the modern Part API, rebuilt the framework workflow and made large previews substantially more responsive.</p>
+
+        <div class="release-groups">
+            <section class="release-group">
+                <h3>Parts and the developer API</h3>
+                <ul class="release-list">
+                    <li>Standardised the product language around <strong>Parts</strong>, including packs, the Inspector, Structure and developer documentation.</li>
+                    <li>Expanded the custom-control API with colour, date, icon, link, shadow, typography, spacing, margin, padding, border and radius controls.</li>
+                    <li>Added responsive defaults and framework-aware values so controls can inherit from project frameworks while retaining breakpoint overrides.</li>
+                    <li>Added named drop zones, managed child pickers, collection loops and persistent editable text, HTML and image areas.</li>
+                    <li>Added the signed Part update workflow, update discovery and in-app release availability.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Canvas and editing</h3>
+                <ul class="release-list">
+                    <li>Introduced targeted canvas patches and revisioned updates for faster control editing without full-page reloads.</li>
+                    <li>Kept linked global Parts synchronised across placements, including structural changes and canvas chrome.</li>
+                    <li>Improved image controls with drag and drop, focal-point editing, renditions and reusable on-disk rendition caching.</li>
+                    <li>Refined canvas selection, context menus, inline editing, responsive indicators and undo grouping.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Frameworks and projects</h3>
+                <ul class="release-list">
+                    <li>Redesigned the Framework Editor around persistent colour palettes, fonts, type scales, spacing, shadows, borders and radii.</li>
+                    <li>Moved responsive breakpoints to project settings so changing frameworks no longer changes a project’s responsive behaviour.</li>
+                    <li>Allowed built-in frameworks to be adjusted within a project without modifying the installed framework.</li>
+                    <li>Added a native welcome window, recent-project access and substantial workspace and Inspector refinements.</li>
+                </ul>
+            </section>
+
+            <section class="release-group">
+                <h3>Preview and distribution</h3>
+                <ul class="release-list">
+                    <li>Moved browser previews to disk-backed, incremental output to keep memory use predictable on large sites.</li>
+                    <li>Made external preview auto-reload follow both project edits and internal page changes.</li>
+                    <li>Cached generated image renditions on disk and reused them across preview and export.</li>
+                    <li>Prepared the bundled PHP runtime for hardened-runtime signing and direct app distribution.</li>
+                </ul>
+            </section>
+        </div>
+    </article>
+
+</div>
+{% endraw %}

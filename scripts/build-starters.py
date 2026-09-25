@@ -70,7 +70,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="Verify committed ZIPs without writing files")
     args = parser.parse_args()
-    for stage, files in starter_files((ROOT / "quick-start.md").read_text()).items():
+    for stage, files in starter_files((ROOT / "developer" / "quick-start.md").read_text()).items():
         destination = ROOT / "assets" / "downloads" / f"Callout-{stage}.zip"
         expected = archive(files)
         if args.check:

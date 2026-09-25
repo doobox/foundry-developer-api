@@ -1,0 +1,185 @@
+---
+layout: default
+title: Link control · Foundry Developer
+permalink: "/developer/link-control.html"
+---
+{% raw %}
+{% endraw %}{% include breadcrumbs.html %}{% raw %}
+<p class="eyebrow">manifest.json · inspector</p>
+<h1>Link</h1>
+<p class="lede">A structured destination supporting URLs, plain text, project pages, project resources, anchors, new-window behaviour, and custom attributes.</p>
+
+
+<figure class="control-screenshot">
+    <img src="assets/screenshots/link-control.png" width="348" height="39" alt="Link control labelled Destination with https://example.com selected and a clear button." />
+    <figcaption>A selected destination appears with a button to clear the link.</figcaption>
+</figure>
+
+## Quick example
+
+Add this dictionary to your part's `inspector` array:
+
+```json
+{
+    "type" : "link",
+    "id" : "destination",
+    "defaults" : {
+        "base" : ""
+    }
+}
+```
+
+Use it in your HTML template:
+
+```html
+<a href="{{ control.destination }}"
+   target="{{ control.destination.target }}"
+   {{ control.destination.attributes }}>Read more</a>
+```
+
+The initial link is empty. Choose a destination in the Inspector to make the link useful.
+
+
+## Basic properties
+
+Each item in the `inspector` array defines one Inspector item. These keys set its name and initial value.
+
+<h3 class="property-heading"><code>type</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
+
+Identifies this item as a Link control. Always use `link`.
+
+```json
+"type" : "link"
+```
+
+<h3 class="property-heading"><code>id</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
+
+The unique name used to store this control and read it in templates. It must start with a letter and may contain letters, numbers, underscores or hyphens.
+
+```json
+"id" : "destination"
+```
+
+<h3 class="property-heading"><code>label</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
+
+Text shown to the left of the control in the Inspector.
+
+```json
+"label" : "Destination"
+```
+
+<h3 class="property-heading"><code>tooltip</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: omitted</span></div>
+
+Help text that explains what the control changes.
+
+```json
+"tooltip" : "Choose a destination."
+```
+
+<h3 class="property-heading"><code>subtitle</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: empty</span></div>
+
+Supporting text shown beneath the control.
+
+```json
+"subtitle" : "Additional guidance"
+```
+
+<h3 class="property-heading"><code>visibleWhen</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="optional">Optional</span><span class="default">Default: shown</span></div>
+
+Shows this control only when another control meets the stated condition. See [Conditional visibility](visible-when.html).
+
+```json
+"visibleWhen" : {
+    "id" : "showControl",
+    "value" : true
+}
+```
+
+<h3 class="property-heading"><code>valueAvailability</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="optional">Optional</span><span class="default">Default: always</span></div>
+
+Controls when this control's value is available to templates. `always` preserves the value when the control is hidden. `whenVisible` makes `control.<id>` and its qualified derived values unavailable while `visibleWhen` is false, without discarding the stored value. `whenVisible` requires `visibleWhen`. See [Conditional visibility](visible-when.html).
+
+<h3 class="property-heading"><code>defaults</code></h3>
+<div class="property-meta"><span class="property-type">Dictionary</span><span class="required">Required</span></div>
+
+A dictionary containing the required `base` value in the format described below. This control does not accept breakpoint entries.
+
+<h3 class="property-heading"><code>defaults.base</code></h3>
+<div class="property-meta"><span class="property-type">String</span><span class="required">Required</span></div>
+
+The initial destination. An empty string means no destination; a non-empty string initializes a URL destination.
+
+```json
+"defaults" : {
+    "base" : ""
+}
+```
+
+## Link options
+
+These keys sit directly in the same custom-item dictionary. Omitted optional keys use the defaults shown.
+
+<h3 class="property-heading"><code>absoluteURL</code></h3>
+<div class="property-meta"><span class="property-type">Boolean</span><span class="optional">Optional</span><span class="default">Default: false</span></div>
+
+Prefixes internal page and resource paths with the project Site URL when it is a valid HTTP(S) URL. Otherwise Foundry retains the relative path.
+
+```json
+"absoluteURL" : true
+```
+
+<div class="guidance" markdown="1">
+<h3>Companion template values</h3>
+
+The base expression returns the resolved `href`. Foundry also exposes `.target` and `.attributes`, allowing the author’s new-window choice and validated custom attributes to reach the element. Page and resource destinations are stored by stable ID and resolve to their current exported path.
+
+For a Page destination, the Anchor menu lists valid anchors entered on part roots through the Advanced Inspector. Descendant IDs belonging to a part’s implementation are not shown.
+
+Invalid HTML attribute names are omitted. Opening a new window emits `_blank` and adds `rel="noopener noreferrer"` unless the author supplies `rel`.
+</div>
+
+
+## Return value
+
+`{{ control.destination }}` resolves as **Escaped href plus companion strings**. Stored internally, its value is **Structured link value**.
+
+```html
+<a href="{{ control.destination }}"
+   target="{{ control.destination.target }}"
+   {{ control.destination.attributes }}>Read more</a>
+```
+
+## Complete example
+
+### manifest.json
+
+```json
+"inspector" : [
+    {
+        "type" : "link",
+        "id" : "destination",
+        "label" : "Destination",
+        "absoluteURL" : true,
+        "defaults" : {
+            "base" : ""
+        }
+    }
+]
+```
+
+### Use it in a template
+
+```html
+<a href="{{ control.destination }}"
+   target="{{ control.destination.target }}"
+   {{ control.destination.attributes }}>Read more</a>
+```
+
+{% endraw %}

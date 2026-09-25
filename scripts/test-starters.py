@@ -8,7 +8,7 @@ import unittest
 import zipfile
 
 builder = runpy.run_path(str(Path(__file__).with_name("build-starters.py")))
-source = (Path(__file__).resolve().parents[1] / "quick-start.md").read_text()
+source = (Path(__file__).resolve().parents[1] / "developer" / "quick-start.md").read_text()
 
 
 class StarterTests(unittest.TestCase):
